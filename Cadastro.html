@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=fi, initial-scale=1.0">
+    <title>Octoplus Bank</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body> 
+
+    <div>
+        <h1 id="titulo">CADASTRO</h1>
+    </div>
+
+    <form>
+        <fieldset>
+            <div>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" name="nome" id="nome" required>
+            </div>
+
+            <div>
+                <label for="cpf">CPF:</label>
+                <input type="text" name="cpf" id="cpf" required>
+            </div>
+            
+            <div>
+                <label for="data">Data de Nascimento:</label>
+                <input type="date" name="data" id="data" required>
+            </div>
+
+            
+            
+            <div>
+                <label for="genero">Gênero:</label>
+                <label>
+                    <input type="radio" name="masc" id="genero">Masculino
+                </label>
+                <label>
+                    <input type="radio" name="fem" id="genero">Feminino
+                </label>
+                <label>
+                    <input type="radio" name="outro" id="genero">Outro
+                </label>
+            </div>
+
+            <div>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" name="telefone" id="telefone">
+            </div>
+
+            <div>
+                <label for="cep">CEP:</label>
+                <input type="text" name="cep" id="cep">
+            </div>
+
+            <div>
+                <label for="endereço">Endereço:</label>
+                <input type="text" name="endereço" id="endereço">
+            </div>
+
+            <div>
+                <label for="bairro">Bairro:</label>
+                <input type="text" name="bairro" id="bairro">
+            </div>
+
+            <div>
+                <label for="numero">Nº:</label>
+                <input type="text" name="numero" id="numero">
+            </div>
+
+            <div>
+                <label>Tipo de Conta:</label>
+                <select name="select" required>
+                    <option selected disabled value="">Escolha</option>
+                    <option value="1">Corrente</option>
+                    <option value="2">Poupança</option>
+                </select>
+            </div>
+
+            <a href="Cadastro_user.html"><button type="submit">Concluir</button></a>
+        </fieldset>
+    </form>
+
+</body>
+</html>

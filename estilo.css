@@ -1,0 +1,42 @@
+body {
+    background-color: #ECDDC9;
+}
+
+/* Botões Página Home */
+
+div#botoes {
+    text-align: center;
+}
+
+button {
+    background-color: #F2B9A8;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+button#login {
+    width: 450px;
+    height: 105px;
+    background-color: #F2B9A8;
+    border-width: 1px;
+    cursor: pointer;
+    font-size: x-large;
+    border-color: #E45131;
+    margin-top: 150px;
+}
+
+button#cadastro {
+    width: 450px;
+    height: 105px;
+    background-color: #F2B9A8;
+    border-width: 1px;
+    cursor: pointer;
+    font-size: x-large;
+    margin-top: 20px;
+}
+
+/* Formulario de Cadastro */
+
+
+
+
