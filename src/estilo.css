@@ -1,8 +1,7 @@
 body {
     background-color: #ECDDC9;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-align: center;
-  }
+}
 
 /* Botões Página Home */
 
@@ -13,7 +12,7 @@ div#botoes {
 button {
     background-color: #F2B9A8;
     border-width: 1px;
-    font-size: 1vw;
+    font-size: 1.5vw;
     cursor: pointer;
 }
 
@@ -42,23 +41,53 @@ h1{text-align: center;
 font-family: Georgia, 'Times New Roman', Times, serif;}
 
 
+body{
+    text-align: center;
+}
 
+/* Alinhamento */
+form {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  label,
+  input {
+    /* In order to define widths */
+    display: inline-block;
+  }
+  
+  label {
+    width: 30%;
+    /* Positions the label text beside the input */
+    text-align: right;
+  }
+  
+  label+input {
+    width: 30%;
+    /* Large margin-right to force the next element to the new-line
+             and margin-left to create a gutter between the label and input */
+    margin: 0 30% 0 4%;
+  }
+  
+  
+  /* Only the submit button is matched by this selector,
+         but to be sure you could use an id or class for that button */
+  
+  input+input {
+    float: right;
+  }
 
 label.esquerda{text-align: left;}
 
 
 div.esquerda{text-align: center;}
 
-div.dep{margin-top: 200px;}
+label{width: }
 
-input#deposito{
-                width: 250PX;
-                height: 56px;
-              }
-
-
-/* Formulario de Cadastro */
-
+.tipo {
+  margin-left: 20px;
+}
 
 
 
