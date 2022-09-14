@@ -16,19 +16,18 @@
 
     <form>
         <fieldset>
-            <div class="bota">
+            <div class="formulario">
                 <label for="nome">Nome Completo:</label>
                 <input type="text" name="nome" id="nome" required>
-<br><br>
+<br>
                 <label for="cpf">CPF:</label>
                 <input type="text" name="cpf" id="cpf" required>
-<br><br>
+<br>
                 <label for="data">Data de Nascimento:</label>
                 <input type="date" name="data" id="data" required>
 
- <br> <br>          
-            
-                
+ <br>          
+                           
                 <label>Gênero:</label>
                 <select name="genero" required>
                         <option selected disabled value="">Escolha</option>
@@ -40,27 +39,38 @@
 <br><br>
                 <label for="telefone">Telefone:</label>
                 <input type="tel" name="telefone" id="telefone">
-<br><br>
+<br>
                 <label for="cep">CEP:</label>
                 <input type="text" name="cep" id="cep">
-<br><br>
+<br>
                 <label for="endereço">Endereço:</label>
                 <input type="text" name="endereço" id="endereço">
-<br><br>
+<br>
+
+                <label for="city">Cidade:</label>
+                <input type="text" name="city" id="city">
+<br>
                 <label for="bairro">Bairro:</label>
                 <input type="text" name="bairro" id="bairro">
-<br><br>
+<br>
                 <label for="numero">Nº:</label>
                 <input type="text" name="numero" id="numero">
-<br><br>
+<br>
                 <label for="tipo">Tipo de Conta:</label>
                 <select  name="tipo" required>
                     <option selected disabled value="">Escolha</option>
                     <option value="1">Corrente</option>
                     <option value="2">Poupança</option>
                 </select>
+<br><br>           
+                <label for="senha">Senha:</label>
+                <input type="password" required name="senha" id="senha">
+<br>            
+                <label for="rsenha">Repita a Senha:</label>
+                <input type="password" required name="rsenha" id="rsenha">
+            
             </div>
-<br><br>
+<br>
             <button type="submit">Concluir</button>
         </fieldset>
     </form>
