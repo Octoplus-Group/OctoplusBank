@@ -16,71 +16,52 @@
 
     <form>
         <fieldset>
-            <div>
+            <div class="bota">
                 <label for="nome">Nome Completo:</label>
                 <input type="text" name="nome" id="nome" required>
-            </div>
-
-            <div>
+<br><br>
                 <label for="cpf">CPF:</label>
                 <input type="text" name="cpf" id="cpf" required>
-            </div>
-            
-            <div>
+<br><br>
                 <label for="data">Data de Nascimento:</label>
                 <input type="date" name="data" id="data" required>
-            </div>
 
+ <br> <br>          
             
-            
-            <div>
-                <label for="genero">Gênero:</label>
-                <label>
-                    <input type="radio" name="masc" id="genero">Masculino
-                </label>
-                <label>
-                    <input type="radio" name="fem" id="genero">Feminino
-                </label>
-                <label>
-                    <input type="radio" name="outro" id="genero">Outro
-                </label>
-            </div>
-
-            <div>
+                
+                <label>Gênero:</label>
+                <select name="select" required>
+                        <option selected disabled value="">Escolha</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Feminino</option>
+                            <option value="2">Outro</option>
+                </select>
+                
+<br><br>
                 <label for="telefone">Telefone:</label>
                 <input type="tel" name="telefone" id="telefone">
-            </div>
-
-            <div>
+<br><br>
                 <label for="cep">CEP:</label>
                 <input type="text" name="cep" id="cep">
-            </div>
-
-            <div>
+<br><br>
                 <label for="endereço">Endereço:</label>
                 <input type="text" name="endereço" id="endereço">
-            </div>
-
-            <div>
+<br><br>
                 <label for="bairro">Bairro:</label>
                 <input type="text" name="bairro" id="bairro">
-            </div>
-
-            <div>
+<br><br>
                 <label for="numero">Nº:</label>
                 <input type="text" name="numero" id="numero">
-            </div>
-
-            <div>
+<br><br>
                 <label>Tipo de Conta:</label>
-                <select name="select" required>
+                <select  name="select" required>
                     <option selected disabled value="">Escolha</option>
                     <option value="1">Corrente</option>
                     <option value="2">Poupança</option>
                 </select>
             </div>
-
-            <a href="Cadastro_user.html"><button type="submit">Concluir</button></a>
+<br><br>
+            <button type="submit">Concluir</button>
         </fieldset>
     </form>
 
