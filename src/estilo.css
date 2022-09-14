@@ -45,7 +45,7 @@ body{
     text-align: center;
 }
 
-/* texto copiado e analisado pra fazer o alinhamento */
+/* Alinhamento */
 form {
     width: 80%;
     margin: 0 auto;
@@ -85,9 +85,9 @@ div.esquerda{text-align: center;}
 
 label{width: }
 
-
-/* Formulario de Cadastro */
-
+.tipo {
+  margin-left: 20px;
+}
 
 
 
