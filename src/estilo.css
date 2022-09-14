@@ -43,7 +43,7 @@ button#cadastro {
     margin-top: 20px;
 }
 
-/*Formulário*/
+/*Formulário Cadastro*/
 
 label.esquerda{
   text-align: left;
@@ -58,5 +58,25 @@ div.formulario {
   padding: 20px;
 }
 
+/* Tela home de usuário normal */
 
+button#dados {
+  margin-left: -1000px;
+  border-radius: 50px;
+  width: 278px;
+  height: 48px;
+}
 
+button#solict {
+  margin-top: 8px;
+  margin-left: -1000px;
+  border-radius: 50px;
+  width: 278px;
+  height: 48px;
+}
+
+h3{
+  text-align: right;
+  margin-top: -100px;
+  margin-right: 20px;
+}
