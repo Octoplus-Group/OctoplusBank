@@ -8,52 +8,52 @@ octbd = mysql.connector.connect(
 
 #inserção de dados
 nome = input("Nome: ")
-cpf = int(input("CPF: "))
-    cp = cpf.count("")-1
-    cp
-    for x in cpf:
-        if cp <= 11:
-            break
-        else:
-            cpf = input("Digite o CPF novamente: ")
-            cp = cpf.count("")-1
-            cp
+cpf = input("CPF: ")
+f = len(cpf)
+f
+for x in cpf:
+    if f <= 11:
+        break
+    else:
+        cpf = input("Digite o CPF novamente: ")
+        f = len(cpf)
+        f
 data_nasc = input("Data de nascimento aaaa-mm-dd: ")
 genero = input("Gênero(Masculino, Feminino, Outro): ")
-tel = int(input("Telefone: "))
-    t = tel.count("")-1
-    t
-    for x in tel:
-        if t <= 15:
-            break
-        else:
-            senha = input("Digite o telefone novamente: ")
-            s = senha.count("")-1
-            s
-cep = int(input("CEP: "))
-    ce = cep.count("")-1
-    ce
-    for x in cep:
-        if ce <= 8:
-            break
-        else:
-            cep = input("Digite o CEP novamente: ")
-            ce = cep.count("")-1
-            ce
+tel = input("Telefone: ")
+t = len(tel)
+t
+for x in tel:
+    if t <= 15:
+        break
+    else:
+        senha = input("Digite o telefone novamente: ")
+        s = len(tel)
+        s
+cep = input("CEP: ")
+p = len(cep)
+p
+for x in cep:
+    if p <= 8:
+        break
+    else:
+        cep = input("Digite o CEP novamente: ")
+        p = len(cep)
+        p
 cidade = input("Cidade: ")
 bairro = input("Bairro: ")
 endereço = input("Logradouro: ")
-numero = int(input("N°: "))
+numero = input("N°: ")
 senha = input("Senha: ")
-    s = senha.count("")-1
-    s
-    for x in senha:
-        if s <= 6:
-            break
-        else:
-            senha = input("Digite uma senha menor: ")
-            s = senha.count("")-1
-            s
+s = senha.count("")-1
+s
+for x in senha:
+    if s <= 6:
+        break
+    else:
+        senha = input("Digite uma senha menor: ")
+        s = senha.count("")-1
+        s
 
 #indica onde estaria o cursor
 cursor = octbd.cursor()
