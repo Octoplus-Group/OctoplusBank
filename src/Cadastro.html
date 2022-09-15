@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=fi, initial-scale=1.0">
     <title>Octoplus Bank</title>
     <link rel="stylesheet" href="estilo.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
 </head>
 
 <body> 
@@ -84,8 +85,8 @@
                 </select>
             </div>
             <div>
-                <label for="senha">Senha da Conta: </label><br>
-                <input type="password" id="senha" name="senha">
+                <label for="senha">Senha da Conta:(6 Dígitos) </label><br>
+                <input type="password" id="senha" name="senha" minlength="6" maxlength="6">
             </div>
             <div>
                 <input type="hidden" id="saldo" name="saldo" value="0">
