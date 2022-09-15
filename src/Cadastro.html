@@ -14,64 +14,84 @@
         <h1 id="titulo">CADASTRO</h1>
     </div>
 
-    <form>
+    <form action="/" method="POST">
         <fieldset>
-            <div class="formulario">
+            <div>
                 <label for="nome">Nome Completo:</label>
                 <input type="text" name="nome" id="nome" required>
-<br>
-                <label for="cpf">CPF:</label>
-                <input type="text" name="cpf" id="cpf" required>
-<br>
-                <label for="data">Data de Nascimento:</label>
-                <input type="date" name="data" id="data" required>
-
- <br>          
-                           
-                <label>Gênero:</label>
-                <select name="genero" required>
-                        <option selected disabled value="">Escolha</option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Feminino</option>
-                            <option value="2">Outro</option>
-                </select>
-                
-<br><br>
-                <label for="telefone">Telefone:</label>
-                <input type="tel" name="telefone" id="telefone">
-<br>
-                <label for="cep">CEP:</label>
-                <input type="text" name="cep" id="cep">
-<br>
-                <label for="endereço">Endereço:</label>
-                <input type="text" name="endereço" id="endereço">
-<br>
-
-                <label for="city">Cidade:</label>
-                <input type="text" name="city" id="city">
-<br>
-                <label for="bairro">Bairro:</label>
-                <input type="text" name="bairro" id="bairro">
-<br>
-                <label for="numero">Nº:</label>
-                <input type="text" name="numero" id="numero">
-<br>
-                <label for="tipo">Tipo de Conta:</label>
-                <select  name="tipo" required>
-                    <option selected disabled value="">Escolha</option>
-                    <option value="1">Corrente</option>
-                    <option value="2">Poupança</option>
-                </select>
-<br><br>           
-                <label for="senha">Senha:</label>
-                <input type="password" required name="senha" id="senha">
-<br>            
-                <label for="rsenha">Repita a Senha:</label>
-                <input type="password" required name="rsenha" id="rsenha">
-            
             </div>
-<br>
-            <button type="submit">Concluir</button>
+    
+            <div>
+                <label for="CPF">CPF:</label>
+                <input type="number" name="CPF" id="CPF" required>
+            </div>
+            
+            <div>
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" name="dataNascimento" id="dataNascimento" required>
+            </div>
+    
+                <div>
+                    <label for="genero">Genero:</label>
+                    <select name="genero" required>
+                        <option selected disabled value="">Escolha</option>
+                        <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
+                        <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
+                    </select>
+            </div>
+    
+            <div>
+                <label for="telefone">Telefone:</label>
+                <input type="text" name="telefone" id="telefone" required>
+            </div>
+    
+            <div>
+                <label for="cep">CEP:
+                <input type="number" name="cep" id="cep">
+            </label>
+            </div>
+    
+            <div>
+                <label for="cidade">Cidade: 
+                <input type="text" name="cidade" id="cidade">
+            </label>
+            </div>
+    
+            <div>
+                <label for="endereco">Endereço:
+                <input type="text" name="endereco" id="endereco">
+                </label>
+            </div>
+    
+            <div>
+                <label for="bairro">Bairro:
+                <input type="text" name="bairro" id="bairro">
+                </label>
+            </div>
+    
+            <div>
+                <label for="numeroCasa">Nº:
+                <input type="number" name="numeroCasa" id="numeroCasa">
+                </label>
+            </div>
+    
+            <div>
+                <label for="tipoConta">Tipo de Conta:</label>
+                <select name="tipoConta" required>
+                    <option selected disabled value="">Escolha</option>
+                    <option type="text" name="tipoConta" id="tipoConta" value="ContaCorrente">Corrente</option>
+                    <option type="text" name="'tipoConta" id="tipoConta" value="ContaPoupanca">Poupança</option>
+                </select>
+            </div>
+            <div>
+                <label for="senha">Senha da Conta: </label><br>
+                <input type="password" id="senha" name="senha">
+            </div>
+            <div>
+                <input type="hidden" id="saldo" name="saldo" value="0">
+            </div>
+    
+            <button type="submit">Cadastrar</button>
         </fieldset>
     </form>
 
