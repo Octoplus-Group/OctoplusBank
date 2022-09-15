@@ -17,7 +17,7 @@ div#botoes {
 
 button {
     background-color: #F2B9A8;
-    border-width: 1px;
+    border-width: 2px;
     font-size: 1.5vw;
     cursor: pointer;
 }
@@ -26,7 +26,7 @@ button#login {
     width: 450px;
     height: 105px;
     background-color: #F2B9A8;
-    border-width: 1px;
+    border-width: 2px;
     cursor: pointer;
     font-size: x-large;
     border-color: #E45131;
@@ -65,6 +65,8 @@ button#dados {
   border-radius: 50px;
   width: 278px;
   height: 48px;
+  background-color: #E45131;
+  color: #ECDDC9;
 }
 
 button#solict {
@@ -79,4 +81,45 @@ h3{
   text-align: right;
   margin-top: -100px;
   margin-right: 20px;
+}
+div#saldo{
+  width: 303px;
+  height: 63px;
+  margin-left: 1000px;
+  border: 3px solid black;
+  border-radius: 50px;
+  background-color:#E45131;
+  font-size: 20px;
+  text-align: center;
+}
+
+.textobtn{
+  margin: 19px auto;
+}
+
+button#dep{
+  margin-top: 50px;
+  margin-left: -00px;
+  border-radius: 50px;
+  width: 1100px;
+  height: 60px;
+  background-color: #E45131;
+}
+
+button#saque{
+  margin-top: 25px;
+  margin-left: -0 0px;
+  border-radius: 50px;
+  width: 1100px;
+  height: 60px;
+}
+
+button#sair{
+  border-radius: 50px;
+  background-color:#E45131;
+  color: white;
+  width: 109px;
+  height: 48px;
+  margin-left: 1000px;
+  margin-top: 112px;
 }
