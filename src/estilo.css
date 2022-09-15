@@ -123,3 +123,15 @@ button#sair{
   margin-left: 1000px;
   margin-top: 112px;
 }
+
+/* Pagina Dados */
+div#textosaldo{
+  width: 303px;
+  height: 63px;
+  margin-left: 1000px;
+  border: 3px solid black;
+  border-radius: 50px;
+  background-color:#E45131;
+  font-size: 20px;
+  text-align: center;
+}
