@@ -75,6 +75,7 @@ button#solict {
   border-radius: 50px;
   width: 278px;
   height: 48px;
+  opacity: 0;
 }
 
 h3{
@@ -125,13 +126,45 @@ button#sair{
 }
 
 /* Pagina Dados */
-div#textosaldo{
+button.textodado{
   width: 303px;
   height: 63px;
-  margin-left: 1000px;
   border: 3px solid black;
   border-radius: 50px;
   background-color:#E45131;
   font-size: 20px;
   text-align: center;
+  cursor: default ;
+  color: white;
+}
+
+#agencia {
+  border: 2px solid;
+  width: 150px;
+  height: 50px;
+  margin-left: 580px;
+  }
+
+#numero_conta{
+  border: 2px solid;
+  width: 200px;
+  height: 50px;
+  margin-left: 550px;
+}
+
+#tipo_conta{
+  border: 2px solid;
+  width: 150px;
+  height: 50px;
+  margin-left: 580px;
+}
+
+button#voltar{
+  border-radius: 50px;
+  background-color:#E45131;
+  color: white;
+  width: 109px;
+  height: 48px;
+  position: absolute;
+  left: 15px;
 }
