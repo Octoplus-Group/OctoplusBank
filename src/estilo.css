@@ -168,3 +168,45 @@ button#voltar{
   position: absolute;
   left: 15px;
 }
+
+/* ALTERAÇÕES GABI */
+/* alterações na página depósito e saque e adicionado 
+o nome da empresa em novas abas, como a do login e cadastro  */
+
+hr{
+  border: 1.25px solid black;
+}
+
+
+input#saque{
+  width: 276px;
+  height: 36px;
+  font-size: x-large;
+  border-radius: 25px;
+  margin-top: 25px;
+}
+
+div.saque{
+  font-size: 25px;
+  margin: 25px auto;
+ 
+}
+
+
+/* depósito */
+
+input#deposito{
+  width: 276px;
+  height: 36px;
+  font-size: x-large;
+  border-radius: 25px;
+  margin-top: 25px;
+}
+
+div.dep{
+  font-size: 20px;
+  margin: 25px auto;
+}
+
+
+
