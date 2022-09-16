@@ -1,8 +1,6 @@
-<br id="topo">
 <h1 align="center"> 1º API - 🏦 Banco Octoplus  🐙  </h1>
 <h2 align="center"> FATEC Profº Jessen Vidal, SJC - 1º Semestre DSM - 2022/2</h2>
-<span id="sobre">
-<h2> :bookmark_tabs: Sobre o projeto </h2>
+<h2 id="sobre"> :bookmark_tabs: Sobre o projeto </h2>
 O problema a ser abordado neste API é o desenvolvimento de um sistema para um Internet Banking; monitorando e controlando operações bancárias e reduzindo a necessidade de interações presenciais.
 
 <br>
@@ -14,10 +12,18 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
  
 > Baseado na Metodologia Scrum
 </br>
-
+<hr>
+<p align="center">
+ <a href="#sobre">Sobre</a> •
+ <a href="#equipe">Equipe</a> • 
+ <a href="#tecnologias">Tecnologias usadas</a> • 
+ <a href="#userstories">User Stories</a> • 
+ <a href="#backlog">Backlog da Sprint</a> •
+ <a href="#burndown">Burndown da Sprint</a> •
+</p>
 <hr>
 
-<h2> :man_technologist:💻 Equipe :woman_technologist: </h2>
+<h2 id="equipe"> :man_technologist: Equipe :woman_technologist: </h2>
 
 Integrantes da Equipe | Função | LinkedIn | Github |
 :--------- | :------: | :-------: | :-------:
@@ -34,12 +40,12 @@ Thiago Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249)
 
 <br>
 
-<h2>💻 Tecnologias Usadas</h2>
+<h2 id="tecnologias">💻 Tecnologias Usadas</h2>
 
 ![Tecnologias (700 × 400 px)](https://user-images.githubusercontent.com/111452998/190556735-6c6936c6-bbfc-4ce1-98c8-14622d007c80.png)
 
 
-## :mag: User Stories
+<h2 id="userstories"> :mag: User Stories </h2>
 
 <h4>Histórias para definir o escopo do projeto:</h4>
 
@@ -51,7 +57,7 @@ Thiago Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249)
 |  #04   | Usuário | Eu, enquanto [...] quero [...]                     | para [...]
 
 
-<h2>🗂️ Backlog das Sprints</h2>
+<h2 id="backlog">🗂️ Backlog das Sprints</h2>
 <br>
 
  [![Generic badge](https://img.shields.io/badge/SPRINT%201-EM%20ANDAMENTO-yellow)](https://shields.io/)
@@ -98,7 +104,7 @@ Thiago Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249)
 <br>
 
 <br>
-<h2>📉 Burndown das Sprints</h2>
+<h2 id="burndown">📉 Burndown das Sprints</h2>
 <br>
 
 <h3> Sprint 1: [29/08/22-18/09/22]</h3> 
