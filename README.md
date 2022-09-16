@@ -1,7 +1,7 @@
 <h1 align="center"> 1º API - 🏦 Banco Octoplus  🐙  </h1>
 <h2 align="center"> FATEC Profº Jessen Vidal, SJC - 1º Semestre DSM - 2022/2</h2>
 <h2 id="sobre"> :bookmark_tabs: Sobre o projeto </h2>
-O problema a ser abordado neste API é o desenvolvimento de um sistema para um Internet Banking; monitorando e controlando operações bancárias e reduzindo a necessidade de interações presenciais.
+O tema a ser abordado neste API é o desenvolvimento de um sistema para um Internet Banking; monitorando e controlando operações bancárias e reduzindo a necessidade de interações presenciais.
 
 <br>
 <br>
@@ -28,12 +28,12 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 Integrantes da Equipe | Função | LinkedIn | Github |
 :--------- | :------: | :-------: | :-------:
 Gabriel B. Briscese | SM | [LinkedIn](https://www.linkedin.com/in/gabriel-brosig-briscese-344a5587) | [Github](https://github.com/Briscese)
-Nikolaos D. Tetradis | PO | [LinkedIn](https://www.linkedin.com/in/nikolaos-d-tetradis/) |  [Github]()
-Gabriela Barbosa | DT | [LinkedIn](https://www.linkedin.com/in/gabriela-barbosa-51a095195) | [Github](https://github.com/gabidsbarbosa)
-Igor Kenzo | DT | [LinkedIn](https://www.linkedin.com/in/igor-kenzo-miyazaki-sasaki-4782b5249) | [Github](https://github.com/IgorKenzoMS)
-Jean Faria | DT | [LinkedIn](https://www.linkedin.com/in/jean-faria-5a4b201b9/)| [Github](https://github.com/jeejinf)
+Nikolaos D. Tetradis | PO | [LinkedIn](https://www.linkedin.com/in/nikolaos-d-tetradis/) |  [Github](https://github.com/NikolaosTetradis)
+Gabriela S. Barbosa | DT | [LinkedIn](https://www.linkedin.com/in/gabriela-barbosa-51a095195) | [Github](https://github.com/gabidsbarbosa)
+Igor K. Sasaki | DT | [LinkedIn](https://www.linkedin.com/in/igor-kenzo-miyazaki-sasaki-4782b5249) | [Github](https://github.com/IgorKenzoMS)
+Jean L. Faria | DT | [LinkedIn](https://www.linkedin.com/in/jean-faria-5a4b201b9/)| [Github](https://github.com/jeejinf)
 Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b32240/) | [Github](https://github.com/LucasRomero2003)
-Thiago Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249) | [Github](https://github.com/zani19)   
+Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249) | [Github](https://github.com/zani19)   
 <br> 
 
 `SM - Scrum Master` `PO - Product Owner`  `DT - Development Team`
@@ -114,17 +114,17 @@ Thiago Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249)
 <br>
 <br>
 
-<h3> Sprint 2: [XX/XX/XX-XX/XX/XX]</h3> 
+<h3> Sprint 2: [19/09/22-09/10/22]</h3> 
 
 <br>
 <br>
 
-<h3> Sprint 3: [XX/XX/XX-XX/XX/XX]</h3> 
+<h3> Sprint 3: [13/10/22-06/11/22]</h3> 
 
 <br>
 <br>
 
-<h3> Sprint 4: [XX/XX/XX-XX/XX/XX]</h3> 
+<h3> Sprint 4: [07/11/22-27/11/22]</h3> 
 
 <br>
 <br>
