@@ -16,7 +16,8 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 <p align="center">
  <a href="#sobre">Sobre</a> •
  <a href="#equipe">Equipe</a> • 
- <a href="#tecnologias">Tecnologias usadas</a> • 
+ <a href="#tecnologias">Tecnologias usadas</a> •
+ <a href="#comousar">Como utilizar</a> • 
  <a href="#userstories">User Stories</a> • 
  <a href="#backlogS">Backlog da Sprint</a> •
  <a href="#burndown">Burndown da Sprint</a> •
@@ -56,6 +57,20 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 |  #14   | Cliente | Eu, enquanto cliente, desejo fazer um depósito em espécie no caixa eletrônico do banco, | para guardar o meu dinheiro no banco.
 |  #15   | Cliente | Eu, enquanto cliente, desejo fazer um saque em espécie no caixa eletrônico do banco, | para retirar o meu dinheiro do banco.
 
+<h2 id="comousar"> :wrench: Como utilizar </h2>
+<h3>Acesse a pasta do projeto por meio do terminal:</h3>
+
+> cd projeto(raiz)
+
+<h3>Instale as dependências:</h3>
+
+> pip install -r requeriments.txt
+
+<h3>Execute a aplicação:</h3>
+
+> py main.py
+
+<h3> O site estará disponível através do link: 'http://localhost:5000/' </h3>
 
 <h2 id="backlogS">🗂️ Backlog das Sprints</h2>
 <br>
