@@ -1,9 +1,9 @@
 import mysql.connector
-
+passw = input("Sua senha do banco de dados: ")
 octbd = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "fatec",
+    password = f"{passw}",
     database = "octoplus_bank")
 
 cpf = int(input("Delete um usuário(CPF): "))
