@@ -1,17 +1,5 @@
 <h1 align="center"> 1º API - 🏦 Banco Octoplus  🐙  </h1>
 <h2 align="center"> FATEC Profº Jessen Vidal, SJC - 1º Semestre DSM - 2022/2</h2>
-<h2 id="sobre"> :bookmark_tabs: Sobre o projeto </h2>
-O tema a ser abordado neste API é o desenvolvimento de um sistema para um Internet Banking; monitorando e controlando operações bancárias e reduzindo a necessidade de interações presenciais.
-
-<br>
-<br>
-
-_Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marques de Carvalho._
-
-<br>
- 
-> Baseado na Metodologia Scrum
-</br>
 <hr>
 <p align="center">
  <a href="#sobre">Sobre</a> •
@@ -23,6 +11,16 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
  <a href="#burndown">Burndown da Sprint</a> •
 </p>
 <hr>
+
+<h2 id="sobre"> :bookmark_tabs: Sobre o projeto </h2>
+O tema a ser abordado neste API é o desenvolvimento de um sistema para um Internet Banking; monitorando e controlando operações bancárias e reduzindo a necessidade de interações presenciais.
+<br>
+<br>
+
+> Baseado na Metodologia Scrum
+<br>
+
+_Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marques de Carvalho._
 
 <h2 id="equipe"> :man_technologist: Equipe :woman_technologist: </h2>
 
