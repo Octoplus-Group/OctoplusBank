@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %} 
+    <form action="login_cliente_validacao" method="POST">
+        <fieldset>
+                <div>
+                    <label for="id">Numero da Conta:</label>
+                    <input type="number" name="id" id="user" required>
+                </div>
+                <br>
+                <div>
+                    <label for="user">Senha:</label>
+                    <input type="password" name="senha" id="senha" required >
+                </div>
+                <br>
+                <button type="submit">Entrar</button>
+        </fieldset>
+    </form> 
+
+{% endblock %}

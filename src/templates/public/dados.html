@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
+    <hr>
+
+        <a href=""><button id="voltar">VOLTAR</button></a><br>
+        <button class="textodado" disabled>DADOS DA CONTA</button>
+        
+    
+        <h2>Agência:</h2> <h2 id="agencia">01</h2>
+        <h2>Numero da Conta:</h2><h2 id="numero_conta">{{cliente.0}}</h2>
+        <h2>Tipo de conta:</h2><h2 id="tipo_conta">{{cliente.11}}</h2>
+        <h2><a href="/update/cliente/{{cliente.0}}">Atualizar Meus Dados</a></h2>
+        
+{% endblock %}
