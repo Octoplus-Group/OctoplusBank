@@ -18,7 +18,7 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
  <a href="#equipe">Equipe</a> • 
  <a href="#tecnologias">Tecnologias usadas</a> • 
  <a href="#userstories">User Stories</a> • 
- <a href="#backlog">Backlog da Sprint</a> •
+ <a href="#backlogS">Backlog da Sprint</a> •
  <a href="#burndown">Burndown da Sprint</a> •
 </p>
 <hr>
@@ -42,8 +42,7 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 <h2 id="tecnologias">💻 Tecnologias Usadas</h2>
 
-![Tecnologias (700 × 400 px)](https://user-images.githubusercontent.com/111452998/190556735-6c6936c6-bbfc-4ce1-98c8-14622d007c80.png)
-
+![Tecnologias (700 × 400 px)](https://user-images.githubusercontent.com/111452998/190876489-eddd44d1-2326-4c3e-b815-3787abab4887.png)
 
 <h2 id="userstories"> :mag: User Stories </h2>
 
@@ -51,22 +50,27 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 | Código (US) | Quem       | O que?                                                                                                                                                   | Para                                                |
 | :----: | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------- |
-|  #01   | Gerente Geral | Eu, enquanto [...] quero [...]                     | para [...]
-|  #02   | Gerente Geral | Eu, enquanto [...] quero [...]                     | para [...]
-|  #03   | Gerente de Agência | Eu, enquanto [...] quero [...]                     | para [...]
-|  #04   | Usuário | Eu, enquanto [...] quero [...]                     | para [...]
+|  #11   | Cliente | Eu, enquanto cliente, desejo solicitar abertura de uma ou mais contas (corrente ou poupança),                     | para poder realizar as minhas transações financeiras.
+|  #12   | Cliente | Eu, enquanto cliente, desejo solicitar a exclusão de uma ou mais contas (corrente ou poupança),                     | para não ser mais cliente do banco. 
+|  #13   | Cliente | Eu, enquanto cliente, desejo solicitar alterações dos meus dados cadastrais, | para corrigir dados desatualizados ou errados.
+|  #14   | Cliente | Eu, enquanto cliente, desejo fazer um depósito em espécie no caixa eletrônico do banco, | para guardar o meu dinheiro no banco.
+|  #15   | Cliente | Eu, enquanto cliente, desejo fazer um saque em espécie no caixa eletrônico do banco, | para retirar o meu dinheiro do banco.
 
 
-<h2 id="backlog">🗂️ Backlog das Sprints</h2>
+<h2 id="backlogS">🗂️ Backlog das Sprints</h2>
+<br>
+
+`RF - Requisito Funcional` `RNF - Requisito Não Funcional`
+
 <br>
 
  [![Generic badge](https://img.shields.io/badge/SPRINT%201-EM%20ANDAMENTO-yellow)](https://shields.io/)
 
 | Item do Backlog do Produto | Descrição                                                                      | User Story |
 | :------------------------: | :----------------------------------------------------------------------------- | :--------: |
-|           RF 01            | ----------------------------------------                                       |    #01     |
-|           RNF 01           | ----------------------------------------                                       |    #02     |
-|           RF 02            | ----------------------------------------                                       |    #10     |
+|  RNF U e P                 | Levantamento de Requisitos e Prototipagem no Figma                             | #32, #36, #37-40, #43, #45 |
+|  RF 3                      | Criação do primeiro modelo funcional, já validando as funções de criação de conta, saque e depósito. |#11-15 |
+
 <br>
 <hr>
 <br>
@@ -76,7 +80,7 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 | Item do Backlog do Produto | Descrição                                                                      | User Story |
 | :------------------------: | :----------------------------------------------------------------------------- | :--------: |
 |           RF 01            | ----------------------------------------                                       |    #01     |
-|           RNF 01           | ----------------------------------------                                       |    #02     |
+|           RF 3             | ----------------------------------------                                       |    #02     |
 |           RF 02            | ----------------------------------------                                       |    #10     |
 <br>
 <hr>
