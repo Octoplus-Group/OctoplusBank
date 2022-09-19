@@ -77,7 +77,7 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 <br>
 
- [![Generic badge](https://img.shields.io/badge/SPRINT%201-EM%20ANDAMENTO-yellow)](https://shields.io/)
+ [![Generic badge](https://img.shields.io/badge/SPRINT%201-CONCLUÍDA-green)](https://shields.io/)
 
 | Item do Backlog do Produto | Descrição                                                                      | User Story |
 | :------------------------: | :----------------------------------------------------------------------------- | :--------: |
