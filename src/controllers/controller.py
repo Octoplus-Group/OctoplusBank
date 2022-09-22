@@ -125,7 +125,7 @@ class paginaDepositoController(MethodView):
 
 class realizarDepositoController(MethodView):
     def post(self,id):
-        deposito = float(request.form['deposito'])
+        deposito = float(request.form['deposito'].replace(',', '.'))
                
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
@@ -147,7 +147,7 @@ class paginaSaqueController(MethodView):
 
 class realizarSaqueController(MethodView):
     def post(self,id):
-        saque = float(request.form['saque'])*(-1)
+        saque = float(request.form['saque'].replace(',', '.'))*(-1)
                
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
