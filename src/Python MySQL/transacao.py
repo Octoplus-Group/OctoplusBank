@@ -8,8 +8,18 @@ octbd = mysql.connector.connect(
 
 import datetime
 x = datetime.datetime.now()
-data = (x.strftime("%Y-%m-%d"))
-valor = input("Valor do depósito: R$")
+data = (x.strftime("%Y-%m-%d %H:%M"))
+
+tipo = input("Tipo de transação: ")
+s = "Saque"
+d = "Depósito"
+for t in tipo:
+    if s == tipo or d == tipo:
+        break
+    else:
+        tipo = input("Inserir se a transação é Saque/Depósito")
+
+valor = input("Valor da transação: R$")
 v = len(valor)
 v
 for x in valor:
@@ -22,11 +32,11 @@ for x in valor:
 
 cursor = octbd.cursor()
 
-inserir = "INSERT INTO transacoes (DATA, VALOR) VALUES (%s, %s)"
-val = (f"{data}", f"{valor}")
+inserir = "INSERT INTO transacoes (TIPO, DATA, VALOR) VALUES (%s, %s, %s)"
+val = (f"{tipo}", f"{data}", f"{valor}")
 
 cursor.execute(inserir, val)
 
 octbd.commit()
 
-print(f"Um valor de R${valor} foi depositado na data {data}")
+print(f"Um {tipo} de R${valor} foi realizado na data {data}")
