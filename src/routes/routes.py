@@ -14,7 +14,10 @@ routes ={
     "pagina_deposito_route":"/pagina_deposito/cliente/<int:id>","pagina_deposito_controller":paginaDepositoController.as_view("paginadeposito"),
     "realizar_deposito_route":"/realizar_deposito/cliente/<int:id>","realizar_deposito_controller":realizarDepositoController.as_view("realizardeposito"),
     "pagina_saque_route":"/pagina_saque/cliente/<int:id>","pagina_saque_controller":paginaSaqueController.as_view("paginasaque"),
-    "realizar_saque_route":"/realizar_saque/cliente/<int:id>","realizar_saque_controller":realizarSaqueController.as_view("realizarsaque")
+    "realizar_saque_route":"/realizar_saque/cliente/<int:id>","realizar_saque_controller":realizarSaqueController.as_view("realizarsaque"),
+
+     "home_user_id_route":"/home_user/<int:id>","home_user_id_controller":HomeUserIDController.as_view("homeuserid"),
+
 }
 
 

@@ -1,4 +1,3 @@
-from unicodedata import decimal
 from flask.views import MethodView
 from flask import request, render_template,redirect
 from src.db import mysql
@@ -125,7 +124,7 @@ class paginaDepositoController(MethodView):
 
 class realizarDepositoController(MethodView):
     def post(self,id):
-        deposito = float(request.form['deposito'].replace(',', '.'))
+        deposito = float(request.form['deposito'])
                
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
@@ -147,7 +146,7 @@ class paginaSaqueController(MethodView):
 
 class realizarSaqueController(MethodView):
     def post(self,id):
-        saque = float(request.form['saque'].replace(',', '.'))*(-1)
+        saque = float(request.form['saque'])*(-1)
                
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
@@ -161,6 +160,13 @@ class realizarSaqueController(MethodView):
             cur.execute("UPDATE clientes SET saldo =%s WHERE  id = %s",(saldofinal,id))
             cur.connection.commit()
         return 'Saque Realizado com Sucesso!!!'
+
+class HomeUserIDController(MethodView):
+    def get(self, id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cliente = cur.fetchone()
+            return render_template('public/home_user.html', cliente=cliente)
            
 
       
