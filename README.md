@@ -5,7 +5,8 @@
  <a href="#sobre">Sobre</a> •
  <a href="#equipe">Equipe</a> • 
  <a href="#tecnologias">Tecnologias usadas</a> •
- <a href="#comousar">Como utilizar</a> • 
+ <a href="#comousar">Como Utilizar</a> • 
+ <a href="#demonstracao">Demonstração</a> • 
  <a href="#userstories">User Stories</a> • 
  <a href="#backlogS">Backlog da Sprint</a> •
  <a href="#burndown">Burndown da Sprint</a> •
@@ -43,6 +44,7 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 ![Tecnologias (700 × 400 px)](https://user-images.githubusercontent.com/111452998/190876489-eddd44d1-2326-4c3e-b815-3787abab4887.png)
 
+<br>
 <h2 id="userstories"> :mag: User Stories </h2>
 
 <h4>Histórias para definir o escopo do projeto:</h4>
@@ -55,20 +57,45 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 |  #14   | Cliente | Eu, enquanto cliente, desejo fazer um depósito em espécie no caixa eletrônico do banco, | para guardar o meu dinheiro no banco.
 |  #15   | Cliente | Eu, enquanto cliente, desejo fazer um saque em espécie no caixa eletrônico do banco, | para retirar o meu dinheiro do banco.
 
+<br>
 <h2 id="comousar"> :wrench: Como utilizar </h2>
-<h3>Acesse a pasta do projeto por meio do terminal:</h3>
 
-> cd projeto(raiz)
+<h3>Possuir o Python 3.10+ na sua máquina</h3>
+<h3>Abrir o CMD na pasta OctoplusBank e digitar:</h3>
 
-<h3>Instale as dependências:</h3>
+```python
+	python -m venv venv
+```
 
-> pip install -r requeriments.txt
+```python
+	venv\Scripts\Activate.ps1
+```
 
-<h3>Execute a aplicação:</h3>
+<h3>Instalar os pré-requisitos digitando:</h3>
 
-> py main.py
+```python
+	pip install -r requirements.txt
+```
 
-<h3> O site estará disponível através do link: 'http://localhost:5000/' </h3>
+<h3>Importar o database chamado 'Banco' para o seu 'MySQL' utilizando o Dump</h3>
+
+<h3>Fazer as alterações devidas (root/senha) no arquivo db.sql</h3>
+
+<h3>Executar:</h3>
+
+```python
+	py main.py
+```
+
+<h3>Abrir o site em: 'http://localhost:4000/'</h3>
+
+<br>
+<h2 id="demonstracao"> 🎉 Demonstração do Programa </h2>
+<br>
+<h3> Sprint 01 </h3>
+
+![gifSprint1](https://user-images.githubusercontent.com/111452998/191324088-233ba443-30fc-443a-93ec-c2ff57b2d3ac.gif)
+
 
 <h2 id="backlogS">🗂️ Backlog das Sprints</h2>
 <br>
@@ -77,7 +104,7 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 <br>
 
- [![Generic badge](https://img.shields.io/badge/SPRINT%201-EM%20ANDAMENTO-yellow)](https://shields.io/)
+ [![Generic badge](https://img.shields.io/badge/SPRINT%201-CONCLUÍDA-green)](https://shields.io/)
 
 | Item do Backlog do Produto | Descrição                                                                      | User Story |
 | :------------------------: | :----------------------------------------------------------------------------- | :--------: |
