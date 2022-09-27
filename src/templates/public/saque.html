@@ -20,17 +20,30 @@
 
             <div class="dep">  
 
-            <h1>Saque</h1>
-            <b>R$</b><input type="text" name="saque"  id="saque" required>
-                
-            
-            <br><br>
-            <button type="submit">Realizar Saque</button>
+                <div class="caixa">
 
-            </div>
-           
-            
-           </form>
-           
-           <p> Saldo Atual: {{cliente.13}}0</p>
+                    <h2>Saque</h2>
+                
+                    <input type="text" name="saque"  id="saque" required><b>R$</b>
+                
+                </div>
+                
+            </div> 
+
+                     
+           <div class="saldo-atual">
+
+                <p><h5>Saldo Atual: {{cliente.13}}0</h5></p>
+
+           </div>
+
+           <div class="button-sd">
+
+                    
+            <button type="submit">Realizar Saque</button>
+                
+        </div>
+
+        </form>
+
     {% endblock %}
