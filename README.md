@@ -100,52 +100,8 @@ Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b3
 <h2 id="backlogS">🗂️ Backlog das Sprints</h2>
 <br>
 
-`RF - Requisito Funcional` `RNF - Requisito Não Funcional`
+![backlog](https://user-images.githubusercontent.com/111464795/192904569-99726c63-bbf2-4926-bcf9-e378850db24b.png)
 
-<br>
-
- [![Generic badge](https://img.shields.io/badge/SPRINT%201-CONCLUÍDA-green)](https://shields.io/)
-
-| Item do Backlog do Produto | Descrição                                                                      | User Story |
-| :------------------------: | :----------------------------------------------------------------------------- | :--------: |
-|  RNF U e P                 | Levantamento de Requisitos                             | #32, #36, #37-40, #43, #45 |
-|  RF 3                      | Criação do primeiro modelo funcional, cadastro de cliente, conta e transções de saque e depósito. |#11-15 |
-
-<br>
-<hr>
-<br>
-
- [![Generic badge](https://img.shields.io/badge/SPRINT%202-NÃO%20INICIADO-red)](https://shields.io/)
-
-| Item do Backlog do Produto | Descrição                                                                      | User Story |
-| :------------------------: | :----------------------------------------------------------------------------- | :--------: |
-|           RF 01            | ----------------------------------------                                       |    #01     |
-|           RF 3             | ----------------------------------------                                       |    #02     |
-|           RF 02            | ----------------------------------------                                       |    #10     |
-<br>
-<hr>
-<br>
-
- [![Generic badge](https://img.shields.io/badge/SPRINT%203-NÃO%20INICIADO-red)](https://shields.io/)
-
-| Item do Backlog do Produto | Descrição                                                                      | User Story |
-| :------------------------: | :----------------------------------------------------------------------------- | :--------: |
-|           RF 01            | ----------------------------------------                                       |    #01     |
-|           RNF 01           | ----------------------------------------                                       |    #02     |
-|           RF 02            | ----------------------------------------                                       |    #10     |
-<br>
-<hr>
-<br>
-
- [![Generic badge](https://img.shields.io/badge/SPRINT%204-NÃO%20INICIADO-red)](https://shields.io/)
-
-| Item do Backlog do Produto | Descrição                                                                      | User Story |
-| :------------------------: | :----------------------------------------------------------------------------- | :--------: |
-|           RF 01            | ----------------------------------------                                       |    #01     |
-|           RNF 01           | ----------------------------------------                                       |    #02     |
-|           RF 02            | ----------------------------------------                                       |    #10     |
-<br>
-<br>
 
 <br>
 <h2 id="burndown">📉 Burndown das Sprints</h2>
