@@ -4,7 +4,7 @@
 <p align="center">
  <a href="#sobre">Sobre</a> •
  <a href="#equipe">Equipe</a> • 
- <a href="#tecnologias">Tecnologias usadas</a> •
+ <a href="#tecnologias">Tecnologias utilizadas</a> •
  <a href="#comousar">Como Utilizar</a> • 
  <a href="#demonstracao">Demonstração</a> • 
  <a href="#userstories">User Stories</a> • 
@@ -28,19 +28,19 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 Integrantes da Equipe | Função | LinkedIn | Github |
 :--------- | :------: | :-------: | :-------:
 Gabriel B. Briscese | SM | [LinkedIn](https://www.linkedin.com/in/gabriel-brosig-briscese-344a5587) | [Github](https://github.com/Briscese)
-Nikolaos D. Tetradis | PO | [LinkedIn](https://www.linkedin.com/in/nikolaos-d-tetradis/) |  [Github](https://github.com/NikolaosTetradis)
+Thiago F. Zani | PO | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249) | [Github](https://github.com/zani19)   
 Gabriela S. Barbosa | DT | [LinkedIn](https://www.linkedin.com/in/gabriela-barbosa-51a095195) | [Github](https://github.com/gabidsbarbosa)
 Igor K. Sasaki | DT | [LinkedIn](https://www.linkedin.com/in/igor-kenzo-miyazaki-sasaki-4782b5249) | [Github](https://github.com/IgorKenzoMS)
 Jean L. Faria | DT | [LinkedIn](https://www.linkedin.com/in/jean-faria-5a4b201b9/)| [Github](https://github.com/jeejinf)
 Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b32240/) | [Github](https://github.com/LucasRomero2003)
-Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b8503249) | [Github](https://github.com/zani19)   
+
 <br> 
 
-`SM - Scrum Master` `PO - Product Owner`  `DT - Development Team`
+`SM - Scrum Master` | `PO - Product Owner` | `DT - Development Team`
 
 <br>
 
-<h2 id="tecnologias">💻 Tecnologias Usadas</h2>
+<h2 id="tecnologias">💻 Tecnologias Utilizadas</h2>
 
 ![Tecnologias (700 × 400 px)](https://user-images.githubusercontent.com/111452998/190876489-eddd44d1-2326-4c3e-b815-3787abab4887.png)
 
@@ -51,11 +51,11 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 | Código (US) | Quem       | O que?                                                                                                                                                   | Para                                                |
 | :----: | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------- |
-|  #11   | Cliente | Eu, enquanto cliente, desejo solicitar abertura de uma ou mais contas (corrente ou poupança),                     | para poder realizar as minhas transações financeiras.
-|  #12   | Cliente | Eu, enquanto cliente, desejo solicitar a exclusão de uma ou mais contas (corrente ou poupança),                     | para não ser mais cliente do banco. 
-|  #13   | Cliente | Eu, enquanto cliente, desejo solicitar alterações dos meus dados cadastrais, | para corrigir dados desatualizados ou errados.
-|  #14   | Cliente | Eu, enquanto cliente, desejo fazer um depósito em espécie no caixa eletrônico do banco, | para guardar o meu dinheiro no banco.
-|  #15   | Cliente | Eu, enquanto cliente, desejo fazer um saque em espécie no caixa eletrônico do banco, | para retirar o meu dinheiro do banco.
+|  #01   | Cliente | Eu, enquanto cliente, desejo solicitar abertura de uma ou mais contas (corrente ou poupança),                     | para poder realizar as minhas transações financeiras.
+|  #02   | Cliente | Eu, enquanto cliente, desejo solicitar a exclusão de uma ou mais contas (corrente ou poupança),                     | para não ser mais cliente do banco. 
+|  #03   | Cliente | Eu, enquanto cliente, desejo solicitar alterações dos meus dados cadastrais, | para corrigir dados desatualizados ou errados.
+|  #04   | Cliente | Eu, enquanto cliente, desejo fazer um depósito em espécie no caixa eletrônico do banco, | para guardar o meu dinheiro no banco.
+|  #05   | Cliente | Eu, enquanto cliente, desejo fazer um saque em espécie no caixa eletrônico do banco, | para retirar o meu dinheiro do banco.
 
 <br>
 <h2 id="comousar"> :wrench: Como utilizar </h2>
@@ -108,8 +108,8 @@ Thiago F. Zani | DT | [LinkedIn](https://www.linkedin.com/in/thiago-zani-1b85032
 
 | Item do Backlog do Produto | Descrição                                                                      | User Story |
 | :------------------------: | :----------------------------------------------------------------------------- | :--------: |
-|  RNF U e P                 | Levantamento de Requisitos e Prototipagem no Figma                             | #32, #36, #37-40, #43, #45 |
-|  RF 3                      | Criação do primeiro modelo funcional, já validando as funções de criação de conta, saque e depósito. |#11-15 |
+|  RNF U e P                 | Levantamento de Requisitos                             | #32, #36, #37-40, #43, #45 |
+|  RF 3                      | Criação do primeiro modelo funcional, cadastro de cliente, conta e transções de saque e depósito. |#11-15 |
 
 <br>
 <hr>
