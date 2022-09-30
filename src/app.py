@@ -33,3 +33,5 @@ app.add_url_rule(routes["home_user_id_route"],view_func=routes["home_user_id_con
 
 app.register_error_handler(routes["not_found_route"], routes["not_found_controller"])
 
+""" app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
+

@@ -5,82 +5,133 @@
 
 <form action="/" method="POST">
     <fieldset>
-        <div>
-            <label for="nome">Nome Completo:</label>
-            <input type="text" name="nome" id="nome" required>
-        </div>
 
         <div>
-            <label for="CPF">CPF:</label>
-            <input type="number" name="CPF" id="CPF" required>
+
+            <div>
+
+                <label for="nome">Nome Completo:</label>
+                <input type="text" name="nome" id="nome" required class="form-control">
+            </div>
+
+
+            <div>
+
+                <label for="CPF">CPF:</label>
+                <input type="text"  name="CPF" id="CPF" required
+                class="form-control"
+                placeholder="000.000.000-00"
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" \
+                title="Digite um CPF no formato: 000.000.000-00">
+
+            </div>
+
         </div>
         
         <div>
-            <label for="dataNascimento">Data de Nascimento:</label>
-            <input type="date" name="dataNascimento" id="dataNascimento" required>
-        </div>
 
             <div>
-                <label for="genero">Genero:</label>
-                <select name="genero" required>
-                    <option selected disabled value="">Escolha</option>
-                    <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
-                    <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
+
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" name="dataNascimento" id="dataNascimento" required class="form-control">
+
+            </div>
+
+            <div>
+
+                    <label for="genero">Genero:</label>
+                    <select name="genero" required>
+                        <option selected disabled value="" class="form-control">Escolha</option>
+                        <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
+                        <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
+                        <option type="text" name="'genero" id="genero" value="Feminino">Outro</option>
+                    </select>
+
+            </div>
+
+            <div>
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" placeholder="(00)0000-0000" name="telefone" id="telefone" required class="form-control">
+
+            </div>
+            
+            <div>
+
+                <label for="tipoConta">Tipo de Conta:</label>
+                <select name="tipoConta" required>
+                    <option selected disabled value="" class="form-control">Escolha</option>
+                    <option type="text" name="tipoConta" id="tipoConta" value="Corrente">Corrente</option>
+                    <option type="text" name="'tipoConta" id="tipoConta" value="Poupanca">Poupança</option>
                 </select>
+
+            </div>
+
         </div>
 
         <div>
-            <label for="telefone">Telefone:</label>
-            <input type="text" name="telefone" id="telefone" required>
+
+            <div>
+
+                <label for="cep">CEP:
+                <input type="number" placeholder="00000-000" name="cep" id="cep" class="form-control">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label for="cidade">Cidade: 
+                <input type="text" name="cidade" id="cidade" class="form-control">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label for="endereco">Endereço:
+                <input type="text" name="endereco" id="endereco" class="form-control">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label for="bairro">Bairro:
+                <input type="text" name="bairro" id="bairro" class="form-control">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label for="numeroCasa">Nº:
+                <input type="number" name="numeroCasa" id="numeroCasa" class="form-control">
+                </label>
+
+            </div>
+
         </div>
 
         <div>
-            <label for="cep">CEP:
-            <input type="number" name="cep" id="cep">
-        </label>
+
+            <label for="senha">Senha: </label><br>
+            <input type="password" id="senha" name="senha" class="form-control">
+
         </div>
 
-        <div>
-            <label for="cidade">Cidade: 
-            <input type="text" name="cidade" id="cidade">
-        </label>
-        </div>
-
-        <div>
-            <label for="endereco">Endereço:
-            <input type="text" name="endereco" id="endereco">
-            </label>
-        </div>
-
-        <div>
-            <label for="bairro">Bairro:
-            <input type="text" name="bairro" id="bairro">
-            </label>
-        </div>
-
-        <div>
-            <label for="numeroCasa">Nº:
-            <input type="number" name="numeroCasa" id="numeroCasa">
-            </label>
-        </div>
-
-        <div>
-            <label for="tipoConta">Tipo de Conta:</label>
-            <select name="tipoConta" required>
-                <option selected disabled value="">Escolha</option>
-                <option type="text" name="tipoConta" id="tipoConta" value="Corrente">Corrente</option>
-                <option type="text" name="'tipoConta" id="tipoConta" value="Poupanca">Poupança</option>
-            </select>
-        </div>
-        <div>
-            <label for="senha">Senha da Conta: </label><br>
-            <input type="password" id="senha" name="senha">
-        </div>
-        <div>
-            <input type="hidden" id="saldo" name="saldo" value="0">
-        </div>
-        <div>O numero da sua conta será:{{numeroconta.0+1}}</div>
+        
         <button type="submit">Cadastrar</button>
+
+            <!-- <div id="openModal" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h5>AGUARDE!</h5>
+                    <p>Aguarde pois seus dados estão em processamento para serem aprovados!</p>
+                </div> -->
+            </div>
+
+        </button>
     </fieldset>
 </form>
 
