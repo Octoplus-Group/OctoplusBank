@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+    <div class="botaohome2">
+        <a href="/home_user/{{cliente.0}}">
+        <h4>PÁGINA INICIAL</h4>
+        </a>
+    </div>
+
+    <div class="modoGerente">
+        <h2><u>MODO GERENTE</u></h2>
+    </div>
+
+
+    <div id="agencia">
+        <h4 class="textobtn">AGÊNCIA: {{cliente.13}}</h4>
+        </div>
+
+    <div class="gerenciarContas">
+        <a href="/gerenciar_contas/{{cliente.0}}">
+            <button>    
+                <h4>GERENCIAR CONTAS</h4>
+                <img src="gerenciarContasIcon" alt="">
+            </button>
+        </a>
+    </div>
+
+    <div class="aprovarDepositos">
+        <a href="/aprovar_depositos/{{cliente.0}}">
+            <button>    
+                <h4>GERENCIAR DEPÓSITOS</h4>
+                <img src="gerenciarDepositosIcon" alt="">
+            </button>
+        </a>
+    </div>
+    
+    {% endblock %}

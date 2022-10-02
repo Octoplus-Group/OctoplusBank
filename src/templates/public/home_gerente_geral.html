@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+    <div class="botaohome">
+        <a href="/home_user/{{cliente.0}}">
+        <img src="logo_octoplus_bank_transparente.png" alt="Logo Octoplus">
+        <h4>PÁGINA INICIAL</h4>
+        </a>
+    </div>
+
+    <div id="agenciaConta">
+        <h4 class="textobtn">AGÊNCIA: {{cliente.13}} </h4>
+        <h4 class="textobtn">CONTA: {{cliente.13}} </h4>
+        </div>
+
+    <hr>
+
+    <h3>Seja Bem Vindo, {{cliente.1}}</h3>
+
+    <div id="saldo">
+    <h4 class="textobtn">SALDO: R$ {{cliente.13}} </h4>
+    </div>
+
+    <a href="/pagina_transferencia/cliente/{{cliente.0}}"><button id="transferencia">TRANSFERÊNCIA</button></a>
+    <br>
+    <a href="/pagina_saque/cliente/{{cliente.0}}"><button id="saque">SAQUE</button></a>
+    <br>
+    <a href="/pagina_deposito/cliente/{{cliente.0}}"><button id="dep">DEPÓSITO</button></a>
+    <br>
+    <a href="/pagina_dados/cliente/{{cliente.0}}"><button id="dep">DADOS</button></a>
+    <br>
+    <a href="/pagina_extratos/cliente/{{cliente.0}}"><button id="dep">EXTRATOS</button></a>
+    <br>
+    <a href="/pagina_alterar_dados/cliente/{{cliente.0}}"><button id="dep">ALTERAR DADOS</button></a>
+    <br>
+    <a href="/pagina_modo_gerente/cliente/{{cliente.0}}"><button id="dep">GERENCIAR</button></a>
+    <br>
+
+    <a href="/"><button id="sair">SAIR</button></a>
+    
+    {% endblock %}

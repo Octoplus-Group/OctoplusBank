@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+    <div class="botaohome2">
+        <a href="/home_user/{{cliente.0}}">
+        <h4>PÁGINA INICIAL</h4>
+        </a>
+    </div>
+
+    <div class="gerenciarContas">
+        <h2><u>APROVAR DEPÓSITOS</u></h2>
+    </div>
+
+    <br>
+
+    <table border="2">
+        <tr>
+            <label for="agencias">Usuários da Agência:</label>
+            <select name="agencias" id="agencias">
+            <option value="agencia1">0001</option>
+            <option value="agencia2">0002</option>
+            <option value="agencia2">0003</option>
+            </select>
+
+            <label for="cpf">Procure por CPF:</label>
+            <input type="text" placeholder="Procurar">
+        </tr>
+        <tr>
+            <td>Nº do Depósito:</td>
+            <td>Cliente:</td>
+            <td>Valor do Depósito:</td>
+            <td>Gerenciar:</td>
+        </tr>
+        <tr>
+            <td>{{NUMERO DO DEPÓSITO}}</td>
+            <td>{{NOME DO CLIENTE}}</td>
+            <td>{{VALOR DO DEPÓSITO}}</td>
+            <td>
+                    <div class="recusar">
+                        <a href="">
+                            <!--COLOCAR ICONE AQUI E DEIXAR ESSA DIV INLINE-->
+                            <img src="recusarIcon" alt="">
+                        </a>
+                    </div>
+
+                    <div class="aceitar">
+                        <a href="">
+                            <!--COLOCAR ICONE AQUI E DEIXAR ESSA DIV INLINE-->
+                            <img src="aceitarIcon" alt="">
+                        </a>
+                    </div>
+            </td>
+        </tr>
+    </table>
+    
+<!--CÓDIGO PARA BACK-END DPS CRIAR TABELA
+
+{% for i in range(4) %}
+<tr>
+        <td align= middle width=150>{{data[i] ["numeroConta"]}}</td>
+        <td align= middle width=150>{{data[i]["cliente"]}}</td>
+        <td align= middle width=150>{{data[i]["tipoConta"]}}</td>
+        <td align= middle width=150>{{data[i]["gerenciar"]}}</td>
+</tr>
+{% endfor %}
+--> 
+
+    {% endblock %}

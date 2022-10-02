@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="botaohome2">
+    <a href="/home_user/{{cliente.0}}">
+    <h4>VOLTAR</h4>
+    </a>
+</div>
+
+<div class="gerenciarDados">
+    <h2><u>GERENCIAR DADOS</u></h2>
+</div>
+
+<form action="/" method="POST">
+
+            <div id="nomeCompleto">
+                <label for="nomeCompleto">Nome Completo:</label>
+                <input style="pointer-events: none;" type="text" id="nomeCompleto" name="nomeCompleto" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <div id="dataNascimento">
+                <label for="CPF">Data de Nascimento:</label>
+                <input style="pointer-events: none;" type="text" id="dataNascimento" name="dataNascimento" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <div id="telefone">
+                <label for="telefone">Telefone:</label>
+                <input style="pointer-events: none;" type="text" id="telefone" name="telefone" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <div id="genero">
+                <label for="genero">Genero:</label>
+                <input style="pointer-events: none;" type="text" id="genero" name="genero" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <br>
+
+            <div id="CPF">
+                <label for="CPF">CPF:</label>
+                <input style="pointer-events: none;" type="text" id="CPF" name="CPF" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <div id="tipoConta">
+                <label for="tipoConta">Tipo de Conta:</label>
+                <input style="pointer-events: none;" type="text" id="tipoConta" name="tipoConta" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <br>
+
+            <div id="cep">
+                <label for="cep">CEP:</label>
+                <input style="pointer-events: none;" type="text" id="cep" name="cep" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <div id="endereco">
+                <label for="endereco">Endereço:</label>
+                <input style="pointer-events: none;" type="text" id="endereco" name="endereco" value="{{cliente.13}}" class="form-control">
+            </div>
+
+            <div id="numeroCasa">
+                <label for="numeroCasa">Número:</label>
+                <input style="pointer-events: none;" type="text" id="numeroCasa" name="numeroCasa" value="{{cliente.13}}" class="form-control">
+            </div>
+
+        </div>
+
+        <div id="complemento">
+            <label for="complemento">Complemento:</label>
+            <input style="pointer-events: none;" type="text" id="complemento" name="complemento" value="{{cliente.13}}" class="form-control">
+        </div>
+
+        <br>
+
+        <div id="numeroConta">
+            <label for="numeroConta">Número da Conta:</label>
+            <input style="pointer-events: none;" type="text" id="numeroConta" name="numeroConta" value="{{cliente.13}}" class="form-control">
+        </div>
+
+        <div id="numeroAgencia">
+            <label for="numeroAgencia">Número da Agência:</label>
+            <input style="pointer-events: none;" type="text" id="numeroAgencia" name="numeroAgencia" value="{{cliente.13}}" class="form-control">
+        </div>
+
+        <div id="dataConta">
+            <label for="dataConta">Conta criada dia:</label>
+            <input style="pointer-events: none;" type="text" id="dataConta" name="dataConta" value="{{cliente.13}}" class="form-control">
+        </div>
+    
+
+        <h4>Legenda</h4>
+        <!--Inserir quadrado vermelho e quadrado verde.-->
+        <ul>
+            <li>Dados não alterados</li>
+            <li>Dados alterados</li>
+        </ul>
+
+        <button type="submit">RECUSAR MUDANÇAS</button>
+
+        <button type="submit">APROVAR MUDANÇAS</button>
+
+            <!-- <div id="openModal" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h5>AGUARDE!</h5>
+                    <p>Aguarde pois seus dados estão em processamento para serem aprovados!</p>
+                </div> -->
+            </div>
+
+        </button>
+    </fieldset>
+</form>
+
+<!-- {% for cliente in data %}
+
+    {{cliente.1}}
+
+        <form action="/delete/cliente/{{cliente.0}}" method="POST">
+            <button>Cancelar Conta</button>
+        </form>
+
+        <a href="/update/cliente/{{cliente.0}}">Alterar Dados</a>
+        {% else %}
+        nao tem cliente
+
+    {% endfor %} -->
+
+{% endblock %}
