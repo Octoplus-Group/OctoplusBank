@@ -1,17 +1,19 @@
+/* geral */
+
 body {
     background-image: linear-gradient(to top, #FF9432, #CB2C2C );
     background-attachment: fixed;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Sunflower', sans-serif;
     text-align: center;
   }
 
-h1{
+h1 {
   color: white;
   text-align: left;
   margin-left: 50px;
 }
 
-/* Botões Página index */
+/* página index botões e imagem */
 
 div#botoes {
     text-align: center;
@@ -24,9 +26,8 @@ button {
 }
 
 button#login {
-    width: 200px;
-    height: 57px;
-    background-color: #F0e8dd;
+    width: 250px;
+    height: 65px;
     cursor: pointer;
     border-radius: 50px;
     border: none;
@@ -34,16 +35,28 @@ button#login {
 }
 
 button#cadastro {
-    width: 200px;
-    height: 57px;
-    background-color: #F2B9A8 ;
+    width: 250px;
+    height: 65px;
     cursor: pointer;
     border-radius: 50px;
     border: none;
-    /* margin-left: ; */
 }
 
-/*Formulário Cadastro*/
+.image-index {
+  width: 36%;
+  display: flex;
+  flex-direction: row;
+}
+
+.slogan {
+  text-align: right;
+  margin-top: -300px;
+  margin-right: 250px;
+  color: #ffffff;
+  font-size: 50px;
+}
+
+/* página cadastro cliente*/
 
 label.esquerda {
   text-align: left;
@@ -58,7 +71,13 @@ div.formulario {
   padding: 20px;
 }
 
-/* Tela home de usuário normal */
+/* página home do cliente */
+
+h3 {
+  text-align: right;
+  margin-top: -100px;
+  margin-right: 20px;
+}
 
 button#dados {
   margin-left: -1000px;
@@ -78,12 +97,7 @@ button#solict {
   opacity: 0;
 }
 
-h3 {
-  text-align: right;
-  margin-top: -100px;
-  margin-right: 20px;
-}
-div#saldo{
+div#saldo {
   width: 303px;
   height: 63px;
   margin-left: 1000px;
@@ -94,7 +108,7 @@ div#saldo{
   text-align: center;
 }
 
-.textobtn{
+.textobtn {
   margin: 19px auto;
 }
 
@@ -107,7 +121,7 @@ button#dep{
   background-color: #E45131;
 }
 
-button#saque{
+button#saque {
   margin-top: 25px;
   margin-left: -0 0px;
   border-radius: 50px;
@@ -115,7 +129,7 @@ button#saque{
   height: 60px;
 }
 
-button#sair{
+button#sair {
   border-radius: 50px;
   background-color:#E45131;
   color: white;
@@ -126,7 +140,8 @@ button#sair{
 }
 
 /* Pagina Dados */
-button.textodado{
+
+button.textodado {
   width: 303px;
   height: 63px;
   border: 3px solid black;
@@ -145,21 +160,21 @@ button.textodado{
   margin-left: 580px;
   }
 
-#numero_conta{
+#numero_conta {
   border: 2px solid;
   width: 200px;
   height: 50px;
   margin-left: 550px;
 }
 
-#tipo_conta{
+#tipo_conta {
   border: 2px solid;
   width: 150px;
   height: 50px;
   margin-left: 580px;
 }
 
-button#voltar{
+button#voltar {
   border-radius: 50px;
   background-color:#E45131;
   color: white;
@@ -169,11 +184,9 @@ button#voltar{
   left: 15px;
 }
 
-/* ALTERAÇÕES GABI */
-/* alterações na página depósito e saque e adicionado 
-o nome da empresa em novas abas, como a do login e cadastro  */
+/* deposito e saque */
 
-hr{
+hr {
   border: 1.25px solid black;
   background-color: black;
   margin-top: -12px;
@@ -185,7 +198,6 @@ input#saque {
   height: 36px;
   font-size: x-large;
   border-radius: 25px;
-  /* margin-top: 25px; */
 }
 
 
@@ -233,40 +245,7 @@ h2 {
 }
 
 
-/* CSS DO POP UP (mudar propriedades)
+/* SIDEBAR */
 
-.modalDialog {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99999;
-  opacity: 0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
-.modalDialog:target {
-  opacity: 1;
-  pointer-events: auto;
-}
-.modalDialog > div {
-  width: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: #fff;
-  background: -moz-linear-gradient(#fff, #999);
-  background: -webkit-linear-gradient(#fff, #999);
-  background: -o-linear-gradient(#fff, #999);
-}
-.close {
-  background: #606061;
-  c */
 
 
