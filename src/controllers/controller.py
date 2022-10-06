@@ -148,7 +148,8 @@ class paginaDepositoController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
-        return render_template('public/deposito.html', cliente=cliente, conta=conta)
+            mensagem=''
+        return render_template('public/deposito.html', cliente=cliente, conta=conta, mensagem=mensagem)
 
 class realizarDepositoController(MethodView):
     def post(self,id):
@@ -163,10 +164,11 @@ class realizarDepositoController(MethodView):
 
             cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',CURDATE(),%s)",(cliente[0],saldofinal))
             cur.connection.commit()
+            mensagem='Deposito em analise pelo Gerente'
 
             """ cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA = %s",(saldofinal,cliente[0]))
             cur.connection.commit() """
-        return 'Deposito em Analize do Gerente!'
+        return render_template('public/deposito.html', cliente=cliente , conta=conta , mensagem=mensagem)
 
 class paginaSaqueController(MethodView):
     def get(self,id):
@@ -175,13 +177,16 @@ class paginaSaqueController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
-        return render_template('public/saque.html', cliente=cliente, conta=conta)
+            mensagem =''
+        return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem )
 
 class realizarSaqueController(MethodView):
     def post(self,id):
         saque = float(request.form['saque'])*(-1)
                
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
             saldofinal = ((saque)+(conta[4]))
@@ -189,7 +194,8 @@ class realizarSaqueController(MethodView):
             cur.connection.commit()
             cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',CURDATE(),%s,'APROVADO')",(conta[1],saque))
             cur.connection.commit()
-        return 'Saque Realizado com Sucesso!!!'
+            mensagem='Saque Realizado com Sucesso'
+        return render_template('public/saque.html',cliente=cliente, conta=conta,mensagem=mensagem )
 
 class HomeUserIDController(MethodView):
     def get(self, id):
@@ -313,7 +319,8 @@ class paginaDepositoGerenteController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
-        return render_template('public/deposito_gerente.html', cliente=cliente, conta=conta)
+            mensagem=''
+        return render_template('public/deposito_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
 class realizarDepositoGerenteController(MethodView):
     def post(self,id):
@@ -325,13 +332,14 @@ class realizarDepositoGerenteController(MethodView):
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
             saldofinal = deposito
+            mensagem='Deposito em Analise pelo Gerente'
 
             cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',CURDATE(),%s)",(cliente[0],saldofinal))
             cur.connection.commit()
 
             """ cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA = %s",(saldofinal,cliente[0]))
             cur.connection.commit() """
-        return 'Deposito em Analize do Gerente!'
+        return render_template('public/deposito_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
 class paginaSaqueGerenteController(MethodView):
     def get(self,id):
@@ -340,13 +348,16 @@ class paginaSaqueGerenteController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
-        return render_template('public/saque_gerente.html', cliente=cliente, conta=conta)
+            mensagem=''
+        return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
 class realizarSaqueGerenteController(MethodView):
     def post(self,id):
         saque = float(request.form['saque'])*(-1)
                
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
             saldofinal = ((saque)+(conta[4]))
@@ -354,6 +365,7 @@ class realizarSaqueGerenteController(MethodView):
             cur.connection.commit()
             cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',CURDATE(),%s,'APROVADO')",(conta[1],saque))
             cur.connection.commit()
-        return 'Saque Realizado com Sucesso!!!'
+            mensagem='Saque Realizado com Sucesso !'
+        return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
         
     
