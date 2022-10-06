@@ -6,7 +6,7 @@ from src.db import mysql
 class IndexController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes")
+            cur.execute("SELECT * FROM cliente")
             data = cur.fetchall()        
         return render_template('public/index.html', data=data)
 
@@ -24,26 +24,37 @@ class IndexController(MethodView):
         numeroCasa = request.form['numeroCasa']
         tipoConta = request.form['tipoConta']
         senha = request.form['senha']
-        saldo = request.form['saldo']
+        
 
         with mysql.cursor()as cur:
-            cur.execute("INSERT INTO clientes(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,tipoConta,senha,saldo) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,tipoConta,senha,saldo))
+            cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
             cur.connection.commit()
+            cur.execute("INSERT INTO conta (DATA_ABERTURA,TIPO_CONTA) VALUES (CURDATE(),%s)",(tipoConta))
+            cur.connection.commit()
+            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
+            numeroconta=cur.fetchone()
+            cur.execute("SELECT ID_CLIENTE FROM cliente ORDER BY ID_CLIENTE DESC")
+            numerocliente=cur.fetchone()
+            cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
+            cur.connection.commit()
+
             return redirect('/')
 
 class DeleteClienteController(MethodView):
     def post(self, id):
         with mysql.cursor()as cur:
-            cur.execute("DELETE FROM clientes WHERE id =%s",(id))
+            cur.execute("DELETE FROM cliente WHERE id =%s",(id))
             cur.connection.commit()
             return redirect('/')
 
 class UpdateClienteController(MethodView):
     def get(self, id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
-            return render_template('public/update.html', cliente=cliente)
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/alteracao_dados.html', cliente=cliente, conta=conta)
 
     def post(self,id):
 
@@ -61,117 +72,288 @@ class UpdateClienteController(MethodView):
         senha = request.form['senha']
         
         with mysql.cursor() as cur:
-            cur.execute("UPDATE clientes SET nome =%s,CPF =%s,dataNascimento =%s,genero =%s,telefone =%s,cep =%s,cidade =%s,endereco =%s,bairro =%s,numeroCasa =%s,tipoConta =%s,senha =%s WHERE  id = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,tipoConta,senha,id))
+            cur.execute("UPDATE cliente SET NOME =%s,CPF =%s,DATA_NASCIMENTO =%s,GENERO =%s,TELEFONE =%s,CEP =%s,CIDADE =%s,ENDERECO =%s,BAIRRO =%s,NUMERO =%s,SENHA =%s WHERE  ID_CLIENTE = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,id))
+            cur.connection.commit()
+            cur.execute("UPDATE conta SET TIPO_CONTA =%s WHERE ID_CONTA = %s",(tipoConta,id))
             cur.connection.commit()
             return redirect('/')
 
 class CadastroClienteController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes")
+            cur.execute("SELECT * FROM cliente")
             data = cur.fetchall()
-            cur.execute("SELECT id FROM clientes ORDER BY id DESC LIMIT 1")
-            numeroconta=cur.fetchone()
-        return render_template('public/cadastro_cliente.html', data=data, numeroconta=numeroconta)
+            """ cur.execute("SELECT id FROM cliente ORDER BY id DESC LIMIT 1")
+            numeroconta=cur.fetchone() ANTIGO INCREMENTO DE NUMERO DE CONTA """ 
+        return render_template('public/cadastro_cliente.html', data=data)
 
 class LoginController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes")
+            cur.execute("SELECT * FROM cliente")
             data = cur.fetchall()
         return render_template('public/Login.html', data=data)
 
 class LoginValicaoController(MethodView):
     def post(self):
+        agencia=request.form['agencia']
         id=request.form['id']
         senhalogin = request.form['senha']
 
         with mysql.cursor() as cur:
-            cur.execute("SELECT id FROM clientes WHERE id=%s",(id))
+            cur.execute("SELECT ID_CONTA FROM cliente WHERE ID_CONTA=%s AND ID_AGENCIA=%s",(id,agencia))
             cliente = cur.fetchone()
             if cliente!= None:
-                cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
                 cliente = cur.fetchone()
-                if senhalogin == cliente[12]:
-                    cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+                if senhalogin == cliente[12] and cliente[14]=='CL' and cliente[13]=='APROVADO':
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
                     cliente = cur.fetchone()
-                    return render_template('public/home_user.html', cliente=cliente)
+                    cur.execute("SELECT * FROM conta  WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    return render_template('public/home_user.html', cliente=cliente, conta=conta)
+                elif senhalogin == cliente[12] and cliente[14]=='GA' and cliente[13]=='APROVADO':
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta  WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    return render_template('public/home_gerente.html', cliente=cliente, conta=conta)
                 else:
-                    return "Tente Fazer o Login Novamente"
+                    return render_template('public/Login.html')
+
+                    
             else:
                 return render_template('public/Login.html')
 
 class HomeUserController(MethodView):
     def get(self, id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE id =%s",(id))
             cliente = cur.fetchone()
         return render_template('public/home_user.html' , cliente=cliente)
 
 class DadosController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
-        return render_template('public/dados.html' , cliente=cliente)
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+        return render_template('public/dados.html' , cliente=cliente, conta=conta)
 
 class paginaDepositoController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
-        return render_template('public/deposito.html', cliente=cliente)
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+        return render_template('public/deposito.html', cliente=cliente, conta=conta)
 
 class realizarDepositoController(MethodView):
     def post(self,id):
         deposito = float(request.form['deposito'])
                
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
-            print ('o saldo atual; ',cliente[13])
-            print ('tipo1',type(cliente[13]))
-            print ('tipo2', type(deposito))
-            saldofinal = deposito+cliente[13]
-            cur.execute("UPDATE clientes SET saldo =%s WHERE  id = %s",(saldofinal,id))
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+            saldofinal = deposito
+
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',CURDATE(),%s)",(cliente[0],saldofinal))
             cur.connection.commit()
-        return 'Deposito Realizado com Sucesso!!'
+
+            """ cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA = %s",(saldofinal,cliente[0]))
+            cur.connection.commit() """
+        return 'Deposito em Analize do Gerente!'
 
 class paginaSaqueController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
-        return render_template('public/saque.html', cliente=cliente)
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+        return render_template('public/saque.html', cliente=cliente, conta=conta)
 
 class realizarSaqueController(MethodView):
     def post(self,id):
         saque = float(request.form['saque'])*(-1)
                
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
-            cliente = cur.fetchone()
-            print ('o saldo atual; ',cliente[13])
-            print ('tipo1',type(cliente[13]))
-            print ('tipo2', type(saque))
-            print ('saque',saque)
-            saldofinal = ((saque)+(cliente[13]))
-            print ('O saldo final é:',saldofinal)
-            cur.execute("UPDATE clientes SET saldo =%s WHERE  id = %s",(saldofinal,id))
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            saldofinal = ((saque)+(conta[4]))
+            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
+            cur.connection.commit()
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',CURDATE(),%s,'APROVADO')",(conta[1],saque))
             cur.connection.commit()
         return 'Saque Realizado com Sucesso!!!'
 
 class HomeUserIDController(MethodView):
     def get(self, id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM clientes WHERE id =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
-            return render_template('public/home_user.html', cliente=cliente)
-           
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/home_user.html', cliente=cliente, conta = conta)
 
-      
+class HomeGerenteAgenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/home_gerente.html', cliente=cliente, conta = conta)
+
+class LinkGerenciarContasController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+
+            return render_template('public/gerenciar_contas.html', cliente=cliente, conta = conta, dataAprovado=dataAprovado, dataAnalise=dataAnalise)
+
+class AprovacaoContaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            
+            cur.execute("UPDATE cliente SET STATUS =%s WHERE  ID_CLIENTE = %s",('APROVADO',id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
+            cliente = cur.fetchone()
         
-        
-       
+            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise)
+
+class ModoGerenteAgenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/modo_gerente.html', cliente=cliente, conta = conta)
+
+class LinkAprovacaoDepositoController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('APROVADO'))
+            depositoAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
+            depositoAnalise = cur.fetchall()
+
+            return render_template('public/aprovar_depositos.html', cliente=cliente, conta = conta, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)
+
+class ExecucaoDepositoController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
+            deposito=cur.fetchone()
+            cur.execute("SELECT * from conta WHERE ID_CONTA =%s",(deposito[0]))
+            depositoEtapa=cur.fetchone()
+            depositoreal=depositoEtapa[4]+deposito[4]
+            cur.execute("UPDATE conta SET SALDO =%s  WHERE ID_CONTA =%s ",(depositoreal,deposito[0]))
+            cur.execute("UPDATE transacoes SET STATUS =%s  WHERE ID_TRANSACAO =%s ",('APROVADO',id))
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
+            depositoAnalise = cur.fetchall()
+
+            return render_template('public/aprovar_depositos.html', cliente=cliente, depositoAnalise=depositoAnalise)
+
+class LinkExtratoController(MethodView):
+    def get(self,id):           
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            extrato=''
+
+            return render_template('public/extrato.html', cliente=cliente , conta=conta,extrato=extrato)
+
+class GerarExtratoController(MethodView):
+    def post(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            inicio = request.form['inicioExtrato']
+            fim = request.form['fimExtrato']
+            print('Tipo data',inicio)
+            print('Tipo data',fim)
+            cur.execute("SELECT * FROM transacoes WHERE DATA between  %s AND %s and ID_CONTA =%s",(inicio,fim,id))
+            extrato=cur.fetchall()
+
+            return render_template('public/extrato.html',extrato=extrato, cliente=cliente , conta=conta)
+
+
+class paginaDepositoGerenteController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+        return render_template('public/deposito_gerente.html', cliente=cliente, conta=conta)
+
+class realizarDepositoGerenteController(MethodView):
+    def post(self,id):
+        deposito = float(request.form['deposito'])
+               
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+            saldofinal = deposito
+
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',CURDATE(),%s)",(cliente[0],saldofinal))
+            cur.connection.commit()
+
+            """ cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA = %s",(saldofinal,cliente[0]))
+            cur.connection.commit() """
+        return 'Deposito em Analize do Gerente!'
+
+class paginaSaqueGerenteController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+        return render_template('public/saque_gerente.html', cliente=cliente, conta=conta)
+
+class realizarSaqueGerenteController(MethodView):
+    def post(self,id):
+        saque = float(request.form['saque'])*(-1)
+               
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            saldofinal = ((saque)+(conta[4]))
+            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
+            cur.connection.commit()
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',CURDATE(),%s,'APROVADO')",(conta[1],saque))
+            cur.connection.commit()
+        return 'Saque Realizado com Sucesso!!!'
         
     

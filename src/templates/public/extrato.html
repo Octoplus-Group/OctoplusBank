@@ -14,17 +14,46 @@
 <div>
 
     <h2>Extrato</h2>
+<div style="background-color:white ;">
+    <table class="table" border="2">
+        <tr>
+            <th scoup="col">ID TRANSAÇÃO</th>
+            <th scoup="col">DATA</th>
+            <th scoup="col">VALOR</th>
+            <th scoup="col">STATUS</th>
 
-    <ul>
-        <li>(transações)</li>
-        <li>(transações)</li>
-        <li>(transações)</li>
-    </ul>
+        </tr>
+        {% for item in extrato%}
+        <tr>
+            <td>{{item[1]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{item[4]}}</td>
+            <td>{{item[5]}}</td>
 
-    <p>Período {{data}}</p>
-    <p>Até {{data}}</p>
+        </tr>
+        {% endfor %}
+        </table>
+</div>
+<form action="/gerar_extrato/{{conta.1}}" method="POST">
+    <p>Período </p>
+    <div>
+
+        <label for="inicioExtrato">Data Inicial do Extrato</label>
+        <input type="date" name="inicioExtrato" id="inicioExtrato" required class="form-control">
+
+    </div>
+    <p>Até </p>
+    <div>
+
+        <label for="fimExtrato">Data Final do Extrato</label>
+        <input type="date" name="fimExtrato" id="fimExtrato" required class="form-control">
+
+    </div>
 
     <button type="submit">Gerar extrato</button>
 
 </div>
 
+</form>
+
+{% endblock %}
