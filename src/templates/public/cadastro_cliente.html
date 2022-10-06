@@ -6,23 +6,27 @@
 <form action="/" method="POST">
     <fieldset>
 
-        <div>
+        <div class="container">
 
-            <div>
+            <div class="row">
 
-                <label for="nome">Nome Completo:</label>
-                <input type="text" name="nome" id="nome" required class="form-control">
-            </div>
+                <div class="col-sm">
+
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" name="nome" id="nome" required>
+
+                </div>
 
 
-            <div>
+                <div class="col-sm">
 
-                <label for="CPF">CPF:</label>
-                <input type="text"  name="CPF" id="CPF" required
-                class="form-control"
-                placeholder="000.000.000-00"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" \
-                title="Digite um CPF no formato: 000.000.000-00">
+                    <label for="CPF">CPF:</label>
+                    <input type="text"  name="CPF" id="CPF" required
+                    placeholder="000.000.000-00"
+                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" \
+                    title="Digite um CPF no formato: 000.000.000-00">
+
+                </div>
 
             </div>
 
@@ -30,10 +34,10 @@
         
         <div>
 
-            <div>
+            <div class="col-sm">
 
                 <label for="dataNascimento">Data de Nascimento:</label>
-                <input type="date" name="dataNascimento" id="dataNascimento" required class="form-control">
+                <input type="date" name="dataNascimento" id="dataNascimento" required>
 
             </div>
 
@@ -128,8 +132,8 @@
                     <a href="#close" title="Close" class="close">X</a>
                     <h5>AGUARDE!</h5>
                     <p>Aguarde pois seus dados estão em processamento para serem aprovados!</p>
-                </div> -->
-            </div>
+                </div>
+            </div> -->
 
         </button>
     </fieldset>
