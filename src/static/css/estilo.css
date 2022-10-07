@@ -11,6 +11,7 @@ h1 {
   color: white;
   text-align: left;
   margin-left: 50px;
+  text-shadow: 2px 2px #000000;
 }
 
 /* página index botões e imagem */
@@ -20,19 +21,12 @@ div#botoes {
 }
 
 button {
-    background-color: #F2B9A8;
+    background-color: #eaebdc;
     font-size: 1.5vw;
     cursor: pointer;
+    border-radius: 50px;
 }
 
-button#login {
-    width: 250px;
-    height: 65px;
-    cursor: pointer;
-    border-radius: 50px;
-    border: none;
-    margin-left: 841px;
-}
 
 button#cadastro {
     width: 250px;
@@ -40,6 +34,15 @@ button#cadastro {
     cursor: pointer;
     border-radius: 50px;
     border: none;
+}
+
+button#login {
+  width: 250px;
+  height: 65px;
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
+  margin-left: 841px;
 }
 
 .image-index {
@@ -58,75 +61,279 @@ button#cadastro {
 
 /* página cadastro cliente*/
 
-label.esquerda {
-  text-align: left;
+.cadastro {
+  border: 0;
+  font-weight: bold;
+  font-size: larger;
 }
 
+.cadastro-fundo {
+  background-color: #eaebdc;
+  border-radius: 21px;
+  border: 3px solid black;
+  width: 1500px;
+  margin-left: 10%;
+}
 
-div.esquerda {
+.parte-1 {
+  display: inline-block;
+  vertical-align: auto;
+}
+
+.parte-2 {
+  display: inline-block;
+  vertical-align: auto;
+}
+
+.parte-3 {
+  display: inline-block;
+  vertical-align: auto;
+}
+
+input#nome {
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 500px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#CPF {
   text-align: center;
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 200px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+select#genero {
+  text-align: center;
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 150px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#dataNascimento {
+  text-align: center;
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 200px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+
+input#telefone {
+  text-align: center;
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 200px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+select#tipoConta {
+  text-align: center;
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 150px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#cep {
+  text-align: center;
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 200px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#cidade {
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 250px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#endereco {
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 500px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#bairro {
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 200px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+input#numeroCasa {
+  border: 1.5px solid #000000;
+  border-radius: 25px;
+  width: 100px;
+  height: 30px;
+  margin: 0;
+  font-size: larger;
+} 
+
+button#cadastrar {
+  width: 250px;
+  height: 65px;
+  font-size:xx-large;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px;
+  border: 1;
+  margin-left: 1%;
+  margin-top: 5%;
 }
 
-div.formulario {
-  padding: 20px;
+/* LOGIN */
+
+.border {
+  border: 0;
+}
+
+.login {
+  margin-top: 4%;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+}
+
+input#agencia {
+  border: 0.25 none;
+  border-radius: 25px;
+  width: 100px;
+  height: 36px;
+  margin: 0;
+  font-size: larger;
+  background-color: #eaebdc;
+} 
+
+input#user {
+  border: 0.25 none;
+  border-radius: 25px;
+  width: 100px;
+  height: 36px;
+  font-size: larger;
+} 
+
+input#senha {
+  border: 0.25 none;
+  border-radius: 25px;
+  width: 201px;
+  height: 30px;
+  font-size: larger;
+} 
+
+button#entrar {
+  width: 250px;
+  height: 65px;
+  font-size:xx-large;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px;
+  border: 1;
+  margin-left: 1%;
+  margin-top: 3%;
+}
+
+.background {
+  background-color: #eaebdc;
+  border-radius: 21px;
+  border: 3px solid black;
+  width: 600px;
+  margin-left: 34%;
 }
 
 /* página home do cliente */
 
 h3 {
   text-align: right;
-  margin-top: -100px;
+  margin-top: -70px;
   margin-right: 20px;
 }
 
+.parte-4 {
+  display: inline-block;
+  vertical-align: auto;
+  margin-top: -2%;
+}
+
 button#dados {
-  margin-left: -1000px;
+  margin-top: 4%;
   border-radius: 50px;
-  width: 278px;
-  height: 48px;
-  background-color: #E45131;
-  color: #ECDDC9;
+  width: 300px;
+  height: 70px;
+  color: #000000;
 }
 
-button#solict {
-  margin-top: 8px;
-  margin-left: -1000px;
-  border-radius: 50px;
-  width: 278px;
-  height: 48px;
-  opacity: 0;
-}
-
-div#saldo {
+.saldo {
+  text-align: center;
+  justify-content: center;
+  margin: 4% auto;
   width: 303px;
-  height: 63px;
-  margin-left: 1000px;
+  height: 45px;
   border: 3px solid black;
   border-radius: 50px;
-  background-color:#E45131;
-  font-size: 20px;
-  text-align: center;
+  font-size: 30px;
+  background-color: #ffcece;
 }
 
 .textobtn {
-  margin: 19px auto;
+  margin: 7px auto;
 }
 
 button#dep{
-  margin-top: 50px;
-  margin-left: -00px;
   border-radius: 50px;
-  width: 1100px;
-  height: 60px;
-  background-color: #E45131;
+  width: 350px;
+  height: 200px;
 }
 
 button#saque {
   margin-top: 25px;
   margin-left: -0 0px;
   border-radius: 50px;
-  width: 1100px;
-  height: 60px;
+  width: 350px;
+  height: 200px;
+}
+
+button#extrato{
+  margin-top: 50px;
+  margin-left: -00px;
+  border-radius: 50px;
+  width: 350px;
+  height: 200px;
+}
+
+button#transferencia{
+  margin-top: 50px;
+  margin-left: -00px;
+  border-radius: 50px;
+  width: 350px;
+  height: 200px;
+  
 }
 
 button#sair {
@@ -136,42 +343,66 @@ button#sair {
   width: 109px;
   height: 48px;
   margin-left: 1000px;
-  margin-top: 112px;
+  margin-top: 150px;
 }
 
 /* Pagina Dados */
 
+.dados {
+  background-color: #eaebdc;
+  width: 68%;
+  margin: auto;
+  border-radius: 50px;
+  border: 2px solid black;
+}
+
+.atualizacao {
+  margin: auto;
+  width: 50%;
+  background-color: #f1a292;
+  border-radius: 25px;
+  border: 3px solid black;
+}
+
+
 button.textodado {
-  width: 303px;
+  font-weight: bold;
+  width: 370px;
   height: 63px;
   border: 3px solid black;
   border-radius: 50px;
-  background-color:#E45131;
-  font-size: 20px;
+  font-size: 35px;
   text-align: center;
-  cursor: default ;
-  color: white;
+  cursor: default;
+  color: black;
 }
 
 #agencia {
+  margin: auto;
   border: 2px solid;
-  width: 150px;
+  border-radius: 30px;
+  background-color: #ffae95;
+  width: 130px;
   height: 50px;
-  margin-left: 580px;
   }
 
 #numero_conta {
+  margin: auto;
   border: 2px solid;
-  width: 200px;
+  border-radius: 30px;
+  background-color: #ffae95;
+  width: 130px;
   height: 50px;
-  margin-left: 550px;
 }
 
 #tipo_conta {
+  margin: auto;
   border: 2px solid;
-  width: 150px;
-  height: 50px;
-  margin-left: 580px;
+  font-size: 30px;
+  border-radius: 30px;
+  background-color: #ffae95;
+  width: 200px;
+  height: 40px;
 }
 
 button#voltar {
@@ -189,7 +420,7 @@ button#voltar {
 hr {
   border: 1.25px solid black;
   background-color: black;
-  margin-top: -12px;
+  margin-top: -24px;
 }
 
 
@@ -244,8 +475,23 @@ h2 {
   margin-top: 370px;
 }
 
+.saldo-atual {
+  text-align: center;
+  justify-content: center;
+  margin: 3% auto;
+  width: 303px;
+  height: 45px;
+  border: 3px solid black;
+  border-radius: 50px;
+  font-size: 30px;
+  background-color: #F2B9A8;
+}
 
-/* SIDEBAR */
+.atual {
+  margin-top: -6%;
+}
+
+
 
 
 

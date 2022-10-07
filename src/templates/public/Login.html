@@ -1,24 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %} 
+
+    <h1 style="font-size: 5vw;">OCTOPLUS BANK</h1>
+    
+
     <form action="login_cliente_validacao" method="POST">
-        <fieldset>
-                <div>
-                    <label for="agencia">Numero da Agancia:</label>
-                    <input type="number" name="agencia" id="agencia" required>
+        <fieldset class="border">
+            <div class="login">
+                <div class="background">
+                    <br>
+                    <div>
+                        <label for="agencia">Número da Agência:</label>
+                        <input type="number" name="agencia" id="agencia" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="id">Número da Conta:</label>
+                        <input type="number" name="id" id="user" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="user">Senha:</label>
+                        <input type="password" name="senha" id="senha" required>
+                    </div>
+                    <br>
                 </div>
-                <br>
-                <div>
-                    <label for="id">Numero da Conta:</label>
-                    <input type="number" name="id" id="user" required>
-                </div>
-                <br>
-                <div>
-                    <label for="user">Senha:</label>
-                    <input type="password" name="senha" id="senha" required >
-                </div>
-                <br>
-                <button type="submit">Entrar</button>
+                    <br>
+                <button type="submit" id="entrar">Entrar</button>
+            </div>
         </fieldset>
     </form> 
 
