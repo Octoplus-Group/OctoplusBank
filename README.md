@@ -42,8 +42,7 @@ Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b3
 
 <h2 id="tecnologias">💻 Tecnologias Utilizadas</h2>
 
-![tecnologias](https://user-images.githubusercontent.com/111464795/194542797-25916915-b5aa-403b-9eac-a36f4d604742.png)
-
+![tecnologias](https://user-images.githubusercontent.com/111464795/194543339-b1f1e622-0106-4cde-bd3b-0bfc6884665f.png)
 
 <br>
 <h2 id="userstories"> :mag: User Stories </h2>
