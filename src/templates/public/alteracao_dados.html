@@ -11,83 +11,100 @@
 </section>
 <!-- section acima -->
 
-<p>Suas  alterações passarão por aprovação de um gerente antes de se tornarem seus dados oficiais</p>
+
+
+<p class="solicitacao">Suas  alterações passarão por aprovação de um gerente antes de se tornarem seus dados oficiais.</p>
 
 <form action="/update/cliente/{{cliente.1}}" method="POST">
-    <fieldset>
-        <div>
-            <label for="nome">Nome Completo: </label>
-            <input type="text" name="nome" value="{{cliente.2}}" id="nome" required>
-        </div>
+    <fieldset class="cadastro">
+        <div class="cadastro-fundo">
+        <br>
+            <div class="parte-1">
+                <label for="nome">Nome Completo: </label>
+                <input type="text" name="nome" value="{{cliente.2}}" id="nome" required>
+            </div>
 
-        <div>
-            <label for="CPF">CPF: </label>
-            <input type="number" placeholder="000.000.000-00" value="{{cliente.3}}" name="CPF" id="CPF" required>
-        </div>
-        
-        <div>
-            <label for="dataNascimento">Data de Nascimento:</label>
-            <input type="date" name="dataNascimento" value="{{cliente.4}}" id="dataNascimento" required>
-        </div>
+            <div class="parte-1">
+                <label for="CPF">CPF: </label>
+                <input type="number" placeholder="000.000.000-00" value="{{cliente.3}}" name="CPF" id="CPF" required>
+            </div>
 
-            <div>
+            <div class="parte-1">
                 <label for="genero">Genero:</label>
-                <select name="genero" required>
+                <select name="genero" required id="genero">
                     <option selected enable value="{{cliente.5}}">Escolha</option>
                     <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
                     <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
                     <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
                 </select>
-        </div>
+            </div>
 
-        <div>
-            <label for="telefone">Telefone: </label>
-            <input type="text" placeholder="(00)0000-0000" value="{{cliente.6}}" name="telefone" id="telefone" required>
-        </div>
+            <br><br>
+            
+            <div class="parte-2">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" name="dataNascimento" value="{{cliente.4}}" id="dataNascimento" required>
+            </div>
 
-        <div>
-            <label for="cep">CEP:
-            <input type="number" placeholder="00000-000" value="{{cliente.7}}" name="cep" id="cep">
-        </label>
-        </div>
+            <div class="parte-2">
+                <label for="telefone">Telefone: </label>
+                <input type="text" placeholder="(00)0000-0000" value="{{cliente.6}}" name="telefone" id="telefone" required>
+            </div>
 
-        <div>
-            <label for="cidade">Cidade: 
-            <input type="text" name="cidade" value="{{cliente.9}}" id="cidade">
-        </label>
-        </div>
+            <div class="parte-2">
+                <label for="tipoConta">Tipo de Conta:</label>
+                <select name="tipoConta" required id="tipoConta">
+                    <option selected  enable value="{{conta.3}}">Escolha</option>
+                    <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
+                    <option type="text" name="'tipoConta" id="tipoConta" value="POUPANÇA">Poupança</option>
+                </select>
+            </div>
 
-        <div>
-            <label for="endereco">Endereço:
-            <input type="text" name="endereco" value="{{cliente.8}}" id="endereco">
+            <br><br>
+
+            <div class="parte-3">
+                <label for="cep">CEP:
+                <input type="number" placeholder="00000-000" value="{{cliente.7}}" name="cep" id="cep">
             </label>
-        </div>
+            </div>
 
-        <div>
-            <label for="bairro">Bairro:
-            <input type="text" name="bairro" value="{{cliente.10}}" id="bairro">
+            <div class="parte-3">
+                <label for="cidade">Cidade: 
+                <input type="text" name="cidade" value="{{cliente.9}}" id="cidade">
             </label>
+            </div>
+
+            <div class="parte-3">
+                <label for="endereco">Endereço:
+                <input type="text" name="endereco" value="{{cliente.8}}" id="endereco">
+                </label>
+            </div>
+            
+            <br><br>
+
+            <div class="parte-3">
+                <label for="bairro">Bairro:
+                <input type="text" name="bairro" value="{{cliente.10}}" id="bairro">
+                </label>
+            </div>
+
+            <div class="parte-3">
+                <label for="numeroCasa">Nº:
+                <input type="number" name="numeroCasa" value="{{cliente.11}}" id="numeroCasa">
+                </label>
+            </div>
+
+            <br><br>
+
+            <div>
+                <label for="senha">Senha da Conta: </label><br>
+                <input type="password" id="senha" value="{{cliente.12}}" name="senha">
+            </div>
+
+            <br><br>
+
         </div>
 
-        <div>
-            <label for="numeroCasa">Nº:
-            <input type="number" name="numeroCasa" value="{{cliente.11}}" id="numeroCasa">
-            </label>
-        </div>
-
-        <div>
-            <label for="tipoConta">Tipo de Conta:</label>
-            <select name="tipoConta" required>
-                <option selected  enable value="{{conta.3}}">Escolha</option>
-                <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
-                <option type="text" name="'tipoConta" id="tipoConta" value="POUPANÇA">Poupança</option>
-            </select>
-        </div>
-        <div>
-            <label for="senha">Senha da Conta: </label><br>
-            <input type="password" id="senha" value="{{cliente.12}}" name="senha">
-        </div>
-
-       <button type="submit">Solicitar alteração de dados</button>        
+       <button type="submit" id="solicitar">Solicitar alteração de dados</button>        
 
        {% endblock %}

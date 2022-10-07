@@ -90,6 +90,8 @@ button#login {
   vertical-align: auto;
 }
 
+
+
 input#nome {
   border: 1.5px solid #000000;
   border-radius: 25px;
@@ -301,9 +303,7 @@ button#dados {
   background-color: #ffcece;
 }
 
-.textobtn {
-  margin: 7px auto;
-}
+
 
 button#dep{
   border-radius: 50px;
@@ -358,10 +358,16 @@ button#sair {
 
 .atualizacao {
   margin: auto;
-  width: 50%;
-  background-color: #f1a292;
+  margin-top: 3.5%;
+  width: 36%;
+  background-color: #ffa998;
   border-radius: 25px;
   border: 3px solid black;
+  color: #000000;
+}
+
+a {
+  color: #000000;
 }
 
 
@@ -384,6 +390,7 @@ button.textodado {
   background-color: #ffae95;
   width: 130px;
   height: 50px;
+  cursor: default;
   }
 
 #numero_conta {
@@ -393,6 +400,7 @@ button.textodado {
   background-color: #ffae95;
   width: 130px;
   height: 50px;
+  cursor: default;
 }
 
 #tipo_conta {
@@ -402,7 +410,8 @@ button.textodado {
   border-radius: 30px;
   background-color: #ffae95;
   width: 200px;
-  height: 40px;
+  height: 35px;
+  cursor: default;
 }
 
 button#voltar {
@@ -413,6 +422,21 @@ button#voltar {
   height: 48px;
   position: absolute;
   left: 15px;
+}
+
+.solicitacao {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+button#solicitar {
+ margin: auto;
+ margin-top: 3%;
+ font-weight: bold;
+ background-color: #ffa998;
+ border-radius: 25px;
+ border: 3px solid black;
+ color: #000000;
 }
 
 /* deposito e saque */
@@ -469,10 +493,12 @@ h2 {
 }
 
 .button-sd {
-  position: relative;
-  text-align: right;
-  margin-right: 38%;
-  margin-top: 370px;
+  margin-top: 18%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: 600px;
+  
 }
 
 .saldo-atual {
@@ -488,9 +514,21 @@ h2 {
 }
 
 .atual {
-  margin-top: -6%;
+  margin-top: -7%;
 }
 
+/* HOME GERENTE */
+
+
+
+div#agenciaConta {
+  margin-top: 2.5%;
+  width: 15%;
+  margin: auto;
+  border: 3px solid black;
+  border-radius: 50px;
+  background-color: #eaebdc;
+}
 
 
 

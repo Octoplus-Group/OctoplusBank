@@ -3,39 +3,47 @@
 {% block content %} 
 
 
-    <div class="botaohome">
-        <a href="/home_gerente_agencia/{{cliente.0}}">
-        <img src="logo_octoplus_bank_transparente.png" alt="Logo Octoplus">
-        <h4>PÁGINA INICIAL</h4>
-        </a>
-    </div>
+<h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
+
+    <h3>Seja Bem Vindo, {{cliente.2}}</h3><br>
+
+    <hr>
 
     <div id="agenciaConta">
         <h4 class="textobtn">AGÊNCIA: 01 </h4>
         <h4 class="textobtn">CONTA: {{conta.3}} </h4>
-        </div>
-
-    <hr>
-
-    <h3>Seja Bem Vindo, {{cliente.2}}</h3>
-
-    <div id="saldo">
-    <h4 class="textobtn">SALDO: R$ {{conta.4}} </h4>
     </div>
 
+    
+    <div class="parte-1">
     <a href="/"><button id="transferencia">TRANSFERÊNCIA</button></a>
-    <br>
+    </div>
+
+    <div class="parte-1">
     <a href="/pagina_gerente_saque/cliente/{{cliente.0}}"><button id="saque">SAQUE</button></a>
-    <br>
+    </div>
+    
+    <div class="parte-1">
     <a href="/pagina_deposito_gerente/cliente/{{cliente.0}}"><button id="dep">DEPÓSITO</button></a>
-    <br>
+    </div>
+
+    <div class="parte-1">
     <a href="/dados_user/cliente/{{cliente.0}}"><button id="dep">DADOS</button></a>
-    <br>
+    </div>
+    
+    <div class="parte-2">
     <a href="/link_extrato/{{cliente.0}}"><button id="dep">EXTRATOS</button></a>
-    <br>
+    </div>
+
+    <br><br>
+    
+    <div class="parte-2">
     <a href="/update/cliente/{{cliente.0}}"><button id="dep">ALTERAR DADOS</button></a>
-    <br>
+    </div>
+    
+    <div class="parte-2">
     <a href="/link_modo_gerente_contas/{{cliente.1}}"><button id="dep">GERENCIAR</button></a>
+    </div>
     <br>
 
     <a href="/"><button id="sair">SAIR</button></a>
