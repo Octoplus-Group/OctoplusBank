@@ -29,6 +29,7 @@ routes ={
     "realizar_deposito_gerente_route":"/realizar_gerente_deposito/cliente/<int:id>","realizar_deposito_gerente_controller":realizarDepositoGerenteController.as_view("realizardepositogerente"),
     "pagina_saque_gerente_route":"/pagina_gerente_saque/cliente/<int:id>","pagina_gerente_saque_controller":paginaSaqueGerenteController.as_view("paginasaquegerente"),
     "realizar_saque_gerente_route":"/realizar_saque_gerente/cliente/<int:id>","realizar_saque_gerente_controller":realizarSaqueGerenteController.as_view("realizarsaquegerente"),
+    "home_gerente_conta":"/home_gerente_conta/<int:id>","home_gerente_conta_controller":HomeGerenteContaController.as_view("homegerenteconta"),
 }
 
 

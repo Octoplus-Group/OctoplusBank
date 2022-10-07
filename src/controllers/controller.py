@@ -1,3 +1,4 @@
+
 from flask.views import MethodView
 from flask import request, render_template,redirect
 from src.db import mysql
@@ -367,5 +368,14 @@ class realizarSaqueGerenteController(MethodView):
             cur.connection.commit()
             mensagem='Saque Realizado com Sucesso !'
         return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
+
+class HomeGerenteContaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+            return render_template('public/home_gerente_conta.html', cliente=cliente, conta=conta)
         
     

@@ -57,6 +57,8 @@ app.add_url_rule(routes["realizar_deposito_gerente_route"],view_func=routes["rea
 
 app.add_url_rule(routes["pagina_saque_gerente_route"],view_func=routes["pagina_gerente_saque_controller"])
 
+app.add_url_rule(routes["home_gerente_conta"],view_func=routes["home_gerente_conta_controller"])
+
 app.add_url_rule(routes["realizar_saque_gerente_route"],view_func=routes["realizar_saque_gerente_controller"])
 
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
