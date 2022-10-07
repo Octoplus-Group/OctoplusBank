@@ -42,7 +42,8 @@ Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b3
 
 <h2 id="tecnologias">💻 Tecnologias Utilizadas</h2>
 
-![Tecnologias (700 × 400 px)](https://user-images.githubusercontent.com/111452998/190876489-eddd44d1-2326-4c3e-b815-3787abab4887.png)
+![tecnologias](https://user-images.githubusercontent.com/111464795/194542797-25916915-b5aa-403b-9eac-a36f4d604742.png)
+
 
 <br>
 <h2 id="userstories"> :mag: User Stories </h2>
@@ -100,7 +101,7 @@ Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b3
 <h2 id="backlogS">🗂️ Backlog das Sprints</h2>
 <br>
 
-![backlog](https://user-images.githubusercontent.com/111464795/192904569-99726c63-bbf2-4926-bcf9-e378850db24b.png)
+![backlog1](https://user-images.githubusercontent.com/111464795/194542575-017dc556-71bc-46d6-9aba-8a79cde14945.png)
 
 
 <br>
@@ -119,7 +120,7 @@ Lucas F. Romero | DT | [LinkedIn](https://www.linkedin.com/in/lucas-romero-8b1b3
 <br>
 <br>
 
-<h3> Sprint 3: [13/10/22-06/11/22]</h3> 
+<h3> Sprint 3: [17/10/22-06/11/22]</h3> 
 
 <br>
 <br>
