@@ -15,14 +15,13 @@
 
 <div>
 
-    <h2>Extrato</h2>
-<div style="background-color:white ;">
+    <h2 class="extrato">Extrato</h2>
     <table class="table" border="2">
         <tr>
             <th scoup="col">ID TRANSAÇÃO</th>
             <th scoup="col">DATA</th>
             <th scoup="col">VALOR</th>
-            <th scoup="col">STATUS</th>
+<!--             <th scoup="col">STATUS</th> -->
 
         </tr>
         {% for item in extrato%}
@@ -30,29 +29,28 @@
             <td>{{item[1]}}</td>
             <td>{{item[3]}}</td>
             <td>{{item[4]}}</td>
-            <td>{{item[5]}}</td>
+<!--             <td>{{item[5]}}</td> -->
 
         </tr>
         {% endfor %}
         </table>
-</div>
 <form action="/gerar_extrato/{{conta.1}}" method="POST">
-    <p>Período </p>
+
     <div>
 
-        <label for="inicioExtrato">Data Inicial do Extrato</label>
+        <label for="inicioExtrato">Data Inicial</label>
         <input type="date" name="inicioExtrato" id="inicioExtrato" required class="form-control">
 
     </div>
-    <p>Até </p>
+
     <div>
 
-        <label for="fimExtrato">Data Final do Extrato</label>
+        <label for="fimExtrato">Data Final</label>
         <input type="date" name="fimExtrato" id="fimExtrato" required class="form-control">
 
     </div>
 
-    <button type="submit">Gerar extrato</button>
+    <button type="submitExtrato">Gerar extrato</button>
 
 </div>
 

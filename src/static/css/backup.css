@@ -1,116 +1,64 @@
-/* geral */
-@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500;700&display=swap');
+/*BACKUP CASO O MUNDO ACABE E DÊ TUDO ERRADO*/
 
-*{
-  margin: 0;
-  padding: 0;
-  font-family: 'Sunflower', sans-serif;
-}
+/* geral */
 
 body {
     background-image: linear-gradient(to top, #FF9432, #CB2C2C );
     background-attachment: fixed;
+    font-family: 'Sunflower', sans-serif;
+    text-align: center;
   }
 
+h1 {
+  color: white;
+  text-align: left;
+  margin-left: 50px;
+  text-shadow: 2px 2px #000000;
+}
 
 /* página index botões e imagem */
 
-h1.tituloIndex {
-  margin: 2% 5%;
-  font-size: 6rem;
-  color: #F8E2E5;
-  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+div#botoes {
+    text-align: center;
 }
 
-button.index2 {
-  background: linear-gradient(126.95deg, #F8E2E5 2.31%, #F5F5F5 89.82%, #F5F5F5 91.86%);
-  border: 1px solid #000000;
-  border-radius: 50px;
-  font-size: 1.5vw;
+button {
+    background-color: #eaebdc;
+    font-size: 1.5vw;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+
+button#cadastro {
+    width: 250px;
+    height: 65px;
+    cursor: pointer;
+    border-radius: 50px;
+    border: none;
+}
+
+button#login {
+  width: 250px;
+  height: 65px;
   cursor: pointer;
-  width: 15vw;
-  height: 8vh;
-}
-
-button.index1 {
-  background: linear-gradient(53.61deg, #D9F9EF 0%, #D9F9EF 0.01%, #D6E0FC 99.94%);
-  border: 1px solid #000000;
   border-radius: 50px;
-  font-size: 1.5vw;
-  cursor: pointer;
-  width: 15vw;
-  height: 8vh;
+  border: none;
+  margin-left: 841px;
 }
 
-a.botaoEntrar{
-  padding-top: 5%;
-}
-
-.imagemEsquerda{
-  float: left;
-}
-
-aside{
-  padding-top: 8.8%;
-  float: left;
+.image-index {
+  width: 36%;
+  display: flex;
+  flex-direction: row;
 }
 
 .slogan {
-  padding-top: 7%;
-  float: left;
+  text-align: right;
+  margin-top: -300px;
+  margin-right: 250px;
   color: #ffffff;
-}
-
-.footerIndex{
-  clear: both;
-}
-
-.footerDiv{
-  display: inline-block;
-}
-
-.footerTexto{
-  color: white;
-  display: inline-block;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: #000;
-}
-
-.sigaOctoplus{
-  display: inline-block;
-}
-
-h4.lbSigaOctoplus{
-  color: #F8E2E5;
-}
-
-h2.login{
-  color: white;
-  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-  font-size: 3.5rem;
-  text-align: left;
-}
-
-img.image-index{
-    width: 40vw;
-    height: 50vh;
-    object-fit: scale-down;
-}
-
-footer{
-  justify-content: space-between;
-  padding-top: 5%;
-}
-
-.githubIcon{
-  width: 60px;
-  height: 60px;
-}
-
-.hrIndex{
-  margin-top: 10%;
-  border: 1px solid white;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 50px;
 }
 
 /* página cadastro cliente*/
@@ -122,7 +70,6 @@ footer{
 }
 
 .cadastro-fundo {
-  text-align: center;
   background-color: #eaebdc;
   border-radius: 21px;
   border: 3px solid black;
@@ -144,6 +91,8 @@ footer{
   display: inline-block;
   vertical-align: auto;
 }
+
+
 
 input#nome {
   border: 1.5px solid #000000;
@@ -269,55 +218,11 @@ button#cadastrar {
   border: 0;
 }
 
-.tituloPage{
-  display: inline-block;
+.login {
+  margin-top: 4%;
   text-align: center;
-}
-
-.btnVoltarHome{
-  display: inline-block;
-}
-
-#alinhaLogin{
-  text-align: right;
-  padding: 5% 27% 5% 0%;
-}
-
-img.loginIcon {
-  width: 110px;
-  height: 110px;
-}
-
-button#entrar {
-  padding: 25%;
-  cursor: pointer;
-  border-radius: 40px;
-  border: 1;
-  margin: 5%;
-}
-
-.entrar {
-  float: right;
-  margin: 5%;
   font-weight: bold;
   font-size: larger;
-}
-
-input.direita, .center{
-  margin: 3% 0%;
-}
-
-input.center{
-  text-align: center;
-}
-
-input#agencia.direita{
-  background-color: white;
-}
-
-input.direita{
-  padding-right: 3%;
-  text-align: right;
 }
 
 input#agencia {
@@ -346,11 +251,23 @@ input#senha {
   font-size: larger;
 } 
 
+button#entrar {
+  width: 250px;
+  height: 65px;
+  font-size:xx-large;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px;
+  border: 1;
+  margin-left: 1%;
+  margin-top: 3%;
+}
+
 .background {
   background-color: #eaebdc;
   border-radius: 21px;
   border: 3px solid black;
-  width: 35vw;
+  width: 600px;
   margin-left: 34%;
 }
 
@@ -360,10 +277,6 @@ h3 {
   text-align: right;
   margin-top: -70px;
   margin-right: 20px;
-}
-
-h4.textobtn{
-  margin: 2% 0;
 }
 
 .parte-4 {
@@ -503,9 +416,14 @@ button.textodado {
   cursor: default;
 }
 
-.homeIcon{
-  width: 78px;
-  height: 78px;
+button#voltar {
+  border-radius: 50px;
+  background-color:#E45131;
+  color: white;
+  width: 140px;
+  height: 48px;
+  position: absolute;
+  left: 15px;
 }
 
 .solicitacao {
@@ -613,23 +531,3 @@ div#agenciaConta {
   border-radius: 50px;
   background-color: #eaebdc;
 }
-
-/* EXTRATO */
-
-button.submitExtrato{
-  padding-top: 5%;
-}
-
-th,td {
-  border: none;
-}
-
-table.table{
-  border-radius: 25px;
-  border: 2px solid #000000;
-  margin: 0% 33%;
-  height: 35vh;
-  width: 35vw;
-  background-color: white;
-}
-

@@ -2,29 +2,62 @@
 
 {% block content %} 
 
- <div id="interface">
+<header>
+    <h1 class="tituloIndex">OCTOPLUS BANK</h1>
+</header>
 
-    <h1 style="font-size: 5vw;">OCTOPLUS BANK</h1>
+<main>
 
-    <div id="botoes">
+        <div class="imagemEsquerda">
+            <img class="image-index" src="../../static/images/foto_index.png" alt="Mulher sorrindo segurando um celular">
+        </div>
 
-        <a href="/login_cliente"><button id="login">acessar</button></a>
-        <a href="/cadastro_cliente" id="cadastro_cliente"><button id="cadastro">abra sua conta</button></a>
+        <aside>
+            <div id="botoes">
+                <a class="botaoCadastro" href="/cadastro_cliente" id="cadastro_cliente">
+                    <button class="index2" id="cadastro">
+                        abra sua conta
+                    </button>
+                </a>
+                <br>
+                <a class="botaoEntrar" href="/login_cliente">
+                    <button class="index1" id="login">
+                        entrar
+                    </button>
+                </a>
+            </div>
 
+            <div class="slogan">
+                <h2 class="login">o seu banco digital de qualquer lugar,
+                    <br><u>a qualquer momento.</u>
+                </h2>
+            </div>
+        </aside>
+</main>
+
+<!-- <footer>
+    <div class="footerIndex">
+        <hr class="hrIndex">
+
+        <div class="footerDiv">
+            <h4 style="font-size: 1.2rem", class="footerTexto">
+                Octoplus Bank © 2022
+                <br>
+                Todos os direitos reservados. CNPJ: nº 11.111.111/0001-00
+                <br>
+                Avenida Cesare Monsueto Giulio Lattes, 1350 Distrito - Eugênio de Melo, São José dos Campos - SP, 12247-014
+            </h4>
+        </div>
+
+        <div class="sigaOctoplus">
+            <label class="lbSigaOctoplus">
+                <h3 style="font-size: 2rem", class="footerTexto">SIGA A OCTOPLUS:</h3>
+            </label>
+            <a href="https://github.com/OctoplusHolding">
+                <img class="githubIcon" src="../../static/images/icons/github.png" alt="Github">
+            </a>
+        </div>
     </div>
+</footer> -->
 
-    <div>
-
-        <img class="image-index" src="../../static/images/foto_index.png" alt="Mulher sorrindo segurando um celular">
-
-    </div>
-
-    <div class="slogan">
-
-        <p>O seu banco digital a qualquer momento,
-        <br>em qualquer lugar do mundo!</p>
-
-    </div>
-
-</div>
  {% endblock %}
