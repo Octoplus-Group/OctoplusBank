@@ -47,9 +47,27 @@ class IndexController(MethodView):
             return render_template('public/cadastro_cliente.html', mensagem=mensagem)
 
 class DeleteClienteController(MethodView):
-    def post(self, id):
+    def get(self, id):
+        
+        with mysql.cursor() as cur:
+            
+            cur.execute("DELETE from cliente WHERE ID_CLIENTE =%s",(id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+        
+            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+
+class DeleteClienteRequisicaoController(MethodView):
+    def get(self, id):
         with mysql.cursor()as cur:
-            cur.execute("DELETE FROM cliente WHERE id =%s",(id))
+            cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
             cur.connection.commit()
             return redirect('/')
 
@@ -233,8 +251,10 @@ class LinkGerenciarContasController(MethodView):
             dataAprovado = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
             dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
 
-            return render_template('public/gerenciar_contas.html', cliente=cliente, conta = conta, dataAprovado=dataAprovado, dataAnalise=dataAnalise)
+            return render_template('public/gerenciar_contas.html', cliente=cliente, conta = conta, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
 
 class AprovacaoContaController(MethodView):
     def get(self,id):
@@ -448,5 +468,5 @@ class VerificacaoAprovacao(MethodView):
             numerocontaAbertura=cur.fetchone()
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
-            mensagem = 'Sua conta esta sendo verificada! Clique em verificar novamente para ver se sua conta ja foi aprovada ! ;)'
+            mensagem = 'Sua Conta esta sendo verificada, em no maximo 1 min, sua conta será validada, apenas aguarde...'
             return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)  

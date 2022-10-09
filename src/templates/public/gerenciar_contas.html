@@ -72,6 +72,34 @@
     
     <br>
 
+    <div class="contasDeletar">
+        <a href="">
+            <button class="btnContasPendentes">
+                <h2>CONTAS COM REQUISIÇÃO PARA INITIVAÇÃO</h2>
+            </button>
+        </a>
+    </div>
+   
+    <div>
+        <table class="table" border="2">
+            <tr>
+                <th scoup="col">NUMERO DE CONTA</th>
+                <th scoup="col">NOME DO CLIENTE</th>
+                <th scoup="col">CPF</th>
+                <th scoup="col">STATUS DA CONTA</th>
+                <th scoup="col">AÇÃO</th>
+            </tr>
+            {% for item in dataDeletar%}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[13]}}</td>
+                <td><a href='/delete/cliente/{{item[1]}}'>INATIVAR</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
 
 
     {% endblock %}

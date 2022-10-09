@@ -65,6 +65,8 @@ app.add_url_rule(routes["cadastro_execucao"],view_func=routes["cadastro_execucao
 
 app.add_url_rule(routes["verificar_aprovacao"],view_func=routes["verificar_aprovacao_controller"])
 
+app.add_url_rule(routes["solicitacao_deletar"],view_func=routes["solicitacao_deletar_controller"])
+
 app.add_url_rule(routes["realizar_saque_gerente_route"],view_func=routes["realizar_saque_gerente_controller"])
 
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
