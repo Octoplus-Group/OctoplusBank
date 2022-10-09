@@ -41,8 +41,10 @@ class IndexController(MethodView):
             numerocliente=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
+            mensagem="A sua conta está pendente de aprovação pelo gerente!"
 
-            return redirect('/')
+
+            return render_template('public/cadastro_cliente.html', mensagem=mensagem)
 
 class DeleteClienteController(MethodView):
     def post(self, id):
@@ -80,6 +82,7 @@ class UpdateClienteController(MethodView):
             cur.connection.commit()
             cur.execute("UPDATE conta SET TIPO_CONTA =%s WHERE ID_CONTA = %s",(tipoConta,id))
             cur.connection.commit()
+
             return redirect('/')
 
 class CadastroClienteController(MethodView):
@@ -125,7 +128,7 @@ class LoginValicaoController(MethodView):
                 else:
                     return render_template('public/Login.html')
 
-                    
+    
             else:
                 return render_template('public/Login.html')
 

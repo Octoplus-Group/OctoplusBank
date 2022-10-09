@@ -12,6 +12,23 @@ body {
     background-attachment: fixed;
   }
 
+input.direita, input.center, input.esquerda{
+  margin: 3% 0%;
+}
+
+input.esquerda{
+  padding-left: 3%;
+  text-align: left;
+}
+
+input.direita{
+  padding-right: 3%;
+  text-align: right;
+}
+
+input.center{
+  text-align: center;
+}
 
 /* página index botões e imagem */
 
@@ -42,12 +59,21 @@ button.index1 {
   height: 8vh;
 }
 
-a.botaoEntrar{
-  padding-top: 5%;
-}
-
 .imagemEsquerda{
   float: left;
+}
+
+#botoes{
+  padding-top: 2%;
+  padding-left: 10%;
+}
+
+.estilizarFloatBtn{
+  height: 1vh;
+}
+
+.estilizarFloatFooter{
+  height: 6vh;
 }
 
 aside{
@@ -72,11 +98,17 @@ aside{
 .footerTexto{
   color: white;
   display: inline-block;
-  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #000;
 }
 
+
+.footerDiv{
+  padding: 1%;
+}
+
 .sigaOctoplus{
+  padding-left: 30%;
   display: inline-block;
 }
 
@@ -92,8 +124,8 @@ h2.login{
 }
 
 img.image-index{
-    width: 40vw;
-    height: 50vh;
+    width: 50vw;
+    height: 60vh;
     object-fit: scale-down;
 }
 
@@ -128,6 +160,11 @@ footer{
   border: 3px solid black;
   width: 1500px;
   margin-left: 10%;
+  margin-top: 2%;
+}
+
+.btnVoltarHomeCadastro{
+  margin: 2% 2% 0% 2%;
 }
 
 .parte-1 {
@@ -259,7 +296,7 @@ button#cadastrar {
   cursor: pointer;
   border-radius: 50px;
   border: 1;
-  margin-left: 1%;
+  margin-left: 80%;
   margin-top: 5%;
 }
 
@@ -270,17 +307,27 @@ button#cadastrar {
 }
 
 .tituloPage{
-  display: inline-block;
+  font-size: 2rem;
+  color: #F8E2E5;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  display: inline;
   text-align: center;
 }
 
-.btnVoltarHome{
-  display: inline-block;
+#alinhaLogin{
+  padding: 5%;
+  text-align: right;
 }
 
-#alinhaLogin{
-  text-align: right;
-  padding: 5% 27% 5% 0%;
+a.paginaInicial{
+  text-decoration: none;
+}
+
+label.paginaInicial{
+  padding-left: 1%;
+  font-size: 2rem;
+  color:white;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 img.loginIcon {
@@ -289,42 +336,37 @@ img.loginIcon {
 }
 
 button#entrar {
-  padding: 25%;
+  padding: 7%;
   cursor: pointer;
   border-radius: 40px;
   border: 1;
-  margin: 5%;
+}
+
+.btnVoltarHome{
+  margin: 5% 5% 0% 5%;
 }
 
 .entrar {
-  float: right;
-  margin: 5%;
+  margin-left: 80%;
   font-weight: bold;
   font-size: larger;
 }
 
-input.direita, .center{
-  margin: 3% 0%;
-}
-
-input.center{
-  text-align: center;
+label.login{
+  padding-left: 10%;
+  color: white;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 7);
 }
 
 input#agencia.direita{
   background-color: white;
 }
 
-input.direita{
-  padding-right: 3%;
-  text-align: right;
-}
-
 input#agencia {
   border: 0.25 none;
   border-radius: 25px;
   width: 100px;
-  height: 36px;
+  height: 35px;
   margin: 0;
   font-size: larger;
   background-color: #eaebdc;
@@ -334,56 +376,78 @@ input#user {
   border: 0.25 none;
   border-radius: 25px;
   width: 100px;
-  height: 36px;
+  height: 35px;
   font-size: larger;
 } 
 
 input#senha {
   border: 0.25 none;
   border-radius: 25px;
-  width: 201px;
-  height: 30px;
+  width: 200px;
+  height: 35px;
   font-size: larger;
 } 
 
+.login{
+  font-size: larger;
+}
+
 .background {
+  margin-top: 5%;
+  margin-left: 40%;
+  width: 20vw;
   background-color: #eaebdc;
-  border-radius: 21px;
+  border-radius: 25px;
   border: 3px solid black;
-  width: 35vw;
-  margin-left: 34%;
 }
 
 /* página home do cliente */
+.topoLogado{
+  margin: 1%;
+  display: inline-block;
+}
 
-h3 {
+.topoLogadoDireita{
+  padding-left: 75%;
   text-align: right;
-  margin-top: -70px;
-  margin-right: 20px;
+  display: inline-block;
+}
+
+hr.homeUser{
+  border: 2px solid black;
+  background-color: black;
+}
+
+h3.sejaBemVindo {
+  font-size: 1.8rem;
+  color: white;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
 
 h4.textobtn{
   margin: 2% 0;
 }
 
-.parte-4 {
-  display: inline-block;
-  vertical-align: auto;
-  margin-top: -2%;
+img.menuLogado{
+  width: 5vw;
+  height: 15vh;
+  object-fit: scale-down;
 }
 
-button#dados {
-  margin-top: 4%;
-  border-radius: 50px;
-  width: 300px;
-  height: 70px;
-  color: #000000;
+.alinhaHomeBtn{
+  padding-left: 30%;
+}
+
+.parte-4 {
+  text-align: center;
+  display: inline-block;
+  margin: 1%;
 }
 
 .saldo {
   text-align: center;
   justify-content: center;
-  margin: 4% auto;
+  margin: 2% auto;
   width: 303px;
   height: 45px;
   border: 3px solid black;
@@ -392,47 +456,66 @@ button#dados {
   background-color: #ffcece;
 }
 
-
+button#dados {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  margin-top: 4%;
+  border-radius: 50px;
+  width: 300px;
+  height: 70px;
+  color: #000000;
+  cursor: pointer;
+}
 
 button#dep{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
   border-radius: 50px;
   width: 350px;
   height: 200px;
+  cursor: pointer;
 }
 
 button#saque {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
   margin-top: 25px;
-  margin-left: -0 0px;
   border-radius: 50px;
   width: 350px;
   height: 200px;
+  cursor: pointer;
 }
 
 button#extrato{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
   margin-top: 50px;
   margin-left: -00px;
   border-radius: 50px;
   width: 350px;
   height: 200px;
+  cursor: pointer;
 }
 
 button#transferencia{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
   margin-top: 50px;
   margin-left: -00px;
   border-radius: 50px;
   width: 350px;
   height: 200px;
-  
+  cursor: pointer;
 }
 
 button#sair {
+  font-size: 3rem;
   border-radius: 50px;
   background-color:#E45131;
   color: white;
-  width: 109px;
-  height: 48px;
-  margin-left: 1000px;
-  margin-top: 150px;
+  width: 12vw;
+  height: 12vh;
+  
 }
 
 /* Pagina Dados */
@@ -525,8 +608,8 @@ button#solicitar {
 
 /* deposito e saque */
 
-hr {
-  border: 1.25px solid black;
+hr.depositoSaque {
+  border: 2px solid black;
   background-color: black;
   margin-top: -24px;
 }
