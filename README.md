@@ -5,8 +5,7 @@
 <hr>
 
 <p align="center">
-      <img src="https://user-images.githubusercontent.com/111464795/194782506-1c050066-04fa-49fa-926c-dd338fc44c55.png
-" alt="logo da equipe" width="200">
+      <img src="./src/static/images/01-logo_octoplus_bank_transparente.png" alt="logo da equipe" width="200">
       <h3 align="center">🐙 Octoplus Holding 🐙</h3>
 
 <hr>
@@ -162,8 +161,6 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 <br>
 
 <hr>
-
-## 👥Equipe <a id="equipe"></a>
 
 ## :mortar_board: Equipe <a id="equipe"></a>
 
