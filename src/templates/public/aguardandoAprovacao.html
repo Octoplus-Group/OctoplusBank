@@ -18,17 +18,26 @@
 
 <h1 style="font-size: 5vw;">OCTOPLUS BANK</h1>
 
-<p>{{mensagem}}</p>
+<div class="mensagemAprovacao">
+    <p>{{mensagem}}</p>
+    <p>Sua conta será: {{numerocontaAbertura.1}} </p>
+    <p>Agencia: 01</p>
+    <p>Status da Conta: {{numeroclienteAbertura.13}}</p>
+</div>
 
-<p>Sua conta será: {{numerocontaAbertura.1}}</p>
-<p>Agencia: 01</p>
-<p>Status da Conta: {{numeroclienteAbertura.13}}</p>
+<div class="botoesAprovacao">
+    <button class="aprovacao">
+        <a class="linkAprovacao" href="/verificaraprovacao">
+            Verificar se sua conta ja foi aprovada !
+        </a>
+    </button>
 
-<a href="/verificaraprovacao">Verificar se sua conta ja foi aprovada !</a>
-
-<a href="/"> Desistir de Abrir a Conta!</a>
-
-
+    <button class="aprovacao">
+        <a class="linkAprovacao" href="/">
+            Desistir de Abrir a Conta!
+        </a>
+    </button>
+</div>
 
 </body>
 

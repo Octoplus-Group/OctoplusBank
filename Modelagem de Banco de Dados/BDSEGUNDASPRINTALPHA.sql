@@ -80,7 +80,7 @@ CREATE TABLE `cliente` (
   `DATA_NASCIMENTO` date NOT NULL,
   `GENERO` enum('Masculino','Feminino','Outro') NOT NULL,
   `TELEFONE` varchar(15) NOT NULL,
-  `CEP` varchar(8) NOT NULL,
+  `CEP` varchar(9) NOT NULL,
   `ENDERECO` varchar(255) NOT NULL,
   `CIDADE` varchar(255) NOT NULL,
   `BAIRRO` varchar(255) NOT NULL,

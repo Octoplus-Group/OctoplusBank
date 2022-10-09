@@ -436,7 +436,7 @@ class CadastroClienteController(MethodView):
             numeroclienteAbertura=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
-            mensagem = 'Sua conta esta sendo verificada! Clique em verificar novamente para ver se sua conta ja foi aprovada ! ;)'
+            mensagem = 'Sua conta está sendo verificada! Clique em verificar novamente para ver se a sua conta ja foi aprovada ! ;)'
             
             return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)    
 
@@ -448,5 +448,5 @@ class VerificacaoAprovacao(MethodView):
             numerocontaAbertura=cur.fetchone()
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
-            mensagem = 'Sua conta esta sendo verificada! Clique em verificar novamente para ver se sua conta ja foi aprovada ! ;)'
+            mensagem = 'Sua conta está sendo verificada! Clique em verificar novamente para ver se a sua conta ja foi aprovada ! ;)'
             return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)  
