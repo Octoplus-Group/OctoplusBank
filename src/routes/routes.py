@@ -30,6 +30,9 @@ routes ={
     "pagina_saque_gerente_route":"/pagina_gerente_saque/cliente/<int:id>","pagina_gerente_saque_controller":paginaSaqueGerenteController.as_view("paginasaquegerente"),
     "realizar_saque_gerente_route":"/realizar_saque_gerente/cliente/<int:id>","realizar_saque_gerente_controller":realizarSaqueGerenteController.as_view("realizarsaquegerente"),
     "home_gerente_conta":"/home_gerente_conta/<int:id>","home_gerente_conta_controller":HomeGerenteContaController.as_view("homegerenteconta"),
+    "link_cadastro":"/link_cadastro/","link_cadastro_controller":LinkPaginaCadastroController.as_view("linkcadastro"),
+    "cadastro_execucao":"/cadastro_execucao/","cadastro_execucao_controller":CadastroClienteController.as_view("cadastrocliente"),
+    "verificar_aprovacao":"/verificaraprovacao/","verificar_aprovacao_controller":VerificacaoAprovacao.as_view("verificaraprovacao"),
 }
 
 

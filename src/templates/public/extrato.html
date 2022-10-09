@@ -11,7 +11,7 @@
 </section>
 <!-- section acima -->
 
-<a href="/home_user/{{cliente.0}}"><button id="voltar">VOLTAR</button></a><br
+<a href="/home_user/{{cliente.0}}"><button id="voltar">VOLTAR</button></a><br>
 
 <div>
 
@@ -20,16 +20,18 @@
         <tr>
             <th scoup="col">ID TRANSAÇÃO</th>
             <th scoup="col">DATA</th>
+            <th scoup="col">TIPO DE TRANSAÇÃO</th>
             <th scoup="col">VALOR</th>
-<!--             <th scoup="col">STATUS</th> -->
+    <!--             <th scoup="col">STATUS</th> -->
 
         </tr>
         {% for item in extrato%}
         <tr>
             <td>{{item[1]}}</td>
             <td>{{item[3]}}</td>
+            <td>{{item[2]}}</td>
             <td>{{item[4]}}</td>
-<!--             <td>{{item[5]}}</td> -->
+    <!--             <td>{{item[5]}}</td> -->
 
         </tr>
         {% endfor %}

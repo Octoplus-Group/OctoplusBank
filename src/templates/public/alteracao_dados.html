@@ -15,7 +15,7 @@
 
 <p class="solicitacao">Suas  alterações passarão por aprovação de um gerente antes de se tornarem seus dados oficiais.</p>
 
-<form action="/update/cliente/{{cliente.1}}" method="POST">
+<form action="/update/cliente/{{cliente.0}}" method="POST">
     <fieldset class="cadastro">
         <div class="cadastro-fundo">
         <br>
@@ -26,7 +26,7 @@
 
             <div class="parte-1">
                 <label for="CPF">CPF: </label>
-                <input type="number" placeholder="000.000.000-00" value="{{cliente.3}}" name="CPF" id="CPF" required>
+                <input type="text" placeholder="000.000.000-00" value="{{cliente.3}}" name="CPF" id="CPF" required>
             </div>
 
             <div class="parte-1">

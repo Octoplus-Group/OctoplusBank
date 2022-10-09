@@ -8,8 +8,12 @@ class IndexController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente")
-            data = cur.fetchall()        
-        return render_template('public/index.html', data=data)
+            data = cur.fetchall()
+            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
+            numeroconta=cur.fetchone()
+            cur.execute("SELECT ID_CLIENTE FROM cliente ORDER BY ID_CLIENTE DESC")
+            numerocliente=cur.fetchone()
+        return render_template('public/index.html', data=data, numeroconta=numeroconta , numerocliente=numerocliente)
 
     def post(self):
 
@@ -26,11 +30,10 @@ class IndexController(MethodView):
         tipoConta = request.form['tipoConta']
         senha = request.form['senha']
         
-
         with mysql.cursor()as cur:
             cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
             cur.connection.commit()
-            cur.execute("INSERT INTO conta (DATA_ABERTURA,TIPO_CONTA) VALUES (CURDATE(),%s)",(tipoConta))
+            cur.execute("INSERT INTO conta (DATA_ABERTURA,TIPO_CONTA) VALUES (NOW(),%s)",(tipoConta))
             cur.connection.commit()
             cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
             numeroconta=cur.fetchone()
@@ -73,7 +76,7 @@ class UpdateClienteController(MethodView):
         senha = request.form['senha']
         
         with mysql.cursor() as cur:
-            cur.execute("UPDATE cliente SET NOME =%s,CPF =%s,DATA_NASCIMENTO =%s,GENERO =%s,TELEFONE =%s,CEP =%s,CIDADE =%s,ENDERECO =%s,BAIRRO =%s,NUMERO =%s,SENHA =%s WHERE  ID_CLIENTE = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,id))
+            cur.execute("UPDATE cliente SET NOME =%s,CPF =%s,DATA_NASCIMENTO =%s,GENERO =%s,TELEFONE =%s,CEP =%s,CIDADE =%s,ENDERECO =%s,BAIRRO =%s,NUMERO =%s,SENHA =%s WHERE  ID_CONTA = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,id))
             cur.connection.commit()
             cur.execute("UPDATE conta SET TIPO_CONTA =%s WHERE ID_CONTA = %s",(tipoConta,id))
             cur.connection.commit()
@@ -163,7 +166,7 @@ class realizarDepositoController(MethodView):
             conta = cur.fetchone()
             saldofinal = deposito
 
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',CURDATE(),%s)",(cliente[0],saldofinal))
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',NOW(),%s)",(cliente[0],saldofinal))
             cur.connection.commit()
             mensagem='Deposito em analise pelo Gerente'
 
@@ -193,7 +196,7 @@ class realizarSaqueController(MethodView):
             saldofinal = ((saque)+(conta[4]))
             cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
             cur.connection.commit()
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',CURDATE(),%s,'APROVADO')",(conta[1],saque))
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
             cur.connection.commit()
             mensagem='Saque Realizado com Sucesso'
         return render_template('public/saque.html',cliente=cliente, conta=conta,mensagem=mensagem )
@@ -307,7 +310,7 @@ class GerarExtratoController(MethodView):
             fim = request.form['fimExtrato']
             print('Tipo data',inicio)
             print('Tipo data',fim)
-            cur.execute("SELECT * FROM transacoes WHERE DATA between  %s AND %s and ID_CONTA =%s",(inicio,fim,id))
+            cur.execute("SELECT * FROM transacoes WHERE DATA between  %s'00:00:00' AND %s'23:59:59' and ID_CONTA =%s",(inicio,fim,id))
             extrato=cur.fetchall()
 
             return render_template('public/extrato.html',extrato=extrato, cliente=cliente , conta=conta)
@@ -335,7 +338,7 @@ class realizarDepositoGerenteController(MethodView):
             saldofinal = deposito
             mensagem='Deposito em Analise pelo Gerente'
 
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',CURDATE(),%s)",(cliente[0],saldofinal))
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',NOW(),%s)",(cliente[0],saldofinal))
             cur.connection.commit()
 
             """ cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA = %s",(saldofinal,cliente[0]))
@@ -364,7 +367,7 @@ class realizarSaqueGerenteController(MethodView):
             saldofinal = ((saque)+(conta[4]))
             cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
             cur.connection.commit()
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',CURDATE(),%s,'APROVADO')",(conta[1],saque))
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
             cur.connection.commit()
             mensagem='Saque Realizado com Sucesso !'
         return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
@@ -377,5 +380,70 @@ class HomeGerenteContaController(MethodView):
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
             return render_template('public/home_gerente_conta.html', cliente=cliente, conta=conta)
+
+class LinkPaginaCadastroController(MethodView):
+
+    def get(self):
         
-    
+        with mysql.cursor()as cur:
+            cur.execute("SELECT * FROM conta ORDER BY ID_CONTA DESC")
+            numerocontaAbertura=cur.fetchone()
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            numeroclienteAbertura=cur.fetchone()
+            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
+            numeroconta=cur.fetchone()
+            cur.execute("SELECT ID_CLIENTE FROM cliente ORDER BY ID_CLIENTE DESC")
+            numerocliente=cur.fetchone()
+            cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
+            cur.connection.commit()
+            print('esta passando',numeroconta)
+            
+
+            return render_template('/public/cadastro_cliente.html', numeroclienteAbertura=numeroclienteAbertura , numerocontaAbertura=numerocontaAbertura)
+
+class CadastroClienteController(MethodView):
+    def post(self):
+
+        nome = request.form['nome']
+        CPF = request.form['CPF']
+        dataNascimento = request.form['dataNascimento']
+        genero = request.form['genero']
+        telefone = request.form['telefone']
+        cep = request.form['cep']
+        cidade = request.form['cidade']
+        endereco = request.form['endereco']
+        bairro = request.form['bairro']
+        numeroCasa = request.form['numeroCasa']
+        tipoConta = request.form['tipoConta']
+        senha = request.form['senha']
+        
+        
+        with mysql.cursor()as cur:
+            cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
+            cur.connection.commit()
+            cur.execute("INSERT INTO conta (DATA_ABERTURA,TIPO_CONTA) VALUES (NOW(),%s)",(tipoConta))
+            cur.connection.commit()
+            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
+            numeroconta=cur.fetchone()
+            cur.execute("SELECT ID_CLIENTE FROM cliente ORDER BY ID_CLIENTE DESC")
+            numerocliente=cur.fetchone()
+            cur.execute("SELECT * FROM conta ORDER BY ID_CONTA DESC")
+            numerocontaAbertura=cur.fetchone()
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            numeroclienteAbertura=cur.fetchone()
+            cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
+            cur.connection.commit()
+            mensagem = 'Sua conta esta sendo verificada! Clique em verificar novamente para ver se sua conta ja foi aprovada ! ;)'
+            
+            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)    
+
+
+class VerificacaoAprovacao(MethodView):
+    def get(self):
+        with mysql.cursor()as cur:
+            cur.execute("SELECT * FROM conta ORDER BY ID_CONTA DESC")
+            numerocontaAbertura=cur.fetchone()
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            numeroclienteAbertura=cur.fetchone()
+            mensagem = 'Sua conta esta sendo verificada! Clique em verificar novamente para ver se sua conta ja foi aprovada ! ;)'
+            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)  

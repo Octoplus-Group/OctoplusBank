@@ -59,6 +59,12 @@ app.add_url_rule(routes["pagina_saque_gerente_route"],view_func=routes["pagina_g
 
 app.add_url_rule(routes["home_gerente_conta"],view_func=routes["home_gerente_conta_controller"])
 
+app.add_url_rule(routes["link_cadastro"],view_func=routes["link_cadastro_controller"])
+
+app.add_url_rule(routes["cadastro_execucao"],view_func=routes["cadastro_execucao_controller"])
+
+app.add_url_rule(routes["verificar_aprovacao"],view_func=routes["verificar_aprovacao_controller"])
+
 app.add_url_rule(routes["realizar_saque_gerente_route"],view_func=routes["realizar_saque_gerente_controller"])
 
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
