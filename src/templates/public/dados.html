@@ -1,18 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %} 
-
-    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
-    <hr>
-
-        <a href="/home_user/{{cliente.0}}"><button id="voltar">VOLTAR</button></a><br>
-        <button class="textodado" disabled>DADOS DA CONTA</button>
-        <br><br>
-        <div class="dados">
-            <h2>Agência:</h2> <h2 id="agencia">1</h2>
-            <h2>Numero da Conta:</h2><h2 id="numero_conta">{{cliente.0}}</h2>
-            <h2>Tipo de conta:</h2><h2 id="tipo_conta">{{conta.3}}</h2><br><br>
-            <h2 class="atualizacao"><a href="/update/cliente/{{cliente.0}}" style="text-decoration: none">Atualizar Meus Dados</a></h2><br><br>
+            <div class="btnVoltarHome">
+                <a class="paginaInicial" href="/home_user/{{cliente.0}}">
+                        <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+                            <label class="paginaInicial">
+                                PÁGINA INICIAL
+                            </label>
+                </a>
             </div>
-        
+
+            <div class="tituloPage">
+                <h1 style="text-align: center;">
+                    <u>DADOS</u>
+                </h1>
+            </div>
+
+        <br>
+        <div class="dados">
+                <h2>
+                    Agência:
+                </h2>
+                <h2 id="agencia">
+                    1
+                </h2>
+                <h2>
+                    Numero da Conta:
+                </h2>
+                <h2 id="numero_conta">
+                    {{cliente.0}}
+                </h2>
+                <h2>
+                    Tipo de conta:
+                </h2>
+                <h2 id="tipo_conta">
+                    {{conta.3}}
+                </h2>
+            <br>
+                <h2 class="atualizacao">
+                    <a href="/solicitacaodeletar/{{cliente.1}}" style="text-decoration:none;">
+                        Solicitar exclusão de conta
+                    </a>
+                </h2>
+                <h2 class="atualizacao">
+                    <a href="/update/cliente/{{cliente.0}}" style="text-decoration: none">
+                        Atualizar dados cadastrais
+                    </a>
+                </h2>
+            <br>
+        </div>
+
 {% endblock %}

@@ -3,21 +3,28 @@
 {% block content %} 
 
 
-    <div class="botaohome2">
-        <a href="/home_gerente_agencia/{{cliente.1}}">
-        <h4>PÁGINA INICIAL</h4>
-        </a>
-    </div>
+<div class="btnVoltarHome">
+    <a class="paginaInicial" href="/home_user/{{cliente.0}}">
+            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+                <label class="paginaInicial">
+                    PÁGINA INICIAL
+                </label>
+    </a>
+</div>
 
-    <div class="gerenciarContas">
-        <h2><u>GERENCIAR CONTAS</u></h2>
-    </div>
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>GERENCIAR CONTAS</u>
+    </h1>
+    <br>
+</div>
     
-    <div class="contasExistentes">
-        <a href="">
-            <button class="btnContasExistentes">
-                <h2>CONTAS EXISTENTES</h2>
-            </button>
+    <div class="subtituloPage">
+        <a class="subtituloPage" href="">
+            <h1 style="text-align: center;">
+                <u>CONTAS ATIVAS</u>
+            </h1>
+            <br>
         </a>
     </div>
 
@@ -40,11 +47,13 @@
 </table>
 </div>
 
-    <div class="contasPendentes">
-        <a href="">
-            <button class="btnContasPendentes">
-                <h2>CONTAS PENDENTES</h2>
-            </button>
+    <div class="subtituloPage">
+        <br>
+        <a class="subtituloPage" href="">
+            <h1 style="text-align: center;">
+                <u>CONTAS PENDENTES</u>
+            </h1>
+            <br>
         </a>
     </div>
    
@@ -72,11 +81,20 @@
     
     <br>
 
+<<<<<<< HEAD
     <div class="contasDeletar">
         <a href="">
             <button class="btnContasPendentes">
                 <h2>CONTAS COM REQUISIÇÃO PARA INATIVAÇÃO</h2>
             </button>
+=======
+    <div class="subtituloPage">
+        <a class="subtituloPage" href="">
+            <h1 style="text-align: center;">
+                <u>CONTAS PENDENTES DE EXCLUSÃO</u>
+            </h1>
+            <br>
+>>>>>>> 20f002bcf8a56e87b9fe5dc6333d9d4207cc3a9a
         </a>
     </div>
    

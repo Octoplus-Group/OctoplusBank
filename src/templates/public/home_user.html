@@ -18,35 +18,74 @@
         <hr class="homeUser">
     </header>
 
-    <div class="saldo">
-    <h4 class="textobtn">SALDO: R${{conta.4}} </h4>
-    </div>
+    <div class="saldoSair">
 
+        <div class="saldo">
+            <h4 class="textobtn">
+                SALDO: R${{conta.4}}
+            </h4>
+        </div>
+
+        <div class="sair">
+            <a href="/">
+                <button id="sair">
+                    SAIR
+                </button>
+            </a>
+        </div>
+
+    </div>
     <div class="alinhaHomeBtn">
         <div class="parte-4">
-        <a href="/pagina_deposito/{{cliente.0}}"><button id="dep">DEPÓSITO</button></a>
+            <a href="/pagina_deposito/{{cliente.0}}">
+                <button id="dep">
+                    DEPÓSITO
+                </button>
+            </a>
         </div>
-        
         <div class="parte-4">
-        <a href="/pagina_saque/cliente/{{cliente.0}}"><button id="saque">SAQUE</button></a>
+            <a href="/pagina_saque/cliente/{{cliente.0}}">
+                <button id="saque">
+                    SAQUE
+                </button>
+            </a>
         </div>
-
+    </div>
+    
+    <div class="alinhaHomeBtn2">
         <br>
-
-        <div class="parte-4">
-        <a href="/link_extrato/{{cliente.0}}"><button id="extrato">EXTRATO</button></a>
+        <div class="parte-5">
+            <a href="/link_extrato/{{cliente.0}}">
+                <button id="extrato">
+                    EXTRATO
+                </button>
+            </a>
         </div>
 
-        <div class="parte-4">
-        <a href=""><button id="transferencia">TRANSFERÊNCIA</button></a>
+        <div class="parte-5">
+            <a href="">
+                <button id="transferencia">
+                    TRANSFERÊNCIA
+                </button>
+            </a>
+        </div>
+
+        <div class="parte-5">
+            <a href="/dados_user/cliente/{{cliente.0}}">
+                <button id="dados">
+                    DADOS
+                </button>
+            </a>
         </div>
     </div>
     <br>
+<!-- 
+    <a href="/solicitacaodeletar/{{cliente.1}}">
+        <button id="dados">
+            SOLICITAR EXCLUSÃO DOS MEUS DADOS E CONTA
+        </button></a><br>
+ -->
 
-    <a href="/dados_user/cliente/{{cliente.0}}"><button id="dados">DADOS</button></a><br>
-    <a href="/solicitacaodeletar/{{cliente.1}}"><button id="dados">SOLICITAR EXCLUSÃO DOS MEUS DADOS E CONTA</button></a><br>
-
-    <a href="/"><button id="sair">SAIR</button></a>
 
 
     {%endblock%}

@@ -300,6 +300,30 @@ button#cadastrar {
   margin-top: 5%;
 }
 
+/* AGUARDANDO APROVAÇÃO */
+
+.mensagemAprovacao{
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+div.botoesAprovacao{
+  margin-top: 5%;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+
+button.aprovacao{
+  cursor: pointer;
+  font-size: 1.5rem;
+  width: 15vw;
+  height: 25vh;
+  border-radius: 40px;
+}
+
 /* LOGIN */
 
 .border {
@@ -314,16 +338,26 @@ button#cadastrar {
   text-align: center;
 }
 
+.subtituloPage{
+  font-size: 1rem;
+  color: #F8E2E5;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  display: inline;
+  text-align: center;
+}
+
 #alinhaLogin{
   padding: 5%;
   text-align: right;
 }
 
 a.paginaInicial{
+  cursor: pointer;
   text-decoration: none;
 }
 
 label.paginaInicial{
+  cursor: pointer;
   padding-left: 1%;
   font-size: 2rem;
   color:white;
@@ -408,7 +442,7 @@ input#senha {
 }
 
 .topoLogadoDireita{
-  padding-left: 75%;
+  padding-left: 60%;
   text-align: right;
   display: inline-block;
 }
@@ -438,16 +472,35 @@ img.menuLogado{
   padding-left: 30%;
 }
 
+.alinhaHomeBtn2{
+  padding-left: 20%;
+}
+
 .parte-4 {
   text-align: center;
   display: inline-block;
   margin: 1%;
 }
 
+.parte-5 {
+  text-align: center;
+  display: inline-block;
+  margin: 1%;
+}
+
+.sair {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.saldoSair{
+  display: inline-block;
+  margin-left: 41%;
+}
+
 .saldo {
   text-align: center;
-  justify-content: center;
-  margin: 2% auto;
+  display: inline-block;
   width: 303px;
   height: 45px;
   border: 3px solid black;
@@ -456,14 +509,28 @@ img.menuLogado{
   background-color: #ffcece;
 }
 
+a#sair{
+  cursor: default;
+}
+
+button#sair { 
+  margin-top: 10%;
+  margin-left: 205%;
+  font-size: 3rem;
+  border-radius: 50px;
+  background-color:#E45131;
+  color: white;
+  width: 12vw;
+  height: 12vh;
+  cursor: pointer;
+}
+
 button#dados {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 2rem;
-  margin-top: 4%;
   border-radius: 50px;
-  width: 300px;
-  height: 70px;
-  color: #000000;
+  width: 350px;
+  height: 200px;
   cursor: pointer;
 }
 
@@ -508,19 +575,10 @@ button#transferencia{
   cursor: pointer;
 }
 
-button#sair {
-  font-size: 3rem;
-  border-radius: 50px;
-  background-color:#E45131;
-  color: white;
-  width: 12vw;
-  height: 12vh;
-  
-}
-
 /* Pagina Dados */
 
 .dados {
+  text-align: center;
   background-color: #eaebdc;
   width: 68%;
   margin: auto;
@@ -608,6 +666,26 @@ button#solicitar {
 
 /* deposito e saque */
 
+button#confirmar{
+  width: 160px;
+  height: 160px;
+  border-radius: 35px;
+}
+
+label.confirm{
+  padding-left: 1%;
+  color: white;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+  text-align: left;
+}
+
+.confirmar {
+  margin-left: 80%;
+  font-weight: bold;
+  font-size: larger;
+}
+
 hr.depositoSaque {
   border: 2px solid black;
   background-color: black;
@@ -620,6 +698,7 @@ input#saque {
   height: 36px;
   font-size: x-large;
   border-radius: 25px;
+  margin-top: 25px;
 }
 
 
@@ -634,21 +713,43 @@ input#deposito {
   margin-top: 25px;
 }
 
+.saldoDepositoSaque {
+  margin-top: 1%;
+  margin-left: 42%;
+  text-align: center;
+  display: inline-block;
+  width: 303px;
+  height: 45px;
+  border: 3px solid black;
+  border-radius: 50px;
+  font-size: 30px;
+  background-color: #ffcece;
+}
+
 .dep {
   font-size: 20px;
 }
 
 /* estético geral das páginas depósito e saque */
 
+img.confirmIcon{
+  width:125px;
+  height:125px;
+}
+
+h2.depTxt{
+  margin-top: 5%;
+}
+
 .caixa {
+  margin-top: 3%;
+  margin-left: 36.8%;
+  text-align: center;
   background-color: #eaebdc;
-  position: absolute;
   border-radius: 21px;
   border: 3px solid black;
   width: 503px;
   height: 253px;
-  margin-left: 36%;
-  margin-top: 5%;
 }
 
 h5 {
@@ -657,15 +758,6 @@ h5 {
 
 h2 {
   font-size: 2vw;
-}
-
-.button-sd {
-  margin-top: 18%;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-  width: 600px;
-  
 }
 
 .saldo-atual {
@@ -686,7 +778,42 @@ h2 {
 
 /* HOME GERENTE */
 
+.agencia {
+  margin-top: 2%;
+  margin-left: 42%;
+  text-align: center;
+  display: inline-block;
+  width: 303px;
+  height: 45px;
+  border: 3px solid black;
+  border-radius: 50px;
+  font-size: 30px;
+  background-color: #ffcece;
+}
 
+.btnHomeGerentePai{
+  margin-top: 4%;
+  margin-left: 29%;
+}
+
+button#minhaconta{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  border-radius: 50px;
+  width: 350px;
+  height: 200px;
+  cursor: pointer;
+}
+
+button#gerenciar{
+  margin-left: 25%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  border-radius: 50px;
+  width: 350px;
+  height: 200px;
+  cursor: pointer;
+}
 
 div#agenciaConta {
   margin-top: 2.5%;
@@ -698,6 +825,26 @@ div#agenciaConta {
 }
 
 /* EXTRATO */
+.gerarExtrato{
+  margin-left: 20%;
+  margin-bottom: 5%;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.dataInicialFinal{
+  margin-top: 2%;
+  justify-content: center;
+  display: flex;
+}
+
+input.dataInicial, input.dataFinal{
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 35px;
+  width: 25vh;
+  height: 10vh;
+}
 
 button.submitExtrato{
   padding-top: 5%;
