@@ -33,6 +33,8 @@ routes ={
     "link_cadastro":"/link_cadastro/","link_cadastro_controller":LinkPaginaCadastroController.as_view("linkcadastro"),
     "cadastro_execucao":"/cadastro_execucao/","cadastro_execucao_controller":CadastroClienteController.as_view("cadastrocliente"),
     "verificar_aprovacao":"/verificaraprovacao/","verificar_aprovacao_controller":VerificacaoAprovacao.as_view("verificaraprovacao"),
+    "solicitacao_deletar":"/solicitacaodeletar/<int:id>","solicitacao_deletar_controller":DeleteClienteRequisicaoController.as_view("solicitacaodeletar"),
+
 }
 
 

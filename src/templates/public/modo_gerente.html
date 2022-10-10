@@ -2,38 +2,42 @@
 
 {% block content %} 
 
+<div class="btnVoltarHome">
+    <a class="paginaInicial" href="/home_user/{{cliente.0}}">
+            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+                <label class="paginaInicial">
+                    PÁGINA INICIAL
+                </label>
+    </a>
+</div>
 
-    <div class="botaohome2">
-        <a href="/home_gerente_agencia/{{cliente.0}}">
-        <h4>PÁGINA INICIAL</h4>
-        </a>
-    </div>
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>MODO GERENTE</u>
+    </h1>
+</div>
 
-    <div class="modoGerente">
-        <h2><u>MODO GERENTE</u></h2>
-    </div>
-
-
-    <div id="agencia">
-        <h4 class="textobtn">AGÊNCIA: 01</h4>
-        </div>
-
-    <div class="gerenciarContas">
-        <a href="/link_gerenciar_contas/{{cliente.0}}">
-            <button>    
-                <h4>GERENCIAR CONTAS</h4>
-                <img src="gerenciarContasIcon" alt="">
-            </button>
-        </a>
-    </div>
-
-    <div class="aprovarDepositos">
-        <a href="/link_aprovacao_deposito/{{cliente.0}}">
-            <button>    
-                <h4>GERENCIAR DEPÓSITOS</h4>
-                <img src="gerenciarDepositosIcon" alt="">
-            </button>
-        </a>
-    </div>
+<div class="agencia">
+    <h4 class="textobtn">
+        AGÊNCIA: 01
+    </h4>
+</div>
     
+        <div class="alinhaHomeBtn">
+            <br>
+            <div class="parte-5">
+                <a href="/link_gerenciar_contas/{{cliente.0}}">
+                    <button id="extrato">
+                        GERENCIAR CONTAS
+                    </button>
+                </a>
+            </div>
+    
+            <div class="parte-5">
+                <a href="/link_aprovacao_deposito/{{cliente.0}}">
+                    <button id="transferencia">
+                        GERENCIAR DEPÓSITOS
+                    </button>
+                </a>
+            </div>
     {% endblock %}

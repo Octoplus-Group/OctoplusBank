@@ -2,26 +2,26 @@
 
 {% block content %} 
 
-<!-- com o novo layout do figma isso não será necessário -->
-<section>
+<div class="btnVoltarHome">
+    <a class="paginaInicial" href="/home_user/{{cliente.0}}">
+            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+                <label class="paginaInicial">
+                    PÁGINA INICIAL
+                </label>
+    </a>
+</div>
 
-    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
-    <hr>
-
-</section>
-<!-- section acima -->
-
-<a href="/home_user/{{cliente.0}}"><button id="voltar">VOLTAR</button></a><br>
-
-<div>
-
-    <h2 class="extrato">Extrato</h2>
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>EXTRATO</u>
+    </h1>
+</div>
     <table class="table" border="2">
         <tr>
-            <th scoup="col">ID TRANSAÇÃO</th>
-            <th scoup="col">DATA</th>
-            <th scoup="col">TIPO DE TRANSAÇÃO</th>
-            <th scoup="col">VALOR</th>
+            <th class="thAlign" scoup="col">ID TRANSAÇÃO</th>
+            <th class="thAlign" scoup="col">DATA</th>
+            <th class="thAlign" scoup="col">TIPO DE TRANSAÇÃO</th>
+            <th class="thAlign" scoup="col">VALOR</th>
     <!--             <th scoup="col">STATUS</th> -->
 
         </tr>
@@ -38,24 +38,29 @@
         </table>
 <form action="/gerar_extrato/{{conta.1}}" method="POST">
 
-    <div>
+    <div class="dataInicialFinal">
+        <div>
 
-        <label for="inicioExtrato">Data Inicial</label>
-        <input type="date" name="inicioExtrato" id="inicioExtrato" required class="form-control">
+            <label class="confirm" for="confirmar">Data Inicial:<br> 
+            <input class="dataInicial" type="date" name="inicioExtrato" id="inicioExtrato" required class="form-control">
 
-    </div>
+        </div>
 
-    <div>
+        <div>
 
-        <label for="fimExtrato">Data Final</label>
-        <input type="date" name="fimExtrato" id="fimExtrato" required class="form-control">
+            <label class="confirm" for="confirmar">Data Final:<br> 
+            <input class="dataFinal" type="date" name="fimExtrato" id="fimExtrato" required class="form-control">
 
-    </div>
+        </div>
 
-    <button type="submitExtrato">Gerar extrato</button>
-
-</div>
-
+        <div class="gerarExtrato">
+            <label class="confirm" for="confirmar">Gerar extrato:<br> 
+                <button type="submit" id="confirmar">
+                    <img class="confirmIcon" src="../../static/images/icons/confirm.png" alt="Confirmar">
+                </button>
+            </label>
+        </div>
+        </div>
 </form>
 
 {% endblock %}

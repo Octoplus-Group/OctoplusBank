@@ -309,11 +309,11 @@ button#cadastrar {
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
-a.linkAprovacao{
-}
-
 div.botoesAprovacao{
-
+  margin-top: 5%;
+  justify-content: center;
+  text-align: center;
+  display: flex;
 }
 
 button.aprovacao{
@@ -332,6 +332,14 @@ button.aprovacao{
 
 .tituloPage{
   font-size: 2rem;
+  color: #F8E2E5;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  display: inline;
+  text-align: center;
+}
+
+.subtituloPage{
+  font-size: 1rem;
   color: #F8E2E5;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
   display: inline;
@@ -770,6 +778,18 @@ h2 {
 
 /* HOME GERENTE */
 
+.agencia {
+  margin-top: 2%;
+  margin-left: 42%;
+  text-align: center;
+  display: inline-block;
+  width: 303px;
+  height: 45px;
+  border: 3px solid black;
+  border-radius: 50px;
+  font-size: 30px;
+  background-color: #ffcece;
+}
 
 .btnHomeGerentePai{
   margin-top: 4%;
@@ -805,6 +825,26 @@ div#agenciaConta {
 }
 
 /* EXTRATO */
+.gerarExtrato{
+  margin-left: 20%;
+  margin-bottom: 5%;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.dataInicialFinal{
+  margin-top: 2%;
+  justify-content: center;
+  display: flex;
+}
+
+input.dataInicial, input.dataFinal{
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 35px;
+  width: 25vh;
+  height: 10vh;
+}
 
 button.submitExtrato{
   padding-top: 5%;
