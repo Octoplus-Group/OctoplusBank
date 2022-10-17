@@ -121,6 +121,11 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 
 ![gifSprint1](https://user-images.githubusercontent.com/111452998/191324088-233ba443-30fc-443a-93ec-c2ff57b2d3ac.gif)
 <br>
+
+<h3> Sprint 02 </h3>
+
+<img src="./src/static/images/sprint2.gif" alt="gif 2a sprint">
+<br>
 <hr>
 
 ## 🗂️ Backlog das Sprints <a id="backlogs"></a>
