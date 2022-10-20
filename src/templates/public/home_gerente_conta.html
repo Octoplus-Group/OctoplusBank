@@ -18,6 +18,15 @@
         <hr class="homeUser">
     </header>
 
+    <div class="btnVoltarHome">
+        <a class="paginaInicial" href="/home_gerente_agencia/{{cliente.0}}">
+                <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+                    <label class="paginaInicial">
+                        PÁGINA INICIAL
+                    </label>
+        </a>
+    </div>
+
     <div class="saldoSair">
 
         <div class="saldo">
@@ -37,14 +46,14 @@
     </div>
     <div class="alinhaHomeBtn">
         <div class="parte-4">
-            <a href="/pagina_deposito/{{cliente.0}}">
+            <a href="/pagina_deposito_gerente/cliente/{{cliente.0}}">
                 <button id="dep">
                     DEPÓSITO
                 </button>
             </a>
         </div>
         <div class="parte-4">
-            <a href="/pagina_saque/cliente/{{cliente.0}}">
+            <a href="/pagina_gerente_saque/cliente/{{cliente.0}}">
                 <button id="saque">
                     SAQUE
                 </button>

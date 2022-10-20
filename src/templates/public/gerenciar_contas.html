@@ -4,10 +4,10 @@
 
 
 <div class="btnVoltarHome">
-    <a class="paginaInicial" href="/home_gerente_agencia/{{cliente.0}}">
-            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+    <a class="paginaInicial" href="/link_modo_gerente_contas/{{cliente.0}}">
+            <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
                 <label class="paginaInicial">
-                    PÁGINA INICIAL
+                    VOLTAR
                 </label>
     </a>
 </div>
@@ -35,6 +35,8 @@
     <th scoup="col">NOME DO CLIENTE</th>
     <th scoup="col">CPF</th>
     <th scoup="col">STATUS DA CONTA</th>
+    <th scoup="col">EDITAR</th>
+    <th scoup="col">EXTRATO</th>
 </tr>
 {% for item in dataAprovado%}
 <tr>
@@ -42,6 +44,8 @@
     <td>{{item[2]}}</td>
     <td>{{item[3]}}</td>
     <td>{{item[13]}}</td>
+    <td><a href="/update/cliente/{{item.0}}">Editar</a></td>
+    <td><a href="/link_extrato/{{item.0}}">Extrato(WIP)</a></td>
 </tr>
 {% endfor %}
 </table>
@@ -84,7 +88,7 @@
     <div class="subtituloPage">
         <a class="subtituloPage" href="">
             <h1 style="text-align: center;">
-                <u>CONTAS PENDENTES DE EXCLUSÃO</u>
+                <u>CONTAS PARA EXCLUSÃO EM ESPERA</u>
             </h1>
             <br>
         </a>
