@@ -103,6 +103,42 @@ class UpdateClienteController(MethodView):
 
             return redirect('/')
 
+class UpdateGerenteController(MethodView):
+    def get(self, id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/alteracao_dados_gerente.html', cliente=cliente, conta=conta)
+
+    def post(self,id):
+
+        nome = request.form['nome']
+        CPF = request.form['CPF']
+        dataNascimento = request.form['dataNascimento']
+        genero = request.form['genero']
+        telefone = request.form['telefone']
+        cep = request.form['cep']
+        cidade = request.form['cidade']
+        endereco = request.form['endereco']
+        bairro = request.form['bairro']
+        numeroCasa = request.form['numeroCasa']
+        tipoConta = request.form['tipoConta']
+        senha = request.form['senha']
+        
+        with mysql.cursor() as cur:
+            cur.execute("UPDATE cliente SET NOME =%s,CPF =%s,DATA_NASCIMENTO =%s,GENERO =%s,TELEFONE =%s,CEP =%s,CIDADE =%s,ENDERECO =%s,BAIRRO =%s,NUMERO =%s,SENHA =%s WHERE  ID_CONTA = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,id))
+            cur.connection.commit()
+            cur.execute("UPDATE conta SET TIPO_CONTA =%s WHERE ID_CONTA = %s",(tipoConta,id))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/alteracao_dados_gerente.html', cliente=cliente, conta=conta)
+
 class CadastroClienteController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
@@ -321,6 +357,17 @@ class LinkExtratoController(MethodView):
             extrato=''
 
             return render_template('public/extrato.html', cliente=cliente , conta=conta,extrato=extrato)
+
+class LinkExtratoGerenteController(MethodView):
+    def get(self,id):           
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            extrato=''
+
+            return render_template('public/extrato_gerente.html', cliente=cliente , conta=conta,extrato=extrato)
 
 class GerarExtratoController(MethodView):
     def post(self,id):

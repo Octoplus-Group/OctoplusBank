@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="btnVoltarHome">
+    <a class="paginaInicial" href="/link_gerenciar_contas/{{cliente.0}}">
+            <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
+                <label class="paginaInicial">
+                    VOLTAR
+                </label>
+    </a>
+</div>
+
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>EXTRATO</u>
+    </h1>
+</div>
+    <table class="table" border="2">
+        <tr>
+            <th class="thAlign" scoup="col">ID TRANSAÇÃO</th>
+            <th class="thAlign" scoup="col">DATA</th>
+            <th class="thAlign" scoup="col">TIPO DE TRANSAÇÃO</th>
+            <th class="thAlign" scoup="col">VALOR</th>
+    <!--             <th scoup="col">STATUS</th> -->
+
+        </tr>
+        {% for item in extrato%}
+        <tr>
+            <td>{{item[1]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[4]}}</td>
+    <!--             <td>{{item[5]}}</td> -->
+
+        </tr>
+        {% endfor %}
+        </table>
+<form action="/gerar_extrato/{{conta.1}}" method="POST">
+
+    <div class="dataInicialFinal">
+        <div>
+
+            <label class="confirm" for="confirmar">Data Inicial:<br> 
+            <input class="dataInicial" type="date" name="inicioExtrato" id="inicioExtrato" required class="form-control">
+
+        </div>
+
+        <div>
+
+            <label class="confirm" for="confirmar">Data Final:<br> 
+            <input class="dataFinal" type="date" name="fimExtrato" id="fimExtrato" required class="form-control">
+
+        </div>
+
+        <div class="gerarExtrato">
+            <label class="confirm" for="confirmar">Gerar extrato:<br> 
+                <button type="submit" id="confirmar">
+                    <img class="confirmIcon" src="../../static/images/icons/confirm.png" alt="Confirmar">
+                </button>
+            </label>
+        </div>
+        </div>
+</form>
+
+{% endblock %}

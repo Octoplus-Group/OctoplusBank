@@ -13,6 +13,8 @@ app.add_url_rule(routes["delete_route"],view_func=routes["delete_controller"])
 
 app.add_url_rule(routes["update_route"],view_func=routes["update_controller"])
 
+app.add_url_rule(routes["update_gerente_route"],view_func=routes["update_gerente_controller"])
+
 app.add_url_rule(routes["cadastro_route"],view_func=routes["cadastro_cliente_controller"])
 
 app.add_url_rule(routes["login_route"],view_func=routes["login_controller"])
@@ -46,6 +48,8 @@ app.add_url_rule(routes["link_aprovacao_deposito"],view_func=routes["link_aprova
 app.add_url_rule(routes["aprovacao_deposito"],view_func=routes["aprovacao_deposito_controller"])
 
 app.add_url_rule(routes["link_extrato"],view_func=routes["link_extrato_controller"])
+
+app.add_url_rule(routes["link_extrato_gerente"],view_func=routes["link_extrato_gerente_controller"])
 
 app.add_url_rule(routes["gerar_extrato"],view_func=routes["gerar_extrato_controller"])
 
