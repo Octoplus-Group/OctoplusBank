@@ -4,6 +4,7 @@ from src.controllers.erros import NotFoundController
 routes ={
     #comum
     "index_route":"/","indexcontroller":IndexController.as_view("index"),
+    "funcionario_route":"/area_funcionario","funcionario_controller":LoginFuncionario.as_view("loginfunc"),
     "not_found_route":404,"not_found_controller": NotFoundController.as_view("not_found"),
     "cadastro_route":"/cadastro_cliente","cadastro_cliente_controller":CadastroClienteController.as_view("cadastro"),
     "login_route":"/login_cliente","login_controller":LoginController.as_view("login"),
@@ -13,6 +14,7 @@ routes ={
     "gerar_extrato":"/gerar_extrato/<int:id>","gerar_extrato_controller":GerarExtratoController.as_view("gerarextrato"),
 
     #cliente
+    "area_cliente_route":"/area_cliente","area_cliente_controller":AreaClienteController.as_view("AreaCliente"),
     "update_route":"/update/cliente/<int:id>","update_controller":UpdateClienteController.as_view("update"),
     "home_user_id_route":"/home_user/<int:id>","home_user_id_controller":HomeUserIDController.as_view("homeuserid"),
     "home_user_route":"/home_user","home_user_controller":HomeUserController.as_view("homeuser"),
@@ -43,6 +45,13 @@ routes ={
     "link_extrato_gerente":"/link_extrato_gerente/<int:id>","link_extrato_gerente_controller":LinkExtratoGerenteController.as_view("linkextratogerente"),
 
     #gerente_geral
+    "home_gerente_geral_id_route":"/home_gerente_geral/<int:id>","home_gerente_geral_id_controller":HomeGerenteGeralController.as_view("homeggid"),
+    "gerenciar_gerentes_link_route":"/gerenciar_gerentes","gerenciar_gerentes_controller":GerenciarGerentesLinkController.as_view("gerenciargerentes"),
+    "gerenciar_banco_link_route":"/gerenciar_banco","gerenciar_banco_controller":GerenciarBancoLinkController.as_view("gerenciarbanco"),
+    "gerenciar_agencias_link_route":"/gerenciar_agencias","gerenciar_agencias_controller":GerenciarAgenciaLinkController.as_view("gerenciaragencias"),
+    "criar_agencia_route":"/criar_agencia","criar_agencia_controller":CadastrarAgenciaController.as_view("criaragencia"),
+    "cadastro_GA_route":"/cadastro_GA","cadastro_GA_controller":CadastroGerenteAgencia.as_view("cadastroGA"),
+    "banco_dados_route":"/banco_dados","banco_dados_controller":AlterarCapitalJurosController.as_view("bancodados"),
 }
 
 

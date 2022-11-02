@@ -1,4 +1,5 @@
 
+from operator import methodcaller
 from flask.views import MethodView
 from flask import request, render_template,redirect
 from src.db import mysql
@@ -6,6 +7,40 @@ from src.db import mysql
 
 class IndexController(MethodView):
     def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM banco")
+            data = cur.fetchall()
+            cur.execute("SELECT * FROM banco where ID_BANCO=%s ",(1))
+            banco=cur.fetchone()
+        return render_template('public/index.html', data=data, banco=banco)
+
+    def post(self):
+
+        capitalbanco = request.form['capitalInicial']
+        jurosPoupanca = request.form['jurosPoupanca']
+        jurosCheque = request.form['jurosCheque']
+        
+        
+        
+        with mysql.cursor()as cur:
+            cur.execute("UPDATE banco SET CAPITAL_TOTAL =%s, JUROS_POUPANCA=%s, JUROS_CQ=%s  WHERE ID_BANCO = %s",(capitalbanco,jurosPoupanca,jurosCheque,1))
+            cur.connection.commit()
+            mensagem="A sua conta está pendente de aprovação pelo gerente!"
+
+
+            return render_template('public/area_cliente.html', mensagem=mensagem)
+
+class AreaClienteController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM banco")
+            data = cur.fetchall()
+            cur.execute("SELECT * FROM banco where ID_BANCO=%s ",(1))
+            banco=cur.fetchone()
+            
+        return render_template('public/area_cliente.html', data=data, banco=banco)
+
+    def post(self):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente")
             data = cur.fetchall()
@@ -30,6 +65,7 @@ class IndexController(MethodView):
         tipoConta = request.form['tipoConta']
         senha = request.form['senha']
         
+        
         with mysql.cursor()as cur:
             cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
             cur.connection.commit()
@@ -45,6 +81,7 @@ class IndexController(MethodView):
 
 
             return render_template('public/cadastro_cliente.html', mensagem=mensagem)
+        
 
 class DeleteClienteController(MethodView):
     def get(self, id):
@@ -179,10 +216,14 @@ class LoginValicaoController(MethodView):
                     cur.execute("SELECT * FROM conta  WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     return render_template('public/home_gerente.html', cliente=cliente, conta=conta)
+                elif senhalogin == cliente[12] and cliente[14]=='GG' and cliente[13]=='APROVADO':
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta  WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    return render_template('public/home_gerente_geral.html', cliente=cliente, conta=conta)
                 else:
                     return render_template('public/Login.html')
-
-    
             else:
                 return render_template('public/Login.html')
 
@@ -275,6 +316,15 @@ class HomeGerenteAgenciaController(MethodView):
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
             return render_template('public/home_gerente.html', cliente=cliente, conta = conta)
+
+class HomeGerenteGeralController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            return render_template('public/home_gerente_geral.html', cliente=cliente, conta = conta)
 
 class LinkGerenciarContasController(MethodView):
     def get(self,id):
@@ -486,7 +536,7 @@ class CadastroClienteController(MethodView):
         numeroCasa = request.form['numeroCasa']
         tipoConta = request.form['tipoConta']
         senha = request.form['senha']
-        
+        nome = nome.upper()
         
         with mysql.cursor()as cur:
             cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
@@ -516,4 +566,133 @@ class VerificacaoAprovacao(MethodView):
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
             mensagem = 'Sua conta está sendo verificada! Validaremos ela em 1 minuto, apenas aguarde...'
-            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)  
+            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)
+
+class LoginFuncionario(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente")
+            data = cur.fetchall()
+        return render_template('public/area_funcionario.html', data=data)
+
+    def post(self):
+        idFuncionario=request.form['idFuncionario']
+        senhalogin = request.form['senha']
+        
+
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE=%s ",(idFuncionario))
+            cliente = cur.fetchone()
+            if cliente!= None:
+                cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
+                cliente = cur.fetchone()
+                if senhalogin == cliente[12] and cliente[14]=='GG':
+                    cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
+                    cliente = cur.fetchone()
+                    return render_template('public/home_gerente_geral.html', cliente=cliente)
+                elif senhalogin == cliente[12] and cliente[14]=='GA':
+                    cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+                    conta = cur.fetchone()
+                    
+                    return render_template('public/home_gerente.html', cliente=cliente,conta=conta)
+                else:
+                    return render_template('public/area_funcionario.html')
+            else:
+                return render_template('public/area_funcionario.html') 
+
+class GerenciarAgenciaLinkController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia)
+
+class GerenciarGerentesLinkController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia)
+
+class GerenciarBancoLinkController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
+            banco = cur.fetchone()
+            capital = round(banco[2],2)
+        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital)
+
+class CadastrarAgenciaController(MethodView):
+    def post(self):
+        nomeGA = request.form['GA']
+        enderecoAG = request.form['ENDERECO']
+        with mysql.cursor() as cur:
+            cur.execute("INSERT INTO agencia(GERENTE,ENDERECO) VALUES (%s,%s)",(nomeGA,enderecoAG))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia)
+
+class CadastroGerenteAgencia(MethodView):
+    def post(self):
+        nome = request.form['nome']
+        CPF = request.form['CPF']
+        dataNascimento = request.form['dataNascimento']
+        genero = request.form['genero']
+        telefone = request.form['telefone']
+        cep = request.form['cep']
+        cidade = request.form['cidade']
+        endereco = request.form['endereco']
+        bairro = request.form['bairro']
+        numeroCasa = request.form['numeroCasa']
+        tipoConta = request.form['tipoConta']
+        senha = request.form['senha']
+        nome = nome.upper()
+        
+        with mysql.cursor()as cur:
+            cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA,STATUS,FUNCAO) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,'APROVADO','GA'))
+            cur.connection.commit()
+            cur.execute("INSERT INTO conta (DATA_ABERTURA,TIPO_CONTA) VALUES (NOW(),%s)",(tipoConta))
+            cur.connection.commit()
+            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
+            numeroconta=cur.fetchone()
+            cur.execute("SELECT ID_CLIENTE FROM cliente ORDER BY ID_CLIENTE DESC")
+            numerocliente=cur.fetchone()
+            cur.execute("SELECT * FROM conta ORDER BY ID_CONTA DESC")
+            numerocontaAbertura=cur.fetchone()
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            numeroclienteAbertura=cur.fetchone()
+            cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+
+        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia)
+
+class AlterarCapitalJurosController(MethodView):
+    def post(self):
+        capitalAdicional = float(request.form['capital'])
+        jurosPP = request.form['jurospp']
+        jurosCE = request.form['jurosce']
+        
+
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
+            banco = cur.fetchone()
+            print('tipocapital',type(capitalAdicional))
+            print('tipobanco',type(banco[2]))
+            capitalNovo= banco[2]+capitalAdicional
+            cur.execute("UPDATE banco SET CAPITAL_TOTAL=%s, JUROS_POUPANCA=%s, JUROS_CQ=%s WHERE ID_BANCO = %s",(capitalNovo,jurosPP,jurosCE,1))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
+            banco = cur.fetchone()
+            capital = round(banco[2],2)
+
+        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital)

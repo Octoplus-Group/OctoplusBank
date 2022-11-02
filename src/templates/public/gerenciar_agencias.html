@@ -4,52 +4,66 @@
 
 
     <div class="botaohome2">
-        <a href="/home_user/{{cliente.0}}">
-        <h4>PÁGINA INICIAL</h4>
+        <a href="/">
+        <h4>GERENCIAR AGENCIAS</h4>
         </a>
     </div>
+<div>
+    <h1>INCLUIR NOVA AGENCIA</h1>
+    <form action="/criar_agencia" method="POST">
+        <fieldset class="cadastro">
+            <div class="cadastro-fundo">
+                <h2>CADASTRAR NOVA AGENCIA</h2>
+            <br>
+                    <div class="parte-1">
+                        
+                        <label for="GA">SELECIONE O GERENTE DE AGENCIA</label>
+                        <select name="GA" id="GA" required>
+                            <option selected disabled value="" class="form-control">Escolha</option>
+                            {% for ga in gerenteAgencia%}
+                            <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[2]}}'>{{ga[2]}}</option>
+                            {% endfor%}
+                        </select>
+                        
+                    </div>
+    
+               
+    
+                   
+    
+                    <div class="parte-2">
+    
+                        <label for="ENDERECO"> ENDEREÇO </label>
+                        <input type="text"  required  id='ENDERECO' name="ENDERECO" class="ENDERECO">
+    
+                    </div>
 
-    <div class="gerenciarContas">
-        <h2><u>GERENCIAR GERENTES</u></h2>
-    </div>
-
+    
+            <button type="submit" id="cadastrar">Cadastrar</button>
+          
+        </fieldset>
+    </form>
+</div>
     <br>
 
-    <table border="2">
-        <tr>
-            <label for="bancos">Banco:</label>
-            <select name="bancos" id="bancos">
-            <option value="banco1">Octoplus Bank</option>
-            </select>
-        </tr>
-        <tr>
-            <td>Agência:</td>
-            <td>Responsável (GA):</td>
-            <td>Definir responsável:</td>
-            <td>Gerenciar:</td>
-        </tr>
-        <tr>
-            <td>{{NUMERO DA AGÊNCIA}</td>
-            <td>{{NOME DO GERENTE RESPONSÁVEL}}</td>
-            <td>
-                <input type="text" placeholder="Defina o responsável">
-            </td>
-            <td>
-                <h4>?</h4>
-            </td>
-        </tr>
-    </table>
     
-<!--CÓDIGO PARA BACK-END DPS CRIAR TABELA
-
-{% for i in range(4) %}
-<tr>
-        <td align= middle width=150>{{data[i] ["numeroConta"]}}</td>
-        <td align= middle width=150>{{data[i]["cliente"]}}</td>
-        <td align= middle width=150>{{data[i]["tipoConta"]}}</td>
-        <td align= middle width=150>{{data[i]["gerenciar"]}}</td>
-</tr>
-{% endfor %}
---> 
+<div>
+    <table class="table" border="2">
+    <tr>
+        <th scoup="col">NUMERO AGENCIA</th>
+        <th scoup="col">NOME DO GERENTE</th>
+        <th scoup="col">ENDEREÇO</th>
+        
+    </tr>
+    {% for item in agencias%}
+    <tr>
+        <td>{{item[1]}}</td>
+        <td>{{item[2]}}</td>
+        <td>{{item[3]}}</td>
+        
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
 
     {% endblock %}

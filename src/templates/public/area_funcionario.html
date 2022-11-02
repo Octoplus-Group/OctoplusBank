@@ -3,46 +3,35 @@
 {% block content %} 
 
 <header>
-    <h1 class="tituloIndex">INICIO OCTOPLUS BANK</h1>
+    <h1 class="tituloIndex">SISTEMA FUNCIONARIO</h1>
 </header>
 
 <main>
-    <form action="/" method="POST">
+    <form action="/area_funcionario" method="POST">
         <fieldset class="">
             <div class="cadastro-fundo">
             
             <br>
                     <div class="parte-1">
     
-                        <label for="capital">ENTRE COM O CAPITAL DO BANCO</label>
-                        <input type="number" name="capitalInicial" id="capitalInicial" required min="0" max="10000000" placeholder="1.100.000,10" step=".01" required> 
+                        <label for="idFuncionario">ID FUNCIONARIO</label>
+                        <input type="text" name="idFuncionario" id="idFuncionario" required> 
     
                     </div>
     
     
                     <div class="parte-1">
     
-                        <label for="jurosPoupanca">Entre com os Juros da Poupança (%)</label>
-                        <input type="number"  name="jurosPoupanca" id="jurosPoupanca" required min="0" max="1000000" placeholder="10,10" step=".01" required>
+                        <label for="senha">SENHA</label>
+                        <input type="password"  name="senha" id="senha" required>
                         
     
                     </div>
     
                         
                 <br><br>
-    
-                    <div class="parte-2">      
-    
-                        <label for="dataNascimento">Entre com os Juros do Cheque Especial (%)</label>
-                        <input type="number" name="jurosCheque" id="jurosCheque" required min="0" max="1000000" placeholder="10,10" step=".01" required>
-    
-                    </div>
-    
-                    
-            
-             
-    
-            <button type="submit" id="inicioSistema">Iniciar Sistema</button>
+
+            <button type="submit" id="inicioSistema">Login</button>
           
         </fieldset>
     </form>

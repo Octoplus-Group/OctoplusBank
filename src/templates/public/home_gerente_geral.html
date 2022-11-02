@@ -23,7 +23,7 @@
 
     <div class="saldo">
         <h4 class="textobtn">
-            SALDO: R${{conta.4}}
+            
         </h4>
     </div>
 
@@ -35,32 +35,21 @@
         </a>
     </div>
 
-    <div class="parte-1">
-    <a href="/pagina_transferencia/cliente/{{cliente.0}}"><button id="transferencia">TRANSFERÊNCIA</button></a>
-    </div>  
-    <br>
-    
-    <a href="/pagina_saque/cliente/{{cliente.0}}"><button id="saque">SAQUE</button></a>
     
     <br>
     
-    <a href="/pagina_deposito/cliente/{{cliente.0}}"><button id="dep">DEPÓSITO</button></a>
+    <a href="/gerenciar_agencias"><button id="saque">GERENCIAR AGENCIAS</button></a>
     
     <br>
     
-    <a href="/pagina_dados/cliente/{{cliente.0}}"><button id="dep">DADOS</button></a>
+    <a href="/gerenciar_gerentes"><button id="dep">GERENCIAR GERENTES</button></a>
     
     <br>
     
-    <a href="/pagina_extratos/cliente/{{cliente.0}}"><button id="dep">EXTRATOS</button></a>
-    </div>
-    <br>
-    
-    <a href="/pagina_alterar_dados/cliente/{{cliente.0}}"><button id="dep">ALTERAR DADOS</button></a>
+    <a href="/gerenciar_banco"><button id="dep">GERENCIAR BANCO</button></a>
     
     <br>
     
-    <a href="/pagina_modo_gerente/cliente/{{cliente.0}}"><button id="dep">GERENCIAR</button></a>
-    <br>
+
     
     {% endblock %}

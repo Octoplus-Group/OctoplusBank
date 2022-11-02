@@ -71,7 +71,23 @@ app.add_url_rule(routes["verificar_aprovacao"],view_func=routes["verificar_aprov
 
 app.add_url_rule(routes["solicitacao_deletar"],view_func=routes["solicitacao_deletar_controller"])
 
-app.add_url_rule(routes["realizar_saque_gerente_route"],view_func=routes["realizar_saque_gerente_controller"])
+app.add_url_rule(routes["home_gerente_geral_id_route"],view_func=routes["home_gerente_geral_id_controller"])
+
+app.add_url_rule(routes["area_cliente_route"],view_func=routes["area_cliente_controller"])
+
+app.add_url_rule(routes["funcionario_route"],view_func=routes["funcionario_controller"])
+
+app.add_url_rule(routes["gerenciar_gerentes_link_route"],view_func=routes["gerenciar_gerentes_controller"])
+
+app.add_url_rule(routes["gerenciar_banco_link_route"],view_func=routes["gerenciar_banco_controller"])
+
+app.add_url_rule(routes["gerenciar_agencias_link_route"],view_func=routes["gerenciar_agencias_controller"])
+
+app.add_url_rule(routes["cadastro_GA_route"],view_func=routes["cadastro_GA_controller"])
+
+app.add_url_rule(routes["banco_dados_route"],view_func=routes["banco_dados_controller"])
+
+app.add_url_rule(routes["criar_agencia_route"],view_func=routes["criar_agencia_controller"])
 
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
 

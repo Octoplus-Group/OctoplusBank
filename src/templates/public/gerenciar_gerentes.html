@@ -2,54 +2,232 @@
 
 {% block content %} 
 
+<!--CONSUMINDO API VIACEP PARA AUTOPREENCHER ENDEREÇO-->
+<script>
+    $(document).ready(function() {
 
-    <div class="botaohome2">
-        <a href="/home_user/{{cliente.0}}">
-        <h4>PÁGINA INICIAL</h4>
-        </a>
-    </div>
+        function limpa_formulário_cep() {
+            // Limpa valores do formulário de cep.
+            $("#endereco").val("");
+            $("#bairro").val("");
+            $("#cidade").val("");
+        }
+        
+        //Quando o campo cep perde o foco.
+        $("#cep").blur(function() {
 
-    <div class="gerenciarContas">
-        <h2><u>GERENCIAR GERENTES</u></h2>
-    </div>
+            //Nova variável "cep" somente com dígitos.
+            var cep = $(this).val().replace(/\D/g, '');
 
-    <br>
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
 
-    <table border="2">
-        <tr>
-            <label for="bancos">Banco:</label>
-            <select name="bancos" id="bancos">
-            <option value="banco1">Octoplus Bank</option>
-            </select>
-        </tr>
-        <tr>
-            <td>Agência:</td>
-            <td>Responsável (GA):</td>
-            <td>Definir responsável:</td>
-            <td>Gerenciar:</td>
-        </tr>
-        <tr>
-            <td>{{NUMERO DA AGÊNCIA}</td>
-            <td>{{NOME DO GERENTE RESPONSÁVEL}}</td>
-            <td>
-                <input type="text" placeholder="Defina o responsável">
-            </td>
-            <td>
-                <h4>?</h4>
-            </td>
-        </tr>
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    $("#endereco").val("...");
+                    $("#bairro").val("...");
+                    $("#cidade").val("...");
+
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#endereco").val(dados.logradouro);
+                            $("#bairro").val(dados.bairro);
+                            $("#cidade").val(dados.localidade);
+                        } //end if.
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            limpa_formulário_cep();
+                            alert("CEP não encontrado.");
+                        }
+                    });
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
+        });
+    });
+</script>
+
+
+<div class="btnVoltarHomeCadastro">
+    <a class="paginaInicial" href="/">
+            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
+                <label class="paginaInicial">
+                    PÁGINA INICIAL
+                </label>
+    </a>
+</div>
+
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>CADASTRO GERENTE DE AGENCIA</u>
+    </h1>
+</div>
+
+<form action="/cadastro_GA" method="POST">
+    <fieldset class="cadastro">
+        <div class="cadastro-fundo">
+        
+        <br>
+                <div class="parte-1">
+
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" name="nome" id="nome" required>
+
+                </div>
+
+
+                <div class="parte-1">
+
+                    <label for="CPF">CPF:</label>
+                    <input type="text"  name="CPF" id="CPF" required
+                    placeholder="000.000.000-00">
+
+                </div>
+
+                <div class="parte-1">
+
+                    <label for="genero">Gênero:</label>
+                    <select name="genero" id="genero" required>
+                        <option selected disabled value="" class="form-control">Escolha</option>
+                        <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
+                        <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
+                        <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
+                    </select>
+
+                </div>
+
+            <br><br>
+
+                <div class="parte-2">      
+
+                    <label for="dataNascimento">Data de Nascimento:</label>
+                    <input type="date" name="dataNascimento" id="dataNascimento" required>
+
+                </div>
+
+                <div class="parte-2">
+
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" placeholder="(00)0000-0000" name="telefone" id="telefone" required class="form-control">
+
+                </div>
+                
+                <div class="parte-2">
+
+                    <label for="tipoConta">Tipo de Conta:</label>
+                    <select name="tipoConta" id="tipoConta" required>
+                        <option selected disabled value="" class="form-control">Escolha</option>
+                        <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
+                        <option type="text" name="'tipoConta" id="tipoConta" value="POUPANCA">Poupança</option>
+                    </select>
+
+                </div>
+
+            <br><br>
+
+                <div class="parte-3">
+
+                    <label for="cep">CEP:
+                    <input class="text" type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
+                    </label>
+
+                </div>
+
+                <div class="parte-3">
+
+                    <label for="cidade">Cidade: 
+                    <input type="text" name="cidade" id="cidade" class="form-control">
+                    </label>
+
+                </div>
+
+                <div class="parte-3">
+
+                    <label for="endereco">Endereço:
+                    <input type="text" name="endereco" id="endereco" class="form-control">
+                    </label>
+
+                </div>
+
+            <br><br>
+
+                <div class="parte-3">
+
+                    <label for="bairro">Bairro:
+                    <input type="text" name="bairro" id="bairro" class="form-control">
+                    </label>
+
+                </div>
+
+                <div class="parte-3">
+
+                    <label for="numeroCasa">Nº:
+                    <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa" class="form-control">
+                    </label>
+
+                </div>
+
+            <br><br>
+            
+                <div>
+
+                <label for="senha">Senha: </label><br>
+                <input type="password" id="senha" name="senha" class="form-control">
+
+                </div>
+
+        <br>
+        </div>
+        
+         
+
+        <button type="submit" id="cadastrar">Cadastrar</button>
+      
+    </fieldset>
+</form>
+
+<div>
+    <table class="table" border="2">
+    <tr>
+        <th scoup="col">ID DE FUNCIONARIO</th>
+        <th scoup="col">NOME DO GERENTE</th>
+        <th scoup="col">NUMERO DE CONTA</th>
+        
+    </tr>
+    {% for item in gerenteAgencia%}
+    <tr>
+        <td>{{item[1]}}</td>
+        <td>{{item[2]}}</td>
+        <td>{{item[0]}}</td>
+        
+    </tr>
+    {% endfor %}
     </table>
-    
-<!--CÓDIGO PARA BACK-END DPS CRIAR TABELA
+    </div>
 
-{% for i in range(4) %}
-<tr>
-        <td align= middle width=150>{{data[i] ["numeroConta"]}}</td>
-        <td align= middle width=150>{{data[i]["cliente"]}}</td>
-        <td align= middle width=150>{{data[i]["tipoConta"]}}</td>
-        <td align= middle width=150>{{data[i]["gerenciar"]}}</td>
-</tr>
-{% endfor %}
---> 
+<script>
+    $("#telefone").mask("(99) 99999-9999")
 
-    {% endblock %}
+    $("#CPF").mask("999.999.999-99")
+
+    $("#cep").mask("99999-999")
+</script>
+
+
+{% endblock %}
