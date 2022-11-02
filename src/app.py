@@ -33,14 +33,6 @@ app.add_url_rule(routes["pagina_saque_route"],view_func=routes["pagina_saque_con
 
 app.add_url_rule(routes["realizar_saque_route"],view_func=routes["realizar_saque_controller"])
 
-app.add_url_rule(routes["pagina_transferencia_route"],view_func=routes["pagina_transferencia_controller"])
-
-app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_tranferencia_controller"])
-
-app.add_url_rule(routes["pagina_transferencia_gerente_route"],view_func=routes["pagina_transferencia_gerente_controller"])
-
-app.add_url_rule(routes["realizar_transferencia_gerente_route"],view_func=routes["realizar_tranferencia_gerente_controller"])
-
 app.add_url_rule(routes["home_user_id_route"],view_func=routes["home_user_id_controller"])
 
 app.add_url_rule(routes["home_gerente_agencia_id_route"],view_func=routes["home_gerente_agencia_id_controller"])

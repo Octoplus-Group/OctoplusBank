@@ -11,8 +11,6 @@ routes ={
     "link_cadastro":"/link_cadastro/","link_cadastro_controller":LinkPaginaCadastroController.as_view("linkcadastro"),
     "cadastro_execucao":"/cadastro_execucao/","cadastro_execucao_controller":CadastroClienteController.as_view("cadastrocliente"),
     "gerar_extrato":"/gerar_extrato/<int:id>","gerar_extrato_controller":GerarExtratoController.as_view("gerarextrato"),
-    "pagina_transferencia_route":"/pagina_transferencia/<int:id>","pagina_transferencia_controller":paginaTransferenciaController.as_view("transferencia"),
-    "realizar_transferencia_route":"/realiazar_transferencia/<int:id>","realizar_tranferencia_controller":realizarTransferenciaController.as_view("realizartransferencia"),
 
     #cliente
     "update_route":"/update/cliente/<int:id>","update_controller":UpdateClienteController.as_view("update"),
@@ -43,8 +41,6 @@ routes ={
     "delete_route":"/delete/cliente/<int:id>","delete_controller":DeleteClienteController.as_view("delete"),
     "update_gerente_route":"/update/gerente/<int:id>","update_gerente_controller":UpdateGerenteController.as_view("updategerente"),
     "link_extrato_gerente":"/link_extrato_gerente/<int:id>","link_extrato_gerente_controller":LinkExtratoGerenteController.as_view("linkextratogerente"),
-    "pagina_transferencia_gerente_route":"/pagina_transferencia_gerente/<int:id>","pagina_transferencia_gerente_controller":paginaTransferenciaGerenteController.as_view("transferenciagerente"),
-    "realizar_transferencia_gerente_route":"/realiazar_transferencia_gerente/<int:id>","realizar_tranferencia_gerente_controller":realizarTransferenciaGerenteController.as_view("realizartransferenciagerente"),
 
     #gerente_geral
 }
