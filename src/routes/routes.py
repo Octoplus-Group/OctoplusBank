@@ -26,6 +26,8 @@ routes ={
     "dados_user_route":"/dados_user/cliente/<int:id>","dados_user_controller":DadosController.as_view("dadosuser"),
     "verificar_aprovacao":"/verificaraprovacao/","verificar_aprovacao_controller":VerificacaoAprovacao.as_view("verificaraprovacao"),
     "solicitacao_deletar":"/solicitacaodeletar/<int:id>","solicitacao_deletar_controller":DeleteClienteRequisicaoController.as_view("solicitacaodeletar"),
+    "pagina_transferencia_route":"/pagina_transferencia/<int:id>","pagina_transferencia_controller":paginaTransferenciaController.as_view("transferencia"),
+    "realizar_transferencia_route":"/realiazar_transferencia/<int:id>","realizar_tranferencia_controller":realizarTransferenciaController.as_view("realizartransferencia"),
 
     #gerete_de_agencia
     "index_admin_route":"/gerenteagencia","indexgacontroller":IndexController.as_view("indexga"),
@@ -43,6 +45,8 @@ routes ={
     "delete_route":"/delete/cliente/<int:id>","delete_controller":DeleteClienteController.as_view("delete"),
     "update_gerente_route":"/update/gerente/<int:id>","update_gerente_controller":UpdateGerenteController.as_view("updategerente"),
     "link_extrato_gerente":"/link_extrato_gerente/<int:id>","link_extrato_gerente_controller":LinkExtratoGerenteController.as_view("linkextratogerente"),
+    "pagina_transferencia_gerente_route":"/pagina_transferencia_gerente/<int:id>","pagina_transferencia_gerente_controller":paginaTransferenciaGerenteController.as_view("transferenciagerente"),
+    "realizar_transferencia_gerente_route":"/realiazar_transferencia_gerente/<int:id>","realizar_tranferencia_gerente_controller":realizarTransferenciaGerenteController.as_view("realizartransferenciagerente"),
 
     #gerente_geral
     "home_gerente_geral_id_route":"/home_gerente_geral/<int:id>","home_gerente_geral_id_controller":HomeGerenteGeralController.as_view("homeggid"),

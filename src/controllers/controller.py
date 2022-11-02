@@ -568,6 +568,100 @@ class VerificacaoAprovacao(MethodView):
             mensagem = 'Sua conta está sendo verificada! Validaremos ela em 1 minuto, apenas aguarde...'
             return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)
 
+
+class paginaTransferenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+            mensagem=''
+        return render_template('public/transferencia.html', cliente=cliente, conta=conta, mensagem=mensagem)
+
+
+class realizarTransferenciaController(MethodView):
+    def post(self, id):
+        transferencia = float(request.form['transferencia'])
+        agencia = request.form["agencia"]
+        para = request.form["para"]
+               
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            saldofinal = ((transferencia * -1)+(conta[4]))
+            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",((saldofinal),id))
+            cur.connection.commit()
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(conta[1],transferencia  * -1))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s and ID_AGENCIA=%s",(para,agencia))
+            conta = cur.fetchone()
+            saldofinal = (transferencia + conta[4])
+            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s AND ID_AGENCIA=%s",(saldofinal, para,agencia))
+            cur.connection.commit()
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(para, transferencia))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+
+            mensagem='Transferencia Realizada com Sucesso'
+
+        return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem )
+
+
+
+class paginaTransferenciaGerenteController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
+            conta = cur.fetchone()
+            mensagem=''
+        return render_template('public/transferencia_gerente.html', cliente=cliente, conta=conta, mensagem=mensagem)
+
+
+class realizarTransferenciaGerenteController(MethodView):
+    def post(self, id):
+        transferencia = float(request.form['transferencia'])
+        agencia = request.form["agencia"]
+        para = request.form["para"]
+               
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            saldofinal = ((transferencia * -1)+(conta[4]))
+            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",((saldofinal),id))
+            cur.connection.commit()
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(conta[1],transferencia  * -1))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s and ID_AGENCIA=%s",(para,agencia))
+            conta = cur.fetchone()
+            saldofinal = (transferencia + conta[4])
+            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s AND ID_AGENCIA=%s",(saldofinal, para,agencia))
+            cur.connection.commit()
+            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(para, transferencia))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+
+            mensagem='Transferencia Realizada com Sucesso'
+
+        return render_template('public/transferencia_gerente.html',cliente=cliente, conta=conta, mensagem=mensagem )
+
+
 class LoginFuncionario(MethodView):
     def get(self):
         with mysql.cursor() as cur:
