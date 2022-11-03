@@ -290,17 +290,37 @@ class realizarSaqueController(MethodView):
         saque = float(request.form['saque'])*(-1)
                
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO =%s",(1))
+            banco = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
-            saldofinal = ((saque)+(conta[4]))
-            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
-            cur.connection.commit()
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
-            cur.connection.commit()
-            mensagem='Saque Realizado com Sucesso'
-        return render_template('public/saque.html',cliente=cliente, conta=conta,mensagem=mensagem )
+            capital = float(banco[2])
+            saque = saque*-1
+
+            if saque>capital:
+                mensagem = 'Saque não pode ser realizado, favor entrar em contato com o Gerente de Geral'
+                return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
+            else:
+                with mysql.cursor() as cur:
+                    saque = saque * -1 
+                    cur.execute("SELECT * FROM banco WHERE ID_BANCO =%s",(1))
+                    banco = cur.fetchone()
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    saldofinal = ((saque)+(conta[4]))
+                    capitalfinalBanco = banco[2]+saque
+                    cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
+                    cur.connection.commit()
+                    cur.execute("UPDATE banco SET CAPITAL_TOTAL =%s WHERE  ID_BANCO =%s",(capitalfinalBanco,1))
+                    cur.connection.commit()
+                    cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
+                    cur.connection.commit()
+                    mensagem='Saque Realizado com Sucesso'
+                return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
 class HomeUserIDController(MethodView):
     def get(self, id):
@@ -483,17 +503,37 @@ class realizarSaqueGerenteController(MethodView):
         saque = float(request.form['saque'])*(-1)
                
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO =%s",(1))
+            banco = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
-            saldofinal = ((saque)+(conta[4]))
-            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
-            cur.connection.commit()
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
-            cur.connection.commit()
-            mensagem='Saque Realizado com Sucesso !'
-        return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
+            capital = float(banco[2])
+            saque = saque*-1
+
+            if saque>capital:
+                mensagem = 'Saque não pode ser realizado, favor entrar em contato com o Gerente de Geral'
+                return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
+            else:
+                with mysql.cursor() as cur:
+                    saque = saque * -1 
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    saldofinal = ((saque)+(conta[4]))
+                    capitalfinalBanco = banco[2]+saque
+                    cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
+                    cur.connection.commit()
+                    cur.execute("UPDATE banco SET CAPITAL_TOTAL =%s WHERE  ID_BANCO =%s",(capitalfinalBanco,1))
+                    cur.connection.commit()
+                    cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",(saldofinal,id))
+                    cur.connection.commit()
+                    cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
+                    cur.connection.commit()
+                    mensagem='Saque Realizado com Sucesso'
+                return render_template('public/saque_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
 class HomeGerenteContaController(MethodView):
     def get(self,id):
