@@ -1,17 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet"  type="text/css" href="{{url_for ('static', filename='css/estilo.css')}}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    
+    <!--FONTAWESOME (biblioteca de icones)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--DEFININDO O FAVICON-->
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.png" />
+
+    <!--IMPORTANDO CSS-->
+    <link rel="stylesheet" type="text/css" href="{{url_for ('static', filename='css/estilo.css')}}" />
+
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sunflower:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- BOOTSTRAO ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- JavaScript BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+   <!--IMPORTANDO CSS-->
+   <link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
+   <link rel="stylesheet" href="{{url_for ('static', filename='css/_login.css')}}">
+   <link rel="stylesheet" href="{{url_for ('static', filename='css/_aguardando_aprovacao.css')}}">
+   <link rel="stylesheet" href="{{url_for ('static', filename='css/_cadastro.css')}}">
+   <link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+
+    <!--MODELO PARA MUDAR O TITLE DA PÁGINA-->
+    <title>{% block title %} {% endblock %}</title>
+
+    <!--SCRIPTS EXTRAS DEPENDENDO DA PÁGINA-->
+    {% block moreScripts %}{% endblock moreScripts %}
     <title>Octoplus Bank</title>
     
 </head>

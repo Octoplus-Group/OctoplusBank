@@ -1,0 +1,98 @@
+
+.border {
+    border: 0;
+  }
+  
+.tituloPage{
+    font-size: 1.5vw;
+    color: #F8E2E5;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    display: inline;
+    text-align: center;
+  }
+  
+  #alinhaLogin{
+    padding: 5%;
+    text-align: right;
+  }
+  
+  a.paginaInicial{
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  label.paginaInicial{
+    cursor: pointer;
+    padding-left: 1%;
+    font-size: 2rem;
+    color:white;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+
+  
+  button#entrar {
+    padding: 7%;
+    cursor: pointer;
+    border-radius: 40px;
+    border: 1;
+  }
+  
+  .btnVoltarHome{
+    margin: 5% 5% 0% 5%;
+  }
+  
+  .entrar {
+    margin-left: 80%;
+    font-weight: bold;
+    font-size: larger;
+  }
+  
+  label.login{
+    padding-left: 10%;
+    color: white;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 7);
+  }
+  
+  input#agencia.direita{
+    background-color: white;
+  }
+  
+  input#agencia {
+    border: 0.25 none;
+    border-radius: 25px;
+    width: 100px;
+    height: 35px;
+    margin: 0;
+    font-size: larger;
+    background-color: #eaebdc;
+  } 
+  
+  input#user {
+    border: 0.25 none;
+    border-radius: 25px;
+    width: 100px;
+    height: 35px;
+    font-size: larger;
+  } 
+  
+  input#senha {
+    border: 0.25 none;
+    border-radius: 25px;
+    width: 200px;
+    height: 35px;
+    font-size: larger;
+  } 
+  
+  .login{
+    font-size: larger;
+  }
+  
+  .background {
+    margin-top: 5%;
+    margin-left: 40%;
+    width: 20vw;
+    background-color: #eaebdc;
+    border-radius: 25px;
+    border: 3px solid black;
+  }
