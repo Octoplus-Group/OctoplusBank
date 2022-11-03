@@ -12,6 +12,7 @@ routes ={
     "link_cadastro":"/link_cadastro/","link_cadastro_controller":LinkPaginaCadastroController.as_view("linkcadastro"),
     "cadastro_execucao":"/cadastro_execucao/","cadastro_execucao_controller":CadastroClienteController.as_view("cadastrocliente"),
     "gerar_extrato":"/gerar_extrato/<int:id>","gerar_extrato_controller":GerarExtratoController.as_view("gerarextrato"),
+    "entrada_route":"/verificacao_entrada","verifica_entrada_controller":VerificacaoEntrada.as_view("verificacaoentrada"),
 
     #cliente
     "area_cliente_route":"/area_cliente","area_cliente_controller":AreaClienteController.as_view("AreaCliente"),

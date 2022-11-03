@@ -1,79 +1,24 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0.5; URL='/verificacao_entrada'" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="{{url_for ('static', filename='css/estilo.css')}}">
+    <title>Octoplus Bank</title>
+    
+</head>
 
-{% block content %} 
-
-<header>
-    <h1 class="tituloIndex">INICIO OCTOPLUS BANK</h1>
-</header>
-
-<main>
-    <form action="/" method="POST">
-        <fieldset class="">
-            <div class="cadastro-fundo">
-            
-            <br>
-                    <div class="parte-1">
-    
-                        <label for="capital">ENTRE COM O CAPITAL DO BANCO</label>
-                        <input type="number" name="capitalInicial" id="capitalInicial" required min="0" max="10000000" placeholder="1.100.000,10" step=".01" required> 
-    
-                    </div>
-    
-    
-                    <div class="parte-1">
-    
-                        <label for="jurosPoupanca">Entre com os Juros da Poupança (%)</label>
-                        <input type="number"  name="jurosPoupanca" id="jurosPoupanca" required min="0" max="1000000" placeholder="10,10" step=".01" required>
-                        
-    
-                    </div>
-    
-                        
-                <br><br>
-    
-                    <div class="parte-2">      
-    
-                        <label for="dataNascimento">Entre com os Juros do Cheque Especial (%)</label>
-                        <input type="number" name="jurosCheque" id="jurosCheque" required min="0" max="1000000" placeholder="10,10" step=".01" required>
-    
-                    </div>
-    
-                    
-            
-             
-    
-            <button type="submit" id="inicioSistema">Iniciar Sistema</button>
-          
-        </fieldset>
-    </form>
-        
-</main>
+<body>
 
 
+<h1 style="font-size: 5vw;">OCTOPLUS BANK</h1>
 
-<footer>
-    <div class="footerIndex">
-        <hr class="hrIndex">
 
-        <div class="footerDiv">
-            <h4 style="font-size: 1.2rem", class="footerTexto">
-                Octoplus Bank © 2022
-                <br>
-                Todos os direitos reservados. CNPJ: nº 11.111.111/0001-00
-                <br>
-                Avenida Cesare Monsueto Giulio Lattes, 1350 Distrito - Eugênio de Melo, São José dos Campos - SP, 12247-014
-            </h4>
-        </div>
+</body>
 
-        <div class="sigaOctoplus">
-            <label class="lbSigaOctoplus">
-                <h3 style="font-size: 2rem", class="footerTexto">SIGA A OCTOPLUS:</h3>
-            </label>
-            <a href="https://github.com/OctoplusHolding">
-                <img class="githubIcon" src="../../static/images/icons/github.png" alt="Github">
-            </a>
-        </div>
-    </div>
-</footer>
-
- {% endblock %}
+</html>

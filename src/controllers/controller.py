@@ -3,6 +3,9 @@ from operator import methodcaller
 from flask.views import MethodView
 from flask import request, render_template,redirect
 from src.db import mysql
+import datetime
+
+data_atual= datetime.date.today()
 
 
 class IndexController(MethodView):
@@ -790,3 +793,13 @@ class AlterarCapitalJurosController(MethodView):
             capital = round(banco[2],2)
 
         return render_template('public/gerenciar_banco.html',banco=banco,capital=capital)
+
+class VerificacaoEntrada(MethodView):
+    def get (self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
+            banco = cur.fetchone()
+            if banco[2]>0:
+                return render_template ('public/area_cliente.html')
+            else:
+                return render_template ('public/capital.html')
