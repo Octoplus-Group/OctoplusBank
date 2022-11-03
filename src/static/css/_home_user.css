@@ -1,0 +1,35 @@
+header#home_user {
+    background-image: linear-gradient(to bottom, #FF5F15,#FAC898);
+    background-attachment: fixed;
+    column-count: 2;
+  }
+
+.menuLogado {
+    width: 5.5vw;
+    margin-left: 1em;
+    margin-top: 0;
+}
+
+.sejaBemVindo {
+    text-align: right;
+    margin-right: 1.5em;
+    margin-top: 0;
+}
+
+/* SIDEBAR */
+  
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 85vh;
+    max-height: 700vh;
+    font-size: 1.75vw;
+    max-width: 50em;
+    margin-top: 0;
+  }
+  
+  
+.bi {
+    vertical-align: -.05em;
+    pointer-events: none;
+  }

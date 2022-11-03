@@ -1,70 +1,91 @@
+{% block title %}
+
+Octoplus Bank
+
+{% endblock %}
+
 {% extends "base.html" %}
 
-{% block content %} 
+{% block content %}
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary-color" id="navbar">
+        <div class="container py-3">
 
-<header>
-    <h1 class="tituloIndex">OCTOPLUS BANK</h1>
-</header>
+            <h1>OCTOPLUS BANK</h1>
 
-<main>
-
-        <div class="imagemEsquerda">
-            <img class="image-index" src="../../static/images/foto_index.png" alt="Mulher sorrindo segurando um celular">
-        </div>
-
-        <aside>
-            <div id="botoes">
-                <a class="botaoCadastro" href="/link_cadastro" id="cadastro_cliente">
-                    <button class="index2" id="cadastro">
-                        abra sua conta
-                    </button>
-                </a>
-                <div class="estilizarFloatBtn">
-                </div>
-                <br>
-                <a class="botaoEntrar" href="/login_cliente">
-                    <button class="index1" id="login">
-                        entrar
-                    </button>
-                </a>
+            <div class="navbar-nav" id="navbar-items">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="/link_cadastro" class="nav-link primary-color">Cadastrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login_cliente" class="nav-link primary-color">Acessar sua conta</a>
+                    </li>
+                
+                </ul>
             </div>
-
-            <div class="slogan">
-                <h2 class="login">o seu banco digital de qualquer lugar,
-                    <br><u>a qualquer momento.</u>
-                </h2>
-                <div class="estilizarFloatFooter">
-                </div>
-            </div>
-
-        </aside>
-</main>
-
-
-
-<footer>
-    <div class="footerIndex">
-        <hr class="hrIndex">
-
-        <div class="footerDiv">
-            <h4 style="font-size: 1.2rem", class="footerTexto">
-                Octoplus Bank © 2022
-                <br>
-                Todos os direitos reservados. CNPJ: nº 11.111.111/0001-00
-                <br>
-                Avenida Cesare Monsueto Giulio Lattes, 1350 Distrito - Eugênio de Melo, São José dos Campos - SP, 12247-014
-            </h4>
         </div>
+    </nav>
 
-        <div class="sigaOctoplus">
-            <label class="lbSigaOctoplus">
-                <h3 style="font-size: 2rem", class="footerTexto">SIGA A OCTOPLUS:</h3>
-            </label>
-            <a href="https://github.com/OctoplusHolding">
-                <img class="githubIcon" src="../../static/images/icons/github.png" alt="Github">
-            </a>
+    <!-- SLIDER -->
+    <div class="container-fluid" id="slider-container">
+        <div class="carousel slide" id="slider" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button 
+                    type="button" 
+                    class="active" 
+                    data-bs-target="#slider" 
+                    data-bs-slide-to="0" 
+                    aria-current="true"
+                    aria-label="Slide 1"
+                ></button>
+                <button 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                ></button>
+                <button 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide-to="2" 
+                    aria-label="Slide 3"
+                ></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="/link_cadastro">
+                    <img src="../../static/images/propaganda-1.png" alt="Propaganda 1" class="d-block w-100 img-fluid">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <img src="../../static/images/propaganda-2.png"  alt="Propaganda 2" class="d-block w-100">
+                </div>                
+                <div class="carousel-item">
+                    <img src="../../static/images/propaganda-3.png"  alt="Propaganda 3" class="d-block w-100">
+                </div>
+                <button 
+                    class="carousel-control-prev" 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide="prev"
+                >
+                <i class="bi bi-chevron-compact-left"></i>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button 
+                    class="carousel-control-next" 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide="next"
+                >
+                <i class="bi bi-chevron-compact-right"></i>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
     </div>
-</footer>
 
- {% endblock %}
+
+    {% endblock %}
