@@ -710,7 +710,7 @@ class LoginFuncionario(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente")
             data = cur.fetchall()
-        return render_template('public/area_funcionario.html', data=data)
+        return render_template('public/adm.html', data=data)
 
     def post(self):
         idFuncionario=request.form['idFuncionario']
@@ -735,9 +735,9 @@ class LoginFuncionario(MethodView):
                     
                     return render_template('public/home_gerente.html', cliente=cliente,conta=conta)
                 else:
-                    return render_template('public/area_funcionario.html')
+                    return render_template('public/adm.html')
             else:
-                return render_template('public/area_funcionario.html') 
+                return render_template('public/adm.html') 
 
 class GerenciarAgenciaLinkController(MethodView):
     def get(self):

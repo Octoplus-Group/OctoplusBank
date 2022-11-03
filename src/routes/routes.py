@@ -4,7 +4,7 @@ from src.controllers.erros import NotFoundController
 routes ={
     #comum
     "index_route":"/","indexcontroller":IndexController.as_view("index"),
-    "funcionario_route":"/area_funcionario","funcionario_controller":LoginFuncionario.as_view("loginfunc"),
+    "funcionario_route":"/adm","funcionario_controller":LoginFuncionario.as_view("loginfunc"),
     "not_found_route":404,"not_found_controller": NotFoundController.as_view("not_found"),
     "cadastro_route":"/cadastro_cliente","cadastro_cliente_controller":CadastroClienteController.as_view("cadastro"),
     "login_route":"/login_cliente","login_controller":LoginController.as_view("login"),
