@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+<div class="botaohome2">
+    <a href="/home_gerente_geral/{{cliente.0}}">
+    <h4>VOLTAR</h4>
+    </a>
+</div>
+
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>GERENCIAR CONTAS</u>
+    </h1>
+    <br>
+</div>
+    
+    <div class="subtituloPage">
+        <a class="subtituloPage" href="">
+            <h1 style="text-align: center;">
+                <u>CONTAS ATIVAS</u>
+            </h1>
+            <br>
+        </a>
+    </div>
+
+<div>
+<table class="table" border="2">
+<tr>
+    <th scoup="col">NUMERO DE CONTA</th>
+    <th scoup="col">NOME DO CLIENTE</th>
+    <th scoup="col">CPF</th>
+    <th scoup="col">STATUS DA CONTA</th>
+    <th scoup="col">EDITAR</th>
+    <th scoup="col">EXTRATO</th>
+</tr>
+{% for item in dataAprovado%}
+<tr>
+    <td>{{item[0]}}</td>
+    <td>{{item[2]}}</td>
+    <td>{{item[3]}}</td>
+    <td>{{item[13]}}</td>
+    <td><a href="/update/gerente/{{item.0}}">Editar</a></td>
+    <td><a href="/link_extrato_gerente/{{item.0}}">Extrato</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+    <div class="subtituloPage">
+        <br>
+        <a class="subtituloPage" href="">
+            <h1 style="text-align: center;">
+                <u>CONTAS PENDENTES</u>
+            </h1>
+            <br>
+        </a>
+    </div>
+   
+    <div>
+        <table class="table" border="2">
+            <tr>
+                <th scoup="col">NUMERO DE CONTA</th>
+                <th scoup="col">NOME DO CLIENTE</th>
+                <th scoup="col">CPF</th>
+                <th scoup="col">STATUS DA CONTA</th>
+                <th scoup="col">AÇÃO</th>
+            </tr>
+            {% for item in dataAnalise%}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[13]}}</td>
+                <td><a href='/aprovar_contas/{{item[1]}}'>APROVAR</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+
+    
+    <br>
+
+    <div class="subtituloPage">
+        <a class="subtituloPage" href="">
+            <h1 style="text-align: center;">
+                <u>CONTAS PARA EXCLUSÃO EM ESPERA</u>
+            </h1>
+            <br>
+        </a>
+    </div>
+   
+    <div>
+        <table class="table" border="2">
+            <tr>
+                <th scoup="col">NUMERO DE CONTA</th>
+                <th scoup="col">NOME DO CLIENTE</th>
+                <th scoup="col">CPF</th>
+                <th scoup="col">STATUS DA CONTA</th>
+                <th scoup="col">AÇÃO</th>
+            </tr>
+            {% for item in dataDeletar%}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[13]}}</td>
+                <td><a href='/delete/cliente/{{item[1]}}'>INATIVAR</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+
+
+    {% endblock %}

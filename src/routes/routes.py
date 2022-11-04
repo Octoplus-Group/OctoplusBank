@@ -57,6 +57,7 @@ routes ={
     "criar_agencia_route":"/criar_agencia","criar_agencia_controller":CadastrarAgenciaController.as_view("criaragencia"),
     "cadastro_GA_route":"/cadastro_GA","cadastro_GA_controller":CadastroGerenteAgencia.as_view("cadastroGA"),
     "banco_dados_route":"/banco_dados","banco_dados_controller":AlterarCapitalJurosController.as_view("bancodados"),
+    "gerenciar_contas_gerente_geral_route":"/gerenciar_contas_GG","gerenciar_contas_gg_controller":LinkGerenciarContasGGController.as_view("gerenciarcontasGG"),
 }
 
 

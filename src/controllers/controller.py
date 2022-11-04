@@ -742,26 +742,32 @@ class LoginFuncionario(MethodView):
 class GerenciarAgenciaLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia)
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class GerenciarGerentesLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia)
+        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class GerenciarBancoLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
             capital = round(banco[2],2)
-        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital)
+        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital, cliente=cliente)
 
 class CadastrarAgenciaController(MethodView):
     def post(self):
@@ -843,3 +849,20 @@ class VerificacaoEntrada(MethodView):
                 return render_template ('public/area_cliente.html')
             else:
                 return render_template ('public/capital.html')
+
+class LinkGerenciarContasGGController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
+            banco = cur.fetchone()
+
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+
+            return render_template('public/gerenciar_contas_gerente_geral.html',banco=banco, cliente=cliente,dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
