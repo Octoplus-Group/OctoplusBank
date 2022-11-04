@@ -766,9 +766,9 @@ class GerenciarBancoLinkController(MethodView):
 class CadastrarAgenciaController(MethodView):
     def post(self):
         nomeGA = request.form['GA']
-        enderecoAG = request.form['ENDERECO']
+        nomeAG = request.form['NOME_AGENCIA']
         with mysql.cursor() as cur:
-            cur.execute("INSERT INTO agencia(GERENTE,ENDERECO) VALUES (%s,%s)",(nomeGA,enderecoAG))
+            cur.execute("INSERT INTO agencia(GERENTE,NOME_AGENCIA) VALUES (%s,%s)",(nomeGA,nomeAG))
             cur.connection.commit()
 
             cur.execute("SELECT * FROM agencia")
