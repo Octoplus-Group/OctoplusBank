@@ -866,3 +866,40 @@ class LinkGerenciarContasGGController(MethodView):
             dataDeletar = cur.fetchall()
 
             return render_template('public/gerenciar_contas_gerente_geral.html',banco=banco, cliente=cliente,dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+
+class LinkAlterarNomeAgenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA =%s",(id))
+            agencia = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/alteracao_agencia.html', agencia=agencia, gerenteAgencia=gerenteAgencia)
+
+class AlterarNomeAgenciaController(MethodView):
+    def post(self,id):
+        nomeAgencia = request.form['nomeAG']
+        novoGerenteAgencia = request.form['GA']
+        with mysql.cursor() as cur:
+            cur.execute("UPDATE agencia SET NOME_DA_AGENCIA=%s, GERENTE=%s WHERE ID_AGENCIA=%s ",(nomeAgencia,novoGerenteAgencia,id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
+
+class DeletarAgenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("DELETE from agencia WHERE ID_AGENCIA =%s",(id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+        return render_template ('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias)

@@ -58,6 +58,9 @@ routes ={
     "cadastro_GA_route":"/cadastro_GA","cadastro_GA_controller":CadastroGerenteAgencia.as_view("cadastroGA"),
     "banco_dados_route":"/banco_dados","banco_dados_controller":AlterarCapitalJurosController.as_view("bancodados"),
     "gerenciar_contas_gerente_geral_route":"/gerenciar_contas_GG","gerenciar_contas_gg_controller":LinkGerenciarContasGGController.as_view("gerenciarcontasGG"),
+    "link_alterar_agencia_route":"/link_alterar_agencia/<int:id>","link_alterar_agencia_controller":LinkAlterarNomeAgenciaController.as_view("linkANAG"),
+    "edicao_agencia_route":"/edicao_agencia/<int:id>","edicao_agencia_controller":AlterarNomeAgenciaController.as_view("EditarAgencia"),
+    "detetar_agencia_route":"/deletar_agencia/<int:id>","deletar_agencia_controller":DeletarAgenciaController.as_view("DeletarAgencia"),
 }
 
 

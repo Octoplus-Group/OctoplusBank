@@ -101,6 +101,12 @@ app.add_url_rule(routes["entrada_route"],view_func=routes["verifica_entrada_cont
 
 app.add_url_rule(routes["gerenciar_contas_gerente_geral_route"],view_func=routes["gerenciar_contas_gg_controller"])
 
+app.add_url_rule(routes["link_alterar_agencia_route"],view_func=routes["link_alterar_agencia_controller"])
+
+app.add_url_rule(routes["edicao_agencia_route"],view_func=routes["edicao_agencia_controller"])
+
+app.add_url_rule(routes["detetar_agencia_route"],view_func=routes["deletar_agencia_controller"])
+
 app.add_url_rule(routes["criar_agencia_route"],view_func=routes["criar_agencia_controller"])
 
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
