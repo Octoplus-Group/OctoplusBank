@@ -581,6 +581,7 @@ class CadastroClienteController(MethodView):
         senha = request.form['senha']
         nome = nome.upper()
         
+        
         with mysql.cursor()as cur:
             cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
             cur.connection.commit()
@@ -593,12 +594,19 @@ class CadastroClienteController(MethodView):
             cur.execute("SELECT * FROM conta ORDER BY ID_CONTA DESC")
             numerocontaAbertura=cur.fetchone()
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            nome=cur.fetchone()
+
+            #selecionar só o primeiro nome do cliente
+            nome=nome[2]
+            nome=nome.split()
+            nome=nome[0]
+
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
-            mensagem = 'Sua conta está sendo verificada! Clique em verificar novamente para ver se a sua conta ja foi aprovada ! ;)'
             
-            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)    
+            return render_template('/public/aguardandoAprovacao.html', nome=nome, numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura)   
 
 
 class VerificacaoAprovacao(MethodView):
@@ -608,9 +616,16 @@ class VerificacaoAprovacao(MethodView):
             numerocontaAbertura=cur.fetchone()
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
-            mensagem = 'Sua conta está sendo verificada! Validaremos ela em 1 minuto, apenas aguarde...'
-            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            nome=cur.fetchone()
 
+            #selecionar só o primeiro nome do cliente
+            nome=nome[2]
+            nome=nome.split()
+            nome=nome[0]
+            
+            print(numerocontaAbertura)
+            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura, nome=nome)  
 
 class paginaTransferenciaController(MethodView):
     def get(self,id):
