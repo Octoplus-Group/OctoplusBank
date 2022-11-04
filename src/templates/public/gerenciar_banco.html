@@ -13,7 +13,8 @@
         <div class="cadastro-fundo">
         <br>
             <div class="parte-1">
-                <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3>
+                <!-- <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3> -->
+                <h3>CAPITAL ATUAL DO BANCO: R$ {{"{:.2f}".format(capital)}}</h3>
                 <br>
                 <label for="capital">ADICIONAR CAPITAL AO BANCO</label>
                 <input type="number" name="capital"  id="capital" min="0" max="10000000"  step=".01" required>
