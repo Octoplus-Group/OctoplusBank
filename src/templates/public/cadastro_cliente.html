@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 
-{% block content %} 
+<!--ALTERANDO O TÍTULO DA PÁGINA-->
+{% block title %}
 
-<!--CONSUMINDO API VIACEP PARA AUTOPREENCHER ENDEREÇO-->
+Octoplus Bank | Cadastro
+
+{% endblock %}
+
+<!--SCRIPTS AUTOPREENCHER CEP (VIAAPI)-->
+{% block moreScripts %}
+
+<!--JQUERY + MASKS-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<!--CONSUMINDO API VIACEP PARA AUTOPREENCHER CADASTRO NO OCTOPLUS BANK-->
 <script>
-    $(document).ready(function() {
+
+    $(document).ready(function () {
 
         function limpa_formulário_cep() {
             // Limpa valores do formulário de cep.
@@ -12,9 +27,9 @@
             $("#bairro").val("");
             $("#cidade").val("");
         }
-        
+
         //Quando o campo cep perde o foco.
-        $("#cep").blur(function() {
+        $("#cep").blur(function () {
 
             //Nova variável "cep" somente com dígitos.
             var cep = $(this).val().replace(/\D/g, '');
@@ -26,7 +41,7 @@
                 var validacep = /^[0-9]{8}$/;
 
                 //Valida o formato do CEP.
-                if(validacep.test(cep)) {
+                if (validacep.test(cep)) {
 
                     //Preenche os campos com "..." enquanto consulta webservice.
                     $("#endereco").val("...");
@@ -34,7 +49,7 @@
                     $("#cidade").val("...");
 
                     //Consulta o webservice viacep.com.br/
-                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
 
                         if (!("erro" in dados)) {
                             //Atualiza os campos com os valores da consulta.
@@ -63,145 +78,175 @@
     });
 </script>
 
+<!--SCRIPT PARA VERIFICAR SE O USUÁRIO ACEITOU OS TERMOS-->
+<script>
 
-<div class="btnVoltarHomeCadastro">
-    <a class="paginaInicial" href="/">
-            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
-                <label class="paginaInicial">
-                    PÁGINA INICIAL
-                </label>
-    </a>
-</div>
+    function checkForm(form)
+    {
+      if(!form.termos.checked) {
+        alert("Para prosseguir você deve concordar com os termos de uso.");
+        form.termos.focus();
+        return false;
+      }
+      return true;
+    }
+  
+  </script>
 
-<div class="tituloPage">
-    <h1 style="text-align: center;">
-        <u>CADASTRO</u>
-    </h1>
-</div>
+{% endblock moreScripts %}
 
-<form action="/cadastro_execucao/" method="POST">
+<!--BODY-->
+{% block content %}
+
+<a href="/">
+    <button class="btn btn-primary" type="submit" class="form-control">
+        <i class="fa-solid fa-home"></i>
+        Página Inicial
+    </button>
+</a>
+
+<h1 style="text-align: center;">
+    <u>CADASTRO</u>
+</h1>
+
+<form action="/cadastro_execucao/" method="POST" onsubmit="return checkForm(this);">
     <fieldset class="cadastro">
-        <div class="cadastro-fundo">
-            {{mensagem}}
-        <br>
-                <div class="parte-1">
-
-                    <label for="nome">Nome Completo:</label>
-                    <input type="text" name="nome" id="nome" required>
-
+        <div class="container">
+            <div class="row p-5">
+                <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
+                <div class="col-9">
+                    <div class="row justify-content-start">
+                        <label for="nome">Nome Completo:
+                            <input type="text" name="nome" id="nome" required maxlength="255" required class="form-control">
+                        </label>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-4">
+                            <label for="dataNascimento">Data de Nascimento:
+                                <input type="date" name="dataNascimento" id="dataNascimento" required class="form-control" min='1899-01-01' max='2004-10-26'>
+                            </label>
+                        </div>
+                        <div class="col-4">
+                            <label for="telefone">Telefone:
+                                <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required maxlength="15" class="form-control">
+                            </label>
+                        </div>
+                        <div class="col-4">
+                            <label for="genero">Gênero:
+                                <select name="genero" id="genero" required class="form-control">
+                                    <option selected disabled value="" class="form-control">Escolha</option>
+                                    <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
+                                    <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
+                                    <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-
-
-                <div class="parte-1">
-
-                    <label for="CPF">CPF:</label>
-                    <input type="text"  name="CPF" id="CPF" required
-                    placeholder="000.000.000-00">
-
-                </div>
-
-                <div class="parte-1">
-
-                    <label for="genero">Gênero:</label>
-                    <select name="genero" id="genero" required>
-                        <option selected disabled value="" class="form-control">Escolha</option>
-                        <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
-                        <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
-                        <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
-                    </select>
-
-                </div>
-
-            <br><br>
-
-                <div class="parte-2">      
-
-                    <label for="dataNascimento">Data de Nascimento:</label>
-                    <input type="date" name="dataNascimento" id="dataNascimento" required>
-
-                </div>
-
-                <div class="parte-2">
-
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" placeholder="(00)0000-0000" name="telefone" id="telefone" required class="form-control">
-
-                </div>
-                
-                <div class="parte-2">
-
-                    <label for="tipoConta">Tipo de Conta:</label>
-                    <select name="tipoConta" id="tipoConta" required>
-                        <option selected disabled value="" class="form-control">Escolha</option>
-                        <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
-                        <option type="text" name="'tipoConta" id="tipoConta" value="POUPANCA">Poupança</option>
-                    </select>
-
-                </div>
-
-            <br><br>
-
-                <div class="parte-3">
-
-                    <label for="cep">CEP:
-                    <input class="text" type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
-                    </label>
-
-                </div>
-
-                <div class="parte-3">
-
-                    <label for="cidade">Cidade: 
-                    <input type="text" name="cidade" id="cidade" class="form-control">
-                    </label>
-
-                </div>
-
-                <div class="parte-3">
-
-                    <label for="endereco">Endereço:
-                    <input type="text" name="endereco" id="endereco" class="form-control">
-                    </label>
-
-                </div>
-
-            <br><br>
-
-                <div class="parte-3">
-
-                    <label for="bairro">Bairro:
-                    <input type="text" name="bairro" id="bairro" class="form-control">
-                    </label>
-
-                </div>
-
-                <div class="parte-3">
-
-                    <label for="numeroCasa">Nº:
-                    <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa" class="form-control">
-                    </label>
-
-                </div>
-
-            <br><br>
-            
-                <div>
-
-                <label for="senha">Senha: </label><br>
-                <input type="password" id="senha" name="senha" class="form-control">
-
-                </div>
-
-        <br>
-        </div>
         
-         
+                <div class="col-3">
+                    <div class="row justify-content-start">
+                        <label for="CPF">CPF:
+                            <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
+                                class="form-control">
+                        </label>
+                    </div>
+        
+                    <div class="row justify-content-start">
+                        <label for="tipoConta">Tipo de Conta:
+                            <select name="tipoConta" id="tipoConta" required class="form-control">
+                                <option selected disabled value="" class="form-control">Escolha</option>
+                                <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
+                                <option type="text" name="'tipoConta" id="tipoConta" value="POUPANCA">Poupança</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <!--DIV QUE GRUDA A LINHA DE CIMA COM A LINHA DE BAIXO-->
+                <div class="w-100"></div>
+        
+                <!--LINHA CEP E NÚMERO-->
+                <div class="col-9">
+                    <div class="row justify-content-start">
+                        <div class="col-4">
+                            <label for="cep">CEP:
+                                <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
+                            </label>
+                        </div>
+        
+                        <div class="col-4">
+                            <label for="numeroCasa">Nº:
+                                <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa" class="form-control" maxlength="10">
+                            </label>
+                        </div>
 
-        <button type="submit" id="cadastrar">Cadastrar</button>
-      
+                        <div class="col-4">
+                            <label for="endereco">Endereço:
+                                <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255" readonly>
+                            </label>
+                        </div>
+                    </div>
+                    <!--LINHA ENDEREÇO, BAIRRO E CIDADE-->
+                    <div class="row justify-content-start">
+                        <div class="col-4">
+                            <label for="bairro">Bairro:
+                                <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255" readonly>
+                            </label>
+                        </div>
+        
+                        <div class="col-4">
+                            <label for="cidade">Cidade:
+                                <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255" readonly>
+                            </label>
+                        </div>
+
+                        <div class="col-4">
+                            <input type="checkbox" name="termos" id="termos">Eu li e concordo com os termos de uso.
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-3">
+                    <div class="row">
+                        <label for="senha">Senha:
+                            <input type="password" id="senha" name="senha" class="form-control" maxlength="6">
+                        </label>
+                    </div>
+        
+                    <div class="row">
+                        <label for="confirmarSenha">Confirmar Senha:
+                            <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control" maxlength="6">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </fieldset>
+                <!--BOTÃO CONFIRMAR CADASTRO-->
+                <button class="btn btn-primary" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
+                    <i class="fa-solid fa-check"></i>
+                    Confirmar
+                </button>
 </form>
 
+<!--FUNÇÃO CONFIRMAR SENHA-->
+<script>
+    var password = document.getElementById("senha")
+        , confirm_password = document.getElementById("confirmarSenha");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("As senhas não coincidem!");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+
+<!--MASCARA PARA DEFINIR FORMATO-->
 <script>
     $("#telefone").mask("(99) 99999-9999")
 
@@ -209,6 +254,5 @@
 
     $("#cep").mask("99999-999")
 </script>
-
 
 {% endblock %}

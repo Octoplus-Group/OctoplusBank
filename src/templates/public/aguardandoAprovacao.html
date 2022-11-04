@@ -1,42 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5; URL='/verificaraprovacao'" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet"  type="text/css" href="{{url_for ('static', filename='css/estilo.css')}}">
-    <title>Octoplus Bank</title>
-    
-</head>
+{% extends "base.html" %}
 
-<body>
+<!--ALTERANDO O TÍTULO DA PÁGINA-->
+{% block title %}
+
+Octoplus Bank - Aguardando Aprovação
+
+{% endblock %}
+
+{% block moreScripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
-<h1 style="font-size: 5vw;">OCTOPLUS BANK</h1>
+{% if (numeroclienteAbertura[13]) == 'ANALISE' %}
+<script>
+	$(document).ready(function(){
+        $('#onload').modal('show');
+	});
+</script>
 
-<p>{{mensagem}}</p>
+{% else %}
+<script>
+	$(document).ready(function(){
+		$("#onload2").modal('show');
+	});
+</script>
+{% endif %}
 
-<p>Sua conta será: {{numerocontaAbertura.1}}</p>
-<p>Agencia: 01</p>
-<p>Status da Conta: {{numeroclienteAbertura.13}}</p>
+{% endblock %}
 
-<a href="/verificaraprovacao">Verificar se sua conta ja foi aprovada !</a>
-<br>
-<a href="/"> Sair</a>
-
-
-
-<div class="botoesAprovacao">
-    <button class="aprovacao">
-        <a style="text-decoration:none ;" class="linkAprovacao" href="/">
-            Ir para a página inicial!
-        </a>
-    </button>
+{% block content %}
+<!--MODAL ONLOAD ~ CASO STATUS DA CONTA ESTEJA PENDENTE-->
+<div class="modal fade" id="onload" tabindex="-1" data-keyboard="false" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Olá, {{nome}}</h5>
+            </div>
+            <div class="modal-body">
+                Sua conta está pendente de aprovação, aguarde...
+                <br>
+                Clique no botão de 'Verificar' para saber se já foi aceito.
+                <div class="text-center pt-3">
+                    <div class="spinner-border p-3" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="location.href='/verificaraprovacao'"
+                    class="btn btn-primary">Verificar</button>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
 
-</html>
+
+<!--MODAL ONLOAD2 ~ CASO STATUS DA CONTA SEJA APROVADO!-->
+<div class="modal fade" id="onload2" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"  data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Seja bem vindo, {{nome}}!</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <label for="agencia">Agência:
+                            <input type="text" readonly value="0001" required class="form-control">
+                        </label>
+                    </div>
+                    <div class="col-auto">
+                        <label for="numeroConta">Nº Conta:
+                            <input type="text" readonly value="{{numerocontaAbertura.1}}" required class="form-control">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <label for="tipoConta">Tipo de Conta:
+                            <input type="text" readonly value="{{numerocontaAbertura.3}}" required class="form-control">
+                        </label>
+                    </div>
+                    <div class="col-auto">
+                        <label for="statusConta">Status da Conta:
+                            <input style="color:#198754;" type="text" readonly value="Aprovada!" required
+                                class="form-control">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href='/'"> <i
+                        class="fa-solid fa-check"></i>
+                    Anotei meus dados!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
