@@ -19,15 +19,15 @@
     <fieldset class="AlteracaoNAG">
         <div class="cadastro-fundo">
         <br>
-            <div>Nome atual da agencia:  {{agencia.3}}</div>
-            <div>O Gerente Atual da Agencia: {{agencia.2}}</div>
+            <div>Nome atual da agência:  {{agencia.3}}</div>
+            <div>O Gerente Atual da Agência: {{agencia.2}}</div>
             <div class="parte-1">
-                <label for="nomeAG">Nome da Agencia </label>
+                <label for="nomeAG">Nome da Agência </label>
                 <input type="text" name="nomeAG" value="" id="nomeAG" required>
             </div>
             <div class="parte-1">
                         
-                <label for="GA">SELECIONE O GERENTE DE AGENCIA</label>
+                <label for="GA">SELECIONE O GERENTE DE AGÊNCIA</label>
                 <select name="GA" id="GA" required>
                     <option selected disabled value="{{agencia.2}}" class="form-control" required>Escolha</option>
                     {% for ga in gerenteAgencia%}
