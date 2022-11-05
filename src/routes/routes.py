@@ -48,6 +48,9 @@ routes ={
     "link_extrato_gerente":"/link_extrato_gerente/<int:id>","link_extrato_gerente_controller":LinkExtratoGerenteController.as_view("linkextratogerente"),
     "pagina_transferencia_gerente_route":"/pagina_transferencia_gerente/<int:id>","pagina_transferencia_gerente_controller":paginaTransferenciaGerenteController.as_view("transferenciagerente"),
     "realizar_transferencia_gerente_route":"/realiazar_transferencia_gerente/<int:id>","realizar_tranferencia_gerente_controller":realizarTransferenciaGerenteController.as_view("realizartransferenciagerente"),
+    "link_vizualizar_conta_route":"/vizualizar_conta_gerente/<int:id>","vizualizar_conta_controller":VizualizarContaController.as_view("vizualizarconta"),
+    "negarconta_route":"/negarconta_gerente/<int:id>","negarconta_controller":NegarContaController.as_view("negarconta"),
+    "negardeposito_route":"/negardeposito_gerente/<int:id>","negardepositoconta_controller":NegarDepositoController.as_view("negardeposito"),
 
     #gerente_geral
     "home_gerente_geral_id_route":"/home_gerente_geral/<int:id>","home_gerente_geral_id_controller":HomeGerenteGeralController.as_view("homeggid"),
@@ -64,6 +67,8 @@ routes ={
     "demitir_GA_route":"/demitir_GA/<int:id>","demitir_GA_controller":DemitirGerenteAgencia.as_view("demitirGA"),
     "link_aprovacao_deposito_GG_route":"/link_aprovacao_deposito_GG/","link_aprovacao_deposito_GG_controller":LinkAprovacaoDepositoGGController.as_view("LinkADGG"),
     "aprovacao_deposito_GG_route":"/provacao_deposito_GG/<int:id>","aprovacao_deposito_GG_controller":ExecucaoDepositoGGController.as_view("AprovacaoDGG"),
+    "negar_conta_GG_route":"/negar_conta_GG/<int:id>","negar_conta_GG_controller":NegarContaGGController.as_view("NegarcontaGG"),
+    "vizualirzar_conta_GG_route":"/vizualizar_conta_GG/<int:id>","vizualizar_conta_GG_controller":VizualizarContaGGController.as_view("VizualizarcontaGG"),
 }
 
 

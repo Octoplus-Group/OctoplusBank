@@ -117,5 +117,15 @@ app.add_url_rule(routes["realizar_deposito_gerente_route"],view_func=routes["rea
 
 app.add_url_rule(routes["criar_agencia_route"],view_func=routes["criar_agencia_controller"])
 
+app.add_url_rule(routes["link_vizualizar_conta_route"],view_func=routes["vizualizar_conta_controller"])
+
+app.add_url_rule(routes["negarconta_route"],view_func=routes["negarconta_controller"])
+
+app.add_url_rule(routes["negardeposito_route"],view_func=routes["negardepositoconta_controller"])
+
+app.add_url_rule(routes["negar_conta_GG_route"],view_func=routes["negar_conta_GG_controller"])
+
+app.add_url_rule(routes["vizualirzar_conta_GG_route"],view_func=routes["vizualizar_conta_GG_controller"])
+
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
 

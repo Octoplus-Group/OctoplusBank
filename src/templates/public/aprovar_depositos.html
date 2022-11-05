@@ -28,7 +28,8 @@
             <th scoup="col">DATA</th>
             <th scoup="col">VALOR</th>
             <th scoup="col">STATUS</th>
-            <th scoup="col">AÇÃO</th>
+            <th scoup="col">APROVAR DEPOSITO</th>
+            <th scope="col">NEGAR DEPOSITO</th>
         </tr>
         {% for item in depositoAnalise%}
         <tr>
@@ -38,6 +39,7 @@
             <td>{{"{:.2f}".format(item[4])}}</td>
             <td>{{item[5]}}</td>
             <td><a href='/aprovacao_deposito/{{item[1]}}'>APROVAR DEPOSITO</a></td>
+            <td><a href='/negardeposito_gerente/{{item[1]}}'>NEGAR DEPOSITO</a></td>
         </tr>
         {% endfor %}
         </table>

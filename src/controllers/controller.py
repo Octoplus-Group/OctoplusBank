@@ -963,3 +963,69 @@ class LinkAprovacaoDepositoGGController(MethodView):
             depositoAnalise = cur.fetchall()
 
             return render_template('public/aprovar_depositos_gg.html', cliente=cliente, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)
+
+class VizualizarContaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
+
+            return render_template("public/vizualizar_conta.html", cliente=cliente , conta=conta)
+
+class NegarContaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("UPDATE cliente SET STATUS=%s WHERE ID_CLIENTE=%s",('NEGADO',cliente[1]))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+        
+        return render_template("public/gerenciar_contas.html",dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
+
+class NegarDepositoController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
+            deposito=cur.fetchone()
+            cur.execute("UPDATE transacoes SET STATUS=%s WHERE ID_TRANSACAO=%s",("NEGADO",id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
+            depositoAnalise = cur.fetchall()
+
+        return render_template("public/aprovar_depositos.html", deposito=deposito,depositoAnalise=depositoAnalise,cliente=cliente)
+
+class NegarContaGGController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("UPDATE cliente SET STATUS=%s WHERE ID_CLIENTE=%s",('NEGADO',cliente[1]))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+        
+        return render_template("public/gerenciar_contas_gerente_geral.html",dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
+
+class VizualizarContaGGController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
+
+            return render_template("public/vizualizar_conta_GG.html", cliente=cliente , conta=conta)

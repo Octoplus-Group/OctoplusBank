@@ -68,7 +68,9 @@
                 <th scoup="col">NOME DO CLIENTE</th>
                 <th scoup="col">CPF</th>
                 <th scoup="col">STATUS DA CONTA</th>
-                <th scoup="col">AÇÃO</th>
+                <th scoup="col">APROVAR</th>
+                <th scoup="col">VIZUALIZAR</th>
+                <th scoup="col">NEGAR</th>
             </tr>
             {% for item in dataAnalise%}
             <tr>
@@ -77,6 +79,8 @@
                 <td>{{item[3]}}</td>
                 <td>{{item[13]}}</td>
                 <td><a href='/aprovar_contas/{{item[1]}}'>APROVAR</a></td>
+                <td><a href="/vizualizar_conta_gerente/{{item[1]}}">VIZUALIZAR</a></td>
+                <td><a href="/negarconta_gerente/{{item[1]}}">NEGAR</a></td>
             </tr>
             {% endfor %}
             </table>
