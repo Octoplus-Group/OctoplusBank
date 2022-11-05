@@ -324,7 +324,10 @@ class realizarSaqueController(MethodView):
                     cur.connection.commit()
                     cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'SAQUE',NOW(),%s,'APROVADO')",(conta[1],saque))
                     cur.connection.commit()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
                     mensagem='Saque Realizado com Sucesso'
+
                 return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
 class HomeUserIDController(MethodView):
