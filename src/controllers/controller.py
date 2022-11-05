@@ -80,6 +80,11 @@ class AreaClienteController(MethodView):
             numerocliente=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
+            cur.execute("select ID_AGENCIA from agencia order by rand() limit 1")
+            agenciacliente=cur.fetchone()
+            print('agencia cliente',agenciacliente)
+            cur.execute("UPDATE conta SET ID_AGENCIA=%s WHERE ID_CONTA=%s",(agenciacliente,numeroconta))
+            cur.connection.commit()
             mensagem="A sua conta está pendente de aprovação pelo gerente!"
 
 
@@ -602,8 +607,17 @@ class CadastroClienteController(MethodView):
             numeroclienteAbertura=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
+            cur.execute("select ID_AGENCIA from agencia order by rand() limit 1")
+            agenciacliente=cur.fetchone()
+            print('agencia cliente',agenciacliente)
+            cur.execute("UPDATE conta SET ID_AGENCIA=%s WHERE ID_CONTA=%s",(agenciacliente,numeroconta))
+            cur.connection.commit()
+            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
+            numeroconta=cur.fetchone()
+            cur.execute("UPDATE cliente SET ID_AGENCIA=%s WHERE ID_CLIENTE = %s",(agenciacliente,numerocliente))
+            cur.connection.commit()
             
-            return render_template('/public/aguardandoAprovacao.html', nome=nome, numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura)   
+            return render_template('/public/aguardandoAprovacao.html', nome=nome, numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,numeroconta=numeroconta)   
 
 
 class VerificacaoAprovacao(MethodView):
