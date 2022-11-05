@@ -61,6 +61,7 @@ routes ={
     "link_alterar_agencia_route":"/link_alterar_agencia/<int:id>","link_alterar_agencia_controller":LinkAlterarNomeAgenciaController.as_view("linkANAG"),
     "edicao_agencia_route":"/edicao_agencia/<int:id>","edicao_agencia_controller":AlterarNomeAgenciaController.as_view("EditarAgencia"),
     "detetar_agencia_route":"/deletar_agencia/<int:id>","deletar_agencia_controller":DeletarAgenciaController.as_view("DeletarAgencia"),
+    "demitir_GA_route":"/demitir_GA/<int:id>","demitir_GA_controller":DemitirGerenteAgencia.as_view("demitirGA"),
 }
 
 

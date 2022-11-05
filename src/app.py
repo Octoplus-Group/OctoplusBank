@@ -107,6 +107,8 @@ app.add_url_rule(routes["edicao_agencia_route"],view_func=routes["edicao_agencia
 
 app.add_url_rule(routes["detetar_agencia_route"],view_func=routes["deletar_agencia_controller"])
 
+app.add_url_rule(routes["demitir_GA_route"],view_func=routes["demitir_GA_controller"])
+
 app.add_url_rule(routes["criar_agencia_route"],view_func=routes["criar_agencia_controller"])
 
 """ app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_transferencia_controller"]) """
