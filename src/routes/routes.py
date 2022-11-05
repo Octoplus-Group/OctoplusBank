@@ -62,6 +62,8 @@ routes ={
     "edicao_agencia_route":"/edicao_agencia/<int:id>","edicao_agencia_controller":AlterarNomeAgenciaController.as_view("EditarAgencia"),
     "detetar_agencia_route":"/deletar_agencia/<int:id>","deletar_agencia_controller":DeletarAgenciaController.as_view("DeletarAgencia"),
     "demitir_GA_route":"/demitir_GA/<int:id>","demitir_GA_controller":DemitirGerenteAgencia.as_view("demitirGA"),
+    "link_aprovacao_deposito_GG_route":"/link_aprovacao_deposito_GG/","link_aprovacao_deposito_GG_controller":LinkAprovacaoDepositoGGController.as_view("LinkADGG"),
+    "aprovacao_deposito_GG_route":"/provacao_deposito_GG/<int:id>","aprovacao_deposito_GG_controller":ExecucaoDepositoGGController.as_view("AprovacaoDGG"),
 }
 
 
