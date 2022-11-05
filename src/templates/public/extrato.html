@@ -1,21 +1,13 @@
-{% extends "base.html" %}
+{% extends "baseSidebar.html" %}
 
-{% block content %} 
+{% block title %}
 
-<div class="btnVoltarHome">
-    <a class="paginaInicial" href="/home_user/{{cliente.0}}">
-            <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
-                <label class="paginaInicial">
-                    PÁGINA INICIAL
-                </label>
-    </a>
-</div>
+Octoplus Bank | Extrato
 
-<div class="tituloPage">
-    <h1 style="text-align: center;">
-        <u>EXTRATO</u>
-    </h1>
-</div>
+{% endblock %}
+
+{% block conteudoComSidebar %}
+
     <table class="table" border="2">
         <tr>
             <th class="thAlign" scoup="col">ID TRANSAÇÃO</th>
@@ -30,7 +22,7 @@
             <td>{{item[1]}}</td>
             <td>{{item[3]}}</td>
             <td>{{item[2]}}</td>
-            <td>{{"{:.2f}".format(item[4])}}</td>
+            <td>{{item[4]}}</td>
     <!--             <td>{{item[5]}}</td> -->
 
         </tr>

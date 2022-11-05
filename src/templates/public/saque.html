@@ -1,53 +1,30 @@
-{% extends "base.html" %}
+{% extends "baseSidebar.html" %}
 
-{% block content %} 
+{% block title %}
 
-        <div class="btnVoltarHome">
-            <a class="paginaInicial" href="/home_user/{{cliente.0}}">
-                    <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
-                        <label class="paginaInicial">
-                            PÁGINA INICIAL
-                        </label>
-            </a>
-        </div>
+Octoplus Bank | Saque
 
-        <div class="tituloPage">
-            <h1 style="text-align: center;">
-                <u>SAQUE</u>
-            </h1>
-        </div>
+{% endblock %}
 
-        <div class="saldoDepositoSaque">
-            <h4 class="textobtn">
-                SALDO: R${{"{:.2f}".format(conta.4)}}
-            </h4>
-        </div>
+{% block conteudoComSidebar %}
 
+<div class="container-fluid">
+    <div class="container d-flex justify-content-center m-5 p-5">
         <form action="/realizar_saque/cliente/{{cliente.0}}" method="POST">
-                  
+                <h6 style="color:green ;">{{mensagem}}</h6>
+                <br>
+                <label for="deposito">Saque:</label>
+                <input class="form-control form-control-lg" type="number" name="saque" placeholder="1.100,10"
+                id="saque" min="0" max="1000000" step=".01" required>
+    </div>
+    <div class="container d-flex justify-content-center m-5 p-2">
+        <button class="btn btn-primary btn-lg p-4" type="submit" id="confirmarDep" class="form-control" data-toggle="modal"
+            data-target="exampleModalCenter">
+            <i class="fa-solid fa-check"></i>
+            Confirmar
+        </button>
+        </form>
+    </div>
+</div>
 
-            <div class="dep"> 
-                <div class="caixa">
-                    {{mensagem}}
-                    <h2 class="depTxt">
-                        Saque
-                    </h2>
-                        <label for="reais">
-                            <b>R$</b>
-                        </label>
-                    <input type="number" name="saque" placeholder="1.100,10"
-                    id="saque" min="0" max="1000000000" step=".01" required>
-                
-                </div>
-            </div> 
-
-            <div class="confirmar">
-                <label class="confirm" for="confirmar">Confirmar:<br> 
-                    <button type="submit" id="confirmar">
-                        <img class="confirmIcon" src="../../static/images/icons/confirm.png" alt="Confirmar">
-                    </button>
-                </label>
-
-    </form>
-
-    {% endblock %}
+{% endblock %}
