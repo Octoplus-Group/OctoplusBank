@@ -327,8 +327,9 @@ class realizarSaqueController(MethodView):
                     cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     mensagem='Saque Realizado com Sucesso'
+                    saque = 0
 
-                return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
+                return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem, saque=saque)
 
 class HomeUserIDController(MethodView):
     def get(self, id):
