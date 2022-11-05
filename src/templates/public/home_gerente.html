@@ -12,7 +12,7 @@
         <h3 class="sejaBemVindo">
             Seja bem-vindo, {{cliente.2}} <br>
             AGÊNCIA: 1 <br>
-            CONTA: {{cliente.0}}
+            <!-- CONTA: {{cliente.0}} -->
         </h3>
     </div>
 
@@ -23,12 +23,12 @@
 
     <div class="saldo">
         <h4 class="textobtn">
-            SALDO: R${{conta.4}}
+            SALDO: R${{"{:.2f}".format(conta.4)}}
         </h4>
     </div>
 
     <div class="sair">
-        <a id="sair" href="/area_funcionario">
+        <a id="sair" href="/adm">
             <button id="sair">
                 SAIR
             </button>

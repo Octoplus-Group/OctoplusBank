@@ -1,0 +1,78 @@
+
+#headerAdm {
+    display: grid;
+    grid-template-columns: 35% 60%;
+}
+
+.headerAdm {
+    border-bottom: 1.5px solid #000;
+    background-color: #db4500;
+}
+
+.imgAdm {
+    width: 5vw;
+    margin-top: 2em;
+    margin-left: 0;
+    float: right;
+}
+
+.tituloAdm {
+    margin-top: 1.25em;
+    margin-left: .5em;
+    font-size: 3vw;
+    font-weight: bold;
+    float: left;
+    color: #FDE7EA;
+    cursor: default;
+}
+
+  
+.alinhaLogin{
+    padding: 5%;
+    text-align: right;
+    font-weight: bold;
+    color: #000;
+}
+
+.entrarAdm {
+    float: right;
+    font-weight: bold;
+    margin-top: 10%;
+    font-size: 600;
+}
+
+
+button#inicioSistema {
+    cursor: pointer;
+    border: none;
+}
+  
+input#idFuncionario {
+    border: 1.5px solid #000;
+    border-radius: 25px;
+    width: 30%;
+    height: 15%;
+    margin: 0;
+    font-size: larger;
+    background-color: #ffffff;
+} 
+  
+input#senhaAdm {
+    border: 1.5px solid #000;
+    border: 0.25 none;
+    margin-top: 2%;
+    border-radius: 25px;
+    width: 40%;
+    height: 15%;
+    font-size: larger;
+    background-color: #ffffff;
+} 
+  
+.backgroundAdm {
+    width: 36%;
+    margin-left: 20em;
+    margin-top: 5%;
+    background-color: #ff652d;
+    border-radius: 25px;
+    border: 2px solid black;
+}

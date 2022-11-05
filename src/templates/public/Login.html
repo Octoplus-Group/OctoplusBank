@@ -2,45 +2,48 @@
 
 {% block content %} 
 
-    <div class="btnVoltarHome">
-        <a class="paginaInicial" href="/">
-                <img class="homeIcon" src="../../static/images/logo_octoplus_bank_transparente.png" alt="Home">
-        </a>
-    </div>
-
-    <div class="tituloPage">
-        <h1 style="text-align: center;">
-            <u>ENTRAR</u>
-        </h1>
-    </div>
-
+<header class="headerLogin">
+    <div id="headerLogin">
+        <div>
+            <a class="paginaInicial" href="/">
+                    <img class="imgLogin" src="../../static/images/logo_octoplus_bank_transparente_white.png" alt="Home">
+            </a>
+        </div>
+        <div>
+            <h3 class="tituloLogin">
+                ENTRAR
+            </h3>
+        </div><br>
+</header>
+<main>
       <form action="login_cliente_validacao" method="POST">
-        <fieldset class="border">
+        <fieldset>
             <div class="login">
-                <div class="background">
-                    <div id="alinhaLogin">
-                        <label for="agencia">Número da Agência:</label>
+                <div class="backgroundLogin">
+                    <div class="alinhaLogin">
+                        <label for="agencia">Número da Agência</label>
                         <input class="direita" type="text" inputmode="numeric" name="agencia" id="agencia" required>
                         <br>
-                        <label for="id">Número da Conta:</label>
+                        <label for="id">Número da Conta</label>
                         <input class="direita" type="text" inputmode="numeric" name="id" id="user" required>
                         <br>
-                        <label for="user">Senha:</label>
+                        <label for="senha">Senha</label>
                         <input class="center" type="password" name="senha" id="senha" required>
                     </div>
                 </div>
                     <br>
-                <div class="entrar">
-                    <label class="login" for="entrar">Entrar:<br> 
+                <div class="entrarLogin">
+                    <label for="entrar">Entrar</label><br> 
                         <button type="submit" id="entrar">
-                            <img class="loginIcon" src="../../static/images/icons/login.png" alt="Login">
+                            <i class="fa-solid fa-right-to-bracket fa-4x"></i>
                         </button>
-                    </label>
                 </div>
             </div>
         </fieldset>
     </form> 
-
+</main>
     
 
 {% endblock %}
+
+{% block title %} Octoplus Bank | Entrar {% endblock %}

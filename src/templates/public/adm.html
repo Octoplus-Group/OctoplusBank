@@ -2,67 +2,43 @@
 
 {% block content %} 
 
-<header>
-    <h1 class="tituloIndex">SISTEMA FUNCIONARIO</h1>
+<header class="headerAdm">
+    <div id="headerAdm">
+        <div>
+            <a href="/">
+            <img class="imgAdm" src="../../static/images/logo_octoplus_bank_transparente_white.png" alt="logo Octoplus Bank">
+            </a>
+        </div>
+        <div>
+            <h3 class="tituloAdm">SISTEMA FUNCIONÁRIO</h3>
+        </div>
+    </div><br>
 </header>
-
 <main>
     <form action="/adm" method="POST">
-        <fieldset class="">
-            <div class="cadastro-fundo">
-            
-            <br>
-                    <div class="parte-1">
-    
-                        <label for="idFuncionario">ID FUNCIONARIO</label>
-                        <input type="text" name="idFuncionario" id="idFuncionario" required> 
-    
-                    </div>
-    
-    
-                    <div class="parte-1">
-    
-                        <label for="senha">SENHA</label>
-                        <input type="password"  name="senha" id="senha" required>
-                        
-    
-                    </div>
-    
-                        
-                <br><br>
-
-            <button type="submit" id="inicioSistema">Login</button>
-          
+        <fieldset>
+            <div class="backgroundAdm">
+                <div class="alinhaLogin">
+                        <div class="adm-1">
+                            <label for="idFuncionario">ID Funcionário</label>
+                            <input type="text" name="idFuncionario" id="idFuncionario" required>
+                        </div>
+                        <div class="adm-2">
+                            <label for="senhaAdm">Senha</label>
+                            <input type="password"  name="senha" id="senhaAdm" required>
+                        </div>
+            </div>
+            <div class="entrarAdm">
+                <label for="entrar">Entrar</label><br> 
+                    <button type="submit" id="inicioSistema">
+                        <i class="fa-solid fa-right-to-bracket fa-3x"></i>
+                    </button>
+            </div>
         </fieldset>
     </form>
-        
 </main>
 
 
-
-<footer>
-    <div class="footerIndex">
-        <hr class="hrIndex">
-
-        <div class="footerDiv">
-            <h4 style="font-size: 1.2rem", class="footerTexto">
-                Octoplus Bank © 2022
-                <br>
-                Todos os direitos reservados. CNPJ: nº 11.111.111/0001-00
-                <br>
-                Avenida Cesare Monsueto Giulio Lattes, 1350 Distrito - Eugênio de Melo, São José dos Campos - SP, 12247-014
-            </h4>
-        </div>
-
-        <div class="sigaOctoplus">
-            <label class="lbSigaOctoplus">
-                <h3 style="font-size: 2rem", class="footerTexto">SIGA A OCTOPLUS:</h3>
-            </label>
-            <a href="https://github.com/OctoplusHolding">
-                <img class="githubIcon" src="../../static/images/icons/github.png" alt="Github">
-            </a>
-        </div>
-    </div>
-</footer>
-
  {% endblock %}
+
+ {% block title %} Login Funcionário {% endblock %}

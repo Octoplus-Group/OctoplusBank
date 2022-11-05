@@ -1,98 +1,101 @@
+#headerLogin {
+  display: grid;
+  grid-template-columns: 42% 60%;
+}
 
-.border {
-    border: 0;
-  }
+.headerLogin {
+  border-bottom: 1.5px solid #000;
+  background-color: #db4500;
+}
+
+.tituloLogin {
+  margin-top: 1.25em;
+  margin-left: .5em;
+  font-size: 3vw;
+  font-weight: bold;
+  float: left;
+  color: #FDE7EA;
+  cursor: default;
+}
+
+.imgLogin {
+  width: 5vw;
+  margin-top: 2em;
+  margin-left: 2em;
+  float: right;
+}
+
   
-.tituloPage{
-    font-size: 1.5vw;
-    color: #F8E2E5;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-    display: inline;
-    text-align: center;
-  }
-  
-  #alinhaLogin{
-    padding: 5%;
-    text-align: right;
-  }
-  
-  a.paginaInicial{
+a.paginaInicial{
     cursor: pointer;
     text-decoration: none;
-  }
+}
   
-  label.paginaInicial{
+.alinhaLogin {
     cursor: pointer;
     padding-left: 1%;
     font-size: 2rem;
-    color:white;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-  }
+    color:#000;
+}
   
-
-  
-  button#entrar {
-    padding: 7%;
+button#entrar {
     cursor: pointer;
     border-radius: 40px;
-    border: 1;
-  }
+    border: none;
+}
   
-  .btnVoltarHome{
-    margin: 5% 5% 0% 5%;
-  }
   
-  .entrar {
-    margin-left: 80%;
-    font-weight: bold;
-    font-size: larger;
-  }
+.entrarLogin {
+  float: right;
+  font-weight: bold;
+  margin-left: 0;
+  margin-top: 4%;
+  font-size: 600;
+}
+
   
-  label.login{
-    padding-left: 10%;
-    color: white;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 7);
-  }
-  
-  input#agencia.direita{
+input#agencia.direita{
     background-color: white;
-  }
+}
   
-  input#agencia {
-    border: 0.25 none;
+input#agencia {
+    margin-top: 1%;
+    border: 1.5px solid #000;
     border-radius: 25px;
-    width: 100px;
-    height: 35px;
+    width: 20%;
+    height: 15%;
     margin: 0;
     font-size: larger;
     background-color: #eaebdc;
-  } 
+} 
   
-  input#user {
-    border: 0.25 none;
+input#user {
+    margin-top: 1%;
+    border: 1.5px solid #000;
     border-radius: 25px;
-    width: 100px;
-    height: 35px;
+    width: 20%;
+    height: 15%;
     font-size: larger;
-  } 
+} 
   
-  input#senha {
-    border: 0.25 none;
+input#senha {
+    margin-top: 1%;
+    border: 1.5px solid #000;
     border-radius: 25px;
-    width: 200px;
-    height: 35px;
+    width: 50%;
+    height: 15%;
     font-size: larger;
-  } 
+} 
   
-  .login{
-    font-size: larger;
-  }
+.login{
+    font-size: large;
+}
   
-  .background {
-    margin-top: 5%;
-    margin-left: 40%;
-    width: 20vw;
-    background-color: #eaebdc;
-    border-radius: 25px;
-    border: 3px solid black;
-  }
+.backgroundLogin {
+  width: 45%;
+  margin-left: 22em;
+  margin-top: 4%;
+  background-color: #ff652d;
+  border-radius: 25px;
+  border: 2px solid black;
+}
