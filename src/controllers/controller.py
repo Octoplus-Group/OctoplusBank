@@ -581,6 +581,7 @@ class CadastroClienteController(MethodView):
         senha = request.form['senha']
         nome = nome.upper()
         
+        
         with mysql.cursor()as cur:
             cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha))
             cur.connection.commit()
@@ -593,12 +594,19 @@ class CadastroClienteController(MethodView):
             cur.execute("SELECT * FROM conta ORDER BY ID_CONTA DESC")
             numerocontaAbertura=cur.fetchone()
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            nome=cur.fetchone()
+
+            #selecionar só o primeiro nome do cliente
+            nome=nome[2]
+            nome=nome.split()
+            nome=nome[0]
+
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
-            mensagem = 'Sua conta está sendo verificada! Clique em verificar novamente para ver se a sua conta ja foi aprovada ! ;)'
             
-            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)    
+            return render_template('/public/aguardandoAprovacao.html', nome=nome, numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura)   
 
 
 class VerificacaoAprovacao(MethodView):
@@ -608,9 +616,16 @@ class VerificacaoAprovacao(MethodView):
             numerocontaAbertura=cur.fetchone()
             cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
             numeroclienteAbertura=cur.fetchone()
-            mensagem = 'Sua conta está sendo verificada! Validaremos ela em 1 minuto, apenas aguarde...'
-            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,mensagem=mensagem)
+            cur.execute("SELECT * FROM cliente ORDER BY ID_CLIENTE DESC")
+            nome=cur.fetchone()
 
+            #selecionar só o primeiro nome do cliente
+            nome=nome[2]
+            nome=nome.split()
+            nome=nome[0]
+            
+            print(numerocontaAbertura)
+            return render_template('/public/aguardandoAprovacao.html', numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura, nome=nome)  
 
 class paginaTransferenciaController(MethodView):
     def get(self,id):
@@ -742,26 +757,32 @@ class LoginFuncionario(MethodView):
 class GerenciarAgenciaLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia)
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class GerenciarGerentesLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia)
+        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class GerenciarBancoLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
             capital = round(banco[2],2)
-        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital)
+        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital, cliente=cliente)
 
 class CadastrarAgenciaController(MethodView):
     def post(self):
@@ -843,3 +864,57 @@ class VerificacaoEntrada(MethodView):
                 return render_template ('public/area_cliente.html')
             else:
                 return render_template ('public/capital.html')
+
+class LinkGerenciarContasGGController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
+            banco = cur.fetchone()
+
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+
+            return render_template('public/gerenciar_contas_gerente_geral.html',banco=banco, cliente=cliente,dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+
+class LinkAlterarNomeAgenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA =%s",(id))
+            agencia = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/alteracao_agencia.html', agencia=agencia, gerenteAgencia=gerenteAgencia)
+
+class AlterarNomeAgenciaController(MethodView):
+    def post(self,id):
+        nomeAgencia = request.form['nomeAG']
+        novoGerenteAgencia = request.form['GA']
+        with mysql.cursor() as cur:
+            cur.execute("UPDATE agencia SET NOME_DA_AGENCIA=%s, GERENTE=%s WHERE ID_AGENCIA=%s ",(nomeAgencia,novoGerenteAgencia,id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
+
+class DeletarAgenciaController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("DELETE from agencia WHERE ID_AGENCIA =%s",(id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+        return render_template ('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias)

@@ -2,12 +2,19 @@
 
 {% block content %} 
 
+<div class="botaohome2">
+    <a href="/home_gerente_geral/{{cliente.0}}">
+    <h4>VOLTAR</h4>
+    </a>
+</div>
+
 <form action="/banco_dados" method="POST">
     <fieldset class="cadastro">
         <div class="cadastro-fundo">
         <br>
             <div class="parte-1">
-                <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3>
+                <!-- <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3> -->
+                <h3>CAPITAL ATUAL DO BANCO: R$ {{"{:.2f}".format(capital)}}</h3>
                 <br>
                 <label for="capital">ADICIONAR CAPITAL AO BANCO</label>
                 <input type="number" name="capital"  id="capital" min="0" max="10000000"  step=".01" required>

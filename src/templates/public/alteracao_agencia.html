@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<!-- com o novo layout do figma isso não será necessário -->
+<section>
+
+    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
+    <hr>
+
+</section>
+<!-- section acima -->
+
+
+
+
+
+<form action="/edicao_agencia/{{agencia.1}}" method="POST">
+    <fieldset class="AlteracaoNAG">
+        <div class="cadastro-fundo">
+        <br>
+            <div>Nome atual da agencia:  {{agencia.3}}</div>
+            <div>O Gerente Atual da Agencia: {{agencia.2}}</div>
+            <div class="parte-1">
+                <label for="nomeAG">Nome da Agencia </label>
+                <input type="text" name="nomeAG" value="" id="nomeAG" required>
+            </div>
+            <div class="parte-1">
+                        
+                <label for="GA">SELECIONE O GERENTE DE AGENCIA</label>
+                <select name="GA" id="GA" required>
+                    <option selected disabled value="{{agencia.2}}" class="form-control" required>Escolha</option>
+                    {% for ga in gerenteAgencia%}
+                    <option type="text" name="GA" id="GA" value='{{ga[2]}}'>{{ga[2]}}</option>
+                    {% endfor%}
+                </select>
+                
+            </div>
+
+            
+
+       <button type="submit" id="AlteracaoNAG">Alterar Dados</button>        
+
+       {% endblock %}

@@ -218,6 +218,7 @@
 </script>
 
 <!-- {% for cliente in data %}
+<<<<<<< HEAD
     {{cliente.1}}
         <form action="/delete/cliente/{{cliente.0}}" method="POST">
             <button>Cancelar Conta</button>
@@ -225,6 +226,19 @@
         <a href="/update/cliente/{{cliente.0}}">Alterar Dados</a>
         {% else %}
         nao tem cliente
+=======
+
+    {{cliente.1}}
+
+        <form action="/delete/cliente/{{cliente.0}}" method="POST">
+            <button>Cancelar Conta</button>
+        </form>
+
+        <a href="/update/cliente/{{cliente.0}}">Alterar Dados</a>
+        {% else %}
+        nao tem cliente
+
+>>>>>>> de241c16a326638ff1cac95bda28e83cd8812494
     {% endfor %} -->
 
 {% endblock %}

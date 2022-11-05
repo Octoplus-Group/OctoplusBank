@@ -4,7 +4,7 @@
 
 
     <div class="botaohome2">
-        <a href="/adm">
+        <a href="/home_gerente_geral/{{cliente.0}}">
         <h4>VOLTAR</h4>
         </a>
     </div>
@@ -53,6 +53,8 @@
         <th scoup="col">NUMERO AGENCIA</th>
         <th scoup="col">NOME DO GERENTE</th>
         <th scoup="col">NOME DA AGÊNCIA</th>
+        <th scoup="col">Editar</th>
+        <th scoup="col">Deletar</th>
         
     </tr>
     {% for item in agencias%}
@@ -60,7 +62,8 @@
         <td>{{item[1]}}</td>
         <td>{{item[2]}}</td>
         <td>{{item[3]}}</td>
-        
+        <td><a href="/link_alterar_agencia/{{item[1]}}">Editar</a></td>
+        <td><a href="/deletar_agencia/{{item[1]}}">Deletar</a></td>
     </tr>
     {% endfor %}
     </table>
