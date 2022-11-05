@@ -218,7 +218,7 @@ class LoginValicaoController(MethodView):
                     cliente = cur.fetchone()
                     cur.execute("SELECT * FROM conta  WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
-                    return render_template('public/home_gerente.html', cliente=cliente, conta=conta)
+                    return render_template('public/home_user.html', cliente=cliente, conta=conta)
                 elif senhalogin == cliente[12] and cliente[14]=='GG' and cliente[13]=='APROVADO':
                     cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
                     cliente = cur.fetchone()
@@ -474,19 +474,16 @@ class realizarDepositoGerenteController(MethodView):
         deposito = float(request.form['deposito'])
                
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
             conta = cur.fetchone()
             saldofinal = deposito
-            mensagem='Deposito em Analise pelo Gerente'
-
             cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR) VALUES (%s,'DEPOSITO',NOW(),%s)",(cliente[0],saldofinal))
             cur.connection.commit()
+            mensagem='Deposito em analise pelo Gerente'
 
-            """ cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA = %s",(saldofinal,cliente[0]))
-            cur.connection.commit() """
-        return render_template('public/deposito_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
+        return render_template('public/deposito_gerente.html', cliente=cliente , conta=conta , mensagem=mensagem)
 
 class paginaSaqueGerenteController(MethodView):
     def get(self,id):
@@ -855,8 +852,10 @@ class AlterarCapitalJurosController(MethodView):
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
             capital = round(banco[2],2)
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
 
-        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital)
+        return render_template('public/gerenciar_banco.html',banco=banco,capital=capital, cliente=cliente)
 
 class VerificacaoEntrada(MethodView):
     def get (self):
@@ -921,3 +920,32 @@ class DeletarAgenciaController(MethodView):
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
         return render_template ('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias)
+
+class ExecucaoDepositoGGController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
+            deposito=cur.fetchone()
+            cur.execute("SELECT * from conta WHERE ID_CONTA =%s",(deposito[0]))
+            depositoEtapa=cur.fetchone()
+            depositoreal=depositoEtapa[4]+deposito[4]
+            cur.execute("UPDATE conta SET SALDO =%s  WHERE ID_CONTA =%s ",(depositoreal,deposito[0]))
+            cur.execute("UPDATE transacoes SET STATUS =%s  WHERE ID_TRANSACAO =%s ",('APROVADO',id))
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
+            depositoAnalise = cur.fetchall()
+
+            return render_template('public/aprovar_depositos_gg.html', cliente=cliente, depositoAnalise=depositoAnalise)
+
+class LinkAprovacaoDepositoGGController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('APROVADO'))
+            depositoAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
+            depositoAnalise = cur.fetchall()
+
+            return render_template('public/aprovar_depositos_gg.html', cliente=cliente, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)

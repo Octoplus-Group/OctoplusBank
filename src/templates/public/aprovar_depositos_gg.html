@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="btnVoltarHome">
+    <a class="paginaInicial" href="/home_gerente_geral/{{cliente.0}}">
+            <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
+                <label class="paginaInicial">
+                    VOLTAR
+                </label>
+    </a>
+</div>
+
+<div class="tituloPage">
+    <h1 style="text-align: center;">
+        <u>APROVAR DEPÓSITOS</u>
+    </h1>
+    <br>
+</div>
+
+    <br>
+
+    <div>
+        <table class="table" border="2">
+        <tr>
+            <th scoup="col">NUMERO DE CONTA</th>
+            <th scoup="col">ID da Transação</th>
+            <th scoup="col">DATA</th>
+            <th scoup="col">VALOR</th>
+            <th scoup="col">STATUS</th>
+            <th scoup="col">AÇÃO</th>
+        </tr>
+        {% for item in depositoAnalise%}
+        <tr>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{"{:.2f}".format(item[4])}}</td>
+            <td>{{item[5]}}</td>
+            <td><a href='/provacao_deposito_GG/{{item[1]}}'>APROVAR DEPOSITO</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+
+
+    {% endblock %}
