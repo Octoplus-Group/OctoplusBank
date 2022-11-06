@@ -112,9 +112,29 @@ class DeleteClienteController(MethodView):
 class DeleteClienteRequisicaoController(MethodView):
     def get(self, id):
         with mysql.cursor()as cur:
-            cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
-            cur.connection.commit()
-            return redirect('/')
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * from conta WHERE ID_CONTA=%s",(cliente[0]))
+            conta = cur.fetchone()
+        if conta[4]>0 or conta[4]<0:
+            with mysql.cursor()as cur:
+                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                conta = cur.fetchone()
+                mensagem = 'Deixe sua conta ZERADA para poder solicitar o encerramento da conta - Quintando a Divida ou Retirando seu Dinheiro'
+                return render_template ("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
+        else:
+            with mysql.cursor()as cur:
+                cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
+                cur.connection.commit()
+                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                conta = cur.fetchone()
+                mensagem = "Sua Solicitação foi encaminhada para o Gerente de Agencia"
+
+                return render_template ("public/dados.html", mensagem=mensagem,cliente=cliente,conta=conta)
 
 class UpdateClienteController(MethodView):
     def get(self, id):
@@ -249,7 +269,8 @@ class DadosController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
-        return render_template('public/dados.html' , cliente=cliente, conta=conta)
+            mensagem =""
+        return render_template('public/dados.html' , cliente=cliente, conta=conta,mensagem=mensagem)
 
 class paginaDepositoController(MethodView):
     def get(self,id):
