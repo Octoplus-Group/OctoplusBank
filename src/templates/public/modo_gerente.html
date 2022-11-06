@@ -3,7 +3,7 @@
 {% block content %} 
 
 <div class="btnVoltarHome">
-    <a class="paginaInicial" href="/home_gerente_agencia/{{cliente.0}}">
+    <a class="paginaInicial" href="/home_gerente_agencia/{{cliente.1}}">
             <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
                 <label class="paginaInicial">
                     PÁGINA INICIAL
@@ -19,14 +19,14 @@
 
 <div class="agencia">
     <h4 class="textobtn">
-        AGÊNCIA: 01
+        AGÊNCIA: {{cliente.15}}
     </h4>
 </div>
     
         <div class="alinhaHomeBtn">
             <br>
             <div class="parte-5">
-                <a href="/link_gerenciar_contas/{{cliente.0}}">
+                <a href="/link_gerenciar_contas/{{cliente.1}}">
                     <button id="extrato">
                         GERENCIAR CONTAS
                     </button>
@@ -34,7 +34,7 @@
             </div>
     
             <div class="parte-5">
-                <a href="/link_aprovacao_deposito/{{cliente.0}}">
+                <a href="/link_aprovacao_deposito/{{cliente.1}}">
                     <button id="transferencia">
                         GERENCIAR DEPÓSITOS
                     </button>

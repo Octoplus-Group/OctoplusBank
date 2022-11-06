@@ -369,11 +369,9 @@ class HomeUserIDController(MethodView):
 class HomeGerenteAgenciaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-            conta = cur.fetchone()
-            return render_template('public/home_gerente.html', cliente=cliente, conta = conta)
+            return render_template('public/home_gerente.html', cliente=cliente)
 
 class HomeGerenteGeralController(MethodView):
     def get(self,id):
@@ -387,10 +385,8 @@ class HomeGerenteGeralController(MethodView):
 class LinkGerenciarContasController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-            conta = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
             dataAprovado = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
@@ -398,7 +394,7 @@ class LinkGerenciarContasController(MethodView):
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
 
-            return render_template('public/gerenciar_contas.html', cliente=cliente, conta = conta, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+            return render_template('public/gerenciar_contas.html', cliente=cliente, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
 
 class AprovacaoContaController(MethodView):
     def get(self,id):
@@ -418,25 +414,21 @@ class AprovacaoContaController(MethodView):
 class ModoGerenteAgenciaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-            conta = cur.fetchone()
-            return render_template('public/modo_gerente.html', cliente=cliente, conta = conta)
+            return render_template('public/modo_gerente.html', cliente=cliente)
 
 class LinkAprovacaoDepositoController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-            conta = cur.fetchone()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('APROVADO'))
             depositoAprovado = cur.fetchall()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
             depositoAnalise = cur.fetchall()
 
-            return render_template('public/aprovar_depositos.html', cliente=cliente, conta = conta, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)
+            return render_template('public/aprovar_depositos.html', cliente=cliente, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)
 
 class ExecucaoDepositoController(MethodView):
     def get(self,id):
@@ -499,10 +491,8 @@ class paginaDepositoGerenteController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
-            conta = cur.fetchone()
             mensagem=''
-        return render_template('public/deposito_gerente.html', cliente=cliente, conta=conta,mensagem=mensagem)
+        return render_template('public/deposito_gerente.html', cliente=cliente, mensagem=mensagem)
 
 class realizarDepositoGerenteController(MethodView):
     def post(self,id):
@@ -572,9 +562,8 @@ class HomeGerenteContaController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA = %s",(cliente[0]))
-            conta = cur.fetchone()
-            return render_template('public/home_gerente_conta.html', cliente=cliente, conta=conta)
+
+            return render_template('public/home_gerente_conta.html', cliente=cliente)
 
 class LinkPaginaCadastroController(MethodView):
 
@@ -786,10 +775,9 @@ class LoginFuncionario(MethodView):
                 elif senhalogin == cliente[12] and cliente[14]=='GA':
                     cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
                     cliente = cur.fetchone()
-                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
-                    conta = cur.fetchone()
                     
-                    return render_template('public/home_gerente.html', cliente=cliente,conta=conta)
+                    
+                    return render_template('public/home_gerente.html', cliente=cliente)
                 else:
                     return render_template('public/adm.html')
             else:
@@ -839,6 +827,10 @@ class CadastrarAgenciaController(MethodView):
             agencias = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
+            cur.execute("SELECT * FROM agencia ORDER BY ID_AGENCIA DESC")
+            numeroAgencia=cur.fetchone()
+            cur.execute("UPDATE cliente SET ID_AGENCIA=%s WHERE NOME=%s",(numeroAgencia[1],nomeGA))
+            cur.connection.commit()
         return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia,cliente=cliente)
 
 class CadastroGerenteAgencia(MethodView):
