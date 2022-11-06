@@ -117,13 +117,13 @@ class DeleteClienteController(MethodView):
 class DeleteClienteRequisicaoController(MethodView):
     def get(self, id):
         with mysql.cursor()as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
             cur.execute("SELECT * from conta WHERE ID_CONTA=%s",(cliente[0]))
             conta = cur.fetchone()
             valor = conta[4]
             
-            if valor > 0 or valor < 0:
+        if valor > 0 or valor < 0:
                 with mysql.cursor()as cur:
                     print('testando',conta[4])
                     cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
@@ -132,7 +132,7 @@ class DeleteClienteRequisicaoController(MethodView):
                     conta = cur.fetchone()
                     mensagem = "Voce deve zerar a sua conta antes de encerrar ela"
                 return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
-            else:
+        else:
                 with mysql.cursor()as cur:
                     cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
                     cur.connection.commit()
@@ -141,7 +141,8 @@ class DeleteClienteRequisicaoController(MethodView):
                     cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     mensagem = "Sua Solicitacao foi encaminhada para o Gerente de Agencia"
-                return redirect ('/')
+                return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
+
 
 class UpdateClienteController(MethodView):
     def get(self, id):
@@ -412,8 +413,9 @@ class AprovacaoContaController(MethodView):
             dataAnalise = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
             cliente = cur.fetchone()
+            conta=''
         
-            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise)
+            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise,conta='')
 
 class ModoGerenteAgenciaController(MethodView):
     def get(self,id):
