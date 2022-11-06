@@ -121,14 +121,17 @@ class DeleteClienteRequisicaoController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * from conta WHERE ID_CONTA=%s",(cliente[0]))
             conta = cur.fetchone()
-        if conta[4]>0 or conta[4]<0:
+            valor = conta[4]
+            
+        if valor>0 or valor<0:
             with mysql.cursor()as cur:
+                print('testando',conta[4])
                 cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
                 cliente = cur.fetchone()
                 cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
                 conta = cur.fetchone()
-                mensagem = 'Deixe sua conta ZERADA para poder solicitar o encerramento da conta - Quintando a Divida ou Retirando seu Dinheiro'
-                return render_template ("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
+                mensagem = "Voce deve zerar a sua conta antes de encerrar ela"
+                return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
         else:
             with mysql.cursor()as cur:
                 cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
@@ -433,13 +436,20 @@ class LinkAprovacaoDepositoController(MethodView):
 class ExecucaoDepositoController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * from banco WHERE ID_BANCO=%s",(1))
+            banco = cur.fetchone()
             cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
             deposito=cur.fetchone()
+            capitalbancoupdate = banco[2] + deposito[4]
+            cur.execute("UPDATE banco SET CAPITAL_TOTAL=%s WHERE ID_BANCO=%s",(capitalbancoupdate,1))
+            cur.connection.commit()
             cur.execute("SELECT * from conta WHERE ID_CONTA =%s",(deposito[0]))
             depositoEtapa=cur.fetchone()
             depositoreal=depositoEtapa[4]+deposito[4]
             cur.execute("UPDATE conta SET SALDO =%s  WHERE ID_CONTA =%s ",(depositoreal,deposito[0]))
+            cur.connection.commit()
             cur.execute("UPDATE transacoes SET STATUS =%s  WHERE ID_TRANSACAO =%s ",('APROVADO',id))
+            cur.connection.commit()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
@@ -923,8 +933,11 @@ class VerificacaoEntrada(MethodView):
 class LinkGerenciarContasGGController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
+            
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
             cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
 
@@ -935,7 +948,7 @@ class LinkGerenciarContasGGController(MethodView):
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
 
-            return render_template('public/gerenciar_contas_gerente_geral.html',banco=banco, cliente=cliente,dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+            return render_template('public/gerenciar_contas_gerente_geral.html',conta=conta, banco=banco, cliente=cliente,dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
 
 class LinkAlterarNomeAgenciaController(MethodView):
     def get(self,id):
@@ -1003,8 +1016,13 @@ class DeletarAgenciaController(MethodView):
 class ExecucaoDepositoGGController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * from banco WHERE ID_BANCO=%s",(1))
+            banco = cur.fetchone()
             cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
             deposito=cur.fetchone()
+            capitalbancoupdate = banco[2] + deposito[4]
+            cur.execute("UPDATE banco SET CAPITAL_TOTAL=%s WHERE ID_BANCO=%s",(capitalbancoupdate,1))
+            cur.connection.commit()
             cur.execute("SELECT * from conta WHERE ID_CONTA =%s",(deposito[0]))
             depositoEtapa=cur.fetchone()
             depositoreal=depositoEtapa[4]+deposito[4]
@@ -1072,6 +1090,8 @@ class NegarDepositoController(MethodView):
 class NegarContaGGController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
             cur.execute("UPDATE cliente SET STATUS=%s WHERE ID_CLIENTE=%s",('NEGADO',cliente[1]))
@@ -1083,7 +1103,7 @@ class NegarContaGGController(MethodView):
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
         
-        return render_template("public/gerenciar_contas_gerente_geral.html",dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
+        return render_template("public/gerenciar_contas_gerente_geral.html",conta=conta, dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
 
 class VizualizarContaGGController(MethodView):
     def get(self,id):

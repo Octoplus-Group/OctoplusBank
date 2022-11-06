@@ -1,31 +1,8 @@
-{% extends "base.html" %}
+{% extends "baseSidebar.html" %}
 
-{% block content %} 
-   
-        <div class="btnVoltarHome">
-            <a class="paginaInicial" href="/home_gerente_conta/{{cliente.0}}">
-                    <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
-                        <label class="paginaInicial">
-                            VOLTAR
-                        </label>
-            </a>
-        </div>
+{% block conteudoComSidebar %}
 
-        <div class="tituloPage">
-            <h1 style="text-align: center;">
-                <u>DEPÓSITO</u>
-            </h1>
-        </div>
-    
-        <div class="saldoDepositoSaque">
-            <h4 class="textobtn">
-                SALDO: R${{"{:.2f}".format(conta.4)}}
-            </h4>
-        </div>
-
-        
         <form action="/realizar_gerente_deposito/cliente/{{cliente.0}}" method="POST">
-                  
 
             <div class="dep">
                 <div class="caixa">
@@ -35,16 +12,13 @@
                             <b>R$</b>
                         </label>
                         <input type="number" name="deposito"  id="deposito"
-                        min="0" max="1000000" placeholder="0,00" step=".01" required>
+                        min="0" max="1000000" placeholder="1.100,10" step=".01" required>
                 </div>
-                <div class="confirmar">
-                    <label class="confirm" for="confirmar">Confirmar:<br> 
-                        <button type="submit" id="confirmar">
-                            <img class="confirmIcon" src="../../static/images/icons/confirm.png" alt="Confirmar">
-                        </button>
-                    </label>
-
+                
+                <button class="btn btn-primary" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
+                    <i class="fa-solid fa-check"></i>
+                    Confirmar
+                </button>
         </form>
-
 
 {% endblock %}

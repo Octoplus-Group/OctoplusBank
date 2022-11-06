@@ -23,7 +23,7 @@ Octoplus Bank | Home
         <li class="nav-item">
           <h3 aria-current="page">Saldo disponível:</h3>
           <a onclick="changeIcon(this)" id="myBtn">
-            <span class="SPN" data-text="R$ {{conta.4}}">R$ {{conta.4}} </span>
+            <span class="SPN" data-text="R$ {{"{:.2f}".format(conta.4)}}">R$ {{"{:.2f}".format(conta.4)}} </span>
             <i class="fa fa-eye-slash"></i>
           </a>
         <li class="nav-item">

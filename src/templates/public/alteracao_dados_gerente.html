@@ -1,17 +1,16 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerente.html" %}
 
-{% block content %} 
+{% block title %}
 
-<!-- com o novo layout do figma isso não será necessário -->
-<section>
+Octoplus Bank | Alteração de Dados de Cliente
 
-    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
-    <hr>
+{% endblock %}
 
-</section>
-<!-- section acima -->
+{% block conteudoComSidebar %}
 
+{% block moreScripts %}
 
+{% endblock moreScripts %}
 <div class="btnVoltarHome">
     <a class="paginaInicial" href="/link_gerenciar_contas/{{cliente.0}}">
             <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
@@ -38,7 +37,7 @@
             </div>
 
             <div class="parte-1">
-                <label for="genero">Gênero:</label>
+                <label for="genero">Genero:</label>
                 <select name="genero" required id="genero">
                     <option selected enable value="{{cliente.5}}">Escolha</option>
                     <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
@@ -115,4 +114,4 @@
 
        <button type="submit" id="solicitar">Alterar dados</button>        
 
-       {% endblock %}
+       {% endblock conteudoComSidebar %}

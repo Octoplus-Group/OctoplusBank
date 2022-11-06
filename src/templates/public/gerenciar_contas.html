@@ -1,127 +1,159 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerente.html" %}
 
-{% block content %} 
+{% block title %}
 
+Octoplus Bank | Gerenciar Contas
 
-<div class="btnVoltarHome">
-    <a class="paginaInicial" href="/link_modo_gerente_contas/{{cliente.1}}">
+{% endblock %}
 
-                <label class="paginaInicial">
-                    VOLTAR
-                </label>
-    </a>
+{% block conteudoComSidebar %}
+
+{% block moreScripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock moreScripts %}
+
+<!-- BOTÕES DE QUAL TIPO DE CONTA O GERENTE VAI EDITAR -->
+<div class="container-fluid">
+    <div class="row m-5">
+        <div class="col-4">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalGerenciarContas">
+                Gerenciar Contas Ativas
+              </button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalGerenciarContas2">
+                Gerenciar Contas Pendentes
+              </button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalGerenciarContas3">
+                Gerenciar Pedidos de Exclusão
+              </button>
+        </div>
+    </div>
 </div>
 
-<div class="tituloPage">
-    <h1 style="text-align: center;">
-        <u>GERENCIAR CONTAS</u>
-    </h1>
-    <br>
+  <!-- Modal das Contas Ativas -->
+  <div class="modal fullscreen" id="modalGerenciarContas" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Contas ativas - Agência {{conta.0}} </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="thAlign" scope="col">NUMERO DE CONTA</th>
+                            <th class="thAlign" scope="col">NOME DO CLIENTE</th>
+                            <th class="thAlign" scope="col">CPF</th>
+                            <th class="thAlign" scope="col">STATUS DA CONTA</th>
+                            <th class="thAlign" scope="col">VISUALIZAR</th>
+                            <th class="thAlign" scope="col">EDITAR</th>
+                            <th class="thAlign" scope="col">EXTRATO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in dataAprovado%}
+                    <tr>
+                        <td>{{item[0]}}</td>
+                        <td>{{item[2]}}</td>
+                        <td>{{item[3]}}</td>
+                        <td>{{item[13]}}</td>
+                        <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
+                        <td><a href="/update/gerente/{{item.0}}">Editar</a></td>
+                        <td><a href="/link_extrato_gerente/{{item.0}}">Extrato</a></td>
+                    </tr>
+                    {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
 </div>
-    
-    <div class="subtituloPage">
-        <a class="subtituloPage" href="">
-            <h2 style="text-align: center;">
-                <u>CONTAS ATIVAS</u>
-            </h2>
-            <br>
-        </a>
-    </div>
 
-<div>
-<table class="table" border="2">
-<tr>
-    <th scoup="col">NUMERO DE CONTA</th>
-    <th scoup="col">NOME DO CLIENTE</th>
-    <th scoup="col">CPF</th>
-    <th scoup="col">STATUS DA CONTA</th>
-    <th scoup="col">VISUALIZAR</th>
-    <th scoup="col">EDITAR</th>
-    <th scoup="col">EXTRATO</th>
-</tr>
-{% for item in dataAprovado%}
-<tr>
-    <td>{{item[0]}}</td>
-    <td>{{item[2]}}</td>
-    <td>{{item[3]}}</td>
-    <td>{{item[13]}}</td>
-    <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
-    <td><a href="/update/gerente/{{item.0}}">Editar</a></td>
-    <td><a href="/link_extrato_gerente/{{item.0}}">Extrato</a></td>
-</tr>
-{% endfor %}
-</table>
+  <!-- Modal das Contas Pendentes -->
+  <div class="modal fullscreen" id="modalGerenciarContas2" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Contas Pendentes de Aprovação - Agência {{conta.0}} </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="thAlign" scope="col">NUMERO DE CONTA</th>
+                            <th class="thAlign" scope="col">NOME DO CLIENTE</th>
+                            <th class="thAlign" scope="col">CPF</th>
+                            <th class="thAlign" scope="col">STATUS DA CONTA</th>
+                            <th class="thAlign" scope="col">VISUALIZAR</th>
+                            <th class="thAlign" scope="col">APROVAR</th>
+                            <th class="thAlign" scope="col">RECUSAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in dataAnalise%}
+                    <tr>
+                        <td>{{item[0]}}</td>
+                        <td>{{item[2]}}</td>
+                        <td>{{item[3]}}</td>
+                        <td>{{item[13]}}</td>
+                        <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
+                        <td><a href='/aprovar_contas/{{item[1]}}'>Aprovar</a></td>
+                        <td><a href="/negarconta_gerente/{{item[1]}}">Recusar</a></td>
+                    </tr>
+                    {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
 </div>
 
-    <div class="subtituloPage">
-        <br>
-        <a class="subtituloPage" href="">
-            <h2 style="text-align: center;">
-                <u>SOLICITAÇÃO DE ABERTURA DE CONTA</u>
-            </h2>
-            <br>
-        </a>
+  <!-- Modal das Contas Pendentes de Exclusão -->
+  <div class="modal fullscreen" id="modalGerenciarContas3" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Contas Pendentes de Exclusão - Agência {{conta.0}} </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="thAlign" scope="col">NUMERO DE CONTA</th>
+                            <th class="thAlign" scope="col">NOME DO CLIENTE</th>
+                            <th class="thAlign" scope="col">CPF</th>
+                            <th class="thAlign" scope="col">STATUS DA CONTA</th>
+                            <th class="thAlign" scope="col">AÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in dataDeletar%}
+                    <tr>
+                        <td>{{item[0]}}</td>
+                        <td>{{item[2]}}</td>
+                        <td>{{item[3]}}</td>
+                        <td>{{item[13]}}</td>
+                        <td><a href='/delete/cliente/{{item[1]}}'>INATIVAR</a></td>
+                    </tr>
+                    {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
     </div>
-   
-    <div>
-        <table class="table" border="2">
-            <tr>
-                <th scoup="col">NUMERO DE CONTA</th>
-                <th scoup="col">NOME DO CLIENTE</th>
-                <th scoup="col">CPF</th>
-                <th scoup="col">STATUS DA CONTA</th>
-                <th scoup="col">VISUALIZAR</th>
-                <th scoup="col">APROVAR</th>
-                <th scoup="col">RECUSAR</th>
-            </tr>
-            {% for item in dataAnalise%}
-            <tr>
-                <td>{{item[0]}}</td>
-                <td>{{item[2]}}</td>
-                <td>{{item[3]}}</td>
-                <td>{{item[13]}}</td>
-                <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
-                <td><a href='/aprovar_contas/{{item[1]}}'>Aprovar</a></td>                
-                <td><a href="/negarconta_gerente/{{item[1]}}">Recusar</a></td>
-            </tr>
-            {% endfor %}
-            </table>
-    </div>
+</div>
 
-    
-    <br>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <div class="subtituloPage">
-        <a class="subtituloPage" href="">
-            <h2 style="text-align: center;">
-                <u>SOLICITAÇÃO DE ENCERRAMENTO</u>
-            </h2>
-            <br>
-        </a>
-    </div>
-   
-    <div>
-        <table class="table" border="2">
-            <tr>
-                <th scoup="col">NUMERO DE CONTA</th>
-                <th scoup="col">NOME DO CLIENTE</th>
-                <th scoup="col">CPF</th>
-                <th scoup="col">STATUS DA CONTA</th>
-                <th scoup="col">VISUALIZAR</th>1
-                <th scoup="col">AÇÃO</th>
-            </tr>
-            {% for item in dataDeletar%}
-            <tr>
-                <td>{{item[0]}}</td>
-                <td>{{item[2]}}</td>
-                <td>{{item[3]}}</td>
-                <td>{{item[13]}}</td>
-                <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
-                <td><a href='/delete/cliente/{{item[1]}}'>Encerrar</a></td>
-            </tr>
-            {% endfor %}
-            </table>
-    </div>
-
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>        
 
     {% endblock %}

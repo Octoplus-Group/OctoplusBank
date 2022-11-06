@@ -3,21 +3,29 @@
 {% block content %} 
 
     <header>
+        <nav class="navbar bg-light">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                <img src="../../static/img/octoplus_extendido_perola.png" alt="Logo Octoplus Retangular" width="30" height="24">
+              </a>
+            </div>
+          </nav>
+    </header>
+
+
         <div class="topoLogado">
             <img class="menuLogado" src="../../static/images/logo_octoplus_bank_transparente.png" alt="">
         </div>
 
         <div class="topoLogadoDireita">
             <h3 class="sejaBemVindo">
-                Seja bem-vindo, {{cliente.2}} <br>
-                AGÊNCIA: {{cliente.15}} <br>
-                <!-- CONTA: {{cliente.0}} -->
+                Seja bem-vindo, {{cliente.2}}    <br>
+                AGÊNCIA: 1 <br>
+                CONTA: {{cliente.0}}
             </h3>
         </div>
 
         <hr class="homeUser">
-    </header>
-
     <div class="btnVoltarHome">
         <a class="paginaInicial" href="/home_gerente_agencia/{{cliente.0}}">
                 <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home">
@@ -31,17 +39,17 @@
 
         <div class="saldo">
             <h4 class="textobtn">
-                SALDO: R${{"{:.2f}".format(conta.4)}}
+                SALDO: R${{conta.4}}
             </h4>
         </div>
 
-        <!-- <div class="sair">
-            <a href="/area_funcionario">
+        <div class="sair">
+            <a href="/">
                 <button id="sair">
                     SAIR
                 </button>
             </a>
-        </div> -->
+        </div>
 
     </div>
     <div class="alinhaHomeBtn">
@@ -72,7 +80,7 @@
         </div>
 
         <div class="parte-5">
-            <a href="/pagina_transferencia_gerente/{{cliente.0}}">
+            <a href="">
                 <button id="transferencia">
                     TRANSFERÊNCIA
                 </button>

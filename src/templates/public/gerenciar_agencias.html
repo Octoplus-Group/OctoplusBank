@@ -1,68 +1,39 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerenteGeral.html" %}
 
-{% block content %} 
+{% block title %}
 
+Octoplus Bank | Gerenciar Agências
 
-    <div class="botaohome2">
-        <a href="/home_gerente_geral/{{cliente.0}}">
-        <h4>VOLTAR</h4>
-        </a>
-    </div>
-<div>
-    <h1>INCLUIR NOVA AGENCIA</h1>
-    <form action="/criar_agencia" method="POST">
-        <fieldset class="cadastro">
-            <div class="cadastro-fundo">
-                <h2>CADASTRAR NOVA AGENCIA</h2>
-            <br>
-                    <div class="parte-1">
-                        
-                        <label for="GA">SELECIONE O GERENTE DE AGENCIA</label>
-                        <select name="GA" id="GA" required>
-                            <option selected disabled value="" class="form-control">Escolha</option>
-                            {% for ga in gerenteAgencia%}
-                            <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[2]}}'>{{ga[2]}}</option>
-                            {% endfor%}
-                        </select>
-                        
-                    </div>
+{% endblock %}
 
-                    <div class="parte-2">
-    
-                        <label for="NOME_AGENCIA"> NOME DA AGÊNCIA </label>
-                        <input type="text"  required  id='NOME_AGENCIA' name="NOME_AGENCIA" class="NOME_AGENCIA">
-    
-                    </div>
+{% block conteudoComSidebar %}
 
-    
-            <button type="submit" id="cadastrar">Cadastrar</button>
-          
-        </fieldset>
-    </form>
-</div>
-    <br>
+{% block moreScripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock moreScripts %}
 
-    
-<div>
-    <table class="table" border="2">
+<table border="2">
     <tr>
-        <th scoup="col">NUMERO AGENCIA</th>
-        <th scoup="col">NOME DO GERENTE</th>
-        <th scoup="col">NOME DA AGÊNCIA</th>
-        <th scoup="col">Editar</th>
-        <th scoup="col">Deletar</th>
-        
+        <label for="bancos">Banco:</label>
+        <select name="bancos" id="bancos">
+        <option value="banco1">Octoplus Bank</option>
+        </select>
     </tr>
-    {% for item in agencias%}
     <tr>
-        <td>{{item[1]}}</td>
-        <td>{{item[2]}}</td>
-        <td>{{item[3]}}</td>
-        <td><a href="/link_alterar_agencia/{{item[1]}}">Editar</a></td>
-        <td><a href="/deletar_agencia/{{item[1]}}">Deletar</a></td>
+        <td>Agência:</td>
+        <td>Responsável (GA):</td>
+        <td>Definir responsável:</td>
+        <td>Gerenciar:</td>
     </tr>
-    {% endfor %}
-    </table>
-    </div>
-    <p>{{mensagem}}</p>
-    {% endblock %}
+    <tr>
+        <td>
+            <input type="text" placeholder="Defina o responsável">
+        </td>
+        <td>
+            <h4>?</h4>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

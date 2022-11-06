@@ -1,24 +1,19 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerente.html" %}
 
-{% block content %} 
+{% block title %}
 
-<div class="btnVoltarHome">
-    <a class="paginaInicial" href="/link_modo_gerente_contas/{{cliente.1}}">
-            <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
-                <label class="paginaInicial">
-                    VOLTAR
-                </label>
-    </a>
-</div>
+Octoplus Bank | Gerenciar Depósitos
 
-<div class="tituloPage">
-    <h1 style="text-align: center;">
-        <u>APROVAR DEPÓSITOS</u>
-    </h1>
-    <br>
-</div>
+{% endblock %}
 
-    <br>
+{% block conteudoComSidebar %}
+
+{% block moreScripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+{% endblock moreScripts %}
 
     <div>
         <table class="table" border="2">
@@ -28,18 +23,16 @@
             <th scoup="col">DATA</th>
             <th scoup="col">VALOR</th>
             <th scoup="col">STATUS</th>
-            <th scoup="col">APROVAR DEPOSITO</th>
-            <th scope="col">NEGAR DEPOSITO</th>
+            <th scoup="col">AÇÃO</th>
         </tr>
         {% for item in depositoAnalise%}
         <tr>
             <td>{{item[0]}}</td>
             <td>{{item[1]}}</td>
             <td>{{item[3]}}</td>
-            <td>{{"{:.2f}".format(item[4])}}</td>
+            <td>{{item[4]}}</td>
             <td>{{item[5]}}</td>
             <td><a href='/aprovacao_deposito/{{item[1]}}'>APROVAR DEPOSITO</a></td>
-            <td><a href='/negardeposito_gerente/{{item[1]}}'>NEGAR DEPOSITO</a></td>
         </tr>
         {% endfor %}
         </table>

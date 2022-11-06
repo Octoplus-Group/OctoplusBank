@@ -1,24 +1,17 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerenteGeral.html" %}
 
-{% block content %} 
+{% block title %}
 
-<div class="btnVoltarHome">
-    <a class="paginaInicial" href="/home_gerente_geral/{{cliente.0}}">
-            <!-- <img class="homeIcon" src="../../static/images/icons/home.png" alt="Home"> -->
-                <label class="paginaInicial">
-                    VOLTAR
-                </label>
-    </a>
-</div>
+Octoplus Bank | Aprovar Depósitos
 
-<div class="tituloPage">
-    <h1 style="text-align: center;">
-        <u>APROVAR DEPÓSITOS</u>
-    </h1>
-    <br>
-</div>
+{% endblock %}
 
-    <br>
+{% block conteudoComSidebar %}
+
+{% block moreScripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock moreScripts %}
 
     <div>
         <table class="table" border="2">
