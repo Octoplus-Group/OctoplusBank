@@ -13,27 +13,85 @@ Octoplus Bank | Gerenciar Agências
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock moreScripts %}
 
-<table border="2">
-    <tr>
-        <label for="bancos">Banco:</label>
-        <select name="bancos" id="bancos">
-        <option value="banco1">Octoplus Bank</option>
-        </select>
-    </tr>
-    <tr>
-        <td>Agência:</td>
-        <td>Responsável (GA):</td>
-        <td>Definir responsável:</td>
-        <td>Gerenciar:</td>
-    </tr>
-    <tr>
-        <td>
-            <input type="text" placeholder="Defina o responsável">
-        </td>
-        <td>
-            <h4>?</h4>
-        </td>
-    </tr>
-</table>
+
+<div class="container-fluid">
+    <fieldset>
+        <form action="/criar_agencia" method="POST">
+            <div class="row">
+                <h5 style="color:red ;">{{mensagem}}</h5>
+                <div class="col-6">
+                    <label for="GA">Selecione o Gerente de Agência:</label>
+                    <select name="GA" id="GA" required>
+                        <option selected disabled value="" class="form-control">Escolha</option>
+                        {% for ga in gerenteAgencia%}
+                        <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[2]}}'>{{ga[2]}}
+                        </option>
+                        {% endfor%}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="col-6">
+                        <label for="NOME_AGENCIA">Dê um nome para sua agência:</label>
+                        <input type="text" required id='NOME_AGENCIA' name="NOME_AGENCIA" class="form-control" >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <button type="submit" id="cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
+                </div>
+            
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary btn-lgz" data-toggle="modal" data-target="#gerenciarGerentes">Gerenciar Agências Ativas</button>
+                </div>
+            </div>
+</div>
+
+</fieldset>
+</form>
+
+<div class="modal fullscreen" id="gerenciarGerentes" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Agências Cadastradas</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">NUMERO AGENCIA</th>
+                            <th scope="col">NOME DO GERENTE</th>
+                            <th scope="col">NOME DA AGÊNCIA</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in agencias%}
+                        <tr>
+                            <td>{{item[1]}}</td>
+                            <td>{{item[2]}}</td>
+                            <td>{{item[3]}}</td>
+                            <td><a href="/link_alterar_agencia/{{item[1]}}">Editar</a></td>
+                            <td><a href="/deletar_agencia/{{item[1]}}">Deletar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>        
+
 
 {% endblock %}
