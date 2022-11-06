@@ -1,186 +1,75 @@
-/* geral */
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300;1,700&display=swap');
+/*ESTILO DA SETA À DIREITA DO INPUT*/
 
-*{
-  margin: 0;
-  padding: 0;
-  font-family: 'Noto Sans', sans-serif;
-}
-
-
-/* Pagina Dados */
-
-.dados {
-  text-align: center;
-  background-color: #eaebdc;
-  width: 68%;
-  margin: auto;
-  border-radius: 50px;
-  border: 2px solid black;
-}
-
-.atualizacao {
-  margin: auto;
-  margin-top: 3.5%;
-  width: 36%;
-  background-color: #ffa998;
-  border-radius: 25px;
-  border: 3px solid black;
-  color: #000000;
-}
-
-a {
-  color: #000000;
-}
-
-
-button.textodado {
-  font-weight: bold;
-  width: 370px;
-  height: 63px;
-  border: 3px solid black;
-  border-radius: 50px;
-  font-size: 35px;
-  text-align: center;
-  cursor: default;
-  color: black;
-}
-
-#agencia {
-  margin: auto;
-  border: 2px solid;
-  border-radius: 30px;
-  background-color: #ffae95;
-  width: 130px;
-  height: 50px;
-  cursor: default;
+select {
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    margin-right: 2rem;
+    padding: 1rem;
+    padding-right: 2rem;
   }
 
-#numero_conta {
-  margin: auto;
-  border: 2px solid;
-  border-radius: 30px;
-  background-color: #ffae95;
-  width: 130px;
-  height: 50px;
-  cursor: default;
-}
+/*NAV BAR BOOTSTRAP CSS PADRÃO*/
 
-#tipo_conta {
-  margin: auto;
-  border: 2px solid;
-  font-size: 30px;
-  border-radius: 30px;
-  background-color: #ffae95;
-  width: 200px;
-  height: 35px;
-  cursor: default;
-}
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-.homeIcon{
-  width: 78px;
-  height: 78px;
-}
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
 
-.solicitacao {
-  font-size: 30px;
-  font-weight: bold;
-}
+  .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
 
-button#solicitar {
- margin: auto;
- margin-top: 3%;
- font-weight: bold;
- background-color: #ffa998;
- border-radius: 25px;
- border: 3px solid black;
- color: #000000;
-}
+  .b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+  }
 
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
 
-/* HOME GERENTE */
+  .nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+  }
 
-.agencia {
-  margin-top: 2%;
-  margin-left: 42%;
-  text-align: center;
-  display: inline-block;
-  width: 303px;
-  height: 45px;
-  border: 3px solid black;
-  border-radius: 50px;
-  font-size: 30px;
-  background-color: #ffcece;
-}
+  .nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
 
-.btnHomeGerentePai{
-  margin-top: 4%;
-  margin-left: 29%;
-}
-
-button#minhaconta{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 2rem;
-  border-radius: 50px;
-  width: 350px;
-  height: 200px;
-  cursor: pointer;
-}
-
-button#gerenciar{
-  margin-left: 25%;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 2rem;
-  border-radius: 50px;
-  width: 350px;
-  height: 200px;
-  cursor: pointer;
-}
-
-div#agenciaConta {
-  margin-top: 2.5%;
-  width: 15%;
-  margin: auto;
-  border: 3px solid black;
-  border-radius: 50px;
-  background-color: #eaebdc;
-}
-
-/* EXTRATO */
-.gerarExtrato{
-  margin-left: 20%;
-  margin-bottom: 5%;
-  font-weight: bold;
-  font-size: larger;
-}
-
-.dataInicialFinal{
-  margin-top: 2%;
-  justify-content: center;
-  display: flex;
-}
-
-input.dataInicial, input.dataFinal{
-  font-size: 2rem;
-  text-align: center;
-  border-radius: 35px;
-  width: 25vh;
-  height: 10vh;
-}
-
-button.submitExtrato{
-  padding-top: 5%;
-}
-
-th,td {
-  border: none;
-}
-
-table.table{
-  border-radius: 25px;
-  border: 2px solid #000000;
-  margin: 0% 33%;
-  height: 35vh;
-  width: 35vw;
-  background-color: white;
+  @media print{ 
+    body, html, #page-container, .scrollable-page, .ps, .panel {
+        height: 100% !important;
+        width: 100% !important;
+        display: inline-block;
+    }
 }

@@ -15,20 +15,14 @@ Octoplus Bank | Home
 <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar" style="color: white;">
   <div class="container-fluid py-3">
     <a class="navbar-brand" href="">
-      <img src="../static/images/octoplus_extendido_perola.png" height="75" alt="">
+      <img src="../../static/img/octoplus_extendido_perola.png" height="75" alt="">
     </a>
 
     <div class="navbar-nav" id="navbar-items">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <h3 aria-current="page">Saldo disponível:</h3>
-          <a onclick="changeIcon(this)" id="myBtn">
-            <span class="SPN" data-text="R$ {{conta.4}}">R$ {{conta.4}} </span>
-            <i class="fa fa-eye-slash"></i>
-          </a>
-        <li class="nav-item">
           <h3 aria-current="page">{{cliente.2}}</h3>
-          <h4>Ag. {{cliente.15}} | C.C. {{cliente.0}}</h4>
+          <h4>Ag. {{cliente.15}} | Função: {{cliente.14}}</h4>
         </li>
         <li class="nav-item">
           <a class="dropdown-item" href="/">Sair
@@ -44,36 +38,30 @@ Octoplus Bank | Home
 
 <main>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 330px;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 420px;">
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="/dados_user/cliente/{{cliente.0}}" class="nav-link link-dark">
+        <a href="/gerenciar_contas_GG" class="nav-link link-dark py-4">
           <i class="fa-solid fa-file-invoice"></i>
-          Informações
+          Gerenciar Contas
         </a>
       </li>
       <li>
-        <a href="/link_extrato/{{cliente.0}}" class="nav-link link-dark">
-          <i class="fa-solid fa-grip"></i>
-          Extrato
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="/pagina_deposito/{{cliente.0}}" class="nav-link link-dark" aria-current="page">
+        <a href="/provacao_deposito_GG/{{cliente.0}}" class="nav-link link-dark py-4">
           <i class="fa-solid fa-sack-dollar"></i>
-          Depósito
+          Gerenciar Depósitos
         </a>
       </li>
       <li>
-        <a href="/pagina_saque/cliente/{{cliente.0}}" class="nav-link link-dark">
-          <i class="fa-solid fa-coins"></i>
-          Saque
+        <a href="/gerenciar_gerentes" class="nav-link link-dark py-4">
+          <i class="fa-solid fa-users"></i>
+          Gerenciar Gerentes
         </a>
       </li>
       <li>
-        <a href="/pagina_transferencia/{{cliente.0}}" class="nav-link link-dark">
-          <i class="fa-solid fa-money-bill-transfer"></i>
-          Transferência
+        <a href="/gerenciar_agencias" class="nav-link link-dark py-4">
+          <i class="fa-solid fa-building-columns"></i>
+          Gerenciar Agências
         </a>
       </li>
     </ul>
@@ -101,11 +89,9 @@ Octoplus Bank | Home
 
 </main>
 
-
 <!--FUNÇÃO SAIR DO LADO DO THIAGAO-->
-<script src="../javascript/assets/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../static/sidebars.js"></script>
-
+<script src="../../javascript/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/sidebars.js"></script>
 
 <!--SCRIPT PARA ESCONDER O SALDO NO CLICK-->
 <script>
