@@ -673,34 +673,50 @@ class realizarTransferenciaController(MethodView):
         transferencia = float(request.form['transferencia'])
         agencia = request.form["agencia"]
         para = request.form["para"]
-               
+
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
-            cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-            conta = cur.fetchone()
-            saldofinal = ((transferencia * -1)+(conta[4]))
-            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",((saldofinal),id))
-            cur.connection.commit()
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(conta[1],transferencia  * -1))
-            cur.connection.commit()
+            cur.execute("SELECT * from banco where ID_BANCO=%s",(1))
+            banco = cur.fetchone()
+        
+        if transferencia > banco[2]:
+            with mysql.cursor() as cur:
+                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                conta = cur.fetchone()
+                mensagem = "O transferencia não pode ser realizada, Favor Entrar em contato com o Gerente"
 
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s and ID_AGENCIA=%s",(para,agencia))
-            conta = cur.fetchone()
-            saldofinal = (transferencia + conta[4])
-            cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s AND ID_AGENCIA=%s",(saldofinal, para,agencia))
-            cur.connection.commit()
-            cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(para, transferencia))
-            cur.connection.commit()
+            return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem )
+            
+        else:
+               
+            with mysql.cursor() as cur:
+                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                conta = cur.fetchone()
+                saldofinal = ((transferencia * -1)+(conta[4]))
+                cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",((saldofinal),id))
+                cur.connection.commit()
+                cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(conta[1],transferencia  * -1))
+                cur.connection.commit()
 
-            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
-            cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-            conta = cur.fetchone()
+                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s and ID_AGENCIA=%s",(para,agencia))
+                conta = cur.fetchone()
+                saldofinal = (transferencia + conta[4])
+                cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s AND ID_AGENCIA=%s",(saldofinal, para,agencia))
+                cur.connection.commit()
+                cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO')",(para, transferencia))
+                cur.connection.commit()
 
-            mensagem='Transferencia Realizada com Sucesso'
+                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                conta = cur.fetchone()
 
-        return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem )
+                mensagem='Transferencia Realizada com Sucesso'
+
+            return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem )
 
 
 
