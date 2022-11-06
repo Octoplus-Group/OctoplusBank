@@ -35,6 +35,7 @@
     <th scoup="col">NOME DO CLIENTE</th>
     <th scoup="col">CPF</th>
     <th scoup="col">STATUS DA CONTA</th>
+    <th scoup="col">VISUALIZAR</th>
     <th scoup="col">EDITAR</th>
     <th scoup="col">EXTRATO</th>
 </tr>
@@ -44,6 +45,7 @@
     <td>{{item[2]}}</td>
     <td>{{item[3]}}</td>
     <td>{{item[13]}}</td>
+    <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
     <td><a href="/update/gerente/{{item.0}}">Editar</a></td>
     <td><a href="/link_extrato_gerente/{{item.0}}">Extrato</a></td>
 </tr>
@@ -68,9 +70,9 @@
                 <th scoup="col">NOME DO CLIENTE</th>
                 <th scoup="col">CPF</th>
                 <th scoup="col">STATUS DA CONTA</th>
+                <th scoup="col">VISUALIZAR</th>
                 <th scoup="col">APROVAR</th>
-                <th scoup="col">VIZUALIZAR</th>
-                <th scoup="col">NEGAR</th>
+                <th scoup="col">RECUSAR</th>
             </tr>
             {% for item in dataAnalise%}
             <tr>
@@ -78,9 +80,9 @@
                 <td>{{item[2]}}</td>
                 <td>{{item[3]}}</td>
                 <td>{{item[13]}}</td>
-                <td><a href='/aprovar_contas/{{item[1]}}'>APROVAR</a></td>
-                <td><a href="/vizualizar_conta_gerente/{{item[1]}}">VIZUALIZAR</a></td>
-                <td><a href="/negarconta_gerente/{{item[1]}}">NEGAR</a></td>
+                <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
+                <td><a href='/aprovar_contas/{{item[1]}}'>Aprovar</a></td>                
+                <td><a href="/negarconta_gerente/{{item[1]}}">Recusar</a></td>
             </tr>
             {% endfor %}
             </table>
@@ -105,6 +107,7 @@
                 <th scoup="col">NOME DO CLIENTE</th>
                 <th scoup="col">CPF</th>
                 <th scoup="col">STATUS DA CONTA</th>
+                <th scoup="col">VISUALIZAR</th>1
                 <th scoup="col">AÇÃO</th>
             </tr>
             {% for item in dataDeletar%}
@@ -113,7 +116,8 @@
                 <td>{{item[2]}}</td>
                 <td>{{item[3]}}</td>
                 <td>{{item[13]}}</td>
-                <td><a href='/delete/cliente/{{item[1]}}'>INATIVAR</a></td>
+                <td><a href="/vizualizar_conta_gerente/{{item[1]}}">Visualizar</a></td>
+                <td><a href='/delete/cliente/{{item[1]}}'>Encerrar</a></td>
             </tr>
             {% endfor %}
             </table>
