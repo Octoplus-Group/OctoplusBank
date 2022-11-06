@@ -123,26 +123,25 @@ class DeleteClienteRequisicaoController(MethodView):
             conta = cur.fetchone()
             valor = conta[4]
             
-        if valor>0 or valor<0:
-            with mysql.cursor()as cur:
-                print('testando',conta[4])
-                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
-                cliente = cur.fetchone()
-                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-                conta = cur.fetchone()
-                mensagem = "Voce deve zerar a sua conta antes de encerrar ela"
+            if valor > 0 or valor < 0:
+                with mysql.cursor()as cur:
+                    print('testando',conta[4])
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    mensagem = "Voce deve zerar a sua conta antes de encerrar ela"
                 return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
-        else:
-            with mysql.cursor()as cur:
-                cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
-                cur.connection.commit()
-                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
-                cliente = cur.fetchone()
-                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-                conta = cur.fetchone()
-                mensagem = "Sua Solicitação foi encaminhada para o Gerente de Agencia"
-
-                return render_template ("public/dados.html", mensagem=mensagem,cliente=cliente,conta=conta)
+            else:
+                with mysql.cursor()as cur:
+                    cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
+                    cur.connection.commit()
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    mensagem = "Sua Solicitacao foi encaminhada para o Gerente de Agencia"
+                return redirect ()
 
 class UpdateClienteController(MethodView):
     def get(self, id):
@@ -390,14 +389,16 @@ class LinkGerenciarContasController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
+            print('teste',cliente[0])
+            conta =''
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('APROVADO',cliente[15]))
             dataAprovado = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('ANALISE',cliente[15]))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
             dataAnalise = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s AND ID_AGENCIA=%s",('DELETAR',cliente[15]))
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
 
-            return render_template('public/gerenciar_contas.html', cliente=cliente, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+            return render_template('public/gerenciar_contas.html', cliente=cliente, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar ,conta=conta)
 
 class AprovacaoContaController(MethodView):
     def get(self,id):
@@ -801,8 +802,7 @@ class LoginFuncionario(MethodView):
                 elif senhalogin == cliente[12] and cliente[14]=='GA':
                     cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
                     cliente = cur.fetchone()
-                    
-                    
+
                     return render_template('public/home_gerente.html', cliente=cliente)
                 else:
                     return render_template('public/adm.html')
