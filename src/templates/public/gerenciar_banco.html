@@ -1,43 +1,48 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerenteGeral.html" %}
 
-{% block content %} 
+{% block title %}
 
-<div class="botaohome2">
-    <a href="/home_gerente_geral/{{cliente.0}}">
-    <h4>VOLTAR</h4>
-    </a>
+Octoplus Bank | Gerenciar Agências
+
+{% endblock %}
+
+{% block conteudoComSidebar %}
+
+{% block moreScripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock moreScripts %}
+
+<div class="container-fluid m-3">
+    <form action="/banco_dados" method="POST">
+        <fieldset class="cadastro">
+            <div class="cadastro-fundo">
+            <br>
+                <div class="parte-1">
+                    <!-- <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3> -->
+                    <h3>CAPITAL ATUAL DO BANCO: R$ {{"{:.2f}".format(capital)}}</h3>
+                    <br>
+                    <label for="capital">ADICIONAR CAPITAL AO BANCO</label>
+                    <input type="text" inputmode="numeric" name="capital"  id="capital" min="0" max="10000000"  step=".01" required>
+                </div>
+                <br>
+                <div class="parte-1">
+                    <h3>JUROS DE CHEQUE ESPECIAL ATUAL (%): {{banco.4}}</h3>
+                    <br>
+                    <label for="jurosce">ALTERAR JUROS DE CHEQUE ESPECIAL</label>
+                    <input type="text" inputmode="numeric" name="jurosce" id="jurosce" value="{{banco.4}}" required min="0" max="1000000"  step=".02">
+                </div>
+                <br>
+                <div class="parte-1">
+                    <h3>JUROS DE POUPANÇA ATUAL (%): {{banco.3}}</h3>
+                    <br>
+                    <label for="jurospp">ALTERAR JUROS DE POUPAÇA</label>
+                    <input type="text" inputmode="numeric" name="jurospp"  id="jurospp" value="{{banco.3}}" required min="0" max="1000000"  step=".01">
+                </div>
+    
+           <button type="submit" id="solicitar">Solicitar alteração de dados e/ou Adicionar valor ao Capital</button> 
 </div>
 
-<form action="/banco_dados" method="POST">
-    <fieldset class="cadastro">
-        <div class="cadastro-fundo">
-        <br>
-            <div class="parte-1">
-                <!-- <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3> -->
-                <h3>CAPITAL ATUAL DO BANCO: R$ {{"{:.2f}".format(capital)}}</h3>
-                <br>
-                <label for="capital">ADICIONAR CAPITAL AO BANCO</label>
-                <input type="number" name="capital"  id="capital" min="0" max="10000000"  step=".01" required>
-            </div>
-            <br>
-            <div class="parte-1">
-                <h3>JUROS DE CHEQUE ESPECIAL ATUAL (%): {{banco.4}}</h3>
-                <br>
-                <label for="jurosce">ALTERAR JUROS DE CHEQUE ESPECIAL</label>
-                <input type="number" name="jurosce" id="jurosce" value="{{banco.4}}" required min="0" max="1000000"  step=".02">
-            </div>
-            <br>
-            <div class="parte-1">
-                <h3>JUROS DE POUPANÇA ATUAL (%): {{banco.3}}</h3>
-                <br>
-                <label for="jurospp">ALTERAR JUROS DE POUPAÇA</label>
-                <input type="number" name="jurospp"  id="jurospp" value="{{banco.3}}" required min="0" max="1000000"  step=".01">
-            </div>
-
-
-            
-
-       <button type="submit" id="solicitar">Solicitar alteração de dados e/ou Adicionar valor ao Capital</button> 
    
 
 {% endblock %}

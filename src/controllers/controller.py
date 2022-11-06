@@ -1007,7 +1007,7 @@ class DeletarAgenciaController(MethodView):
                 gerenteAgencia = cur.fetchall()
                 cur.execute("SELECT * FROM agencia")
                 agencias = cur.fetchall()
-                mensagem = "Existem Clientes ainda nessa agencia, então não pode ser excluida"
+                mensagem = "Existem clientes nessa agência, então não pôde ser excluída."
 
             return render_template('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias,mensagem=mensagem )
        
