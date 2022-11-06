@@ -15,6 +15,11 @@ class IndexController(MethodView):
             data = cur.fetchall()
             cur.execute("SELECT * FROM banco where ID_BANCO=%s ",(1))
             banco=cur.fetchone()
+            cur.execute("SELECT * FROM agencia")
+            agencias = cur.fetchall()
+            cur.execute("SELECT COUNT(ID_AGENCIA) from conta WHERE ID_AGENCIA=%s ",(6))
+            qtdcontas = cur.fetchone()
+           
         return render_template('public/index.html', data=data, banco=banco)
 
     def post(self):
@@ -799,7 +804,8 @@ class GerenciarAgenciaLinkController(MethodView):
             agencias = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
+            mensagem = ''
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente,mensagem=mensagem)
 
 class GerenciarGerentesLinkController(MethodView):
     def get(self):
@@ -950,15 +956,41 @@ class AlterarNomeAgenciaController(MethodView):
 class DeletarAgenciaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("DELETE from agencia WHERE ID_AGENCIA =%s",(id))
-            cur.connection.commit()
+            cur.execute("SELECT ID_CONTA FROM conta WHERE ID_AGENCIA=%s",(id))
+            testeconta = cur.fetchone()
             cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
-        return render_template ('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias)
+        
+        if testeconta == None:
+            with mysql.cursor() as cur:
+                cur.execute("DELETE from agencia WHERE ID_AGENCIA =%s",(id))
+                cur.connection.commit()
+                cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+                gerenteAgencia = cur.fetchall()
+                cur.execute("SELECT * FROM agencia")
+                agencias = cur.fetchall()
+                mensagem = "Agencia deletada com sucesso !!"
+            return render_template ('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias,mensagem=mensagem)
+            
+        else:
+            with mysql.cursor() as cur:
+                cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+                cliente = cur.fetchone()
+                cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+                gerenteAgencia = cur.fetchall()
+                cur.execute("SELECT * FROM agencia")
+                agencias = cur.fetchall()
+                mensagem = "Existem Clientes ainda nessa agencia, então não pode ser excluida"
+
+            return render_template('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias,mensagem=mensagem )
+       
+
 
 class ExecucaoDepositoGGController(MethodView):
     def get(self,id):
