@@ -141,7 +141,7 @@ class DeleteClienteRequisicaoController(MethodView):
                     cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     mensagem = "Sua Solicitacao foi encaminhada para o Gerente de Agencia"
-                return redirect ()
+                return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
 
 class UpdateClienteController(MethodView):
     def get(self, id):
@@ -406,6 +406,8 @@ class AprovacaoContaController(MethodView):
             
             cur.execute("UPDATE cliente SET STATUS =%s WHERE  ID_CLIENTE = %s",('APROVADO',id))
             cur.connection.commit()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
             dataAprovado = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
@@ -413,7 +415,7 @@ class AprovacaoContaController(MethodView):
             cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
             cliente = cur.fetchone()
         
-            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise)
+            return render_template('public/gerenciar_contas.html', cliente=cliente, conta=conta, dataAprovado=dataAprovado, dataAnalise=dataAnalise)
 
 class ModoGerenteAgenciaController(MethodView):
     def get(self,id):
@@ -1060,6 +1062,8 @@ class VizualizarContaController(MethodView):
 class NegarContaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
             cur.execute("UPDATE cliente SET STATUS=%s WHERE ID_CLIENTE=%s",('NEGADO',cliente[1]))
@@ -1071,7 +1075,7 @@ class NegarContaController(MethodView):
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
         
-        return render_template("public/gerenciar_contas.html",dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
+        return render_template("public/gerenciar_contas.html", conta=conta, dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
 
 class NegarDepositoController(MethodView):
     def get(self,id):
