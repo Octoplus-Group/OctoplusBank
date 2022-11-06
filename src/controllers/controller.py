@@ -141,7 +141,7 @@ class DeleteClienteRequisicaoController(MethodView):
                     cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     mensagem = "Sua Solicitacao foi encaminhada para o Gerente de Agencia"
-                return redirect ()
+                return redirect ('/')
 
 class UpdateClienteController(MethodView):
     def get(self, id):
