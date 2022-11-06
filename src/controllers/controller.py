@@ -387,11 +387,11 @@ class LinkGerenciarContasController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('APROVADO',cliente[15]))
             dataAprovado = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('ANALISE',cliente[15]))
             dataAnalise = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s AND ID_AGENCIA=%s",('DELETAR',cliente[15]))
             dataDeletar = cur.fetchall()
 
             return render_template('public/gerenciar_contas.html', cliente=cliente, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
