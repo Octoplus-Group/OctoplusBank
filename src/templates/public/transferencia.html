@@ -8,51 +8,42 @@ Octoplus Bank | Transferência
 
 {% block conteudoComSidebar %}
 
-<form action="/realiazar_transferencia/{{cliente.0}}" method="POST">
+<div class="container-fluid m-5 p-5">
+    <form action="/realiazar_transferencia/{{cliente.0}}" method="POST">
 
-    
-    <div class="saldoDepositoSaque">
-        <h4 class="textobtn">
-            SALDO: R${{"{:.2f}".format(conta.4)}}
-        </h4>
-    </div>
-    
-    
-    
-    <div class="dep"> 
-        <div class="caixa">
-            {{mensagem}}
-            <h2 class="depTxt">
-                Transferencia
-            </h2>
-            
-            <label for="reais">
-                <b>R$</b>
-                <input type="number" name="transferencia" placeholder="0,00" id="" min="0" max="10000000" step=".01" required>
-            </label><br><br>
-            
-            Transferir para:<br>
-
-            <label for="agencia">Agência:
-                <input type="number" placeholder="" name="agencia"  id="agencia" required>
-            </label>
-
-            <label for="para">Conta:
-                <input type="number" placeholder="" name="para"  id="para" required>
+        <h6 style="color:green ;">{{mensagem}}</h6>
+        <br>
+        <div class="form-group">
+            <h4>Quantidade a transferir:</h4>
+            <label for="transferencia">Quantidade:
+                <input type="text" class="form-control" name="transferencia" id="transferencia" placeholder="Insira o valor" required>
             </label>
         </div>
-    </div>
 
-    <div class="confirmar">
-        <label class="confirm" for="confirmar">Confirmar:<br> 
-            <button type="submit" id="confirmar">
-                <img class="confirmIcon" src="../../static/images/icons/confirm.png" alt="Confirmar">
-            </button>
-        </label>
-    </div>
+        <br>
 
-</form>
+        <div class="form-group">
+            <h4>Transferir para:</h4>
+            <div class="form-group col-1">
+                <label for="agencia">Agência:</label>
+                <input type="text" inputmode="numeric" class="form-control" name="agencia" id="agenciaTransf"
+                    placeholder="Agência" required>
+            </div>
+
+            <div class="form-group col-1">
+                <label for="para">Conta:</label>
+                <input type="text" inputmode="numeric" class="form-control" id="para" name="para" placeholder="Conta" required>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg p-4 my-5" type="submit" id="confirmarDep" class="form-control"
+            data-toggle="modal" data-target="exampleModalCenter">
+            <i class="fa-solid fa-check"></i>
+            Confirmar
+        </button>
+
+    </form>
+</div>
 
 
-
-{% endblock %}
+    {% endblock %}
