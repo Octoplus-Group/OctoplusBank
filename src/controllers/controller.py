@@ -134,7 +134,7 @@ class DeleteClienteRequisicaoController(MethodView):
                 return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
         else:
                 with mysql.cursor()as cur:
-                    cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CLIENTE =%s",('DELETAR',id))
+                    cur.execute("UPDATE cliente SET REQUISICAO =%s WHERE ID_CONTA =%s",('DELETAR',id))
                     cur.connection.commit()
                     cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
                     cliente = cur.fetchone()
