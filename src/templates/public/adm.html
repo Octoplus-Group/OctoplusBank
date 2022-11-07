@@ -14,30 +14,34 @@
         </div>
     </div><br>
 </header>
-<main>
-    <form action="/adm" method="POST">
-        <fieldset>
-            <div class="backgroundAdm">
-                <div class="alinhaLogin">
-                        <div class="adm-1">
-                            <label for="idFuncionario">ID GERENTE</label>
-                            <input type="text" name="idFuncionario" id="idFuncionario" required>
-                        </div>
-                        <div class="adm-2">
-                            <label for="senhaAdm">Senha</label>
-                            <input type="password"  name="senha" id="senhaAdm" required>
-                        </div>
-            </div>
-            <div class="entrarAdm">
-                <label for="entrar">Entrar</label><br> 
-                    <button type="submit" id="inicioSistema">
-                        <i class="fa-solid fa-right-to-bracket fa-3x"></i>
-                    </button>
-            </div>
-        </fieldset>
-    </form>
-</main>
 
+<main>
+
+    <div class="container-fluid m-5 d-flex justify-content-center">
+        <form action="/adm" method="POST">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-5">
+                    <label for="idFuncionario">ID GERENTE</label>
+                    <input type="text" name="idFuncionario" id="idFuncionarioNovo" class="form-control" required>
+                </div>
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-5">
+                        <label for="senhaAdm">Senha</label>
+                        <input type="password" name="senha" id="senhaAdmNovo" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="container d-flex justify-content-end">
+                    <button class="btn btn-primary btn-lg" type="submit" id="entrar" class="form-control" data-toggle="modal"
+                        data-target="exampleModalCenter">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Entrar
+                    </button>
+                </form>
+            </div>
+        </div>
 
  {% endblock %}
 

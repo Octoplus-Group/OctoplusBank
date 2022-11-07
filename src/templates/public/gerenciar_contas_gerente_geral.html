@@ -15,20 +15,20 @@ Octoplus Bank | Gerenciar Contas
 
 <!-- BOTÕES DE QUAL TIPO DE CONTA O GERENTE VAI EDITAR -->
 <div class="container-fluid">
-    <div class="row m-5">
-        <div class="col-4">
+    <div class="row m-5 d-flex justify-content-center">
+        <div class="col-2 p-5">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalGerenciarContas">
                 Gerenciar Contas Ativas
               </button>
         </div>
-        <div class="col-4">
+        <div class="col-2 p-5">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalGerenciarContas2">
-                Gerenciar Contas Pendentes
+                Solicitações de Abertura de Conta
               </button>
         </div>
-        <div class="col-4">
+        <div class="col-2 p-5">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalGerenciarContas3">
-                Gerenciar Pedidos de Exclusão
+                Solicitações Encerramento de Conta
               </button>
         </div>
     </div>
@@ -46,7 +46,7 @@ Octoplus Bank | Gerenciar Contas
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="thAlign" scope="col">NUMERO DE CONTA</th>
+                            <th class="thAlign" scope="col">NÚMERO DE CONTA</th>
                             <th class="thAlign" scope="col">NOME DO CLIENTE</th>
                             <th class="thAlign" scope="col">CPF</th>
                             <th class="thAlign" scope="col">STATUS DA CONTA</th>
@@ -79,14 +79,14 @@ Octoplus Bank | Gerenciar Contas
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Contas Pendentes de Aprovação - Agência {{conta.0}} </h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Solicitações Abertura de Conta - Agência {{conta.0}} </h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
               </div>
             <div class="modal-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="thAlign" scope="col">NUMERO DE CONTA</th>
+                            <th class="thAlign" scope="col">NÚMERO DE CONTA</th>
                             <th class="thAlign" scope="col">NOME DO CLIENTE</th>
                             <th class="thAlign" scope="col">CPF</th>
                             <th class="thAlign" scope="col">STATUS DA CONTA</th>
@@ -119,14 +119,14 @@ Octoplus Bank | Gerenciar Contas
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Contas Pendentes de Exclusão - Agência {{conta.0}} </h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Solicitações Encerramento de Conta - Agência {{conta.0}} </h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
               </div>
             <div class="modal-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="thAlign" scope="col">NUMERO DE CONTA</th>
+                            <th class="thAlign" scope="col">NÚMERO DE CONTA</th>
                             <th class="thAlign" scope="col">NOME DO CLIENTE</th>
                             <th class="thAlign" scope="col">CPF</th>
                             <th class="thAlign" scope="col">STATUS DA CONTA</th>
@@ -140,7 +140,7 @@ Octoplus Bank | Gerenciar Contas
                         <td>{{item[2]}}</td>
                         <td>{{item[3]}}</td>
                         <td>{{item[13]}}</td>
-                        <td><a href='/delete/cliente/{{item[1]}}'>INATIVAR</a></td>
+                        <td><a href='/delete/cliente/{{item[1]}}'>Encerrar</a></td>
                     </tr>
                     {% endfor %}
                         </tbody>
