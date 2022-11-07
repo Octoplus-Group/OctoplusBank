@@ -82,7 +82,7 @@ $(document).ready(function () {
 
 {% endblock moreScripts %}
 
-<form action="/cadastro_GA/" method="POST" onsubmit="return checkForm(this);">
+<form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);">
     <fieldset class="cadastro">
         <div class="container">
             <div class="row p-5">
@@ -129,15 +129,7 @@ $(document).ready(function () {
                         </label>
                     </div>
 
-                    <div class="row justify-content-start">
-                        <label for="tipoConta">Tipo de Conta:
-                            <select name="tipoConta" id="tipoConta" required class="form-control">
-                                <option selected disabled value="" class="form-control">Escolha</option>
-                                <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
-                                <option type="text" name="'tipoConta" id="tipoConta" value="POUPANCA">Poupança</option>
-                            </select>
-                        </label>
-                    </div>
+                    
                 </div>
                 <!--DIV QUE GRUDA A LINHA DE CIMA COM A LINHA DE BAIXO-->
                 <div class="w-100"></div>
@@ -186,16 +178,11 @@ $(document).ready(function () {
                 <div class="col-3">
                     <div class="row">
                         <label for="senha">Senha:
-                            <input type="password" id="senhaNovo" name="senha" class="form-control" maxlength="6">
+                            <input type="password" id="senha" name="senha" class="form-control" maxlength="6">
                         </label>
                     </div>
 
-                    <div class="row">
-                        <label for="confirmarSenha">Confirmar Senha:
-                            <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control"
-                                maxlength="6">
-                        </label>
-                    </div>
+                    
                 </div>
             </div>
         </div>
