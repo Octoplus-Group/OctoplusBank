@@ -22,8 +22,8 @@ Octoplus Bank | Gerenciar Agências
                     <!-- <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3> -->
                     <h3>CAPITAL ATUAL DO BANCO: R$ {{"{:.2f}".format(capital)}}</h3>
                     <br>
-                    <label for="capital">ADICIONAR CAPITAL AO BANCO</label>
-                    <input type="text" inputmode="numeric" name="capital"  id="capital" min="0" max="10000000"  step=".01" required>
+                    <label for="capital">ADICIONAR CAPITAL AO BANCO R$</label>
+                    <input type="text" inputmode="numeric" name="capital" id="capital" min="0" placeholder="0,00" step=".01" required>
                 </div>
                 <br>
                 <div class="parte-1">
@@ -40,7 +40,7 @@ Octoplus Bank | Gerenciar Agências
                     <input type="text" inputmode="numeric" name="jurospp"  id="jurospp" value="{{banco.3}}" required min="0" max="1000000"  step=".01">
                 </div>
     
-           <button type="submit" id="solicitar">Solicitar alteração de dados e/ou Adicionar valor ao Capital</button> 
+           <button type="submit" id="solicitar">Atualizar Dados</button> 
 </div>
 
    
