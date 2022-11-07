@@ -111,8 +111,9 @@ class DeleteClienteController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
+            conta=''
         
-            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar)
+            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar,conta=conta)
 
 class DeleteClienteRequisicaoController(MethodView):
     def get(self, id):
@@ -1119,3 +1120,22 @@ class VizualizarContaGGController(MethodView):
             conta = cur.fetchone()
 
             return render_template("public/vizualizar_conta_GG.html", cliente=cliente , conta=conta)
+
+class DeleteClienteGGController(MethodView):
+    def get(self, id):
+        
+        with mysql.cursor() as cur:
+            
+            cur.execute("DELETE from cliente WHERE ID_CLIENTE =%s",(id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+            conta=''
+        
+            return render_template('public/gerenciar_contas_gerente_geral.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar,conta=conta)

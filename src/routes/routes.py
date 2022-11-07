@@ -69,6 +69,7 @@ routes ={
     "aprovacao_deposito_GG_route":"/provacao_deposito_GG/<int:id>","aprovacao_deposito_GG_controller":ExecucaoDepositoGGController.as_view("AprovacaoDGG"),
     "negar_conta_GG_route":"/negar_conta_GG/<int:id>","negar_conta_GG_controller":NegarContaGGController.as_view("NegarcontaGG"),
     "vizualirzar_conta_GG_route":"/vizualizar_conta_GG/<int:id>","vizualizar_conta_GG_controller":VizualizarContaGGController.as_view("VizualizarcontaGG"),
+     "delete_gg_route":"/delete_gg/<int:id>","delete_gg_controller":DeleteClienteGGController.as_view("deleteGG"),
 }
 
 
