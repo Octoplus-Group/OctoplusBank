@@ -955,7 +955,7 @@ class LinkGerenciarContasGGController(MethodView):
             
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s", (id))
             conta = cur.fetchone()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
