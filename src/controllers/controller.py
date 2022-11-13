@@ -704,34 +704,47 @@ class realizarTransferenciaController(MethodView):
             return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem )
             
         else:
-               
+            
             with mysql.cursor() as cur:
-                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
-                cliente = cur.fetchone()
-                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-                conta = cur.fetchone()
-                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s ",(para))
-                destino = cur.fetchone()
-                saldofinal = ((transferencia * -1)+(conta[4]))
-                cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",((saldofinal),id))
-                cur.connection.commit()
-                cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS, DE, PARA) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO', %s, %s)",(conta[1],transferencia  * -1, cliente[2], destino[2]))
-                cur.connection.commit()
-
                 cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s and ID_AGENCIA=%s",(para,agencia))
                 conta = cur.fetchone()
-                saldofinal = (transferencia + conta[4])
-                cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s AND ID_AGENCIA=%s",(saldofinal, para,agencia))
-                cur.connection.commit()
-                cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS, DE, PARA) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO', %s, %s)",(para, transferencia, cliente[2], destino[2]))
-                cur.connection.commit()
+                if conta == None:
+                    mensagem = "A conta informada não existe!"
 
-                cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
-                cliente = cur.fetchone()
-                cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
-                conta = cur.fetchone()
+                    cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS) VALUES (%s,'TRANSF.',NOW(),%s,'REPROVADO')",(para, transferencia))
+                    cur.connection.commit()
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
 
-                mensagem='Transferencia Realizada com Sucesso'
+                else:
+                    mensagem = "A conta informada não existe. Preencha com uma conta existente!"
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s ",(para))
+                    destino = cur.fetchone()
+                    saldofinal = ((transferencia * -1)+(conta[4]))
+                    cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s",((saldofinal),id))
+                    cur.connection.commit()
+                    cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS, DE, PARA) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO', %s, %s)",(conta[1],transferencia  * -1, cliente[2], destino[2]))
+                    cur.connection.commit()
+
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s and ID_AGENCIA=%s",(para,agencia))
+                    conta = cur.fetchone()
+                    saldofinal = (transferencia + conta[4])
+                    cur.execute("UPDATE conta SET saldo =%s WHERE  ID_CONTA =%s AND ID_AGENCIA=%s",(saldofinal, para,agencia))
+                    cur.connection.commit()
+                    cur.execute("INSERT INTO transacoes (ID_CONTA,TIPO,DATA,VALOR,STATUS, DE, PARA) VALUES (%s,'TRANSF.',NOW(),%s,'APROVADO', %s, %s)",(para, transferencia, cliente[2], destino[2]))
+                    cur.connection.commit()
+                    cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+                    cliente = cur.fetchone()
+                    cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+                    conta = cur.fetchone()
+
+                    mensagem='Transferencia Realizada com Sucesso'
 
             return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem )
 
