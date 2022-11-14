@@ -67,7 +67,7 @@ CREATE TABLE `banco` (
 
 LOCK TABLES `banco` WRITE;
 /*!40000 ALTER TABLE `banco` DISABLE KEYS */;
-INSERT INTO `banco` VALUES (1,'OCTOPLUS_BANK',1002993.00,1,1);
+INSERT INTO `banco` VALUES (1,'OCTOPLUS_BANK',5000000.00,1,1);
 /*!40000 ALTER TABLE `banco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,6 +141,32 @@ INSERT INTO `conta` VALUES (1,0000000001,'2022-11-09 18:42:53','CORRENTE',2992.0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `funcionarios`
+--
+
+DROP TABLE IF EXISTS `funcionarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `funcionarios` (
+  `ID_FUNC` int NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(50) NOT NULL,
+  `FUNCAO` varchar(45) NOT NULL,
+  `SENHA` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_FUNC`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `funcionarios`
+--
+
+LOCK TABLES `funcionarios` WRITE;
+/*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
+INSERT INTO `funcionarios` VALUES (1,'MEZENGA','GG','1234'),(2,'Motumbo','GG','1234'),(3,'Gabriel','GG','1234');
+/*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `transacoes`
 --
 
@@ -154,8 +180,8 @@ CREATE TABLE `transacoes` (
   `DATA` datetime DEFAULT NULL,
   `VALOR` float DEFAULT NULL,
   `STATUS` varchar(10) NOT NULL DEFAULT 'ANALISE',
-  `DE` varchar(255) default null,
-  `PARA` varchar(255) default null,
+  `DE` varchar(255) DEFAULT NULL,
+  `PARA` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID_TRANSACAO`),
   KEY `ID_CONTA` (`ID_CONTA`),
   KEY `DE` (`DE`),
@@ -169,7 +195,6 @@ CREATE TABLE `transacoes` (
 
 LOCK TABLES `transacoes` WRITE;
 /*!40000 ALTER TABLE `transacoes` DISABLE KEYS */;
-INSERT INTO `transacoes` VALUES (1,1,'DEPOSITO','2022-11-10 07:41:43',1000,'APROVADO'),(1,2,'SAQUE','2022-11-10 08:11:04',-1,'APROVADO'),(1,3,'TRANSF.','2022-11-10 08:12:57',-100,'APROVADO'),(1,4,'TRANSF.','2022-11-10 08:12:58',100,'APROVADO'),(1,5,'TRANSF.','2022-11-10 08:14:07',-1,'APROVADO');
 /*!40000 ALTER TABLE `transacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -182,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-10  9:32:19
+-- Dump completed on 2022-11-14  8:51:54

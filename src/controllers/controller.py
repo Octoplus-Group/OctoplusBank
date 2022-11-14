@@ -947,7 +947,7 @@ class VerificacaoEntrada(MethodView):
             if banco[2]>0:
                 return render_template ('public/area_cliente.html')
             else:
-                return render_template ('public/capital.html')
+                return render_template ('public/cadastro_gerente_geral.html')
 
 class LinkGerenciarContasGGController(MethodView):
     def get(self):
@@ -1154,3 +1154,15 @@ class DeleteClienteGGController(MethodView):
             conta=''
         
             return render_template('public/gerenciar_contas_gerente_geral.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar,conta=conta)
+
+class CadastroGGInicioController(MethodView):
+    def post(self):
+
+        nomeGG = request.form['nomeGG']
+        senhaGG = request.form['senhaGG']
+
+        with mysql.cursor() as cur:
+            cur.execute("INSERT INTO funcionarios (NOME,FUNCAO,SENHA) VALUES (%s,%s,%s)",(nomeGG,'GG',senhaGG))
+            cur.connection.commit()
+
+        return render_template('public/capital.html')
