@@ -25,7 +25,6 @@ routes ={
     "realizar_saque_route":"/realizar_saque/cliente/<int:id>","realizar_saque_controller":realizarSaqueController.as_view("realizarsaque"),
     "link_extrato":"/link_extrato/<int:id>","link_extrato_controller":LinkExtratoController.as_view("linkextrato"),
     "dados_user_route":"/dados_user/cliente/<int:id>","dados_user_controller":DadosController.as_view("dadosuser"),
-    "verificar_aprovacao":"/verificaraprovacao/","verificar_aprovacao_controller":VerificacaoAprovacao.as_view("verificaraprovacao"),
     "solicitacao_deletar":"/solicitacaodeletar/<int:id>","solicitacao_deletar_controller":DeleteClienteRequisicaoController.as_view("solicitacaodeletar"),
     "pagina_transferencia_route":"/pagina_transferencia/<int:id>","pagina_transferencia_controller":paginaTransferenciaController.as_view("transferencia"),
     "realizar_transferencia_route":"/realiazar_transferencia/<int:id>","realizar_tranferencia_controller":realizarTransferenciaController.as_view("realizartransferencia"),
