@@ -12,7 +12,7 @@ routes ={
     "link_cadastro":"/link_cadastro/","link_cadastro_controller":LinkPaginaCadastroController.as_view("linkcadastro"),
     "cadastro_execucao":"/cadastro_execucao/","cadastro_execucao_controller":CadastroClienteController.as_view("cadastrocliente"),
     "gerar_extrato":"/gerar_extrato/<int:id>","gerar_extrato_controller":GerarExtratoController.as_view("gerarextrato"),
-    "entrada_route":"/verificacao_entrada","verifica_entrada_controller":VerificacaoEntrada.as_view("verificacaoentrada"),
+    "entrada_route":"/home","verifica_entrada_controller":VerificacaoEntrada.as_view("verificacaoentrada"),
 
     #cliente
     "area_cliente_route":"/area_cliente","area_cliente_controller":AreaClienteController.as_view("AreaCliente"),
@@ -25,7 +25,6 @@ routes ={
     "realizar_saque_route":"/realizar_saque/cliente/<int:id>","realizar_saque_controller":realizarSaqueController.as_view("realizarsaque"),
     "link_extrato":"/link_extrato/<int:id>","link_extrato_controller":LinkExtratoController.as_view("linkextrato"),
     "dados_user_route":"/dados_user/cliente/<int:id>","dados_user_controller":DadosController.as_view("dadosuser"),
-    "verificar_aprovacao":"/verificaraprovacao/","verificar_aprovacao_controller":VerificacaoAprovacao.as_view("verificaraprovacao"),
     "solicitacao_deletar":"/solicitacaodeletar/<int:id>","solicitacao_deletar_controller":DeleteClienteRequisicaoController.as_view("solicitacaodeletar"),
     "pagina_transferencia_route":"/pagina_transferencia/<int:id>","pagina_transferencia_controller":paginaTransferenciaController.as_view("transferencia"),
     "realizar_transferencia_route":"/realiazar_transferencia/<int:id>","realizar_tranferencia_controller":realizarTransferenciaController.as_view("realizartransferencia"),
@@ -69,7 +68,8 @@ routes ={
     "aprovacao_deposito_GG_route":"/provacao_deposito_GG/<int:id>","aprovacao_deposito_GG_controller":ExecucaoDepositoGGController.as_view("AprovacaoDGG"),
     "negar_conta_GG_route":"/negar_conta_GG/<int:id>","negar_conta_GG_controller":NegarContaGGController.as_view("NegarcontaGG"),
     "vizualirzar_conta_GG_route":"/vizualizar_conta_GG/<int:id>","vizualizar_conta_GG_controller":VizualizarContaGGController.as_view("VizualizarcontaGG"),
-     "delete_gg_route":"/delete_gg/<int:id>","delete_gg_controller":DeleteClienteGGController.as_view("deleteGG"),
+    "delete_gg_route":"/delete_gg/<int:id>","delete_gg_controller":DeleteClienteGGController.as_view("deleteGG"),
+    "cadastro_gg_route":"/cadastro_gg","cadastro_gg_controller":CadastroGGInicioController.as_view("cadastroGG"),
 }
 
 

@@ -226,7 +226,8 @@ class LoginController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente")
             data = cur.fetchall()
-        return render_template('public/Login.html', data=data)
+            mensagem =''
+        return render_template('public/Login.html', data=data, mensagem=mensagem)
 
 class LoginValicaoController(MethodView):
     def post(self):
@@ -258,6 +259,9 @@ class LoginValicaoController(MethodView):
                     cur.execute("SELECT * FROM conta  WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente, conta=conta)
+                elif senhalogin == cliente[12] and cliente[14]=='CL' and cliente[13]=='ANALISE':
+                    mensagem ='Sua Conta ainda ainda esta em Analise, tente mais tarde fazer o Login!'
+                    return render_template('public/login.html',mensagem=mensagem)
                 else:
                     return render_template('public/Login.html')
             else:
@@ -646,12 +650,12 @@ class CadastroClienteController(MethodView):
             print('agencia cliente',agenciacliente)
             cur.execute("UPDATE conta SET ID_AGENCIA=%s WHERE ID_CONTA=%s",(agenciacliente,numeroconta))
             cur.connection.commit()
-            cur.execute("SELECT ID_CONTA FROM conta ORDER BY ID_CONTA DESC")
-            numeroconta=cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA=%s",(numeroconta))
+            agenciaclientefinal=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_AGENCIA=%s WHERE ID_CLIENTE = %s",(agenciacliente,numerocliente))
             cur.connection.commit()
             
-            return render_template('/public/aguardandoAprovacao.html', nome=nome, numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,numeroconta=numeroconta)   
+            return render_template('/public/aguardandoAprovacao.html', nome=nome, numerocontaAbertura=numerocontaAbertura, numeroclienteAbertura=numeroclienteAbertura,numeroconta=numeroconta,agenciaclientefinal=agenciaclientefinal)   
 
 
 class VerificacaoAprovacao(MethodView):
@@ -947,7 +951,7 @@ class VerificacaoEntrada(MethodView):
             if banco[2]>0:
                 return render_template ('public/area_cliente.html')
             else:
-                return render_template ('public/capital.html')
+                return render_template ('public/cadastro_gerente_geral.html')
 
 class LinkGerenciarContasGGController(MethodView):
     def get(self):
@@ -1154,3 +1158,15 @@ class DeleteClienteGGController(MethodView):
             conta=''
         
             return render_template('public/gerenciar_contas_gerente_geral.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar,conta=conta)
+
+class CadastroGGInicioController(MethodView):
+    def post(self):
+
+        nomeGG = request.form['nomeGG']
+        senhaGG = request.form['senhaGG']
+
+        with mysql.cursor() as cur:
+            cur.execute("INSERT INTO funcionarios (NOME,FUNCAO,SENHA) VALUES (%s,%s,%s)",(nomeGG,'GG',senhaGG))
+            cur.connection.commit()
+
+        return render_template('public/capital.html')

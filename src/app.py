@@ -77,8 +77,6 @@ app.add_url_rule(routes["link_cadastro"],view_func=routes["link_cadastro_control
 
 app.add_url_rule(routes["cadastro_execucao"],view_func=routes["cadastro_execucao_controller"])
 
-app.add_url_rule(routes["verificar_aprovacao"],view_func=routes["verificar_aprovacao_controller"])
-
 app.add_url_rule(routes["solicitacao_deletar"],view_func=routes["solicitacao_deletar_controller"])
 
 app.add_url_rule(routes["home_gerente_geral_id_route"],view_func=routes["home_gerente_geral_id_controller"])
@@ -126,6 +124,8 @@ app.add_url_rule(routes["negardeposito_route"],view_func=routes["negardepositoco
 app.add_url_rule(routes["negar_conta_GG_route"],view_func=routes["negar_conta_GG_controller"])
 
 app.add_url_rule(routes["delete_gg_route"],view_func=routes["delete_gg_controller"])
+
+app.add_url_rule(routes["cadastro_gg_route"],view_func=routes["cadastro_gg_controller"])
 
 app.add_url_rule(routes["vizualirzar_conta_GG_route"],view_func=routes["vizualizar_conta_GG_controller"])
 

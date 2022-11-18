@@ -16,61 +16,30 @@ Octoplus Bank - Aguardando Aprovação
 {% if (numeroclienteAbertura[13]) == 'ANALISE' %}
 <script>
 	$(document).ready(function(){
-        $('#onload').modal('show');
-	});
-</script>
-
-{% else %}
-<script>
-	$(document).ready(function(){
 		$("#onload2").modal('show');
 	});
 </script>
+
 {% endif %}
 
 {% endblock %}
 
 {% block content %}
-<!--MODAL ONLOAD ~ CASO STATUS DA CONTA ESTEJA PENDENTE-->
-<div class="modal fade" id="onload" tabindex="-1" data-keyboard="false" data-bs-backdrop="static" data-bs-keyboard="false"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Olá, {{nome}}</h5>
-            </div>
-            <div class="modal-body">
-                Sua conta está pendente de aprovação, aguarde...
-                <br>
-                Clique no botão de 'Verificar' para saber se já foi aceito.
-                <div class="text-center pt-3">
-                    <div class="spinner-border p-3" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" onclick="location.href='/verificaraprovacao'"
-                    class="btn btn-primary">Verificar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<!--MODAL ONLOAD2 ~ CASO STATUS DA CONTA SEJA APROVADO!-->
+<!--MODAL ONLOAD2 ~ CASO STATUS DA CONTA SEJA PENDENTE!-->
 <div class="modal fade" id="onload2" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"  data-bs-backdrop="static" data-bs-keyboard="false"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Seja bem vindo, {{nome}}!</h5>
+                <h5 class="modal-title" id="exampleModalLabel2">{{nome}} sua conta esta em analise, você já pode ver seu numero de conta e agencia abaixo, mas só podera entrar assim que sua conta for liberada pelo Gerente !</h5>
             </div>
             <div class="modal-body">
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <label for="agencia">Agência:
-                            <input type="text" readonly value="{{numerocontaAbertura.0}}" required class="form-control">
+                            <input type="text" readonly value="{{agenciaclientefinal.0}}" required class="form-control">
                         </label>
                     </div>
                     <div class="col-auto">
@@ -88,7 +57,7 @@ Octoplus Bank - Aguardando Aprovação
                     </div>
                     <div class="col-auto">
                         <label for="statusConta">Status da Conta:
-                            <input style="color:#198754;" type="text" readonly value="Aprovada!" required
+                            <input style="color:#d45a22;" type="text" readonly value="em Analise" required
                                 class="form-control">
                         </label>
                     </div>
