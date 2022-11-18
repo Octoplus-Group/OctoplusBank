@@ -1,0 +1,38 @@
+#navbar-gg {
+    background-color: #535050;
+}
+
+#navbar-ga {
+    background-color: #535050;
+    color: white;
+}
+
+.navbar-brand-gg {
+    margin-left: 1em;
+}
+
+.active a:hover {
+    background-color: black;
+}
+
+/* MODAL GERENCIAR AGENCIAS */
+
+.modalGerenciar {
+    border-radius: 25px;
+    width: 10em;
+    display: flex;
+    color: white;
+    background-color: #535050;
+    position: absolute;
+    margin-top: 1em;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#GA {
+    width: 100%;
+}
+

@@ -82,153 +82,139 @@ $(document).ready(function () {
 
 {% endblock moreScripts %}
 
-<form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);">
-    <fieldset class="cadastro">
-        <div class="container">
-            <div class="row p-5">
-                <h5 style="color:goldenrod ;">Cadastre um Gerente:</h5>
-                <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
-                <div class="col-9">
-                    <div class="row justify-content-start">
-                        <label for="nome">Nome Completo:
-                            <input type="text" name="nome" id="nome" required maxlength="255" required
-                                class="form-control">
-                        </label>
+<div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="gerenciarGerentes">
+        <div class="modal-dialog modal-lg">
+             <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cadastrar novo gerente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="row justify-content-start">
-                        <div class="col-4">
-                            <label for="dataNascimento">Data de Nascimento:
-                                <input type="date" name="dataNascimento" id="dataNascimento" required
-                                    class="form-control" min='1899-01-01' max='2004-10-26'>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <label for="telefone">Telefone:
-                                <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required
-                                    maxlength="15" class="form-control">
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <label for="genero">Gênero:
-                                <select name="genero" id="genero" required class="form-control">
-                                    <option selected disabled value="" class="form-control">Escolha</option>
-                                    <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
-                                    <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
-                                    <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
+        <div class="modal-body">
+        <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
+        <form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);"></form>
+        <div class="col-9">
+            <div class="row justify-content-start">
+                <label for="nome">Nome Completo:
+                    <input type="text" name="nome" id="nome" required maxlength="255" required
+                        class="form-control">
+                </label>
+            </div>
+            <div class="row justify-content-start">
+                <div class="col-4">
+                    <label for="dataNascimento">Data de Nascimento:
+                        <input type="date" name="dataNascimento" id="dataNascimento" required
+                            class="form-control" min='1899-01-01' max='2004-10-26'>
+                    </label>
                 </div>
-
-                <div class="col-3">
-                    <div class="row justify-content-start">
-                        <label for="CPF">CPF:
-                            <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
-                                class="form-control">
-                        </label>
-                    </div>
-
-                    
+                <div class="col-4">
+                    <label for="telefone">Telefone:
+                        <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required
+                            maxlength="15" class="form-control">
+                    </label>
                 </div>
-                <!--DIV QUE GRUDA A LINHA DE CIMA COM A LINHA DE BAIXO-->
-                <div class="w-100"></div>
-
-                <!--LINHA CEP E NÚMERO-->
-                <div class="col-9">
-                    <div class="row justify-content-start">
-                        <div class="col-4">
-                            <label for="cep">CEP:
-                                <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
-                            </label>
-                        </div>
-
-                        <div class="col-4">
-                            <label for="numeroCasa">Nº:
-                                <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa"
-                                    class="form-control" maxlength="10">
-                            </label>
-                        </div>
-
-                        <div class="col-4">
-                            <label for="endereco">Endereço:
-                                <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255"
-                                    readonly>
-                            </label>
-                        </div>
-                    </div>
-                    <!--LINHA ENDEREÇO, BAIRRO E CIDADE-->
-                    <div class="row justify-content-start">
-                        <div class="col-4">
-                            <label for="bairro">Bairro:
-                                <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255"
-                                    readonly>
-                            </label>
-                        </div>
-
-                        <div class="col-4">
-                            <label for="cidade">Cidade:
-                                <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255"
-                                    readonly>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="row">
-                        <label for="senha">Senha:
-                            <input type="password" id="senha" name="senha" class="form-control" maxlength="6">
-                        </label>
-                    </div>
-
-                    
+                <div class="col-4">
+                    <label for="genero">Gênero:
+                        <select name="genero" id="genero" required class="form-control">
+                            <option selected disabled value="" class="form-control">Escolha</option>
+                            <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
+                            <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
+                            <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
+                        </select>
+                    </label>
                 </div>
             </div>
         </div>
-    </fieldset>
-    <!--BOTÃO CONFIRMAR CADASTRO-->
-    <button class="btn btn-primary mx-5" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
-        <i class="fa-solid fa-check"></i>
-        Confirmar
-    </button>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#gerenciarGerentes">
-        Gerenciar Gerentes Ativos
-    </button>
-</form>
-
-<div class="modal fullscreen" id="gerenciarGerentes" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Gerentes Cadastrados</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nº MATRÍCULA</th>
-                            <th scope="col">NOME DO GERENTE</th>
-                            <th scope="col">OPÇÕES</th>
-                            <!-- <th scoup="col">NUMERO DE CONTA</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in gerenteAgencia%}
-                        <tr>
-                            <td>{{item[1]}}</td>
-                            <td>{{item[2]}}</td>
-                            <td><a href="/demitir_GA/{{item[1]}}">EXCLUIR</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <div class="col-4">
+            <div class="row justify-content-start">
+                <label for="CPF">CPF:
+                    <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
+                        class="form-control">
+                </label>
             </div>
         </div>
+        <!--LINHA CEP E NÚMERO-->
+        <div class="col-9">
+            <div class="row justify-content-start">
+                <div class="col-4">
+                    <label for="cep">CEP:
+                        <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
+                    </label>
+                </div>
+                <div class="col-4">
+                    <label for="numeroCasa">Nº:
+                        <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa"
+                            class="form-control" maxlength="10">
+                    </label>
+                </div>
+                <div class="col-4">
+                    <label for="endereco">Endereço:
+                        <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255"
+                            readonly>
+                    </label>
+                </div>
+            </div>
+            <!--LINHA ENDEREÇO, BAIRRO E CIDADE-->
+            <div class="row justify-content-start">
+                <div class="col-4">
+                    <label for="bairro">Bairro:
+                        <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255"
+                            readonly>
+                    </label>
+                </div>
+
+                <div class="col-4">
+                    <label for="cidade">Cidade:
+                        <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255"
+                            readonly>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="row">
+                <label for="senha">Senha:
+                    <input type="password" id="senha-gg" name="senha" class="form-control" maxlength="6">
+                </label>
+            </div>
+        </div>
+    </form>
     </div>
+                    
+        <!--BOTÃO CONFIRMAR CADASTRO-->
+    <div class="modal-footer">
+        <button class="btn btn-primary mx-3" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
+            <i class="fa-solid fa-check"></i>
+            Cadastrar
+        </button>
+    </div>
+        </div>
 </div>
+</div>
+
+<table class="table table-bordered table-striped" cellpadding="0">
+    <thead class="table-dark">
+        <tr style="text-align: center; font-size: 1.75vw;">
+        <th scope="col">NUMERO MATRÍCULA</th>
+        <th scope="col">NOME DO GERENTE</th>
+        <th scope="col">EDITAR</th>
+        <th scope="col">EXCLUIR</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in agencias%}
+        <tr style="text-align: center;">
+            <th scope="row">{{item[1]}}</th>
+            <td>{{item[2]}}</td>
+            <td><a href=""><i class="bi bi-pencil fa-lg" style="color: #000;"></i></a></td>
+            <td><a href="/demitir_GA/{{item[1]}}"><i class="bi bi-trash fa-lg" style="color: #000;"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>    
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#gerenciarGerentes">
+    + Adicionar Gerente
+</button>
 
 <!--FUNÇÃO CONFIRMAR SENHA-->
 <script>

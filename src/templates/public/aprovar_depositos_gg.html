@@ -13,9 +13,10 @@ Octoplus Bank | Aprovar Depósitos
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock moreScripts %}
 
-    <div>
-        <table class="table" border="2">
-        <tr>
+<div>
+    <table class="table table-bordered table-striped" cellpadding="5">
+        <thead class="table-dark">
+        <tr style="text-align: center;">
             <th scoup="col">NUMERO DE CONTA</th>
             <th scoup="col">ID da Transação</th>
             <th scoup="col">DATA</th>
@@ -23,14 +24,18 @@ Octoplus Bank | Aprovar Depósitos
             <th scoup="col">STATUS</th>
             <th scoup="col">AÇÃO</th>
         </tr>
+        </thead>
         {% for item in depositoAnalise%}
-        <tr>
+        <tr style="text-align: center;">
             <td>{{item[0]}}</td>
             <td>{{item[1]}}</td>
             <td>{{item[3]}}</td>
             <td>{{"{:.2f}".format(item[4])}}</td>
             <td>{{item[5]}}</td>
-            <td><a href='/provacao_deposito_GG/{{item[1]}}'>APROVAR DEPOSITO</a></td>
+            <td>
+                <a href='/provacao_deposito_GG/{{item[1]}}'><i class="fa-solid fa-circle-check" style="color: green;"></i></a>
+                <a href=""><i class="fa-solid fa-circle-xmark" style="color: red;"></i></a>
+            </td>
         </tr>
         {% endfor %}
         </table>

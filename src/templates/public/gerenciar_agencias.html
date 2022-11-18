@@ -14,77 +14,73 @@ Octoplus Bank | Gerenciar Agências
 {% endblock moreScripts %}
 
 
-<div class="container-fluid">
-    <fieldset>
-        <form action="/criar_agencia" method="POST">
-            <div class="row">
-                <h5 style="color:red ;">{{mensagem}}</h5>
-                <div class="col-6">
-                    <label for="GA">Selecione o Gerente de Agência:</label>
-                    <select name="GA" id="GA" required>
-                        <option selected disabled value="" class="form-control">Escolha</option>
-                        {% for ga in gerenteAgencia%}
-                        <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[2]}}'>{{ga[2]}}
-                        </option>
-                        {% endfor%}
-                    </select>
+<div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="gerenciarAgencias">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Cadastrar nova agência</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                <div class="modal-body">
+                    <form action="/criar_agencia" method="POST">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="col-6">
+                                    <h5 style="color:red ;">{{mensagem}}</h5>
+                                    <label for="NOME_AGENCIA">Nome da agência:</label>
+                                    <input type="text" required id='NOME_AGENCIA' name="NOME_AGENCIA" class="form-control">
+                                </div>
+                            </div>
+                        <div class="col-6">
+                            <label for="GA">Selecione o Gerente de Agência:</label>
+                            <select name="GA" id="GA">
+                                <option selected disabled value="" class="form-control">Escolha</option>
+                                {% for ga in gerenteAgencia%}
+                                <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[2]}}'>{{ga[2]}}
+                                </option>
+                                {% endfor%}
+                            </select>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="col-6">
-                        <label for="NOME_AGENCIA">Dê um nome para sua agência:</label>
-                        <input type="text" required id='NOME_AGENCIA' name="NOME_AGENCIA" class="form-control" >
+                <div class="modal-footer">
+                    <div class="col-2">
+                        <button type="submit" id="cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-2">
-                    <button type="submit" id="cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
-                </div>
-            
-                <div class="col-2">
-                    <button type="button" class="btn btn-primary btn-lgz" data-toggle="modal" data-target="#gerenciarGerentes">Gerenciar Agências Ativas</button>
-                </div>
-            </div>
-</div>
-
-</fieldset>
-</form>
-
-<div class="modal fullscreen" id="gerenciarGerentes" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Agências Cadastradas</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">NUMERO AGENCIA</th>
-                            <th scope="col">NOME DO GERENTE</th>
-                            <th scope="col">NOME DA AGÊNCIA</th>
-                            <th scope="col">Editar</th>
-                            <th scope="col">Deletar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in agencias%}
-                        <tr>
-                            <td>{{item[1]}}</td>
-                            <td>{{item[2]}}</td>
-                            <td>{{item[3]}}</td>
-                            <td><a href="/link_alterar_agencia/{{item[1]}}">Editar</a></td>
-                            <td><a href="/deletar_agencia/{{item[1]}}">Deletar</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
+</div>
+<table class="table table-bordered table-striped" cellpadding="0">
+    <thead class="table-dark">
+      <tr style="text-align: center; font-size: 1.1vw">
+        <th scope="col">NUMERO AGÊNCIA</th>
+        <th scope="col">NOME DO GERENTE</th>
+        <th scope="col">NOME DA AGÊNCIA</th>
+        <th scope="col">EDITAR</th>
+        <th scope="col">DELETAR</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in agencias%}
+        <tr style="text-align: center;">
+            <th scope="row">{{item[1]}}</th>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+            <td><a href="/link_alterar_agencia/{{item[1]}}"><i class="bi bi-pencil fa-lg" style="color: #000;"></i></a></td>
+            <td><a href="/deletar_agencia/{{item[1]}}"><i class="bi bi-trash fa-lg" style="color: #000;"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<div>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#gerenciarAgencias" class="modalGerenciar">
+    + Adicionar Agência
+    </button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

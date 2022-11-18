@@ -9,11 +9,11 @@ Octoplus Bank | Depósito
 {% block conteudoComSidebar %}
 
 <div class="container-fluid">
-    <div class="container d-flex justify-content-center m-5 p-5">
+    <div class="container d-flex justify-content-center m-5 p-5" id="deposito">
         <form action="/realizar_deposito/{{cliente.0}}" method="POST">
-            <h6 style="color:goldenrod ;">{{mensagem}}</h6>
+            <h6 style="color:goldenrod;">{{mensagem}}</h6>
             <br>
-            <label for="deposito">Depósito:</label>
+            <label for="deposito">Depósito</label>
             <b>R$</b>
             <input class="form-control form-control-lg" type="number" name="deposito" id="deposito" min="0"
                 placeholder="0,00" step=".01" required>
