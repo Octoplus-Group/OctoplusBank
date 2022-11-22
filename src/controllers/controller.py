@@ -822,7 +822,7 @@ class LoginFuncionario(MethodView):
                     cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
                     cliente = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente)
-                elif senhalogin == cliente[3] and cliente[2]=='GA':
+                elif senhalogin == cliente[0] and cliente[2]=='GA':
                     cur.execute("SELECT * FROM funcionarios WHERE ID_CLIENTE =%s",(idFuncionario))
                     cliente = cur.fetchone()
 
@@ -847,9 +847,9 @@ class GerenciarAgenciaLinkController(MethodView):
 class GerenciarGerentesLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
         return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia, cliente=cliente)
 
@@ -899,11 +899,11 @@ class CadastroGerenteAgencia(MethodView):
         
         
         with mysql.cursor()as cur:
-            cur.execute("INSERT INTO cliente(NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO,SENHA,STATUS,FUNCAO) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,'APROVADO','GA'))
+            cur.execute("INSERT INTO funcionarios (NOME,CPF,DATA_NASCIMENTO,GENERO,TELEFONE,CEP,CIDADE,ENDERECO,BAIRRO,NUMERO_CASA,SENHA,FUNCAO) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,'GA'))
             cur.connection.commit()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
 
         return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia, cliente=cliente)
@@ -911,11 +911,11 @@ class CadastroGerenteAgencia(MethodView):
 class DemitirGerenteAgencia(MethodView):
     def get(self,id):
         with mysql.cursor()as cur:
-            cur.execute("UPDATE cliente SET FUNCAO=%s WHERE ID_CLIENTE=%s",('DEMITIDO',id))
+            cur.execute("UPDATE funcionarios SET FUNCAO=%s WHERE ID_FUNC=%s",('DEMITIDO',id))
             cur.connection.commit()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(1))
             cliente = cur.fetchone()
 
         return render_template ('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia,cliente=cliente)

@@ -92,7 +92,7 @@ $(document).ready(function () {
                     </div>
         <div class="modal-body">
         <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
-        <form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);"></form>
+        <form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);">
         <div class="col-9">
             <div class="row justify-content-start">
                 <label for="nome">Nome Completo:
@@ -174,12 +174,12 @@ $(document).ready(function () {
         <div class="col-3">
             <div class="row">
                 <label for="senha">Senha:
-                    <input type="password" id="senha-gg" name="senha" class="form-control" maxlength="6">
+                    <input type="password" id="senha" name="senha" class="form-control" maxlength="6">
                 </label>
             </div>
         </div>
-    </form>
-    </div>
+    
+        </div>
                     
         <!--BOTÃO CONFIRMAR CADASTRO-->
     <div class="modal-footer">
@@ -188,7 +188,9 @@ $(document).ready(function () {
             Cadastrar
         </button>
     </div>
+    </form>
         </div>
+    
 </div>
 </div>
 
@@ -202,12 +204,12 @@ $(document).ready(function () {
         </tr>
     </thead>
     <tbody>
-        {% for item in agencias%}
+        {% for item in gerenteAgencia%}
         <tr style="text-align: center;">
-            <th scope="row">{{item[1]}}</th>
-            <td>{{item[2]}}</td>
+            <th scope="row">{{item[0]}}</th>
+            <td>{{item[1]}}</td>
             <td><a href=""><i class="bi bi-pencil fa-lg" style="color: #000;"></i></a></td>
-            <td><a href="/demitir_GA/{{item[1]}}"><i class="bi bi-trash fa-lg" style="color: #000;"></i></a></td>
+            <td><a href="/demitir_GA/{{item[0]}}"><i class="bi bi-trash fa-lg" style="color: #000;"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
