@@ -31,12 +31,12 @@ class IndexController(MethodView):
         
         
         with mysql.cursor()as cur:
-            cur.execute("UPDATE banco SET CAPITAL_TOTAL =%s, JUROS_POUPANCA=%s, JUROS_CQ=%s  WHERE ID_BANCO = %s",(capitalbanco,jurosPoupanca,jurosCheque,1))
+            cur.execute("UPDATE banco SET CAPITAL_TOTAL =%s, JUROS_POUPANCA=%s, JUROS_CQ=%s,DATA_IS=NOW(),DATA_ATUAL=NOW()  WHERE ID_BANCO = %s",(capitalbanco,jurosPoupanca,jurosCheque,1))
             cur.connection.commit()
-            mensagem="A sua conta está pendente de aprovação pelo gerente!"
+            
 
 
-            return render_template('public/area_cliente.html', mensagem=mensagem)
+            return render_template('public/adm.html')
 
 class AreaClienteController(MethodView):
     def get(self):
@@ -813,17 +813,17 @@ class LoginFuncionario(MethodView):
         
 
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE=%s ",(idFuncionario))
+            cur.execute("SELECT * FROM funcionarios WHERE NOME=%s ",(idFuncionario))
             cliente = cur.fetchone()
             if cliente!= None:
-                cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
+                cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
                 cliente = cur.fetchone()
-                if senhalogin == cliente[12] and cliente[14]=='GG':
-                    cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
+                if senhalogin == cliente[3] and cliente[2]=='GG':
+                    cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
                     cliente = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente)
-                elif senhalogin == cliente[12] and cliente[14]=='GA':
-                    cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(idFuncionario))
+                elif senhalogin == cliente[3] and cliente[2]=='GA':
+                    cur.execute("SELECT * FROM funcionarios WHERE ID_CLIENTE =%s",(idFuncionario))
                     cliente = cur.fetchone()
 
                     return render_template('public/home_gerente.html', cliente=cliente)

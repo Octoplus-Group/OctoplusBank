@@ -69,8 +69,6 @@ app.add_url_rule(routes["realizar_saque_gerente_route"],view_func=routes["realiz
 
 app.add_url_rule(routes["pagina_saque_gerente_route"],view_func=routes["pagina_gerente_saque_controller"])
 
-
-
 app.add_url_rule(routes["home_gerente_conta"],view_func=routes["home_gerente_conta_controller"])
 
 app.add_url_rule(routes["link_cadastro"],view_func=routes["link_cadastro_controller"])
