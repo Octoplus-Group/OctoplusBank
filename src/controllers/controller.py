@@ -3,9 +3,8 @@ from operator import methodcaller
 from flask.views import MethodView
 from flask import request, render_template,redirect
 from src.db import mysql
-import datetime
+from datetime import date,timedelta
 
-data_atual= datetime.date.today()
 
 
 class IndexController(MethodView):
@@ -815,6 +814,8 @@ class LoginFuncionario(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM funcionarios WHERE NOME=%s ",(idFuncionario))
             cliente = cur.fetchone()
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
+            ga = cur.fetchone()
             if cliente!= None:
                 cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
                 cliente = cur.fetchone()
@@ -822,15 +823,19 @@ class LoginFuncionario(MethodView):
                     cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
                     cliente = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente)
-                elif senhalogin == cliente[0] and cliente[2]=='GA':
-                    cur.execute("SELECT * FROM funcionarios WHERE ID_CLIENTE =%s",(idFuncionario))
-                    cliente = cur.fetchone()
-
-                    return render_template('public/home_gerente.html', cliente=cliente)
+                else:
+                    return render_template('public/adm.html')
+            elif ga != None:
+                with mysql.cursor() as cur:
+                    cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
+                    ga = cur.fetchone()
+                if senhalogin == ga[3] and ga[2]=='GA':
+                    
+                    return render_template('public/home_gerente.html',ga=ga)
                 else:
                     return render_template('public/adm.html')
             else:
-                return render_template('public/adm.html') 
+                return render_template('public/adm.html')
 
 class GerenciarAgenciaLinkController(MethodView):
     def get(self):
@@ -948,6 +953,11 @@ class VerificacaoEntrada(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
+            datajuros=banco[6]-banco[5]
+            datatest = timedelta(4) // datajuros
+            print('datatestdivisao',datatest)
+            print('datajuros',datajuros)
+            
             if banco[2]>0:
                 return render_template ('public/area_cliente.html')
             else:
