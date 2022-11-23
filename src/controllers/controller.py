@@ -841,7 +841,7 @@ class LoginFuncionario(MethodView):
 class GerenciarAgenciaLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
@@ -862,7 +862,7 @@ class GerenciarGerentesLinkController(MethodView):
 class GerenciarBancoLinkController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
@@ -1007,7 +1007,7 @@ class LinkGerenciarContasGGController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
             
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s", (id))
             conta = cur.fetchone()
@@ -1111,7 +1111,7 @@ class ExecucaoDepositoGGController(MethodView):
 class LinkAprovacaoDepositoGGController(MethodView):
     def get(self):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('APROVADO'))
             depositoAprovado = cur.fetchall()
