@@ -1,0 +1,15 @@
+body{
+    max-width: 100vw;
+    max-height: 100vh;
+    background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
+    color: white;
+}
+
+.img-fluid{
+    max-width: 50%;
+    height: auto;
+}
+
+label{
+    font-family: 'Noto Sans', sans-serif;
+}
