@@ -1203,3 +1203,37 @@ class CadastroGGInicioController(MethodView):
             cur.connection.commit()
 
         return render_template('public/capital.html')
+    
+class EditarGaLink(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * from funcionarios where ID_FUNC=%s",(id))
+            ga = cur.fetchone()
+
+        return render_template('public/alteracao_dados_GA.html', ga=ga)
+
+class AlteracaoGADadosController(MethodView):
+    def post(self,id):
+        nome = request.form['nome']
+        CPF = request.form['CPF']
+        dataNascimento = request.form['dataNascimento']
+        genero = request.form['genero']
+        telefone = request.form['telefone']
+        cep = request.form['cep']
+        cidade = request.form['cidade']
+        endereco = request.form['endereco']
+        bairro = request.form['bairro']
+        numeroCasa = request.form['numeroCasa']
+        senha = request.form['senha']
+        nome = nome.upper()
+        
+        
+        with mysql.cursor()as cur:
+            cur.execute("UPDATE funcionarios SET NOME=%s,CPF=%s,DATA_NASCIMENTO=%s,GENERO=%s,TELEFONE=%s,CEP=%s,CIDADE=%s,ENDERECO=%s,BAIRRO=%s,NUMERO_CASA=%s,SENHA=%s,FUNCAO=%s where ID_FUNC=%s ",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,'GA',id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
+            gerenteAgencia = cur.fetchall()
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
+            cliente = cur.fetchone()
+
+        return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia, cliente=cliente)

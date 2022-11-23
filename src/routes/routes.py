@@ -70,6 +70,8 @@ routes ={
     "vizualirzar_conta_GG_route":"/vizualizar_conta_GG/<int:id>","vizualizar_conta_GG_controller":VizualizarContaGGController.as_view("VizualizarcontaGG"),
     "delete_gg_route":"/delete_gg/<int:id>","delete_gg_controller":DeleteClienteGGController.as_view("deleteGG"),
     "cadastro_gg_route":"/cadastro_gg","cadastro_gg_controller":CadastroGGInicioController.as_view("cadastroGG"),
+    "alteracao_dados_ga_link_route":"/alterardadosgalink/<int:id>","alteracao_dados_ga_link_controller":EditarGaLink.as_view("linkalterarga"),
+    "alteracao_dados_ga_route":"/alterardadosga/<int:id>","alteracao_dados_ga_controller":AlteracaoGADadosController.as_view("alterarga"),
 }
 
 
