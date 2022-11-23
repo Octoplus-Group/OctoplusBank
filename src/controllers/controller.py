@@ -392,18 +392,18 @@ class HomeGerenteGeralController(MethodView):
 class LinkGerenciarContasController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
-            cliente = cur.fetchone()
-            print('teste',cliente[0])
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(id))
+            ga = cur.fetchone()
+            print('teste',ga[0])
             conta =''
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('APROVADO',cliente[15]))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('APROVADO',ga[13]))
             dataAprovado = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
             dataAnalise = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
             dataDeletar = cur.fetchall()
 
-            return render_template('public/gerenciar_contas.html', cliente=cliente, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar ,conta=conta)
+            return render_template('public/gerenciar_contas.html', ga=ga, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar ,conta=conta)
 
 class AprovacaoContaController(MethodView):
     def get(self,id):
@@ -433,14 +433,14 @@ class ModoGerenteAgenciaController(MethodView):
 class LinkAprovacaoDepositoController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
-            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(id))
+            ga = cur.fetchone()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('APROVADO'))
             depositoAprovado = cur.fetchall()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
             depositoAnalise = cur.fetchall()
 
-            return render_template('public/aprovar_depositos.html', cliente=cliente, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)
+            return render_template('public/aprovar_depositos.html', ga=ga, depositoAprovado=depositoAprovado, depositoAnalise=depositoAnalise)
 
 class ExecucaoDepositoController(MethodView):
     def get(self,id):
@@ -845,7 +845,7 @@ class GerenciarAgenciaLinkController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
             mensagem = ''
         return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente,mensagem=mensagem)
@@ -884,7 +884,7 @@ class CadastrarAgenciaController(MethodView):
             gerenteAgencia = cur.fetchall()
             cur.execute("SELECT * FROM agencia ORDER BY ID_AGENCIA DESC")
             numeroAgencia=cur.fetchone()
-            cur.execute("UPDATE cliente SET ID_AGENCIA=%s WHERE NOME=%s",(numeroAgencia[1],nomeGA))
+            cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(numeroAgencia[1],nomeGA))
             cur.connection.commit()
         return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia,cliente=cliente)
 

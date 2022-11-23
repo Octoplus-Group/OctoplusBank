@@ -37,18 +37,19 @@ Octoplus Bank | Gerenciar Agências
                             <select name="GA" id="GA">
                                 <option selected disabled value="" class="form-control">Escolha</option>
                                 {% for ga in gerenteAgencia%}
-                                <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[2]}}'>{{ga[2]}}
+                                <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[1]}}'>{{ga[1]}}
                                 </option>
                                 {% endfor%}
                             </select>
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <div class="col-2">
                         <button type="submit" id="cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </div>
