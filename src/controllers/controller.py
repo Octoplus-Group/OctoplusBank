@@ -337,6 +337,10 @@ class realizarSaqueController(MethodView):
             capital = float(banco[2])
             saque = saque*-1
 
+            if saque>conta[4] and conta[3]=='POUPANCA':
+                mensagem='O saque não pode ser realizado, pois conta Poupança não tem direito a cheque especial !!'
+                return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
+
             if saque>capital:
                 mensagem = 'Saque não pode ser realizado, favor entrar em contato com o Gerente de Geral'
                 return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
