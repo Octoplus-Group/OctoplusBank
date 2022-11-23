@@ -4,6 +4,7 @@ from flask.views import MethodView
 from flask import request, render_template,redirect
 from src.db import mysql
 from datetime import date,timedelta
+import math
 
 
 
@@ -957,8 +958,47 @@ class VerificacaoEntrada(MethodView):
             datatest = timedelta(4) // datajuros
             print('datatestdivisao',datatest)
             print('datajuros',datajuros)
+
+            cur.execute("SELECT * FROM conta")
+            contas=cur.fetchall()
+            contadedata=banco[6]-contas[1][2]
+            aniversario=math.floor((banco[6]-contas[1][2])/timedelta(30))
+            contadividao = math.floor(contadedata/timedelta(30))
+            teste = (1+(banco[3]/100))**(float(aniversario)-contas[1][6])
+            a = 1+(banco[3]/100)
+            b = float(aniversario)
+            c = contas[1][6]
+            d = (float(aniversario)-contas[1][6])
+
+            print ('Tipo a',a)
+            print ('Tipo b',b)
+            print ('conta c',c)
+            print ('valor c',d)
+            print ('valor c',teste)
             
+         
             if banco[2]>0:
+                for k in range(len(contas)):
+                    if   banco[6]  > contas[k][2] and contas[k][3]=='POUPANCA':
+                        aniversario=math.floor((banco[6]-contas[k][2])/timedelta(30))
+                        saldonovo=contas[k][4]*((1+(banco[3]/100))**(float(aniversario)-contas[k][6]))
+                        with mysql.cursor() as cur:
+                            cur.execute("UPDATE conta SET SALDO=%s, ANIVERSARIO=%s WHERE ID_CONTA=%s AND ID_AGENCIA = %s",(saldonovo,aniversario,contas[k][1],contas[k][0]))
+                            cur.connection.commit()
+                    
+                for k in range(len(contas)):
+                    if   banco[6]  > contas[k][2] and contas[k][3]=='CORRENTE' and contas[k][4] < 0:
+                        aniversario=math.floor((banco[6]-contas[k][2])/timedelta(30))
+                        saldonovo=contas[k][4]*((1+(banco[4]/100))**(float(aniversario)-contas[k][6]))
+                        with mysql.cursor() as cur:
+                            cur.execute("UPDATE conta SET SALDO=%s, ANIVERSARIO=%s WHERE ID_CONTA=%s AND ID_AGENCIA = %s",(saldonovo,aniversario,contas[k][1],contas[k][0]))
+                            cur.connection.commit()
+                    else:
+                        aniversario=math.floor((banco[6]-contas[k][2])/timedelta(30))
+                        with mysql.cursor() as cur:
+                            cur.execute("UPDATE conta SET ANIVERSARIO=%s WHERE ID_CONTA=%s AND ID_AGENCIA = %s",(aniversario,contas[k][1],contas[k][0]))
+                            cur.connection.commit()
+
                 return render_template ('public/area_cliente.html')
             else:
                 return render_template ('public/cadastro_gerente_geral.html')
