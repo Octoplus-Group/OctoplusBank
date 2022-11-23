@@ -72,6 +72,7 @@ routes ={
     "cadastro_gg_route":"/cadastro_gg","cadastro_gg_controller":CadastroGGInicioController.as_view("cadastroGG"),
     "alteracao_dados_ga_link_route":"/alterardadosgalink/<int:id>","alteracao_dados_ga_link_controller":EditarGaLink.as_view("linkalterarga"),
     "alteracao_dados_ga_route":"/alterardadosga/<int:id>","alteracao_dados_ga_controller":AlteracaoGADadosController.as_view("alterarga"),
+    "visualizar_agencia_route":"/visualizar_agencia/<int:id>","visualizar_agencia_controller":visualizaragenciaController.as_view("visualizaragencia"),
 }
 
 

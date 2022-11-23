@@ -131,3 +131,5 @@ app.add_url_rule(routes["alteracao_dados_ga_link_route"],view_func=routes["alter
 
 app.add_url_rule(routes["alteracao_dados_ga_route"],view_func=routes["alteracao_dados_ga_controller"])
 
+app.add_url_rule(routes["visualizar_agencia_route"],view_func=routes["visualizar_agencia_controller"])
+

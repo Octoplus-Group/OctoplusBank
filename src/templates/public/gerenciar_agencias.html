@@ -62,6 +62,7 @@ Octoplus Bank | Gerenciar Agências
         <th scope="col">NUMERO AGÊNCIA</th>
         <th scope="col">NOME DO GERENTE</th>
         <th scope="col">NOME DA AGÊNCIA</th>
+        <th scope="col">VIZUALIZAR AGÊNCIA</th>
         <th scope="col">EDITAR</th>
         <th scope="col">DELETAR</th>
       </tr>
@@ -72,6 +73,7 @@ Octoplus Bank | Gerenciar Agências
             <th scope="row">{{item[1]}}</th>
             <td>{{item[2]}}</td>
             <td>{{item[3]}}</td>
+            <td><a href="/visualizar_agencia/{{item[1]}}"><i class="bi bi-bar-chart" style="color: rgb(20, 28, 169);"></i></a></td>
             <td><a href="/link_alterar_agencia/{{item[1]}}"><i class="bi bi-pencil fa-lg" style="color: #000;"></i></a></td>
             <td><a href="/deletar_agencia/{{item[1]}}"><i class="bi bi-trash fa-lg" style="color: #000;"></i></a></td>
         </tr>

@@ -1237,3 +1237,22 @@ class AlteracaoGADadosController(MethodView):
             cliente = cur.fetchone()
 
         return render_template('public/gerenciar_gerentes.html', gerenteAgencia=gerenteAgencia, cliente=cliente)
+    
+class visualizaragenciaController(MethodView):
+    def get(self,id):
+
+        with mysql.cursor()as cur:
+            cur.execute('SELECT count(*) from cliente WHERE ID_AGENCIA=%s',(id))
+            contagemclientes = cur.fetchone()
+            cur.execute('SELECT count(*) from conta WHERE ID_AGENCIA=%s',(id))
+            contagemcontas = cur.fetchone()
+            cur.execute('SELECT SUM(SALDO) from conta WHERE ID_AGENCIA=%s',(id))
+            saldocontas = cur.fetchone()
+            cur.execute('SELECT count(*) from conta WHERE ID_AGENCIA=%s and STATUS=%s',(id,'PENDENTE'))
+            contagempendente = cur.fetchone()
+
+
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
+            cliente = cur.fetchone()
+
+        return render_template ('public/visualizar_agencias.html',contagemclientes=contagemclientes,cliente=cliente,contagemcontas=contagemcontas,saldocontas=saldocontas,contagempendente=contagempendente)
