@@ -7,7 +7,8 @@ Octoplus Bank | Home
 {% endblock %}
 
 {% block moreScripts %}
-
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/base_sidebar.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +16,7 @@ Octoplus Bank | Home
 <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar" style="color: white;">
   <div class="container-fluid py-3">
     <a class="navbar-brand" href="">
-      <img src="../static/images/octoplus_extendido_perola.png" height="75" alt="">
+      <img src="{{url_for ('static', filename='images/octoplus_extendido_perola.png')}}" height="75" alt="">
     </a>
 
     <div class="navbar-nav" id="navbar-items">

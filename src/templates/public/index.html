@@ -1,24 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0.5; URL='/home'" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet"  type="text/css" href="{{url_for ('static', filename='css/estilo.css')}}">
-    <title>Octoplus Bank</title>
+{% extends "base.html" %}
+
+{% block title %}
+
+    Octoplus Bank
+
+{% endblock title %}
+
+{% block moreScripts %}
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/_index.css')}}">
+{% endblock moreScripts%}
+
+{% block content %}
     
-</head>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar">
+        <div class="container py-3">
+            <img src="../../static/images/logo_extendido.png" class="img-fluid" id="logoExtendido" alt="">
+            <div class="navbar-nav" id="navbar-items">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="/link_cadastro" class="nav-link primary-color">Abra sua conta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login_cliente" class="nav-link primary-color">Acesse sua conta</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<body>
+    <!-- SLIDER -->
+    <div class="container-fluid" id="slider-container" style="padding: 0;">
+        <div class="carousel slide" id="slider" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button 
+                    type="button" 
+                    class="active" 
+                    data-bs-target="#slider" 
+                    data-bs-slide-to="0" 
+                    aria-current="true"
+                    aria-label="Slide 1"
+                ></button>
+                <button 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                ></button>
+                <button 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide-to="2" 
+                    aria-label="Slide 3"
+                ></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="/link_cadastro">
+                        <picture>
+                            <source srcset="../../static/images/propagandaVertical-1.jpg" type="" media="(max-width: 425px)">
+                            <img class="w-100 img-fluid" src="../../static/images/propaganda-1.png" alt="">
+                        </picture>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <picture>
+                        <source srcset="../../static/images/propagandaVertical-2.jpg" type="" media="(max-width: 425px)">
+                        <img class="w-100 img-fluid" src="../../static/images/propaganda-2.png" alt="">
+                    </picture>
+                </div>                
+                <div class="carousel-item">
+                    <picture>
+                        <source srcset="../../static/images/propagandaVertical-3.jpg" type="" media="(max-width: 425px)">
+                        <img class="w-100 img-fluid" src="../../static/images/propaganda-3.png" alt="">
+                    </picture>
+                </div>
+                <button 
+                    class="carousel-control-prev" 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide="prev"
+                >
+                <i class="bi bi-chevron-compact-left"></i>
+                <span class="visually-hidden">Anterior</span>
+                </button>
+                <button 
+                    class="carousel-control-next" 
+                    type="button" 
+                    data-bs-target="#slider" 
+                    data-bs-slide="next"
+                >
+                <i class="bi bi-chevron-compact-right"></i>
+                <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
 
-<h1 style="font-size: 5vw;">OCTOPLUS BANK</h1>
-
-
-</body>
-
-</html>
+    {% endblock %}

@@ -1,5 +1,15 @@
 {% extends "baseSidebar.html" %}
 
+{% block title %}
+
+Octoplus Bank | Depósito
+
+{% endblock %}
+
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_deposito.css')}}">
+{% endblock moreScripts%}
+
 {% block conteudoComSidebar %}
 
         <form action="/realizar_gerente_deposito/cliente/{{cliente.0}}" method="POST">

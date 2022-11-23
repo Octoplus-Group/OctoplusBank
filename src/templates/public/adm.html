@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_adm.css')}}">
+{% endblock moreScripts %}
+
 {% block content %} 
 
 <header class="headerAdm">
