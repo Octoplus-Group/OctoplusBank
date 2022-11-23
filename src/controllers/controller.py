@@ -886,6 +886,7 @@ class CadastrarAgenciaController(MethodView):
             numeroAgencia=cur.fetchone()
             cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(numeroAgencia[1],nomeGA))
             cur.connection.commit()
+            mensagem='Agencia Criada com Sucesso!'
         return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia,cliente=cliente)
 
 class CadastroGerenteAgencia(MethodView):
@@ -954,10 +955,7 @@ class VerificacaoEntrada(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
-            datajuros=banco[6]-banco[5]
-            datatest = timedelta(4) // datajuros
-            print('datatestdivisao',datatest)
-            print('datajuros',datajuros)
+            
 
             cur.execute("SELECT * FROM conta")
             contas=cur.fetchall()
@@ -1028,7 +1026,7 @@ class LinkAlterarNomeAgenciaController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA =%s",(id))
             agencia = cur.fetchone()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
         return render_template('public/alteracao_agencia.html', agencia=agencia, gerenteAgencia=gerenteAgencia)
 
