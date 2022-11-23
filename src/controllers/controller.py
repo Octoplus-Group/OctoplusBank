@@ -955,26 +955,11 @@ class VerificacaoEntrada(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
-            
+
 
             cur.execute("SELECT * FROM conta")
             contas=cur.fetchall()
-            contadedata=banco[6]-contas[1][2]
-            aniversario=math.floor((banco[6]-contas[1][2])/timedelta(30))
-            contadividao = math.floor(contadedata/timedelta(30))
-            teste = (1+(banco[3]/100))**(float(aniversario)-contas[1][6])
-            a = 1+(banco[3]/100)
-            b = float(aniversario)
-            c = contas[1][6]
-            d = (float(aniversario)-contas[1][6])
 
-            print ('Tipo a',a)
-            print ('Tipo b',b)
-            print ('conta c',c)
-            print ('valor c',d)
-            print ('valor c',teste)
-            
-         
             if banco[2]>0:
                 for k in range(len(contas)):
                     if   banco[6]  > contas[k][2] and contas[k][3]=='POUPANCA':
