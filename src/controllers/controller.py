@@ -847,8 +847,8 @@ class GerenciarAgenciaLinkController(MethodView):
             agencias = cur.fetchall()
             cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-            mensagem = ''
-        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente,mensagem=mensagem)
+            mensagem2 = ''
+        return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente,mensagem2=mensagem2)
 
 class GerenciarGerentesLinkController(MethodView):
     def get(self):
@@ -886,8 +886,8 @@ class CadastrarAgenciaController(MethodView):
             numeroAgencia=cur.fetchone()
             cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(numeroAgencia[1],nomeGA))
             cur.connection.commit()
-            mensagem='Agencia Criada com Sucesso!'
-        return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia,cliente=cliente)
+            mensagem2='Agencia Criada com Sucesso!'
+        return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia,cliente=cliente,mensagem2=mensagem2)
 
 class CadastroGerenteAgencia(MethodView):
     def post(self):
