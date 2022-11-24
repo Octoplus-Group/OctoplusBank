@@ -398,13 +398,12 @@ class LinkGerenciarContasController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(id))
             ga = cur.fetchone()
-            print('teste',ga[0])
             conta =''
             cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('APROVADO',ga[13]))
             dataAprovado = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('ANALISE',ga[13]))
             dataAnalise = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO=%s AND ID_AGENCIA=%s",('DELETAR',ga[13]))
             dataDeletar = cur.fetchall()
 
             return render_template('public/gerenciar_contas.html', ga=ga, dataAprovado=dataAprovado, dataAnalise=dataAnalise, dataDeletar=dataDeletar ,conta=conta)
@@ -412,20 +411,25 @@ class LinkGerenciarContasController(MethodView):
 class AprovacaoContaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            
-            cur.execute("UPDATE cliente SET STATUS =%s WHERE  ID_CLIENTE = %s",('APROVADO',id))
-            cur.connection.commit()
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA=%s",(id))
             conta = cur.fetchone()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            cur.execute("UPDATE conta SET STATUS =%s WHERE  ID_CONTA = %s",('APROVADO',id))
+            cur.connection.commit()
+            cur.execute("UPDATE cliente SET STATUS =%s WHERE  ID_CONTA = %s",('APROVADO',id))
+            cur.connection.commit()      
+            cur.execute("SELECT * FROM cliente WHERE STATUS=%s AND ID_AGENCIA=%s",('APROVADO',conta[0]))
             dataAprovado = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('ANALISE',conta[0]))
             dataAnalise = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
-            cliente = cur.fetchone()
-            conta=''
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO=%s AND ID_AGENCIA=%s",('DELETAR',conta[0]))
+            dataDeletar = cur.fetchall()
+            cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA=%s ",(conta[0]))
+            agencia = cur.fetchone()
+            cur.execute("SELECT * FROM funcionarios WHERE AGENCIA=%s ",(conta[0]))
+            ga = cur.fetchone()
+            
         
-            return render_template('public/gerenciar_contas.html', cliente=cliente , dataAprovado=dataAprovado, dataAnalise=dataAnalise,conta='')
+            return render_template('public/gerenciar_contas.html', dataAprovado=dataAprovado, dataAnalise=dataAnalise,conta=conta,dataDeletar=dataDeletar,ga=ga)
 
 class ModoGerenteAgenciaController(MethodView):
     def get(self,id):
@@ -883,11 +887,11 @@ class CadastrarAgenciaController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("INSERT INTO agencia(GERENTE,NOME_DA_AGENCIA) VALUES (%s,%s)",(nomeGA,nomeAG))
             cur.connection.commit()
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
             cur.execute("SELECT * FROM agencia ORDER BY ID_AGENCIA DESC")
             numeroAgencia=cur.fetchone()
@@ -1029,12 +1033,14 @@ class AlterarNomeAgenciaController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("UPDATE agencia SET NOME_DA_AGENCIA=%s, GERENTE=%s WHERE ID_AGENCIA=%s ",(nomeAgencia,novoGerenteAgencia,id))
             cur.connection.commit()
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia")
             agencias = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",('GA'))
             gerenteAgencia = cur.fetchall()
+            cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(id,novoGerenteAgencia))
+            cur.connection.commit()
         return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class DeletarAgenciaController(MethodView):
