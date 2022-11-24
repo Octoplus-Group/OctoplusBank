@@ -986,10 +986,24 @@ class VerificacaoEntrada(MethodView):
             banco = cur.fetchone()
 
 
+
             cur.execute("SELECT * FROM conta")
             contas=cur.fetchall()
 
             if banco[2]>0:
+                for t in range(len(contas)):
+                    with mysql.cursor() as cur:
+                        cur.execute("SELECT count(*) FROM transacoes WHERE ID_CONTA=%s ",(contas[t][1]))
+                        transacoes= cur.fetchone()
+                        transacoes = sum (transacoes)
+                        if transacoes > 0:
+                            with mysql.cursor() as cur:
+                                cur.execute("SELECT  MIN(DATA) from transacoes WHERE ID_CONTA=%s AND TIPO=%s",(contas[t][1],'DEPOSITO'))
+                                menor = cur.fetchone()
+                                print('testeprint',menor)
+                                cur.execute("UPDATE conta SET DATA_ABERTURA=%s WHERE ID_CONTA=%s",(menor,contas[t][1]))
+                                cur.connection.commit()
+                        
                 for k in range(len(contas)):
                     if   banco[6]  > contas[k][2] and contas[k][3]=='POUPANCA':
                         aniversario=math.floor((banco[6]-contas[k][2])/timedelta(30))
@@ -1005,11 +1019,13 @@ class VerificacaoEntrada(MethodView):
                         with mysql.cursor() as cur:
                             cur.execute("UPDATE conta SET SALDO=%s, ANIVERSARIO=%s WHERE ID_CONTA=%s AND ID_AGENCIA = %s",(saldonovo,aniversario,contas[k][1],contas[k][0]))
                             cur.connection.commit()
-                    else:
+                    elif banco[6]>contas[k][2]:
                         aniversario=math.floor((banco[6]-contas[k][2])/timedelta(30))
                         with mysql.cursor() as cur:
                             cur.execute("UPDATE conta SET ANIVERSARIO=%s WHERE ID_CONTA=%s AND ID_AGENCIA = %s",(aniversario,contas[k][1],contas[k][0]))
                             cur.connection.commit()
+                    
+
 
                 return render_template ('public/area_cliente.html')
             else:
