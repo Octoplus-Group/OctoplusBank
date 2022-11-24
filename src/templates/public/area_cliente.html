@@ -2,38 +2,35 @@
 
 {% block title %}
 
-Octoplus Bank
+    Octoplus Bank
 
-{% endblock %}
+{% endblock title %}
 
 {% block moreScripts %}
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
-{% endblock moreScripts %}
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/_index.css')}}">
+{% endblock moreScripts%}
 
 {% block content %}
     
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary-color" id="navbar">
+    <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar">
         <div class="container py-3">
-
-            <h1>OCTOPLUS BANK</h1>
-
+            <img src="../../static/images/logo_extendido.png" class="img-fluid" id="logoExtendido" alt="">
             <div class="navbar-nav" id="navbar-items">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar-itemsUL">
                     <li class="nav-item">
                         <a href="/link_cadastro" class="nav-link primary-color">Abra sua conta</a>
                     </li>
                     <li class="nav-item">
                         <a href="/login_cliente" class="nav-link primary-color">Acesse sua conta</a>
                     </li>
-                
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- SLIDER -->
-    <div class="container-fluid" id="slider-container">
+    <div class="container-fluid" id="slider-container" style="padding: 0;">
         <div class="carousel slide" id="slider" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button 
@@ -60,14 +57,23 @@ Octoplus Bank
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <a href="/link_cadastro">
-                    <img src="../../static/images/propaganda-1.png" alt="Propaganda 1" class="d-block w-100 img-fluid">
+                        <picture>
+                            <source srcset="../../static/images/propagandaVertical-1.jpg" type="" media="(max-width: 425px)">
+                            <img class="w-100 img-fluid" src="../../static/images/propaganda-1.png" alt="">
+                        </picture>
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <img src="../../static/images/propaganda-2.png"  alt="Propaganda 2" class="d-block w-100">
+                    <picture>
+                        <source srcset="../../static/images/propagandaVertical-2.jpg" type="" media="(max-width: 425px)">
+                        <img class="w-100 img-fluid" src="../../static/images/propaganda-2.png" alt="">
+                    </picture>
                 </div>                
                 <div class="carousel-item">
-                    <img src="../../static/images/propaganda-3.png"  alt="Propaganda 3" class="d-block w-100">
+                    <picture>
+                        <source srcset="../../static/images/propagandaVertical-3.jpg" type="" media="(max-width: 425px)">
+                        <img class="w-100 img-fluid" src="../../static/images/propaganda-3.png" alt="">
+                    </picture>
                 </div>
                 <button 
                     class="carousel-control-prev" 
@@ -76,7 +82,7 @@ Octoplus Bank
                     data-bs-slide="prev"
                 >
                 <i class="bi bi-chevron-compact-left"></i>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">Anterior</span>
                 </button>
                 <button 
                     class="carousel-control-next" 
@@ -85,7 +91,7 @@ Octoplus Bank
                     data-bs-slide="next"
                 >
                 <i class="bi bi-chevron-compact-right"></i>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">Próximo</span>
                 </button>
             </div>
         </div>
