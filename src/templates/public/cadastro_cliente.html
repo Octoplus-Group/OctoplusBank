@@ -9,7 +9,7 @@ Octoplus Bank | Cadastro
 
 <!--SCRIPTS AUTOPREENCHER CEP (VIAAPI)-->
 {% block moreScripts %}
-
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_cadastro.css')}}">
 <!--JQUERY + MASKS-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -81,153 +81,144 @@ Octoplus Bank | Cadastro
 <!--SCRIPT PARA VERIFICAR SE O USUÁRIO ACEITOU OS TERMOS-->
 <script>
 
-    function checkForm(form)
-    {
-      if(!form.termos.checked) {
-        alert("Para prosseguir você deve concordar com os termos de uso.");
-        form.termos.focus();
-        return false;
-      }
-      return true;
+    function checkForm(form) {
+        if (!form.termos.checked) {
+            alert("Para prosseguir você deve concordar com os termos de uso.");
+            form.termos.focus();
+            return false;
+        }
+        return true;
     }
-  
-  </script>
+
+</script>
 
 {% endblock moreScripts %}
 
 <!--BODY-->
 {% block content %}
-
-<a href="/">
-    <button class="btn btn-primary" type="submit" class="form-control">
-        <i class="fa-solid fa-home"></i>
-        Página Inicial
-    </button>
-</a>
-
-<h1 style="text-align: center;">
-    <u>CADASTRO</u>
-</h1>
-
-<form action="/cadastro_execucao/" method="POST" onsubmit="return checkForm(this);">
-    <fieldset class="cadastro">
-        <div class="container">
-            <div class="row p-5">
-                <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
-                <div class="col-9">
-                    <div class="row justify-content-start">
-                        <label for="nome">Nome Completo:
-                            <input type="text" name="nome" id="nome" required maxlength="255" required class="form-control">
-                        </label>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-4">
-                            <label for="dataNascimento">Data de Nascimento:
-                                <input type="date" name="dataNascimento" id="dataNascimento" required class="form-control" min='1899-01-01' max='2004-10-26'>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <label for="telefone">Telefone:
-                                <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required maxlength="15" class="form-control">
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <label for="genero">Gênero:
-                                <select name="genero" id="genero" required class="form-control">
-                                    <option selected disabled value="" class="form-control">Escolha</option>
-                                    <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
-                                    <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
-                                    <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-3">
-                    <div class="row justify-content-start">
-                        <label for="CPF">CPF:
-                            <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
-                                class="form-control">
-                        </label>
-                    </div>
-        
-                    <div class="row justify-content-start">
-                        <label for="tipoConta">Tipo de Conta:
-                            <select name="tipoConta" id="tipoConta" required class="form-control">
-                                <option selected disabled value="" class="form-control">Escolha</option>
-                                <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">Corrente</option>
-                                <option type="text" name="'tipoConta" id="tipoConta" value="POUPANCA">Poupança</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-                <!--DIV QUE GRUDA A LINHA DE CIMA COM A LINHA DE BAIXO-->
-                <div class="w-100"></div>
-        
-                <!--LINHA CEP E NÚMERO-->
-                <div class="col-9">
-                    <div class="row justify-content-start">
-                        <div class="col-4">
-                            <label for="cep">CEP:
-                                <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
-                            </label>
-                        </div>
-        
-                        <div class="col-4">
-                            <label for="numeroCasa">Nº:
-                                <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa" class="form-control" maxlength="10">
-                            </label>
-                        </div>
-
-                        <div class="col-4">
-                            <label for="endereco">Endereço:
-                                <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255" readonly>
-                            </label>
-                        </div>
-                    </div>
-                    <!--LINHA ENDEREÇO, BAIRRO E CIDADE-->
-                    <div class="row justify-content-start">
-                        <div class="col-4">
-                            <label for="bairro">Bairro:
-                                <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255" readonly>
-                            </label>
-                        </div>
-        
-                        <div class="col-4">
-                            <label for="cidade">Cidade:
-                                <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255" readonly>
-                            </label>
-                        </div>
-
-                        <div class="col-4">
-                            <input type="checkbox" name="termos" id="termos">Eu li e concordo com os termos de uso.
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-3">
-                    <div class="row">
-                        <label for="senha">Senha:
-                            <input type="password" id="senhaNovo" name="senha" class="form-control" maxlength="6">
-                        </label>
-                    </div>
-        
-                    <div class="row">
-                        <label for="confirmarSenha">Confirmar Senha:
-                            <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control" maxlength="6">
-                        </label>
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid" style="height:100vh;">
+    <div class="row">
+        <div class="col-sm-6" id="centerMobile">
+            <a href="/">
+                <img src="../../static/images/logo_octoplus_bank_transparente_white.png" alt="Logo Octoplus"
+                    id="logoVoltarCadastro">
+            </a>
+            <img class="img-fluid" id="imgHomemLaptop"
+                src="../../static/images/young-man-drinks-tea-and-works-on-a-laptop-freelancer-working-in-a-cafe.png"
+                alt="Homem sentado mexendo no laptop">
         </div>
-    </fieldset>
-                <!--BOTÃO CONFIRMAR CADASTRO-->
-                <button class="btn btn-primary" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
-                    <i class="fa-solid fa-check"></i>
-                    Confirmar
-                </button>
-</form>
+        <div class="col-sm-6" id="formulario">
+            <h1 style="text-align: center; color:white;">
+                <br>
+                <u>Queremos te conhecer!</u>
+            </h1>
+            <div class="container-fluid">
+                <form action="/cadastro_execucao/" method="POST" onsubmit="return checkForm(this);">
+                    <fieldset class="cadastro">
+
+                        <label for="CPF">CPF:</label>
+                        <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
+                            class="form-control">
+
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" name="nome" id="nome" required maxlength="255" required class="form-control"
+                            placeholder="João da Silva">
+
+                        <label for="dataNascimento">Data de Nascimento:</label>
+                        <input type="date" name="dataNascimento" id="dataNascimento" required class="form-control"
+                            min='1899-01-01' max='2004-10-26'>
+
+                        <label for="genero">Gênero:</label>
+                        <select name="genero" id="genero" required class="form-control">
+                            <option selected disabled value="" class="form-control">Escolha</option>
+                            <option type="text" name="genero" id="genero" value="Masculino">Masculino
+                            </option>
+                            <option type="text" name="'genero" id="genero" value="Feminino">Feminino
+                            </option>
+                            <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
+                        </select>
+
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required
+                            maxlength="15" class="form-control">
+
+                        <label for="tipoConta">Tipo de Conta:</label>
+                        <select name="tipoConta" id="tipoConta" required class="form-control">
+                            <option selected disabled value="" class="form-control">Escolha
+                            </option>
+                            <option type="text" name="tipoConta" id="tipoConta" value="CORRENTE">
+                                Corrente</option>
+                            <option type="text" name="'tipoConta" id="tipoConta" value="POUPANCA">
+                                Poupança</option>
+                        </select>
+
+
+                        <label for="cep">CEP:</label>
+                        <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="endereco">Endereço:</label>
+                                <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255"
+                                    readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255"
+                                    readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255"
+                                    readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="numeroCasa">Nº:</label>
+                                <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa"
+                                    class="form-control" maxlength="10">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="senha">Senha:</label>
+                                    <input type="password" id="senhaNovo" name="senha" class="form-control"
+                                        maxlength="6">
+                            </div>
+                            <div class="col-6">
+                                <label for="confirmarSenha">Confirmar Senha:</label>
+                                    <input type="password" id="confirmarSenha" name="confirmarSenha"
+                                        class="form-control" maxlength="6">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="">Termos:</label>
+                                    <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="checkbox" name="termos" id="termos">
+                                        <input type="text" readonly class="form-control" id="liConcordo"
+                                            value="Eu li e concordo com os termos de uso.">
+                                    </div>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-primary btn-lg mt-4" type="submit" id="cadastrar" class="form-control"
+                                    data-toggle="modal" data-target="exampleModalCenter">
+                                    <i class="fa-solid fa-check"></i>
+                                    ENVIAR
+                                </button>
+                            </div>
+                        </div>
+            </div>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="preencherBody"></div>
 
 <!--FUNÇÃO CONFIRMAR SENHA-->
 <script>

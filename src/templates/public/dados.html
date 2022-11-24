@@ -6,6 +6,12 @@ Octoplus Bank | Meus Dados
 
 {% endblock %}
 
+
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+{% endblock%}
+
 {% block conteudoComSidebar %}
 
 <div class="container">

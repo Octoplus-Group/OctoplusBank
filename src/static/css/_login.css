@@ -1,6 +1,13 @@
+body{
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
 #headerLogin {
+  width: 100vw;
+  height: 20vh;
   display: grid;
-  grid-template-columns: 42% 60%;
+  grid-template-columns: 40% 60%;
 }
 
 .headerLogin {
@@ -98,4 +105,34 @@ input#senha {
   background-color: #ff652d;
   border-radius: 25px;
   border: 2px solid black;
+}
+
+@media (max-width:425px) {
+  body{
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  #headerLogin {
+    width: auto;
+    height: 25vh;
+  }
+  
+  .headerLogin {
+    border-bottom: 3px solid #000;
+    background-color: #db4500;
+  }
+  
+  .tituloLogin {
+    margin-top: 25%;
+    font-size: 6.5vw;
+    font-weight: bold;
+    color: #FDE7EA;
+  }
+  
+  .imgLogin {
+    width: 20vw;
+    margin-right: 20%;
+    float: right;
+  }
 }

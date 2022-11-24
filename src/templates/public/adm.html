@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_adm.css')}}">
+{% endblock %}
+
 {% block content %} 
 
 <header class="headerAdm">
@@ -23,13 +27,13 @@
 
                 <div class="col-5">
                     <label for="idFuncionario">ID GERENTE</label>
-                    <input type="text" name="idFuncionario" id="idFuncionarioNovo" class="form-control" required>
+                    <input type="text" name="idFuncionario" id="idFuncionarioNovo" class="form-control" required placeholder="Digite seu ID">
                 </div>
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-5">
                         <label for="senhaAdm">Senha</label>
-                        <input type="password" name="senha" id="senhaAdmNovo" class="form-control" required>
+                        <input type="password" name="senha" id="senhaAdmNovo" class="form-control" required placeholder="Digite sua senha">
                     </div>
                 </div>
 
