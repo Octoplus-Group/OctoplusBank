@@ -828,23 +828,22 @@ class LoginFuncionario(MethodView):
                     cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s",(idFuncionario))
                     cliente = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente)
-                else:
-                    return render_template('public/adm.html')
-            elif ga != None:
-                with mysql.cursor() as cur:
-                    cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
-                    ga = cur.fetchone()
-                if senhalogin == ga[3] and ga[2]=='GA':
+                
+                elif ga != None:
                     with mysql.cursor() as cur:
-                        cur.execute("SELECT SUM(SALDO) FROM conta WHERE ID_AGENCIA=%s ",(ga[13]))
-                        saldoagencia=cur.fetchone()
+                        cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
+                        ga = cur.fetchone()
+                    if senhalogin == ga[3] and ga[2]=='GA':
+                        with mysql.cursor() as cur:
+                            cur.execute("SELECT SUM(SALDO) FROM conta WHERE ID_AGENCIA=%s ",(ga[13]))
+                            saldoagencia=cur.fetchone()
 
-                    
-                        return render_template('public/home_gerente.html',ga=ga,saldoagencia=saldoagencia)
+                        
+                            return render_template('public/home_gerente.html',ga=ga,saldoagencia=saldoagencia)
+                    else:
+                        return render_template('public/adm.html')
                 else:
                     return render_template('public/adm.html')
-            else:
-                return render_template('public/adm.html')
 
 class GerenciarAgenciaLinkController(MethodView):
     def get(self):
