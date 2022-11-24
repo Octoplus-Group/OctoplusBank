@@ -467,6 +467,8 @@ class LinkAprovacaoDepositoController(MethodView):
 class ExecucaoDepositoController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * from conta WHERE ID_CONTA=%s",(id))
+            conta = cur.fetchone()
             cur.execute("SELECT * from banco WHERE ID_BANCO=%s",(1))
             banco = cur.fetchone()
             cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
@@ -485,8 +487,10 @@ class ExecucaoDepositoController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
             depositoAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM funcionarios WHERE AGENCIA=%s",(conta[0]))
+            ga = cur.fetchone()
 
-            return render_template('public/aprovar_depositos.html', cliente=cliente, depositoAnalise=depositoAnalise)
+            return render_template('public/aprovar_depositos.html', cliente=cliente, depositoAnalise=depositoAnalise,ga=ga)
 
 class LinkExtratoController(MethodView):
     def get(self,id):           
