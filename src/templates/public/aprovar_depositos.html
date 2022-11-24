@@ -24,7 +24,8 @@ Octoplus Bank | Gerenciar Depósitos
             <th scoup="col">DATA</th>
             <th scoup="col">VALOR</th>
             <th scoup="col">STATUS</th>
-            <th scoup="col">AÇÃO</th>
+            <th scoup="col">APROVAR DEPOSITO</th>
+            <th scoup="col">NEGAR DEPOSITO</th>
         </tr>
         {% for item in depositoAnalise%}
         <tr style="text-align: center;">
@@ -34,6 +35,7 @@ Octoplus Bank | Gerenciar Depósitos
             <td>{{item[4]}}</td>
             <td>{{item[5]}}</td>
             <td><a href='/aprovacao_deposito/{{item[1]}}'><i class="fa-solid fa-circle-check fa-2x" style="color:green;"></i></a></td>
+            <td><a href='/negardeposito_gerente/{{item[1]}}'><i class="fa-solid fa-circle-check fa-2x" style="color:rgb(199, 20, 56);"></i></a></td>
         </tr>
         {% endfor %}
         </thead>

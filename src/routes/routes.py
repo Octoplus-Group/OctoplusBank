@@ -73,6 +73,7 @@ routes ={
     "alteracao_dados_ga_link_route":"/alterardadosgalink/<int:id>","alteracao_dados_ga_link_controller":EditarGaLink.as_view("linkalterarga"),
     "alteracao_dados_ga_route":"/alterardadosga/<int:id>","alteracao_dados_ga_controller":AlteracaoGADadosController.as_view("alterarga"),
     "visualizar_agencia_route":"/visualizar_agencia/<int:id>","visualizar_agencia_controller":visualizaragenciaController.as_view("visualizaragencia"),
+    "negar_deposito_gg_route":"/negar_deposito_gg/<int:id>","negar_deposito_gg_controller":NegarDepositoGGController.as_view("negardepositogg"),
 }
 
 
