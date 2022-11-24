@@ -1,34 +1,37 @@
 {% extends "base.html" %}
 
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_login.css')}}">
+{% endblock moreScripts%}
+
 {% block content %}
 
 <header class="headerLogin">
     <div id="headerLogin">
-        <div>
             <a class="paginaInicial" href="/">
                 <img class="imgLogin" src="../../static/images/logo_octoplus_bank_transparente_white.png" alt="Home">
             </a>
-        </div>
-        <div>
+            
             <h3 class="tituloLogin">
                 Acesse sua conta
             </h3>
-        </div><br>
+    </div>
 </header>
 
         <div class="container-fluid m-5 d-flex justify-content-center">
             <form action="login_cliente_validacao" method="POST">
-            <div class="row d-flex justify-content-center">
 
-                <div class="col-3">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12">
                     <label for="agencia">Número da Agência:
                         <input type="text" inputmode="numeric" name="agencia" id="senhaNova" required maxlength="6"
                             required class="form-control" required>
                     </label>
                 </div>
+            </div>
 
                 <div class="row d-flex justify-content-center">
-                    <div class="col-3">
+                    <div class="col-12">
                         <label for="id">Número da Conta:
                             <input type="text" inputmode="numeric" name="id" id="senhaNova" required maxlength="6"
                                 required class="form-control" required>
@@ -37,13 +40,12 @@
                 </div>
 
                 <div class="row d-flex justify-content-center">
-                    <div class="col-3">
+                    <div class="col-12">
                         <label for="senha">Senha:
                             <input type="password" name="senha" id="senhaNova" required maxlength="6" required
                                 class="form-control" required>
                         </label>
                     </div>
-                    <p>{{mensagem}}</p>
                 </div>
             </div>
         </div>

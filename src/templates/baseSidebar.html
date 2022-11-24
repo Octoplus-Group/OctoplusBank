@@ -14,8 +14,8 @@ Octoplus Bank | Home
 
 <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar" style="color: white;">
   <div class="container-fluid py-3">
-    <a class="navbar-brand" href="">
-      <img src="../static/images/octoplus_extendido_perola.png" height="75" alt="">
+    <a class="navbar-brand" href="#">
+      <img src="{{url_for ('static', filename='images/octoplus_extendido_perola.png')}}" height="75" alt="">
     </a>
 
     <div class="navbar-nav" id="navbar-items">
@@ -23,7 +23,7 @@ Octoplus Bank | Home
         <li class="nav-item">
           <h3 aria-current="page">Saldo disponível:</h3>
           <a onclick="changeIcon(this)" id="myBtn">
-            <span class="SPN" data-text="R$ {{'{:.2f}'.format(conta.4)}}">R$ {{"{:.2f}".format(conta.4)}} </span>
+            <span class="SPN" data-text="R$ {{'{:.2f}'.format(conta.4)}}">R$ {{"{:.2f}".format(conta.4)}}</span>
             <i class="fa fa-eye-slash"></i>
           </a>
         <li class="nav-item">
@@ -43,7 +43,6 @@ Octoplus Bank | Home
 <!-- SIDEBAR -->
 
 <main>
-
   <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 330px;">
     <ul class="nav nav-pills flex-column mb-auto">
       <li>

@@ -9,6 +9,8 @@ Octoplus Bank - Aguardando Aprovação
 
 {% block moreScripts %}
 
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_aguardando_aprovacao.css')}}">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -33,7 +35,7 @@ Octoplus Bank - Aguardando Aprovação
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">{{nome}} sua conta esta em analise, você já pode ver seu numero de conta e agencia abaixo, mas só podera entrar assim que sua conta for liberada pelo Gerente !</h5>
+                <h5 class="modal-title" id="exampleModalLabel2">{{nome}}, sua conta está em análise. <br> Você já pode ver seus dados abaixo, mas só poderá acessar assim que sua conta aprovada.</h5>
             </div>
             <div class="modal-body">
                 <div class="row justify-content-center">

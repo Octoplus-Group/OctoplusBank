@@ -1,0 +1,79 @@
+body{
+    background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
+    color: white;
+}
+
+.img-fluid{
+    max-width: 50%;
+    height: auto;
+}
+
+#logoVoltarCadastro{
+    position:absolute;
+    width:8%;
+    margin: 2%;
+    z-index: 1;
+}
+
+.preencherBody{
+    display: none;
+}
+
+#imgHomemLaptop{
+    position:fixed;
+}
+
+label{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+@media (max-width:425px) {
+    body{
+        background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
+        color: white;
+    }
+
+    .img-fluid{
+        max-width: 100%;
+        height: auto;
+    }
+
+    #logoVoltarCadastro{
+        margin: 3%;
+        width: 20%;
+        position:absolute;
+    }
+
+    #imgHomemLaptop{
+        position:relative;
+        border-bottom: solid 3px #FDE7EA;
+    }
+
+    #centerMobile{
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .preencherBody{
+        display: block;
+        height: 50vh;
+    }
+}
+
+@media (max-width:375px) {
+    
+    body{
+        background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
+        color: white;
+    }
+
+    .preencherBody{
+        display: block;
+        height: 100vh;
+        padding: 0;
+    }
+}
