@@ -1,1 +1,6 @@
 {% extends "baseSidebarGerenteGeral.html" %}
+
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerente_geral.css')}}">
+{% endblock %}
