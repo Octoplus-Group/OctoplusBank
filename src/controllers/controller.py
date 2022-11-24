@@ -817,15 +817,15 @@ class LoginFuncionario(MethodView):
         
 
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM funcionarios WHERE NOME=%s ",(idFuncionario))
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
             ga = cur.fetchone()
             if cliente!= None:
-                cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
+                cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s",(idFuncionario))
                 cliente = cur.fetchone()
                 if senhalogin == cliente[3] and cliente[2]=='GG':
-                    cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
+                    cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s",(idFuncionario))
                     cliente = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente)
                 else:
@@ -835,8 +835,12 @@ class LoginFuncionario(MethodView):
                     cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
                     ga = cur.fetchone()
                 if senhalogin == ga[3] and ga[2]=='GA':
+                    with mysql.cursor() as cur:
+                        cur.execute("SELECT SUM(SALDO) FROM conta WHERE ID_AGENCIA=%s ",(ga[13]))
+                        saldoagencia=cur.fetchone()
+
                     
-                    return render_template('public/home_gerente.html',ga=ga)
+                        return render_template('public/home_gerente.html',ga=ga,saldoagencia=saldoagencia)
                 else:
                     return render_template('public/adm.html')
             else:
@@ -1260,3 +1264,17 @@ class visualizaragenciaController(MethodView):
             cliente = cur.fetchone()
 
         return render_template ('public/visualizar_agencias.html',contagemclientes=contagemclientes,cliente=cliente,contagemcontas=contagemcontas,saldocontas=saldocontas,contagempendente=contagempendente)
+    
+class NegarDepositoGGController(MethodView):
+    def get(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
+            deposito=cur.fetchone()
+            cur.execute("UPDATE transacoes SET STATUS=%s WHERE ID_TRANSACAO=%s",("NEGADO",id))
+            cur.connection.commit()
+            cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
+            depositoAnalise = cur.fetchall()
+
+        return render_template("public/aprovar_depositos_gg.html", deposito=deposito,depositoAnalise=depositoAnalise,cliente=cliente)
