@@ -817,15 +817,15 @@ class LoginFuncionario(MethodView):
         
 
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM funcionarios WHERE NOME=%s ",(idFuncionario))
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s ",(idFuncionario))
             ga = cur.fetchone()
             if cliente!= None:
-                cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
+                cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s",(idFuncionario))
                 cliente = cur.fetchone()
                 if senhalogin == cliente[3] and cliente[2]=='GG':
-                    cur.execute("SELECT * FROM funcionarios WHERE NOME=%s",(idFuncionario))
+                    cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC=%s",(idFuncionario))
                     cliente = cur.fetchone()
                     return render_template('public/home_gerente_geral.html', cliente=cliente)
                 else:
