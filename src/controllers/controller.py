@@ -467,12 +467,13 @@ class LinkAprovacaoDepositoController(MethodView):
 class ExecucaoDepositoController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * from conta WHERE ID_CONTA=%s",(id))
-            conta = cur.fetchone()
+            
             cur.execute("SELECT * from banco WHERE ID_BANCO=%s",(1))
             banco = cur.fetchone()
             cur.execute("SELECT * from transacoes WHERE ID_TRANSACAO =%s",(id))
             deposito=cur.fetchone()
+            cur.execute("SELECT * from conta WHERE ID_CONTA=%s",(deposito[0]))
+            conta = cur.fetchone()
             capitalbancoupdate = banco[2] + deposito[4]
             cur.execute("UPDATE banco SET CAPITAL_TOTAL=%s WHERE ID_BANCO=%s",(capitalbancoupdate,1))
             cur.connection.commit()
@@ -487,6 +488,8 @@ class ExecucaoDepositoController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM transacoes WHERE STATUS =%s",('ANALISE'))
             depositoAnalise = cur.fetchall()
+            print ('Tipo de dado',type(conta[0]))
+            print ('valor conta',conta[0])
             cur.execute("SELECT * FROM funcionarios WHERE AGENCIA=%s",(conta[0]))
             ga = cur.fetchone()
 
@@ -1388,7 +1391,8 @@ class AprovacaoContaGGController(MethodView):
             dataAnalise = cur.fetchall()
             cur.execute("SELECT * FROM cliente WHERE REQUISICAO=%s",('DELETAR'))
             dataDeletar = cur.fetchall()
-            cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA=%s ",(conta[0]))
+            cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA=%s",(conta[0]))
+            agencia = cur.fetchone()
             cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
@@ -1396,4 +1400,4 @@ class AprovacaoContaGGController(MethodView):
             
             
         
-            return render_template('public/gerenciar_contas_gerente_geral.html', dataAprovado=dataAprovado, dataAnalise=dataAnalise,conta=conta,dataDeletar=dataDeletar,banco=banco,cliente=cliente)
+            return render_template('public/gerenciar_contas_gerente_geral.html', dataAprovado=dataAprovado, dataAnalise=dataAnalise,conta=conta,dataDeletar=dataDeletar,banco=banco,cliente=cliente,agencia=agencia)
