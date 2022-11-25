@@ -1,8 +1,8 @@
 CREATE DATABASE  IF NOT EXISTS `octoplus_bank` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `octoplus_bank`;
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: octoplus_bank
+-- Host: 127.0.0.1    Database: octoplus_bank
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -31,7 +31,7 @@ CREATE TABLE `agencia` (
   `NOME_DA_AGENCIA` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_AGENCIA`),
   KEY `ID_BANCO` (`ID_BANCO`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,6 @@ CREATE TABLE `agencia` (
 
 LOCK TABLES `agencia` WRITE;
 /*!40000 ALTER TABLE `agencia` DISABLE KEYS */;
-INSERT INTO `agencia` VALUES (1,1,'BRUNO MEZENGA','FATEC JACAREI'),(1,4,'JEAN','teste'),(1,5,'JEAN','Peina'),(1,6,'JEAN','Teste4'),(1,7,'JEAN','teste56'),(1,8,'JEAN','Hue'),(1,9,'JEAN','Hue'),(1,10,'JEAN','defe'),(1,11,'JEAN','defe');
 /*!40000 ALTER TABLE `agencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +68,7 @@ CREATE TABLE `banco` (
 
 LOCK TABLES `banco` WRITE;
 /*!40000 ALTER TABLE `banco` DISABLE KEYS */;
-INSERT INTO `banco` VALUES (1,'OCTOPLUS_BANK',900.00,1,1,'2022-11-22 07:32:55','2022-11-22 07:32:55');
+INSERT INTO `banco` VALUES (1,'OCTOPLUS_BANK',0.00,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `banco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +99,7 @@ CREATE TABLE `cliente` (
   `REQUISICAO` varchar(10) NOT NULL DEFAULT 'NENHUMA',
   PRIMARY KEY (`ID_CLIENTE`),
   KEY `ID_CONTA` (`ID_CONTA`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +108,6 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,3,'TOM HANKS','111.111.111-11','2001-01-01','Masculino','(11) 11111-1111','12233-500','Rua Ibiuna','São José dos Campos','Bosque dos Eucaliptos','10','1234','APROVADO','CL',1,'NENHUMA'),(2,4,'VICTOR BELFORT','111.111.111-11','2001-01-01','Masculino','(11) 11111-1111','12233-000','Avenida Andrômeda','São José dos Campos','Bosque dos Eucaliptos','1','1234','ANALISE','CL',1,'NENHUMA'),(3,5,'VANIELZA CRISTINA FERREIRA','272.268.158-77','1979-07-16','Feminino','(12) 11111-1111','12235-400','Rua Merida','São José dos Campos','Jardim América','209','1234','ANALISE','CL',1,'NENHUMA'),(4,6,'POLI MARIA','333.333.333-33','2000-06-06','Feminino','(12) 22222-2222','12235-400','Rua Merida','São José dos Campos','Jardim América','209','1234','ANALISE','CL',1,'NENHUMA'),(5,7,'MEL MARIA','888.888.888-88','2000-09-12','Feminino','(12) 55555-5555','12235-400','Rua Merida','São José dos Campos','Jardim América','209','1234','ANALISE','CL',1,'NENHUMA'),(6,8,'SILVIA MARIA','777.777.777-77','1958-05-03','Feminino','(12) 44444-4444','12235-400','Rua Merida','São José dos Campos','Jardim América','209','1234','ANALISE','CL',1,'NENHUMA');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +128,7 @@ CREATE TABLE `conta` (
   `ANIVERSARIO` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID_CONTA`),
   KEY `ID_AGENCIA` (`ID_AGENCIA`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +137,6 @@ CREATE TABLE `conta` (
 
 LOCK TABLES `conta` WRITE;
 /*!40000 ALTER TABLE `conta` DISABLE KEYS */;
-INSERT INTO `conta` VALUES (1,0000000001,'2022-11-09 18:42:53','POUPANCA',0.00,'APROVADO',0),(1,0000000002,'2022-11-10 08:18:09','CORRENTE',-100.00,'APROVADO',0),(1,0000000003,'2022-11-15 10:20:55','CORRENTE',100.00,'APROVADO',0);
 /*!40000 ALTER TABLE `conta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +163,7 @@ CREATE TABLE `funcionarios` (
   `CIDADE` varchar(45) DEFAULT NULL,
   `AGENCIA` int DEFAULT NULL,
   PRIMARY KEY (`ID_FUNC`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +172,6 @@ CREATE TABLE `funcionarios` (
 
 LOCK TABLES `funcionarios` WRITE;
 /*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-INSERT INTO `funcionarios` VALUES (1,'MEZENGA','GG','1234',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Motumbo','GG','1234',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'Gabriel','GG','1234',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Gerente Geral','GG','1234',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Mama','GG','1234',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,'GABRIEL','DEMITIDO','1234','1986-09-12','(12) 99162-9611','Masculino','351.487.988-58','12235-400','209','Rua Merida','Jardim América','São José dos Campos',NULL),(7,'JEAN MACEDO','GA','11','2000-11-11','(11) 11111-1111','Feminino','222.222.222-22','12235-400','1234','Rua Merida','Jardim América','São José dos Campos',11);
 /*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +195,7 @@ CREATE TABLE `transacoes` (
   KEY `ID_CONTA` (`ID_CONTA`),
   KEY `DE` (`DE`),
   KEY `PARA` (`PARA`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,7 +204,6 @@ CREATE TABLE `transacoes` (
 
 LOCK TABLES `transacoes` WRITE;
 /*!40000 ALTER TABLE `transacoes` DISABLE KEYS */;
-INSERT INTO `transacoes` VALUES (1,6,'SAQUE','2022-11-23 16:20:54',-100,'APROVADO',NULL,NULL);
 /*!40000 ALTER TABLE `transacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -221,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-24  7:58:38
+-- Dump completed on 2022-11-25 11:46:08

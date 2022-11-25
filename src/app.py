@@ -37,6 +37,10 @@ app.add_url_rule(routes["pagina_transferencia_route"],view_func=routes["pagina_t
 
 app.add_url_rule(routes["realizar_transferencia_route"],view_func=routes["realizar_tranferencia_controller"])
 
+app.add_url_rule(routes["pagina_confirmar_transferencia_route"],view_func=routes["pagina_confirmar_transferencia_controller"])
+
+app.add_url_rule(routes["confirmar_transferencia_route"],view_func=routes["confirmar_transferencia_controller"])
+
 app.add_url_rule(routes["pagina_transferencia_gerente_route"],view_func=routes["pagina_transferencia_gerente_controller"])
 
 app.add_url_rule(routes["realizar_transferencia_gerente_route"],view_func=routes["realizar_tranferencia_gerente_controller"])
@@ -134,4 +138,6 @@ app.add_url_rule(routes["alteracao_dados_ga_route"],view_func=routes["alteracao_
 app.add_url_rule(routes["visualizar_agencia_route"],view_func=routes["visualizar_agencia_controller"])
 
 app.add_url_rule(routes["negar_deposito_gg_route"],view_func=routes["negar_deposito_gg_controller"])
+
+app.add_url_rule(routes["aprovacao_conta_gg_route"],view_func=routes["aprovacao_conta_gg_controller"])
 

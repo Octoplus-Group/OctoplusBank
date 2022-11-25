@@ -28,6 +28,8 @@ routes ={
     "solicitacao_deletar":"/solicitacaodeletar/<int:id>","solicitacao_deletar_controller":DeleteClienteRequisicaoController.as_view("solicitacaodeletar"),
     "pagina_transferencia_route":"/pagina_transferencia/<int:id>","pagina_transferencia_controller":paginaTransferenciaController.as_view("transferencia"),
     "realizar_transferencia_route":"/realiazar_transferencia/<int:id>","realizar_tranferencia_controller":realizarTransferenciaController.as_view("realizartransferencia"),
+    "pagina_confirmar_transferencia_route":"/pagina_confirmar_transferencia/<int:id>","pagina_confirmar_transferencia_controller":PaginaConfirmarTransferenciaController.as_view("paginaconfirmartransferencia"),
+    "confirmar_transferencia_route":"/confirmar_transferencia/<int:id>","confirmar_transferencia_controller":ConfirmarTransferenciaController.as_view("confirmartransferencia"),
 
     #gerete_de_agencia
     "index_admin_route":"/gerenteagencia","indexgacontroller":IndexController.as_view("indexga"),
@@ -74,6 +76,7 @@ routes ={
     "alteracao_dados_ga_route":"/alterardadosga/<int:id>","alteracao_dados_ga_controller":AlteracaoGADadosController.as_view("alterarga"),
     "visualizar_agencia_route":"/visualizar_agencia/<int:id>","visualizar_agencia_controller":visualizaragenciaController.as_view("visualizaragencia"),
     "negar_deposito_gg_route":"/negar_deposito_gg/<int:id>","negar_deposito_gg_controller":NegarDepositoGGController.as_view("negardepositogg"),
+    "aprovacao_conta_gg_route":"/aprovacao_conta_gg/<int:id>","aprovacao_conta_gg_controller":AprovacaoContaGGController.as_view("aprovacaocontagg"),
 }
 
 

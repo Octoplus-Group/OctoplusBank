@@ -1,0 +1,34 @@
+{% extends "baseSidebar.html" %}
+
+{% block title %}
+
+Octoplus Bank | Transferência
+
+{% endblock %}
+
+{% block conteudoComSidebar %}
+
+<form action="transferencia.html" method="get">
+    <label for="valor">Valor:</label>
+    <input class="form-control" type="text" value="{{transferencia}}" disabled readonly>
+
+    <label for="para">Para:</label>
+    <input class="form-control" type="text" value="{{transacoes.7}}" disabled readonly>
+
+    <label for="agencia">Agencia:</label>
+    <input class="form-control" type="text" value="{{agencia}}" disabled readonly>
+
+    <button class="btn btn-primary btn-lg p-4 my-5" type="reset" id="confirmarDep" class="form-control"
+        data-toggle="modal" data-target="exampleModalCenter">
+        <i class="fa-solid fa-check"></i>
+        <a href="transferencia.html">Cancelar</a>
+    </button>
+
+    <button class="btn btn-primary btn-lg p-4 my-5" type="submit" id="confirmarDep" class="form-control"
+        data-toggle="modal" data-target="exampleModalCenter">
+        <i class="fa-solid fa-check"></i>
+        Confirmar
+    </button>
+</form>
+
+{% endblock %}
