@@ -146,7 +146,7 @@ class DeleteClienteRequisicaoController(MethodView):
                     cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
                     conta = cur.fetchone()
                     mensagem = "Sua Solicitacao foi encaminhada para o Gerente de Agencia"
-                return render_template("public/dados.html", mensagem=mensagem, cliente=cliente , conta=conta)
+                return render_template("/", mensagem=mensagem, cliente=cliente , conta=conta)
 
 class UpdateClienteController(MethodView):
     def get(self, id):
@@ -671,9 +671,26 @@ class CadastroClienteController(MethodView):
             numeroclienteAbertura=cur.fetchone()
             cur.execute("UPDATE cliente SET ID_CONTA =%s WHERE ID_CLIENTE = %s",(numeroconta,numerocliente))
             cur.connection.commit()
-            cur.execute("select ID_AGENCIA from agencia order by rand() limit 1")
-            agenciacliente=cur.fetchone()
-            print('agencia cliente',agenciacliente)
+            cur.execute("SELECT  MIN(N_CONTAS) from agencia WHERE ID_BANCO=%s",(1))
+            menoragencia = cur.fetchone()
+            cur.execute("SELECT ID_AGENCIA from agencia WHERE N_CONTAS=%s",(menoragencia))
+            agenciacliente = cur.fetchone()
+            agenciacliente = sum(agenciacliente)
+            cur.execute("SELECT N_CONTAS from agencia WHERE ID_AGENCIA=%s",(agenciacliente))
+            numerocontasatual = cur.fetchone()
+            numerocontasatual = sum(numerocontasatual)
+            numerocontasatual = numerocontasatual + 1
+            print ("Teste Tipo dado",type(numerocontasatual))
+            print ("Teste Tipo dado",type(agenciacliente))
+            print ("Teste Tipo dado",numerocontasatual)
+            print ("Teste Tipo dado",agenciacliente)
+
+            cur.execute("UPDATE agencia SET N_CONTAS=%s WHERE ID_AGENCIA=%s",(numerocontasatual,agenciacliente))
+            cur.connection.commit()
+
+            """ cur.execute("select ID_AGENCIA from agencia order by rand() limit 1")
+            agenciacliente=cur.fetchone() """
+
             cur.execute("UPDATE conta SET ID_AGENCIA=%s WHERE ID_CONTA=%s",(agenciacliente,numeroconta))
             cur.connection.commit()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA=%s",(numeroconta))
@@ -984,9 +1001,7 @@ class VerificacaoEntrada(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
-
-
-
+            
             cur.execute("SELECT * FROM conta")
             contas=cur.fetchall()
 
