@@ -1,15 +1,11 @@
 #navbar-gg {
     background-color: #535050;
-}
-
-#navbar-ga {
-    background-color: #535050;
     color: white;
 }
 
 .navbar-brand-gg {
     margin-left: 1em;
-}
+} 
 
 .active a:hover {
     background-color: black;

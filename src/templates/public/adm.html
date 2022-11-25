@@ -23,22 +23,17 @@
 
     <div class="container-fluid m-5 d-flex justify-content-center">
         <form action="/adm" method="POST">
-            <div class="row d-flex justify-content-center">
 
-                <div class="col-5">
-                    <label for="idFuncionario">ID GERENTE</label>
-                    <input type="text" name="idFuncionario" id="idFuncionarioNovo" class="form-control" required placeholder="Digite seu ID">
-                </div>
-
-                <div class="row d-flex justify-content-center">
-                    <div class="col-5">
-                        <label for="senhaAdm">Senha</label>
+                    <div class="col-5" id="idFuncionario">
+                        <label for="idFuncionario"><b>ID_GERENTE</b></label>
+                        <input type="text" name="idFuncionario" id="idFuncionarioNovo" class="form-control" required placeholder="Digite seu ID">
+                    </div>
+                    <div class="col-5" id="idsenhaAdm">
+                        <label for="senhaAdm"><b>SENHA</b></label>
                         <input type="password" name="senha" id="senhaAdmNovo" class="form-control" required placeholder="Digite sua senha">
                     </div>
-                </div>
-
-                <div class="container d-flex justify-content-end">
-                    <button class="btn btn-primary btn-lg" type="submit" id="entrar" class="form-control" data-toggle="modal"
+                <div class="container d-flex justify-content-center">
+                    <button class="btn btn-primary btn-lg" type="submit" id="entrarAdm" class="form-control" data-toggle="modal"
                         data-target="exampleModalCenter">
                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                         Entrar
