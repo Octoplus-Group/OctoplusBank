@@ -28,6 +28,8 @@ routes ={
     "solicitacao_deletar":"/solicitacaodeletar/<int:id>","solicitacao_deletar_controller":DeleteClienteRequisicaoController.as_view("solicitacaodeletar"),
     "pagina_transferencia_route":"/pagina_transferencia/<int:id>","pagina_transferencia_controller":paginaTransferenciaController.as_view("transferencia"),
     "realizar_transferencia_route":"/realiazar_transferencia/<int:id>","realizar_tranferencia_controller":realizarTransferenciaController.as_view("realizartransferencia"),
+    "pagina_confirmar_transferencia_route":"/pagina_confirmar_transferencia/<int:id>","pagina_confirmar_transferencia_controller":PaginaConfirmarTransferenciaController.as_view("paginaconfirmartransferencia"),
+    "confirmar_transferencia_route":"/confirmar_transferencia/<int:id>","confirmar_transferencia_controller":ConfirmarTransferenciaController.as_view("confirmartransferencia"),
 
     #gerete_de_agencia
     "index_admin_route":"/gerenteagencia","indexgacontroller":IndexController.as_view("indexga"),
