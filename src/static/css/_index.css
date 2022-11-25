@@ -18,20 +18,16 @@ h1 {
 /* NAVBAR */
 
 #navbar {
-    border-bottom: 1px solid #000;
     background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
-    margin-top: 0;
+    height: 10vh;
+    width: 100vw;
+    padding: 0;
+    border-bottom: #000 2px solid;
 }
 
 .navbar-nav#navbar-items {
     font-weight: bold;
     font-size: 1.5em;
-    margin-top: -5px;
-}
-
-
-#navbar a.active {
-    border-bottom: 2px solid #050505;
 }
 
 #navbar a:hover {
@@ -45,7 +41,6 @@ h1 {
 }
 
 #navbar-items .nav-item {
-    margin: -1px 1em;
     margin-left: 0;
 } 
 
@@ -54,22 +49,30 @@ h1 {
 }
 
 #logoExtendido{
-    width: 40%;
+    width: 30%;
 }
 
 
 /* SLIDER */
 
+#slider{
+    height: auto;
+    width: 100vw;
+}
+
 #slider-container{
-    border: #000 solid 1px;
-    border-bottom: #000 solid 1px;
+    border-bottom: #000 2px solid;
 }
 
 @media (max-width:425px) {
 
     #logoExtendido{
-        width: 90vw;
+        width: 50vw;
         margin: auto;
+    }
+
+    #navbar {
+        padding-bottom: 40%;
     }
 
     #slider-container{
@@ -104,3 +107,11 @@ h1 {
     color: #111; 
     font-size: 2em;
 }
+
+/**FOOTER**/
+
+#containerFooter{
+    height: 5vh;
+    width: 100vw;
+}
+

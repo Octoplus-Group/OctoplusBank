@@ -1,3 +1,15 @@
+/* TELA DE VERIFICAÇÃO */
+
+body{
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
+}
+
+#divCenterIndex{
+  margin: 0, 100%;
+}
+
 /*ESTILO DA SETA À DIREITA DO INPUT*/
 
 select {
