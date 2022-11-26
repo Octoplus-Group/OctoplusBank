@@ -13,6 +13,8 @@ Octoplus Bank | Meus Dados
 {% endblock%}
 
 
+{% block content %} 
+
 
         <div class="cadastro-fundo">
         <br>
@@ -38,7 +40,7 @@ Octoplus Bank | Meus Dados
                 <p>Tipo de Conta: {{conta.3}}</p>
             </div>
             <div class="parte-3">
-                <p>for="cep">CEP: {{cliente.7}} </p>
+                <p>CEP: {{cliente.7}} </p>
             </div>
             <div class="parte-3">
                 <p>Cidade: {{cliente.9}}</p> 
@@ -69,6 +71,6 @@ Octoplus Bank | Meus Dados
             </div>
         </div>
    
-        <a href="/link_gerenciar_contas/{{cliente.0}}">VOLTAR</a>
+        <a href="/link_gerenciar_contas/{{ga.0}}">VOLTAR</a>
         
 {% endblock %}

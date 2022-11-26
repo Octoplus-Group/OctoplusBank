@@ -1218,8 +1218,10 @@ class VizualizarContaController(MethodView):
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
             conta = cur.fetchone()
+            cur.execute("SELECT * FROM funcionarios WHERE  AGENCIA=%s",(cliente[15]))
+            ga = cur.fetchone()
 
-            return render_template("public/vizualizar_conta.html", cliente=cliente , conta=conta)
+            return render_template("public/vizualizar_conta.html", cliente=cliente , conta=conta,ga=ga)
 
 class NegarContaController(MethodView):
     def get(self,id):
