@@ -1226,20 +1226,22 @@ class VizualizarContaController(MethodView):
 class NegarContaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
-            conta = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
             cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
             cur.execute("UPDATE cliente SET STATUS=%s WHERE ID_CLIENTE=%s",('NEGADO',cliente[1]))
             cur.connection.commit()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s ",('APROVADO',cliente[15]))
             dataAprovado = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s AND ID_AGENCIA=%s",('ANALISE',cliente[15]))
             dataAnalise = cur.fetchall()
-            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s",('DELETAR'))
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO =%s AND ID_AGENCIA=%s",('DELETAR',cliente[15]))
             dataDeletar = cur.fetchall()
+            cur.execute("SELECT * FROM funcionarios WHERE AGENCIA=%s",(conta[0]))
+            ga = cur.fetchone()
         
-        return render_template("public/gerenciar_contas.html", conta=conta, dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente)
+        return render_template("public/gerenciar_contas.html", conta=conta, dataAprovado=dataAprovado,dataAnalise=dataAnalise,dataDeletar=dataDeletar,cliente=cliente,ga=ga)
 
 class NegarDepositoController(MethodView):
     def get(self,id):
