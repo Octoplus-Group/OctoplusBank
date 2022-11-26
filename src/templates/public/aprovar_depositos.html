@@ -17,9 +17,9 @@ Octoplus Bank | Gerenciar Depósitos
 
 {% endblock moreScripts %}
 
-<div>
+<div id="tableGA">
     <table class="table table-bordered table-striped" cellpadding="0">
-        <thead class="table">
+        <thead class="table-dark">
         <tr style="text-align: center;">
             <th scoup="col">NUMERO DE CONTA</th>
             <th scoup="col">ID da Transação</th>
@@ -29,6 +29,7 @@ Octoplus Bank | Gerenciar Depósitos
             <th scoup="col">APROVAR DEPOSITO</th>
             <th scoup="col">NEGAR DEPOSITO</th>
         </tr>
+        </thead>
         {% for item in depositoAnalise%}
         <tr style="text-align: center;">
             <td>{{item[0]}}</td>
@@ -36,11 +37,10 @@ Octoplus Bank | Gerenciar Depósitos
             <td>{{item[3]}}</td>
             <td>{{item[4]}}</td>
             <td>{{item[5]}}</td>
-            <td><a href='/aprovacao_deposito/{{item[1]}}'><i class="fa-solid fa-circle-check fa-2x" style="color:green;"></i></a></td>
-            <td><a href='/negardeposito_gerente/{{item[1]}}'><i class="fa-solid fa-circle-check fa-2x" style="color:rgb(199, 20, 56);"></i></a></td>
+            <td><a href='/aprovacao_deposito/{{item[1]}}'><i class="fa-solid fa-circle-check fa-2x" style="color:green; margin-top: .6em;"></i></a></td>
+            <td><a href='/negardeposito_gerente/{{item[1]}}'><i class="bi bi-x-circle-fill fa-2x" style="color:rgb(199, 20, 56); margin-top: .5em;"></i></a></td>
         </tr>
         {% endfor %}
-        </thead>
     </table>
 
 

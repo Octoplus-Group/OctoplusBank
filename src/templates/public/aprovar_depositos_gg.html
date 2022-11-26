@@ -17,16 +17,16 @@ Octoplus Bank | Aprovar Depósitos
 {% endblock moreScripts %}
 
 <div>
-    <table class="table table-bordered table-striped" cellpadding="5">
-        <thead class="table-dark">
+    <table class="table table-bordered table-striped" cellpadding="5" id="depGG">
+        <thead  class="table-dark">
         <tr style="text-align: center;">
-            <th scoup="col">NUMERO DE CONTA</th>
-            <th scoup="col">ID da Transação</th>
+            <th scoup="col">NÚMERO DE CONTA</th>
+            <th scoup="col">ID TRANSAÇÃO</th>
             <th scoup="col">DATA</th>
             <th scoup="col">VALOR</th>
             <th scoup="col">STATUS</th>
-            <th scoup="col">APROVAR DEPOSITO</th>
-            <th scoup="col">NEGAR DEPOSITO</th>
+            <th scoup="col">APROVAR</th>
+            <th scoup="col">NEGAR</th>
         </tr>
         </thead>
         {% for item in depositoAnalise%}
@@ -37,11 +37,11 @@ Octoplus Bank | Aprovar Depósitos
             <td>{{"{:.2f}".format(item[4])}}</td>
             <td>{{item[5]}}</td>
             <td>
-                <a href='/provacao_deposito_GG/{{item[1]}}'><i class="fa-solid fa-circle-check" style="color: green;"></i></a>
+                <a href='/provacao_deposito_GG/{{item[1]}}'><i class="fa-solid fa-circle-check fa-2x" style="color: green; margin-top: .2em"></i></a>
                 
             </td>
             <td>
-                <a href='/negar_deposito_gg/{{item[1]}}'><i class="fa-solid fa-circle-check" style="color: rgb(185, 31, 57);"></i></a>
+                <a href='/negar_deposito_gg/{{item[1]}}'><i class="bi bi-x-circle-fill fa-2x" style="color: rgb(185, 31, 57);"></i></a>
                 
             </td>
         </tr>
