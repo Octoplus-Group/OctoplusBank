@@ -36,6 +36,10 @@ main {
   min-width: 80vw;
 }
 
+header{
+  display: none;
+}
+
 .bi {
     vertical-align: -.05em;
     pointer-events: none;
@@ -47,12 +51,105 @@ main {
       height: 100vh;
     }
 
-    .navbar-items{
-      display: flex;
-      justify-content: center;
+    header{
+      display: block;
     }
-
+  
     *{
       font-size: 1rem;
     }
+
+    #divPrincipalSidebar{
+      display: none !important;
+    }
+
+    body{
+      font-family: 'Noto Sans', sans-serif;
+      margin:0;
+      width:100%;
+      height:100vh;
+        background:#ffffff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    header{
+      width:100%; 
+      background:#ffffff; 
+      height:60px; 
+      line-height:60px;
+      border-bottom:1px solid #dddddd;
+    }
+    .hamburger{
+      background:none;
+      position:absolute;
+      top:0;
+      right:0;
+      line-height:45px;
+      padding:8%;
+      color:rgb(255, 255, 255);
+      border:0;
+      font-size:3em;
+      font-weight:bold;
+      cursor:pointer;
+      outline:none;
+      z-index:10000000000000;
+    }
+    .cross{
+      background:none;
+      position:absolute;
+      top:0px;
+      right:0;
+      padding:10%;
+      color:rgb(255, 255, 255);
+      border:0;
+      font-size:6em;
+      font-weight:bold;
+      cursor:pointer;
+      outline:none;
+      z-index:10000000000000;
+    }
+    .menu{z-index:1000000; font-weight:bold; font-size:0.8em; width:100%; background:#f1f1f1;  position:absolute; text-align:center; font-size:12px;}
+    .menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none;}
+    .menu li {display: block;   padding:15px 0 15px 0; border-bottom:#dddddd 1px solid;}
+    .menu li:hover{display: block;    background:#ffffff; padding:15px 0 15px 0; border-bottom:#dddddd 1px solid;}
+    .menu ul li a { text-decoration:none;  margin: 0px; color:#666;}
+    .menu ul li a:hover {  color: #666; text-decoration:none;}
+    .menu a{text-decoration:none; color:#666;}
+    .menu a:hover{text-decoration:none; color:#666;}
+    
+    .glyphicon-home{
+      color:white; 
+      font-size:1.5em; 
+      margin-top:5px; 
+      margin:0 auto;
+    }
+    header{display:inline-block; font-size:12px; height: 0%;}
+    span{padding-left:20px;}
+    a{color:#336699;}
+
+    #navbar-items{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav-item{
+      padding-bottom: 8%;
+    }
+
+    #sairNav{
+      display: none;
+    }
+
+    main {
+      display: block;
+      height: 85vh;
+      max-height: 700vh;
+      font-size: 1.2vw;
+      max-width: 50em;
+    }
+  
+    
+  .conteudoExtra{
+    min-width: 100vw;
+  }
   }
