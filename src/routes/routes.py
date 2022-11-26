@@ -79,6 +79,7 @@ routes ={
     "negar_deposito_gg_route":"/negar_deposito_gg/<int:id>","negar_deposito_gg_controller":NegarDepositoGGController.as_view("negardepositogg"),
     "aprovacao_conta_gg_route":"/aprovacao_conta_gg/<int:id>","aprovacao_conta_gg_controller":AprovacaoContaGGController.as_view("aprovacaocontagg"),
     "gerar_extrato_gg_route":"/gerar_extrato_gg/<int:id>","gerar_extrato_gg_controller":GerarExtratoGGController.as_view("gerarextratogg"),
+    "link_extrato_gerente_GG":"/link_extrato_gerente_GG/<int:id>","link_extrato_gerente_GG_controller":LinkExtratoGerenteGGController.as_view("linkextratogerentegg"),
 }
 
 
