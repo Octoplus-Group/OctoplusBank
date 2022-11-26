@@ -1,6 +1,21 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerenteGeral.html" %}
 
-{% block content %} 
+{% block title %}
+
+Octoplus Bank | Aprovar Depósitos
+
+{% endblock %}
+
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock moreScripts %}
+
+
+{% block conteudoComSidebar %}
     <h1>Alterar Dados de Gerente de Agencia</h1>
         <form action="/alterardadosga/{{ga.0}}" method="POST" onsubmit="return checkForm(this);">
         <div class="col-9">

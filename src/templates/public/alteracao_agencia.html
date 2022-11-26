@@ -1,19 +1,20 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerenteGeral.html" %}
 
-{% block content %} 
+{% block title %}
 
-<!-- com o novo layout do figma isso não será necessário -->
-<section>
+Octoplus Bank | Gerenciar Agências
 
-    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
-    <hr>
+{% endblock %}
 
-</section>
-<!-- section acima -->
+{% block conteudoComSidebar %}
 
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
 
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock moreScripts %}
 
 <form action="/edicao_agencia/{{agencia.1}}" method="POST">
     <fieldset class="AlteracaoNAG">
@@ -42,4 +43,4 @@
 
        <button type="submit" id="AlteracaoNAG">Alterar Dados</button>        
 
-       {% endblock %}
+{% endblock %}
