@@ -13,42 +13,37 @@ Octoplus Bank | Transferência
 
 {% block conteudoComSidebar %}
 
-<div class="container">
-    <form action="/realiazar_transferencia/{{cliente.0}}" method="POST">
-        <h6 style="color:green ;">{{mensagem}}</h6>
-        <br>
-        <div class="form-group">
-            <h4>Quantidade a transferir:</h4>
-            <label for="transferencia">Quantidade:
-                <input type="text" class="form-control" name="transferencia" id="transferencia" min="0" placeholder="0,00" required>
-            </label>
-        </div>
-
-        <br>
-
-        <div class="form-group">
-            <h4>Transferir para:</h4>
-            <div class="form-group col-1">
-                <label for="agencia">Agência:</label>
-                <input type="text" inputmode="numeric" class="form-control" name="agencia" id="agenciaTransf"
-                    placeholder="Agência" required>
+<div class="container-fluid">
+    <div class="container d-flex justify-content-center">
+        <form action="/realiazar_transferencia/{{cliente.0}}" method="POST">
+            <h6 style="color:green ;">{{mensagem}}</h6>
+            <div class="form-group pt-5">
+                <label for="transferencia">Quantidade:
+                    <input type="text" class="form-control" name="transferencia" id="transferencia" min="0"
+                        placeholder="0,00" required>
+                </label>
             </div>
 
-            <div class="form-group col-1">
-                <label for="para">Conta:</label>
-                <input type="text" inputmode="numeric" class="form-control" id="para" name="para" min="0"
-                 step=".01" placeholder="Conta" required>
-            </div>
+    <div class="form-group">
+        <div class="form-group col-12 pt-5">
+            <label for="agencia">Transferir para:</label>
+            <input type="text" inputmode="numeric" class="form-control" name="agencia" id="agenciaTransf"
+                placeholder="Agência" required>
         </div>
+        <div class="form-group col-12 pt-3">
+            <input type="text" inputmode="numeric" class="form-control" id="para" name="para" min="0" step=".01"
+                placeholder="Conta" required>
+        </div>
+    </div>
 
-        <button class="btn btn-primary btn-lg p-4 my-5" type="submit" id="confirmarDep" class="form-control"
-            data-toggle="modal" data-target="exampleModalCenter">
-            <i class="fa-solid fa-check"></i>
-            Avançar
-        </button>
-
+    <button class="btn btn-primary btn-lg p-4 my-5 d-flex" style="margin-left: 15%;" type="submit" id="confirmarDep" class="form-control"
+        data-toggle="modal" data-target="exampleModalCenter">
+        <i class="fa-solid fa-check"></i>
+        Avançar
+    </button>
     </form>
+    </div>
 </div>
 
 
-    {% endblock %}
+{% endblock %}

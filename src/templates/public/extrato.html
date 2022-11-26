@@ -16,7 +16,7 @@ Octoplus Bank | Extrato
 
 <!--FUNÇÃO PARA ABRIR MODAL (EXTRATO) AO CARREGAR A PÁGINA [IF PERÍODO DO EXTRATO NÃO FOR VAZIO (usuario nao selecionou data)]-->
 
-{% if (extrato) != '' %}
+<!-- {% if (extrato) != '' %}
 <script>
     $(document).ready(function () {
         $('#extrato').modal('show');
@@ -25,7 +25,7 @@ Octoplus Bank | Extrato
 
 {% set extrato='' %}
 
-{% endif %}
+{% endif %} -->
 
 {% endblock moreScripts %}
 
@@ -70,17 +70,14 @@ Octoplus Bank | Extrato
 </div>
 
 
-<div class="container m-5 p-5" id="pagExtrato">
+<div class="container" style="display:flex; justify-content:center;" id="pagExtrato">
     <form action="/gerar_extrato/{{conta.1}}" method="POST">
-        <div class="row">
-
-            <div class="col-6">
+        <div class="row pt-5 m-5">
+            <div class="col-6 ">
                 <label class="confirm" for="confirmar">Data Inicial:
-                    <br>
                     <input class="dataInicial" type="date" name="inicioExtrato" id="inicioExtrato" required
                         class="form-control">
             </div>
-
             <div class="col-6">
                 <label class="confirm" for="confirmar">Data Final:
                     <br>
@@ -89,8 +86,8 @@ Octoplus Bank | Extrato
             </div>
         </div>
 
-        <div class="container m-5 p-2">
-            <button class="btn btn-primary btn-lg p-4" type="submit" id="confirmarDep" class="form-control">
+        <div class="container-fluid" style="display:flex; justify-content: center;">
+            <button class="btn btn-primary btn-lg p-3" type="submit" id="confirmarDep" class="form-control">
                 <i class="fa-solid fa-check"></i>
                 Gerar extrato
             </button>
