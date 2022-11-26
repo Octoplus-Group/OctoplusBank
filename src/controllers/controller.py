@@ -514,8 +514,10 @@ class LinkExtratoGerenteController(MethodView):
             cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
             conta = cur.fetchone()
             extrato=''
+            cur.execute("SELECT * FROM funcionarios WHERE AGENCIA =%s",(conta[0]))
+            ga = cur.fetchone()
 
-            return render_template('public/extrato_gerente.html', cliente=cliente , conta=conta,extrato=extrato)
+            return render_template('public/extrato_gerente_GA.html', cliente=cliente , conta=conta,extrato=extrato,ga=ga)
 
 class GerarExtratoController(MethodView):
     def post(self,id):
@@ -1409,3 +1411,38 @@ class AprovacaoContaGGController(MethodView):
             
         
             return render_template('public/gerenciar_contas_gerente_geral.html', dataAprovado=dataAprovado, dataAnalise=dataAnalise,conta=conta,dataDeletar=dataDeletar,banco=banco,cliente=cliente,agencia=agencia)
+        
+class GerarExtratoGGController(MethodView):
+    def post(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            
+            inicio = request.form['inicioExtrato']
+            fim = request.form['fimExtrato']
+            print('Tipo data',inicio)
+            print('Tipo data',fim)
+            cur.execute("SELECT * FROM transacoes WHERE DATA between  %s'00:00:00' AND %s'23:59:59' and ID_CONTA =%s",(inicio,fim,id))
+            extrato=cur.fetchall()
+
+            return render_template('public/extrato_gerente.html',extrato=extrato, cliente=cliente , conta=conta)
+        
+class GerarExtratoGAController(MethodView):
+    def post(self,id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            cur.execute("SELECT * FROM funcionarios WHERE AGENCIA =%s",(conta[0]))
+            ga = cur.fetchone()
+            inicio = request.form['inicioExtrato']
+            fim = request.form['fimExtrato']
+            print('Tipo data',inicio)
+            print('Tipo data',fim)
+            cur.execute("SELECT * FROM transacoes WHERE DATA between  %s'00:00:00' AND %s'23:59:59' and ID_CONTA =%s",(inicio,fim,id))
+            extrato=cur.fetchall()
+
+            return render_template('public/extrato_gerente_GA.html',extrato=extrato, cliente=cliente , conta=conta,ga=ga)

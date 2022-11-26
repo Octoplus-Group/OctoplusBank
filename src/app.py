@@ -141,3 +141,6 @@ app.add_url_rule(routes["negar_deposito_gg_route"],view_func=routes["negar_depos
 
 app.add_url_rule(routes["aprovacao_conta_gg_route"],view_func=routes["aprovacao_conta_gg_controller"])
 
+app.add_url_rule(routes["gerar_extrato_gg_route"],view_func=routes["gerar_extrato_gg_controller"])
+
+app.add_url_rule(routes["gerar_extrato_ga_route"],view_func=routes["gerar_extrato_ga_controller"])
