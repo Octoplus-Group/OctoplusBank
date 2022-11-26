@@ -1,79 +1,52 @@
 {% extends "base.html" %}
 
-{% block content %} 
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_capInicial.css')}}">
+{% endblock %}
 
-<header>
-    <h1 class="tituloIndex">INICIO OCTOPLUS BANK</h1>
-</header>
+{% block content %}
+
+<h1 style="text-align: center; padding-top: 5%;">
+    <u>INICIO OCTOPLUS BANK</u>
+</h1>
 
 <main>
     <form action="/" method="POST">
         <fieldset class="">
             <div class="cadastro-fundo">
-            
-            <br>
-                    <div class="parte-1">
-    
-                        <label for="capital">ENTRE COM O CAPITAL DO BANCO</label>
-                        <input type="number" name="capitalInicial" id="capitalInicial" required min="0" placeholder="0,00" step=".01" required> 
-    
+
+                <div class="container" style="padding-left:24%;">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="capital">ENTRE COM O CAPITAL DO BANCO</label>
+                            <input type="number" name="capitalInicial" id="capitalInicial" required min="0"
+                                placeholder="0,00" step=".01" class="form-control" required>
+                        </div>
                     </div>
-    
-    
-                    <div class="parte-1">
-    
-                        <label for="jurosPoupanca">Entre com os Juros da Poupança (%)</label>
-                        <input type="number"  name="jurosPoupanca" id="jurosPoupanca" required min="0" placeholder="0" step=".01" required>
-                        
-    
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="jurosPoupanca">Entre com os Juros da Poupança (%)</label>
+                            <input type="number" name="jurosPoupanca" id="jurosPoupanca" required min="0"
+                                placeholder="0" step=".01" class="form-control" required>
+                        </div>
                     </div>
-    
-                        
-                <br><br>
-    
-                    <div class="parte-2">      
-    
-                        <label for="dataNascimento">Entre com os Juros do Cheque Especial (%)</label>
-                        <input type="number" name="jurosCheque" id="jurosCheque" required min="0" placeholder="0" step=".01" required>
-    
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="dataNascimento">Entre com os Juros do Cheque Especial (%)</label>
+                            <input type="number" name="jurosCheque" id="jurosCheque" required min="0" placeholder="0"
+                                step=".01" class="form-control" required>
+                        </div>
                     </div>
-    
-                    
-            
-             
-    
-            <button type="submit" id="inicioSistema">Iniciar Sistema</button>
-          
+                    <div class="row">
+                        <div class="col-4 pt-3 d-flex justify-content-end">
+                            <button class="btn btn-primary p-4" type="submit" id="inicioSistema" class="form-control"
+                                data-toggle="modal" data-target="exampleModalCenter">Iniciar Sistema</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </fieldset>
     </form>
-        
 </main>
 
-
-
-<footer>
-    <div class="footerIndex">
-        <hr class="hrIndex">
-
-        <div class="footerDiv">
-            <h4 style="font-size: 1.2rem", class="footerTexto">
-                Octoplus Bank © 2022
-                <br>
-                Todos os direitos reservados. CNPJ: nº 11.111.111/0001-00
-                <br>
-                Avenida Cesare Monsueto Giulio Lattes, 1350 Distrito - Eugênio de Melo, São José dos Campos - SP, 12247-014
-            </h4>
-        </div>
-
-        <div class="sigaOctoplus">
-            <label class="lbSigaOctoplus">
-                <h3 style="font-size: 2rem", class="footerTexto">SIGA A OCTOPLUS:</h3>
-            </label>
-            <a href="https://github.com/OctoplusHolding">
-                <img class="githubIcon" src="../../static/images/icons/github.png" alt="Github">
-            </a>
-        </div>
-    </div>
-</footer>
-
- {% endblock %}
+{% endblock %}
