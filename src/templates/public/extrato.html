@@ -16,113 +16,110 @@ Octoplus Bank | Extrato
 
 <!--FUNÇÃO PARA ABRIR MODAL (EXTRATO) AO CARREGAR A PÁGINA [IF PERÍODO DO EXTRATO NÃO FOR VAZIO (usuario nao selecionou data)]-->
 
-    {% if (extrato) != '' %}
-    <script>
-        $(document).ready(function(){
-            $('#extrato').modal('show');
-        });
-    </script>
+{% if (extrato) != '' %}
+<script>
+    $(document).ready(function () {
+        $('#extrato').modal('show');
+    });
+</script>
 
-        {% set extrato='' %}
+{% set extrato='' %}
 
-    {% endif %}
+{% endif %}
 
 {% endblock moreScripts %}
 
 {% block conteudoComSidebar %}
 
-
-    <div class="modal fullscreen" id="extrato" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Extrato - {{cliente.2  }} </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                <div class="modal-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="thAlign" scope="col">ID TRANSAÇÃO</th>
-                                    <th class="thAlign" scope="col">DATA</th>
-                                    <th class="thAlign" scope="col">TIPO DE TRANSAÇÃO</th>
-                                    <th class="thAlign" scope="col">VALOR</th>
-                                    <th class="thAlign" scope="col">DE</th>
-                                    <th class="thAlign" scope="col">PARA</th>
-                                    <!--             <th scoup="col">STATUS</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in extrato%}
-                                <tr>
-                                    <th scope="row">{{item[1]}}</td>
-                                    <td>{{item[3]}}</td>
-                                    <td>{{item[2]}}</td>
-                                    <td>{{"{:.2f}".format(item[4])}}</td>
-                                    <td>{{item[6]}}</td>
-                                    <td>{{item[7]}}</td>
-                                    <!--             <td>{{item[5]}}</td> -->
-                    
-                                </tr>
-                                {% endfor %}
-                               <p>Saldo Total em Conta:  {{conta.4}}</p>
-                            </tbody>
-                        </table>
-                </div>
-                <div class="modal-footer">
-                    <i class="fa-solid fa-print"></i>
-                    <button type="button" style="font-size:1.5rem;" class="btn" onclick="functionPrint()">Imprimir</button>
-                </div>
+<div class="modal fullscreen" id="extrato" tabindex="1" role="dialog">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Extrato - {{cliente.2}} </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="thAlign" scope="col">ID TRANSAÇÃO</th>
+                            <th class="thAlign" scope="col">DATA</th>
+                            <th class="thAlign" scope="col">TIPO DE TRANSAÇÃO</th>
+                            <th class="thAlign" scope="col">VALOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in extrato%}
+                        <tr>
+                            <th scope="row">{{item[1]}}</td>
+                            <td>{{item[3]}}</td>
+                            <td>{{item[2]}}</td>
+                            <td>{{"{:.2f}".format(item[4])}}</td>
+                        </tr>
+                        {% endfor %}
+                        <p>Saldo Total em Conta: {{conta.4}}</p>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <i class="fa-solid fa-print"></i>
+                <button type="button" style="font-size:1.5rem;" class="btn" onclick="functionPrint()">Imprimir</button>
             </div>
         </div>
     </div>
+</div>
 
 
+<div class="container m-5 p-5" id="pagExtrato">
+    <form action="/gerar_extrato/{{conta.1}}" method="POST">
+        <div class="row">
 
-        <div class="container m-5 p-5">
-                <form action="/gerar_extrato/{{conta.1}}" method="POST">
-                    <div class="row">
+            <div class="col-6">
+                <label class="confirm" for="confirmar">Data Inicial:
+                    <br>
+                    <input class="dataInicial" type="date" name="inicioExtrato" id="inicioExtrato" required
+                        class="form-control">
+            </div>
 
-                        <div class="col-6">
-                            <label class="confirm" for="confirmar">Data Inicial:
-                            <br>
-                            <input class="dataInicial" type="date" name="inicioExtrato" id="inicioExtrato" required class="form-control">
-                        </div>
-                    
-                        <div class="col-6">
-                            <label class="confirm" for="confirmar">Data Final:
-                            <br>
-                            <input class="dataFinal" type="date" name="fimExtrato" id="fimExtrato" required class="form-control">
-                        </div>
-                    </div>
-                    
-                    <div class="container m-5 p-2">
-                        <button class="btn btn-primary btn-lg p-4" type="submit" id="confirmarDep" class="form-control">
-                            <i class="fa-solid fa-check"></i>
-                            Gerar extrato
-                        </button>
-                    </div>
-                </form>
-      </div> 
+            <div class="col-6">
+                <label class="confirm" for="confirmar">Data Final:
+                    <br>
+                    <input class="dataFinal" type="date" name="fimExtrato" id="fimExtrato" required
+                        class="form-control">
+            </div>
+        </div>
+
+        <div class="container m-5 p-2">
+            <button class="btn btn-primary btn-lg p-4" type="submit" id="confirmarDep" class="form-control">
+                <i class="fa-solid fa-check"></i>
+                Gerar extrato
+            </button>
+        </div>
+    </form>
+</div>
 
 
 
 
 <!--BOTÃO DE IMPRIMIR NO MODAL-->
-
 <script>
     function functionPrint() {
-      window.print();
-  }
+        window.print();
+    }
 </script>
-      
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-    
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+
 {% endblock %}

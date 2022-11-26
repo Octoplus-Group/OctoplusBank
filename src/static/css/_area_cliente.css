@@ -112,3 +112,8 @@ h1 {
     color: #111; 
     font-size: 2em;
 }
+
+@media print {
+    #pagExtrato{display: none !important;}
+    #navbar{display: none !important;}
+  }
