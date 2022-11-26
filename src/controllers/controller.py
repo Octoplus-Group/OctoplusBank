@@ -962,6 +962,7 @@ class CadastrarAgenciaController(MethodView):
     def post(self):
         nomeGA = request.form['GA']
         nomeAG = request.form['NOME_AGENCIA']
+        nomeAG = nomeAG.upper()
         with mysql.cursor() as cur:
             cur.execute("INSERT INTO agencia(GERENTE,NOME_DA_AGENCIA) VALUES (%s,%s)",(nomeGA,nomeAG))
             cur.connection.commit()
@@ -976,6 +977,8 @@ class CadastrarAgenciaController(MethodView):
             cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(numeroAgencia[1],nomeGA))
             cur.connection.commit()
             mensagem2='Agencia Criada com Sucesso!'
+            
+            
         return render_template('public/gerenciar_agencias.html', agencias=agencias , gerenteAgencia=gerenteAgencia,cliente=cliente,mensagem2=mensagem2)
 
 class CadastroGerenteAgencia(MethodView):
@@ -1130,6 +1133,7 @@ class AlterarNomeAgenciaController(MethodView):
             gerenteAgencia = cur.fetchall()
             cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(id,novoGerenteAgencia))
             cur.connection.commit()
+            nomeAgencia = nomeAgencia.upper()
         return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class DeletarAgenciaController(MethodView):
@@ -1165,7 +1169,7 @@ class DeletarAgenciaController(MethodView):
                 gerenteAgencia = cur.fetchall()
                 cur.execute("SELECT * FROM agencia")
                 agencias = cur.fetchall()
-                mensagem = "Existem clientes nessa agência, então não pôde ser excluída."
+                mensagem = "NÃO É POSSÍVEL EXCLUIR A AGÊNCIA!"
 
             return render_template('public/gerenciar_agencias.html', cliente=cliente , gerenteAgencia=gerenteAgencia, agencias=agencias,mensagem=mensagem )
        

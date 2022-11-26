@@ -34,7 +34,7 @@ Octoplus Bank | Gerenciar Agências
                     <form action="/criar_agencia" method="POST">
                         <div class="row">
                             <div class="col-6">
-                                <label for="NOME_AGENCIA">Nome da agência:</label>
+                                <label for="NOME_AGENCIA">Nome da Agência:</label>
                                 <input type="text" required id='NOME_AGENCIA' name="NOME_AGENCIA" 
                                 class="form-control" style="border: 1px solid #000;"><br>
                         </div>
@@ -46,7 +46,7 @@ Octoplus Bank | Gerenciar Agências
                                 <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='{{ga[1]}}'>{{ga[1]}}
                                 </option>
                                 {% endfor%}
-                                <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='Sem GA'>Sem GA
+                                <option type="text" name="GERENTEAGENCIA" id="GERENTEAGENCIA" value='Sem GA'> - 
                                 </option>
                             </select>
                         </div>
@@ -65,10 +65,10 @@ Octoplus Bank | Gerenciar Agências
 <table class="table table-bordered table-striped" cellpadding="0" id="tableGG">
     <thead class="table-dark">
       <tr style="text-align: center; font-size: 1.1vw">
-        <th scope="col">NUMERO AGÊNCIA</th>
+        <th scope="col">NÚMERO AGÊNCIA</th>
         <th scope="col">NOME DO GERENTE</th>
         <th scope="col">NOME DA AGÊNCIA</th>
-        <th scope="col">VIZUALIZAR AGÊNCIA</th>
+        <th scope="col">VISUALIZAR</th>
         <th scope="col">EDITAR</th>
         <th scope="col">DELETAR</th>
       </tr>
