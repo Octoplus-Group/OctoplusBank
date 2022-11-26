@@ -1122,6 +1122,8 @@ class AlterarNomeAgenciaController(MethodView):
     def post(self,id):
         nomeAgencia = request.form['nomeAG']
         novoGerenteAgencia = request.form['GA']
+        nomeAgencia = nomeAgencia.upper()
+
         with mysql.cursor() as cur:
             cur.execute("UPDATE agencia SET NOME_DA_AGENCIA=%s, GERENTE=%s WHERE ID_AGENCIA=%s ",(nomeAgencia,novoGerenteAgencia,id))
             cur.connection.commit()
@@ -1133,7 +1135,7 @@ class AlterarNomeAgenciaController(MethodView):
             gerenteAgencia = cur.fetchall()
             cur.execute("UPDATE funcionarios SET AGENCIA=%s WHERE NOME=%s",(id,novoGerenteAgencia))
             cur.connection.commit()
-            nomeAgencia = nomeAgencia.upper()
+            
         return render_template('public/gerenciar_agencias.html', agencias=agencias, gerenteAgencia=gerenteAgencia, cliente=cliente)
 
 class DeletarAgenciaController(MethodView):
