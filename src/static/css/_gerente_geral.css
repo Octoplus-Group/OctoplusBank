@@ -4,11 +4,19 @@
 }
 
 .navbar-brand-gg {
-    margin-left: 1em;
+    margin-left: 1.8em;
 } 
 
 .active a:hover {
     background-color: black;
+}
+
+/* gerencias */
+
+#tableGG {
+    margin-top: 4em;
+    margin-left: 3em;
+    font-size: 1em!important;
 }
 
 /* MODAL GERENCIAR AGENCIAS */
@@ -21,6 +29,7 @@
     background-color: #535050;
     position: absolute;
     margin-top: 1em;
+    margin-left: 2em;
 }
 
 .modal-title {
@@ -32,3 +41,38 @@
     width: 100%;
 }
 
+/* depositos */
+
+#depGG {
+    font-size: 1.2vw;
+    margin-top: 4em;
+    margin-left: 2em;
+}
+
+/* gerenciar contas */
+
+#gerenciarContas {
+    margin-top: 1em;
+    margin-left: 9em;
+    font-size: 1.1em;
+}
+
+.buttonGerencias {
+    margin-top: 1.4em;
+    width: 20em;
+    text-align: center;
+}
+
+.contasGerenciadas {
+    width: 20em;
+    height: 3em;
+    border-radius: 25px;
+    font-weight: bold;
+    background-color: #b3a5a5;
+}
+
+#tableGA {
+    margin-top: 3em;
+    margin-left: 2em;
+    
+}

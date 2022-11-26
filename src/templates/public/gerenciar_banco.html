@@ -10,7 +10,7 @@ Octoplus Bank | Gerenciar Agências
 
 {% block moreScripts %}
 <link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerente_geral.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -21,29 +21,28 @@ Octoplus Bank | Gerenciar Agências
         <fieldset class="cadastro">
             <div class="cadastro-fundo">
             <br>
-                <div class="parte-1">
-                    <!-- <h3>CAPITAL ATUAL DO BANCO: {{capital}}</h3> -->
-                    <h3 class="gerenciar-banco">CAPITAL ATUAL DO BANCO: <span class="info"> R$ {{"{:.2f}".format(capital)}} </span></h3>
+                <div class="gerenciar-banco">
+                    <p id="capital-banco">CAPITAL ATUAL DO BANCO: <span class="info"> R$ {{"{:.2f}".format(capital)}}</span></p>
                     <br>
                     <label for="capital">ADICIONAR CAPITAL AO BANCO R$</label>
                     <input type="text" inputmode="numeric" name="capital" id="capital" min="0" placeholder="0,00" step=".01" required>
                 </div>
                 <br>
-                <div class="parte-1">
-                    <h3 class="gerenciar-banco">JUROS DE CHEQUE ESPECIAL ATUAL (%): <span class="info"> {{banco.4}} </span></h3>
+                <div class="gerenciar-banco">
+                    <p>JUROS DE CHEQUE ESPECIAL ATUAL (%): <span class="info"> {{banco.4}}</span></p>
                     <br>
                     <label for="jurosce">ALTERAR JUROS DE CHEQUE ESPECIAL</label>
                     <input type="text" inputmode="numeric" name="jurosce" id="jurosce" value="{{banco.4}}" required min="0" max="1000000"  step=".02">
                 </div>
                 <br>
-                <div class="parte-1">
-                    <h3 class="gerenciar-banco">JUROS DE POUPANÇA ATUAL (%): <span class="info"> {{banco.3}} </span></h3>
+                <div class="gerenciar-banco">
+                    <p>JUROS DE POUPANÇA ATUAL (%): <span class="info"> {{banco.3}}</span></p>
                     <br>
                     <label for="jurospp">ALTERAR JUROS DE POUPAÇA</label>
                     <input type="text" inputmode="numeric" name="jurospp"  id="jurospp" value="{{banco.3}}" required min="0" max="1000000"  step=".01">
                 </div>
     
-           <button type="submit" id="solicitar">Atualizar Dados</button> 
+           <button type="submit" id="solicitarGG">Atualizar Dados</button> 
 </div>
 
    

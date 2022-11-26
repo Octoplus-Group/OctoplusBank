@@ -1,8 +1,48 @@
 .gerenciar-banco {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: .9em;
+    text-align: center;
+    line-height: .2px
 }
 
 .info {
     background-color: #edff84;
+    font-weight: bold;
+}
+
+#capital-banco {
+    font-size: 1.3em;
+}
+
+#capital {
+    margin-top: .7em;
+    width: 7em;
+}
+
+#jurosce {
+    width: 7em;
+}
+
+#jurospp {
+    width: 7em;
+}
+
+#solicitarGG {
+    margin-top: 4em;
+    margin-left: 12em;
+    border-radius: 5px;
+    background-color: #cacaca;
+}
+
+#navbar-gg {
+    background-color: #535050;
+    color: white;
+}
+
+.navbar-brand-gg {
+    margin-left: 1em;
+} 
+
+.active a:hover {
+    background-color: black;
 }

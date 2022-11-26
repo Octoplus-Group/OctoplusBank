@@ -13,21 +13,35 @@ Octoplus Bank | Home
 {% block content %} 
 
 <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar-gg" style="color: white;">
-  <div class="container-fluid py-3">
+  <div class="container-fluid py-2">
     <a class="navbar-brand-gg" href="">
       <img src="../static/images/logo_octoplus_bank_transparente_white.png" height="70" alt="logo Octoplus Bank">
     </a>
 
     <div class="navbar-nav" id="navbar-items">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg">
         <li class="nav-item">
-          <h3 aria-current="page">{{cliente.1}}</h3>
-          <h4>Função: {{cliente.2}}</h4>
+          <h3 aria-current="page"><b>{{cliente.1}}</b></h3>
+          <h4>Cargo: {{cliente.2}}</h4>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item" href="/adm">Sair
-            <i class="bi bi-box-arrow-left" style="color: white;"></i>
-          </a>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#logoutGG"
+          style="color: #fff; border: none;">
+          <i class="bi bi-box-arrow-left fa-3x" style="margin: 0 .7em"></i>
+          </button>
+          <div class="modal" tabindex="-1" role="dialog" id="logoutGG">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" style="color: #000;"><b>Deseja mesmo sair?</b></h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn" style="background-color: #ff0000; color: #fff"><a class="dropdown-item" href="/adm">Sair</a></button>
+              </div>
+            </div>
+          </div>
+      </div>
         </li>
       </ul>
     </div>

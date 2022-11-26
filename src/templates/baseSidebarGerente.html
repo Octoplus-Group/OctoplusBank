@@ -2,7 +2,7 @@
 
 {% block title %}
 
-Octoplus Bank | Home
+Octoplus Bank | Home 
 
 {% endblock %}
  
@@ -14,21 +14,35 @@ Octoplus Bank | Home
 {% block content %}
 
 <nav class="navbar navbar-expand-lg bg-primary-color" id="navbar-gg">
-  <div class="container-fluid py-3">
+  <div class="container-fluid py-1">
     <a class="navbar-brand" href="">
-    <img src="../static/images/logo_octoplus_bank_transparente_perola.png" height="75" alt="">
+    <img src="../static/images/logo_octoplus_bank_transparente_perola.png" height="64" alt="">
     </a>
 
     <div class="navbar-nav" id="navbar-items">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <h3 aria-current="page">{{ga.1}}</h3>
+          <h3 aria-current="page"><b>{{ga.1}}</b></h3>
           <h4>Ag.{{ga.13}}  | Função: {{ga.2}}</h4>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item" href="/adm">Sair
-            <i class="bi bi-box-arrow-left" style="color:white;"></i>
-          </a>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#logoutGA"
+          style="color: #fff; border: none;">
+          <i class="bi bi-box-arrow-left fa-3x" style="margin: 0 .7em"></i>
+          </button>
+          <div class="modal" tabindex="-1" role="dialog" id="logoutGA">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" style="color: #000;">Deseja mesmo sair?</h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn" style="background-color: #ff0000; color: #fff"><a class="dropdown-item" href="/adm">Sair</a></button>
+              </div>
+            </div>
+          </div>
+      </div>
         </li>
       </ul>
     </div>
@@ -39,7 +53,7 @@ Octoplus Bank | Home
 
 <main>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 420px;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 320px;">
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
         <a href="/link_gerenciar_contas/{{ga.0}}" class="nav-link link-dark py-4">

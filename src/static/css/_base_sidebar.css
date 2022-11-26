@@ -23,7 +23,6 @@ main {
     flex-wrap: nowrap;
     height: 85vh;
     max-height: 700vh;
-    font-size: 1.75vw;
     max-width: 50em;
     margin-top: 0;
   }
