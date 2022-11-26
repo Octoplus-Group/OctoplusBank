@@ -1018,10 +1018,7 @@ class DemitirGerenteAgencia(MethodView):
 
 class AlterarCapitalJurosController(MethodView):
     def post(self):
-        capitalAdicional = float(request.form['capital'])
-        jurosPP = request.form['jurospp']
-        jurosCE = request.form['jurosce']
-        
+        capitalAdicional = float(request.form['capital'])     
 
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
@@ -1029,7 +1026,7 @@ class AlterarCapitalJurosController(MethodView):
             print('tipocapital',type(capitalAdicional))
             print('tipobanco',type(banco[2]))
             capitalNovo= banco[2]+capitalAdicional
-            cur.execute("UPDATE banco SET CAPITAL_TOTAL=%s, JUROS_POUPANCA=%s, JUROS_CQ=%s WHERE ID_BANCO = %s",(capitalNovo,jurosPP,jurosCE,1))
+            cur.execute("UPDATE banco SET CAPITAL_TOTAL=%s WHERE ID_BANCO = %s",(capitalNovo, 1))
             cur.connection.commit()
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
