@@ -532,6 +532,7 @@ class GerarExtratoController(MethodView):
             print('Tipo data',fim)
             cur.execute("SELECT * FROM transacoes WHERE DATA between  %s'00:00:00' AND %s'23:59:59' and ID_CONTA =%s",(inicio,fim,id))
             extrato=cur.fetchall()
+            print('teste',extrato)
 
             return render_template('public/extrato.html',extrato=extrato, cliente=cliente , conta=conta)
 
@@ -1114,11 +1115,13 @@ class LinkGerenciarContasGGController(MethodView):
 class LinkAlterarNomeAgenciaController(MethodView):
     def get(self,id):
         with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
+            cliente = cur.fetchone()
             cur.execute("SELECT * FROM agencia WHERE ID_AGENCIA =%s",(id))
             agencia = cur.fetchone()
             cur.execute("SELECT * FROM funcionarios WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
-        return render_template('public/alteracao_agencia.html', agencia=agencia, gerenteAgencia=gerenteAgencia)
+        return render_template('public/alteracao_agencia.html', cliente=cliente, agencia=agencia, gerenteAgencia=gerenteAgencia)
 
 class AlterarNomeAgenciaController(MethodView):
     def post(self,id):
@@ -1324,8 +1327,10 @@ class EditarGaLink(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT * from funcionarios where ID_FUNC=%s",(id))
             ga = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE FUNCAO ='GA'")
+            cliente = cur.fetchone()
 
-        return render_template('public/alteracao_dados_GA.html', ga=ga)
+        return render_template('public/alteracao_dados_GA.html', ga=ga, cliente=cliente)
 
 class AlteracaoGADadosController(MethodView):
     def post(self,id):
@@ -1446,3 +1451,15 @@ class GerarExtratoGAController(MethodView):
             extrato=cur.fetchall()
 
             return render_template('public/extrato_gerente_GA.html',extrato=extrato, cliente=cliente , conta=conta,ga=ga)
+        
+class LinkExtratoGerenteGGController(MethodView):
+    def get(self,id):           
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))
+            conta = cur.fetchone()
+            extrato=''
+            
+
+            return render_template('public/extrato_gerente.html', cliente=cliente , conta=conta,extrato=extrato)

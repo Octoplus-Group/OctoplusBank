@@ -7,7 +7,7 @@ Octoplus Bank | Home
 {% endblock %}
 
 {% block moreScripts %}
-
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -22,16 +22,15 @@ Octoplus Bank | Home
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <h3 aria-current="page">Saldo disponível:</h3>
-          <a onclick="changeIcon(this)" id="myBtn">
-            <span class="SPN" data-text="R$ {{'{:.2f}'.format(conta.4)}}">R$ {{"{:.2f}".format(conta.4)}}</span>
-            <i class="fa fa-eye-slash"></i>
+          <a onclick="changeIcon(this)" id="myBtn" style="display: flex; justify-content: center;">
+            <span class="SPN" data-text="R$ {{'{:.2f}'.format(conta.4)}}" style="padding-left:5%">R$ {{"{:.2f}".format(conta.4)}}</span>
+            <i class="fa fa-eye-slash" style="padding-left:5%;"></i>
           </a>
         <li class="nav-item">
-          <h3 aria-current="page">{{cliente.2}}</h3>
-          <h4>Ag. {{cliente.15}} | C.C. {{cliente.0}}</h4>
+          <h4 style="text-align:center;">{{cliente.2}} <br> Ag. {{cliente.15}} | C.C. {{cliente.0}}</h4>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item" href="/">Sair
+          <a class="dropdown-item" href="/" id="sairNav">Sair
             <i class="bi bi-box-arrow-left" style="color: white;"></i>
           </a>
         </li>
@@ -94,6 +93,22 @@ Octoplus Bank | Home
     </div>
   </div>
 
+  <header>
+    <button class="hamburger">&#9776;</button>
+    <button class="cross">&#735;</button>
+  </header>
+
+  <div class="menu" style="display: none;">
+    <ul>
+      <a href="/dados_user/cliente/{{cliente.0}}"><li><i class="fa-solid fa-file-invoice"></i>  Informações</li></a>
+      <a href="/link_extrato/{{cliente.0}}"><li><i class="fa-solid fa-grip"></i>  Extrato</i></li></a>
+      <a href="/pagina_deposito/{{cliente.0}}"><li><i class="fa-solid fa-sack-dollar"></i>  Depósito</li></a>
+      <a href="/pagina_saque/cliente/{{cliente.0}}"><li><i class="fa-solid fa-coins"></i> Saque</li></a>
+      <a href="/pagina_transferencia/{{cliente.0}}"><li><i class="fa-solid fa-money-bill-transfer"></i> Transferência</li></a>
+      <a href="/"><li><i class="bi bi-box-arrow-left primary-color"></i>  Sair</li></a>
+    </ul>
+  </div> 
+
   <div class="conteudoExtra">
   {% block conteudoComSidebar %}
 
@@ -116,6 +131,28 @@ Octoplus Bank | Home
     icon.classList.toggle('fa-eye');
     anchor.querySelector("span").textContent = icon.matches('.fa-eye') ? "Mostrar saldo " : anchor.querySelector("span").dataset.text;
   }
+</script>
+
+<script>
+  $( document ).ready(function() {
+
+  $( ".cross" ).hide();
+  $( ".menu" ).hide();
+  $( ".hamburger" ).click(function() {
+  $( ".menu" ).slideToggle( "slow", function() {
+  $( ".hamburger" ).hide();
+  $( ".cross" ).show();
+  });
+  });
+
+  $( ".cross" ).click(function() {
+  $( ".menu" ).slideToggle( "slow", function() {
+  $( ".cross" ).hide();
+  $( ".hamburger" ).show();
+  });
+  });
+
+  });
 </script>
 
 {%endblock%}
