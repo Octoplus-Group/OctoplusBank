@@ -27,16 +27,21 @@ main {
     flex-wrap: nowrap;
     height: 85vh;
     max-height: 700vh;
-    font-size: 1.75vw;
+    font-size: 1.2vw;
     max-width: 50em;
     margin-top: 0;
   }
-  
-  
+
+.conteudoExtra{
+  min-width: 80vw;
+}
+
 .bi {
     vertical-align: -.05em;
     pointer-events: none;
   }
 
+  width: 100vw;
+  height: 25vh;
 
-
+  @media (max-width:481px) {

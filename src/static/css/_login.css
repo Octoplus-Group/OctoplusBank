@@ -12,7 +12,7 @@ body{
 
 .headerLogin {
   border-bottom: 1.5px solid #000;
-  background-color: #db4500;
+  background: linear-gradient(308.49deg, #FF9432 0%, #CB2C2C 100%);
 }
 
 .tituloLogin {

@@ -14,7 +14,7 @@ Octoplus Bank | Meus Dados
 
 {% block conteudoComSidebar %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 p-2">
             <label for="nomeCompleto">Nome Completo:</label>
@@ -27,7 +27,6 @@ Octoplus Bank | Meus Dados
             <label for="agencia">Agência:</label>
             <input class="form-control" type="text" value="{{cliente.15}}" disabled readonly>
         </div>
-
         <div class="col-6 p-2">
             <label for="agencia">Número da Conta:</label>
             <input class="form-control" type="text" value="{{cliente.0}}" disabled readonly>
@@ -45,6 +44,7 @@ Octoplus Bank | Meus Dados
             <input class="form-control" type="text" value="Octoplus Bank" disabled readonly>
         </div>
     </div>
+
     <div class="row">
         <div class="col-6 p-2">
             <label for="tipoConta">Data de Abertura de Conta:</label>
@@ -56,6 +56,7 @@ Octoplus Bank | Meus Dados
             <input class="form-control" type="text" value="{{conta.3}}" disabled readonly>
         </div>
     </div>
+
     <div class="row">
         <div class="col-6 p-2">
             <label for="tipoConta">CPF:</label>
@@ -67,6 +68,7 @@ Octoplus Bank | Meus Dados
             <input class="form-control" type="text" value="{{cliente.4}}" disabled readonly>
         </div>
     </div>
+
     <div class="row">
         <div class="col-6 p-2">
             <label for="tipoConta">Genero:</label>
@@ -78,6 +80,7 @@ Octoplus Bank | Meus Dados
             <input class="form-control" type="text" value="{{cliente.6}}" disabled readonly>
         </div>
     </div>
+
     <div class="row">
         <div class="col-6 p-2">
             <label for="tipoConta">CEP:</label>
@@ -89,6 +92,7 @@ Octoplus Bank | Meus Dados
             <input class="form-control" type="text" value="{{cliente.8}}" disabled readonly>
         </div>
     </div>
+
     <div class="row">
         <div class="col-6 p-2">
             <label for="tipoConta">Cidade:</label>
@@ -101,30 +105,26 @@ Octoplus Bank | Meus Dados
         </div>
     </div>
 
-    <br>
-
-    <div class="container-fluid">
-        <div class="row">
-
-            
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-2">
-                        <a href="/solicitacaodeletar/{{cliente.0}}"><button type="button" href="/solicitacaodeletar/{{cliente.0}}" class="btn btn-primary p-3">
-                            <i class="fa-solid fa-trash"></i>
-                            Solicitar encerramento de conta
-                            
-                        </button></a>
-                        <br><p>{{mensagem}}</p>
-                    </div>
-
-                    <div class="col-2">
-                        <a href="/update/cliente/{{cliente.0}}"><button type="button" href="/update/cliente/{{cliente.0}}" class="btn btn-primary p-3">
-                            <i class="fa-solid fa-pen-nib"></i>
-                            Atualizar dados cadastrais
-                        </button></a>
-                    </div>
+    <div class="row">
+            <div class="col-6 p-2">
+                <a href="/solicitacaodeletar/{{cliente.0}}">
+                    <button type="button" onclick="alerta()" href="/solicitacaodeletar/{{cliente.0}}" class="btn btn-primary p-3">
+                        <i class="fa-solid fa-trash"></i>
+                        Solicitar encerramento de conta
+                    </button>
+                </a>
             </div>
-        </div>
 
-        {% endblock %}
+            <div class="col-6 p-2">
+                <a href="/update/cliente/{{cliente.0}}">
+                    <button type="button" href="/update/cliente/{{cliente.0}}" class="btn btn-primary p-3">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        Atualizar dados cadastrais
+                    </button>
+                </a>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

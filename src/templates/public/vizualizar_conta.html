@@ -1,15 +1,16 @@
-{% extends "base.html" %}
+{% extends "baseSidebar.html" %}
 
-{% block content %} 
+{% block title %}
 
-<!-- com o novo layout do figma isso não será necessário -->
-<section>
+Octoplus Bank | Meus Dados
 
-    <h1 style="font-size: 4vw;">OCTOPLUS BANK</h1>
-    <hr>
+{% endblock %}
 
-</section>
-<!-- section acima -->
+
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+{% endblock%}
 
 
 
@@ -69,4 +70,5 @@
         </div>
    
         <a href="/link_gerenciar_contas/{{cliente.0}}">VOLTAR</a>
-       {% endblock %}
+        
+{% endblock %}
