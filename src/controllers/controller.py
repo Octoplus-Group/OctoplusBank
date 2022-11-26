@@ -1299,6 +1299,7 @@ class CadastroGGInicioController(MethodView):
 
         nomeGG = request.form['nomeGG']
         senhaGG = request.form['senhaGG']
+        nomeGG = nomeGG.upper()
 
         with mysql.cursor() as cur:
             cur.execute("INSERT INTO funcionarios (NOME,FUNCAO,SENHA) VALUES (%s,%s,%s)",(nomeGG,'GG',senhaGG))
