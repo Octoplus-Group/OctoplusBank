@@ -9,17 +9,48 @@ Octoplus Bank | Gerenciar Agências
 {% block conteudoComSidebar %}
 
 {% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
 <link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerente_geral.css')}}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock moreScripts %}
 
-<h2>Numero de Clientes: {{contagemclientes}} </h2><br>
-<h2>Numero de Contas: {{contagemcontas}} </h2><br>
-<h2>Saldo total das Contas: {{saldocontas}}</h2>
-<h2>Aberturas Pedentes: {{contagempendente}}</h2>
+<div class="position-relative top-50 start-50 translate-middle mt-4">
+    <h2 class="text-center">INFORMAÇÕES DA AGÊNCIA </h2>
+
+    <table class="table table-bordered mt-3 mx-auto" style="width: 40vw;">
+        <tbody>
+            <tr>
+                <td>Número de Clientes:</td>
+                <td class="text-center">{{contagemclientes}}</td>
+            </tr>
+            <tr>
+                <td>Número de Contas:</td>
+                <td class="text-center"> {{contagemcontas}}</td>
+            </tr>
+            <tr>
+                <td>Saldo DA Agência:</td>
+                <td class="text-center">{{saldocontas}}</td>
+            </tr>
+            <tr>
+                <td>Solicitações de Aberturas Pedentes:</td>
+                <td class="text-center"> {{contagempendente}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <div class="text-center">
+    
+
+        <button type="button" class="btn" style="background-color: #69696d; color: #fff"><a
+            class="dropdown-item" href="/gerenciar_agencias">VOLTAR</a></button>
+    </div>
+
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
