@@ -9,38 +9,67 @@ Octoplus Bank | Gerenciar Agências
 {% block conteudoComSidebar %}
 
 {% block moreScripts %}
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
 <link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerente_geral.css')}}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock moreScripts %}
 
-<form action="/edicao_agencia/{{agencia.1}}" method="POST">
-    <fieldset class="AlteracaoNAG">
-        <div class="cadastro-fundo">
-        <br>
-            <div>Nome atual da agência:  {{agencia.3}}</div>
-            <div>O Gerente Atual da Agência: {{agencia.2}}</div>
-            <div class="parte-1">
-                <label for="nomeAG">Nome da Agência </label>
-                <input type="text" name="nomeAG" value="" id="nomeAG" required>
+<div class="container text-center position-relative top-50 start-50 translate-middle mt-1">
+    <form action="/edicao_agencia/{{agencia.1}}" method="POST">
+        <fieldset class="AlteracaoNAG">
+            <div class="cadastro-fundo ">
+                <br>
+
+                <div class="row">
+                    <h2 class="text-center">ATUALIZAR DADOS DA AGÊNCIA</h2>
+                    <table class="table table-bordered mt-3 mx-auto" style="width: 40vw;">
+                        <tbody>
+                            <tr>
+                                <td>NOME DA AGÊNCA: </td>
+                                <td> {{agencia.3}} </td>
+                            </tr>
+                            <tr>
+                                <td>GERENTE DA AGÊNCIA: </td>
+                                <td> {{agencia.2}} </td>
+                            </tr>
+                            <tr>
+                                <td>NOME DA AGÊNCIA:</td>
+                                <td> <input type="text" name="nomeAG" class="form-control" value="" id="nomeAG" required > </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="GA">GERENTE DE AGÊNCIA:</label>
+                                </td>
+
+                                <td class="col-4">
+                                    <select name="GA" id="GA" required class="form-select">
+                                        <option class="form-control" selected disabled value="{{agencia.2}}" required
+                                            class="form-select">
+                                            Escolha</option>
+                                        {% for ga in gerenteAgencia%}
+                                        <option type="text" name="GA" id="GA" value='{{ga[1]}}'>{{ga[1]}}</option>
+                                        {% endfor%}
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+
+
+
+                    </table>
+
+
+
+                </div>
             </div>
-            <div class="parte-1">
-                        
-                <label for="GA">SELECIONE O GERENTE DE AGÊNCIA</label>
-                <select name="GA" id="GA" required>
-                    <option selected disabled value="{{agencia.2}}" class="form-control" required>Escolha</option>
-                    {% for ga in gerenteAgencia%}
-                    <option type="text" name="GA" id="GA" value='{{ga[1]}}'>{{ga[1]}}</option>
-                    
-                    {% endfor%}
-                </select>
-                
-            </div>
 
-            
 
-       <button type="submit" id="AlteracaoNAG">Alterar Dados</button>        
 
-{% endblock %}
+            <button type="submit" data-bs-toggle="modal" data-bs-target="#gerenciarAgencias"
+                class="modalGerenciar position-relative top-500 start-50 translate-middle mt-4"
+                id="AlteracaoNAG"><i class="bi bi-arrow-clockwise"> Atualizar Dados</i></button>
+
+            {% endblock %}
