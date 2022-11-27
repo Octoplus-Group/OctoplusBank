@@ -1062,7 +1062,7 @@ class VerificacaoEntrada(MethodView):
                         transacoes = sum (transacoes)
                         if transacoes > 0:
                             with mysql.cursor() as cur:
-                                cur.execute("SELECT  MIN(DATA) from transacoes WHERE ID_CONTA=%s AND TIPO=%s",(contas[t][1],'DEPOSITO'))
+                                cur.execute("SELECT  MIN(DATA) from transacoes WHERE ID_CONTA=%s",(contas[t][1]))
                                 menor = cur.fetchone()
                                 print('testeprint',menor)
                                 cur.execute("UPDATE conta SET DATA_ABERTURA=%s WHERE ID_CONTA=%s",(menor,contas[t][1]))
