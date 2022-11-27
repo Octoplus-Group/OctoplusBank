@@ -2,44 +2,39 @@
 
 {% block title %}
 
-Octoplus Bank | Gerenciar Agências
+Octoplus Bank | Gerenciar Banco
 
 {% endblock %}
 
 {% block conteudoComSidebar %}
 
 {% block moreScripts %}
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
 <link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock moreScripts %}
 
-<div class="container-fluid m-3">
-    <form action="/banco_dados" method="POST">
-        <fieldset class="cadastro">
-            <div class="cadastro-fundo">
-            <br>
-                <div class="gerenciar-banco">
-                    <p id="capital-banco">CAPITAL ATUAL DO BANCO: <span class="info"> R$ {{"{:.2f}".format(capital)}}</span></p>
-                    <br>
-                    <label for="capital">ADICIONAR CAPITAL AO BANCO R$</label>
-                    <input type="text" inputmode="numeric" name="capital" id="capital" min="0" placeholder="0,00" step=".01" required>
-                </div>
-                <br>
-                <div class="parte-1">
-                    <h3 class="gerenciar-banco">JUROS DE CHEQUE ESPECIAL ATUAL (%): <span class="info"> {{banco.4}} </span></h3>
 
-                </div>
-                <br>
-                <div class="parte-1">
-                    <h3 class="gerenciar-banco">JUROS DE POUPANÇA ATUAL (%): <span class="info"> {{banco.3}} </span></h3>
 
-                </div>
-    
-           <button type="submit" id="solicitarGG">Atualizar Dados</button> 
-</div>
+    <div id="bancoGerencia">       
+        <div class="gerenciar-banco">
+            <form action="/banco_dados" method="POST">
+            <p id="capital-banco">CAPITAL ATUAL DO BANCO: <span class="info"> R$ {{"{:.2f}".format(capital)}}</span></p>
+            <label for="capital">ADICIONAR CAPITAL AO BANCO R$</label>
+            <input type="text" inputmode="numeric" name="capital" id="capital" min="0" placeholder="0,00" step=".01" required>
+            </form>
+        </div>
+        <div class="gerenciar-banco infoGG">
+            <p>JUROS DE CHEQUE ESPECIAL ATUAL (%): <span class="info"> {{banco.4}}</span></p>
+        </div>
+        <div class="gerenciar-banco infoGG">
+            <p>JUROS DE POUPANÇA ATUAL (%): <span class="info"> {{banco.3}}</span></p>
+        </div>
+    </div> 
+
+    <button type="submit" id="solicitarGG">Atualizar Dados</button> 
+
 
    
 

@@ -203,7 +203,8 @@ $(document).ready(function () {
 </div>
 </div>
 
-<table class="table table-bordered table-striped" cellpadding="0" id="tableGG" style="margin-left: 7em;">
+<div class="text-nowrap">
+<table class="table table-bordered table-striped table-fixed" cellpadding="0" id="tableGG">
     <thead class="table-dark">
         <tr style="text-align: center; font-size: 1.1vw">
         <th scope="col">NÚMERO DE MATRÍCULA</th>
@@ -218,11 +219,29 @@ $(document).ready(function () {
             <th scope="row">{{item[0]}}</th>
             <td>{{item[1]}}</td>
             <td><a href="/alterardadosgalink/{{item[0]}}"><i class="bi bi-pencil fa-lg" style="color: #000;"></i></a></td>
-            <td><a href="/demitir_GA/{{item[0]}}"><i class="bi bi-trash fa-lg" style="color: #000;"></i></a></td>
+            <td>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#excluirGerente">
+            <i class="bi bi-trash fa-lg" style="color: #000;"></i>
+            </button>
+                <div class="modal" tabindex="-1" role="dialog" id="excluirGerente">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" style="color: #000;">Deseja mesmo exlcuir?</h5>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgb(202, 2, 2); color:#fff">Não</button>
+                            <a href="/demitir_GA/{{item[0]}}"><button type="button" class="btn" style="background-color: #5779a5;color:#fff">Sim</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>    
+</div>
 
 <!--FUNÇÃO CONFIRMAR SENHA-->
 <script>

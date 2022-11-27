@@ -1,8 +1,8 @@
 .gerenciar-banco {
     font-weight: bold;
-    font-size: .9em;
+    font-size: 1.2em;
     text-align: center;
-    line-height: .2px
+    margin-left: 15%;    
 }
 
 .info {
@@ -10,26 +10,27 @@
     font-weight: bold;
 }
 
+.infoGG {
+    margin-top: 1em;
+}
+
 #capital-banco {
-    font-size: 1.3em;
+    font-size: 1.5em;
+    margin-top: -12em;
 }
 
 #capital {
-    margin-top: .7em;
-    width: 7em;
-}
-
-#jurosce {
-    width: 7em;
-}
-
-#jurospp {
-    width: 7em;
+    width: 5em;
+    height: 1.2em;
+    border: 1px solid #000;
 }
 
 #solicitarGG {
-    margin-top: 4em;
-    margin-left: 12em;
+    margin-top: 5%;
+    margin-left: 50%;
+    width: 10em;
+    height: 2em;
+    font-size: 1.2em;
     border-radius: 5px;
     background-color: #cacaca;
 }

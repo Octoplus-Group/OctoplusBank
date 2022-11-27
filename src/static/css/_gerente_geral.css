@@ -15,7 +15,13 @@
 
 #tableGG {
     margin-top: 4em;
-    margin-left: 3em;
+    margin-left: 40%;
+    font-size: 1em!important;
+}
+
+#tableGA {
+    margin-top: 4em;
+    margin-left: 15%;
     font-size: 1em!important;
 }
 
@@ -46,14 +52,14 @@
 #depGG {
     font-size: 1.2vw;
     margin-top: 4em;
-    margin-left: 2em;
+    margin-left: 21%;
 }
 
 /* gerenciar contas */
 
 #gerenciarContas {
     margin-top: 1em;
-    margin-left: 9em;
+    margin-left: 35%;
     font-size: 1.1em;
 }
 
@@ -71,8 +77,3 @@
     background-color: #b3a5a5;
 }
 
-#tableGA {
-    margin-top: 3em;
-    margin-left: 2em;
-    
-}
