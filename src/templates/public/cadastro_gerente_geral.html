@@ -42,35 +42,40 @@ Octoplus Bank | Cadastro
 
 <form action="/cadastro_gg" method="POST" onsubmit="return checkForm(this);">
     <fieldset class="cadastro">
-        <div class="container" style="padding-left: 20%">
+        <div class="container" style="padding-left: 23%">
             <div class="row p-1 m-5">
                 <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
-                <div class="col-6">
+                <div class="col-5">
                     <div class="row justify-content-start">
-                        <label for="nome">NOME DO GERENTE GERAL:
+                        <label for="nome"><strong>NOME DO GERENTE GERAL:</strong>
                             <input type="text" name="nomeGG" id="nomeGG" required maxlength="255" required
                                 class="form-control" placeholder="Digite seu nome">
                         </label>
                     </div>
 
-                    <div class="col-6">
-                        <label for="senha">Senha:
+                    <div class="row justify-content-start">
+                        <label for="senha"><strong>SENHA:</strong>
                             <input type="password" id="senhaGG" name="senhaGG" class="form-control" maxlength="6"
                                 placeholder="Digite sua senha">
                         </label>
                     </div>
-                    <div class="col-6">
-                        <label for="confirmarSenha">Confirmar Senha:
+                    <div class="row justify-content-start">
+                        <label for="confirmarSenha"><strong>CONFIRMAR SENHA:</strong>
                             <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control"
                                 maxlength="6" placeholder="Confirme sua senha">
                         </label>
                     </div>
-                    <div class="col-12 pt-3">
-                        <div class="input-group-text">
-                            <input type="text" readonly class="form-control" id="liConcordo"
-                                value="* Seu Número de Matrícula será 1.">
-                        </div>
-                    </div>
+                 
+                    <div class="alert alert-primary center mt-2 " style="text-align: center;" role="alert">
+                        <h5>Número de Matrícula: 1</h5>
+                        Ao acessar o sitema, digite seu número de matrícula e senha!
+                        
+                      </div>
+
+
+
+
+
                 </div>
             </div>
         </div>
