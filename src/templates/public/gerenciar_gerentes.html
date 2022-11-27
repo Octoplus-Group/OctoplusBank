@@ -15,266 +15,285 @@ Octoplus Bank | Gerenciar Gerentes
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <!--JQUERY + MASKS-->
+<!--JQUERY + MASKS-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
 <!--CONSUMINDO API VIACEP PARA AUTOPREENCHER CADASTRO NO OCTOPLUS BANK-->
 <script>
 
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
-        $("#endereco").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-    }
+        function limpa_formulário_cep() {
+            // Limpa valores do formulário de cep.
+            $("#endereco").val("");
+            $("#bairro").val("");
+            $("#cidade").val("");
+        }
 
-    //Quando o campo cep perde o foco.
-    $("#cep").blur(function () {
+        //Quando o campo cep perde o foco.
+        $("#cep").blur(function () {
 
-        //Nova variável "cep" somente com dígitos.
-        var cep = $(this).val().replace(/\D/g, '');
+            //Nova variável "cep" somente com dígitos.
+            var cep = $(this).val().replace(/\D/g, '');
 
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
 
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
 
-            //Valida o formato do CEP.
-            if (validacep.test(cep)) {
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
 
-                //Preenche os campos com "..." enquanto consulta webservice.
-                $("#endereco").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    $("#endereco").val("...");
+                    $("#bairro").val("...");
+                    $("#cidade").val("...");
 
-                //Consulta o webservice viacep.com.br/
-                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
 
-                    if (!("erro" in dados)) {
-                        //Atualiza os campos com os valores da consulta.
-                        $("#endereco").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                    } //end if.
-                    else {
-                        //CEP pesquisado não foi encontrado.
-                        limpa_formulário_cep();
-                        alert("CEP não encontrado.");
-                    }
-                });
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#endereco").val(dados.logradouro);
+                            $("#bairro").val(dados.bairro);
+                            $("#cidade").val(dados.localidade);
+                        } //end if.
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            limpa_formulário_cep();
+                            alert("CEP não encontrado.");
+                        }
+                    });
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
             } //end if.
             else {
-                //cep é inválido.
+                //cep sem valor, limpa formulário.
                 limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
             }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
+        });
     });
-});
 </script>
 
 {% endblock moreScripts %}
 
 <div>
-<button type="button" class="modalGerenciar" data-toggle="modal" data-target="#gerenciarGerentes">
-    + Adicionar Gerente
-</button>
+    <button type="button" class="modalGerenciar" data-toggle="modal" data-target="#gerenciarGerentes">
+        + Adicionar Gerente
+    </button>
 </div>
 
 <div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="gerenciarGerentes">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" id="gerenciarGerentes">
         <div class="modal-dialog modal-lg">
-             <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Cadastrar novo gerente</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                    </div>
-        <div class="modal-body">
-        <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
-        <form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);">
-        <div class="col-9">
-            <div class="row justify-content-start">
-                <label for="nome">Nome Completo:
-                    <input type="text" name="nome" id="nome" required maxlength="255" required
-                        class="form-control">
-                </label>
-            </div>
-            <div class="row justify-content-start">
-                <div class="col-6">
-                    <label for="dataNascimento">Data de Nascimento:
-                        <input type="date" name="dataNascimento" id="dataNascimento" required
-                            class="form-control" min='1899-01-01' max='2004-10-26'>
-                    </label>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">CADASTRO GERENTE DE AGÊNCIA</h4>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="col-4">
-                    <label for="telefone">Telefone:
-                        <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required
-                            maxlength="15" class="form-control">
-                    </label>
-                </div>
-                <div class="col-2">
-                    <label for="genero">Gênero:
-                        <select name="genero" id="genero" required class="form-control">
-                            <option selected disabled value="" class="form-control">Escolha</option>
-                            <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
-                            <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
-                            <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="row justify-content-start">
-                <label for="CPF">CPF:
-                    <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
-                        class="form-control">
-                </label>
-            </div>
-        </div>
-        <!--LINHA CEP E NÚMERO-->
-        <div class="col-9">
-            <div class="row justify-content-start">
-                <div class="col-4">
-                    <label for="cep">CEP:
-                        <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control">
-                    </label>
-                </div>
-                <div class="col-4">
-                    <label for="numeroCasa">Nº:
-                        <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa"
-                            class="form-control" maxlength="10">
-                    </label>
-                </div>
-                <div class="col-4">
-                    <label for="endereco">Endereço:
-                        <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255"
-                            readonly>
-                    </label>
-                </div>
-            </div>
-            <!--LINHA ENDEREÇO, BAIRRO E CIDADE-->
-            <div class="row justify-content-start">
-                <div class="col-4">
-                    <label for="bairro">Bairro:
-                        <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255"
-                            readonly>
-                    </label>
-                </div>
+                <div class="modal-body">
+                    <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
+                    <form action="/cadastro_GA" method="POST" onsubmit="return checkForm(this);">
 
-                <div class="col-4">
-                    <label for="cidade">Cidade:
-                        <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255"
-                            readonly>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="row">
-                <label for="senha">Senha:
-                    <input type="password" id="senha" name="senha" class="form-control" maxlength="6">
-                </label>
-            </div>
-        </div>
-    
-        </div>
-                    
-        <!--BOTÃO CONFIRMAR CADASTRO-->
-    <div class="modal-footer">
-        <button class="btn btn-primary mx-3" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
-            <i class="fa-solid fa-check"></i>
-            Cadastrar
-        </button>
-    </div>
-    </form>
-        </div>
-    
-</div>
-</div>
-
-<div class="text-nowrap">
-<table class="table table-bordered table-striped table-fixed" cellpadding="0" id="tableGG">
-    <thead class="table-dark">
-        <tr style="text-align: center; font-size: 1.1vw">
-        <th scope="col">NÚMERO DE MATRÍCULA</th>
-        <th scope="col">NOME DO GERENTE</th>
-        <th scope="col">EDITAR</th>
-        <th scope="col">EXCLUIR</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in gerenteAgencia%}
-        <tr style="text-align: center;">
-            <th scope="row">{{item[0]}}</th>
-            <td>{{item[1]}}</td>
-            <td><a href="/alterardadosgalink/{{item[0]}}"><i class="bi bi-pencil fa-lg" style="color: #000;"></i></a></td>
-            <td>
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#excluirGerente">
-            <i class="bi bi-trash fa-lg" style="color: #000;"></i>
-            </button>
-                <div class="modal" tabindex="-1" role="dialog" id="excluirGerente">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" style="color: #000;">Deseja mesmo exlcuir?</h5>
+                        <div class="row">
+                            <div class="col-3">
+                                CPF:
+                                <input type="text" class="form-control" name="CPF" id="CPF" required placeholder="000.000.000-00">
+                           
+                                    
                             </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgb(202, 2, 2); color:#fff">Não</button>
-                            <a href="/demitir_GA/{{item[0]}}"><button type="button" class="btn" style="background-color: #5779a5;color:#fff">Sim</button></a>
+                            <div class="col-6">
+                                Nome Completo:
+                                <input type="text" class="form-control" name="nome" id="nome" required maxlength="255" required>
                             </div>
                         </div>
-                    </div>
+                    
+                        <div class="col-9">
+
+                            <div class="row justify-content-start">
+                                <div class="col-5">
+                                    <label for="dataNascimento">Data de Nascimento:
+                                        <input type="date" name="dataNascimento" id="dataNascimento" required
+                                            class="form-control" min='1899-01-01' max='2004-10-26'>
+                                    </label>
+                                </div>
+
+                                <div class="col-3">
+                                    <label for="genero">Gênero:
+                                        <select name="genero" id="genero" required class="form-select">
+                                            <option selected disabled value="" class="form-control">Escolha</option>
+                                            <option type="text" name="genero" id="genero" value="Masculino">Masculino
+                                            </option>
+                                            <option type="text" name="'genero" id="genero" value="Feminino">Feminino
+                                            </option>
+                                            <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
+                                        </select>
+                                    </label>
+                                </div>
+
+                                <div class="col-4">
+                                    <label for="telefone">Telefone:
+                                        <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone"
+                                            required maxlength="15" class="form-control">
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--LINHA CEP E NÚMERO-->
+                        <div class="col-9">
+                            <div class="row justify-content-start">
+                                <div class="col-4">
+                                    <label for="cep">CEP:
+                                        <input type="text" placeholder="00000-000" name="cep" id="cep"
+                                            class="form-control">
+                                    </label>
+                                </div>
+                                <div class="col-4">
+                                    <label for="numeroCasa">Nº:
+                                        <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa"
+                                            class="form-control" maxlength="10">
+                                    </label>
+                                </div>
+                                <div class="col-4">
+                                    <label for="endereco">Endereço:
+                                        <input type="text" name="endereco" id="endereco" class="form-control"
+                                            maxlength="255" readonly>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--LINHA ENDEREÇO, BAIRRO E CIDADE-->
+                            <div class="row ">
+                                <div class="col-5">
+                                    <label for="bairro">Bairro:
+                                        <input type="text" name="bairro" id="bairro" class="form-control"
+                                            maxlength="255" readonly>
+                                    </label>
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="cidade">Cidade:
+                                        <input type="text" name="cidade" id="cidade" class="form-control"
+                                            maxlength="255" readonly>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <label for="senha">Senha:
+                                    <input type="password" id="senha" name="senha" class="form-control" maxlength="6"
+                                        placeholder="Senha">
+                                </label>
+                            </div>
+                        </div>
+
                 </div>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>    
-</div>
 
-<!--FUNÇÃO CONFIRMAR SENHA-->
-<script>
-    var password = document.getElementById("senha")
-        , confirm_password = document.getElementById("confirmarSenha");
+                <!--BOTÃO CONFIRMAR CADASTRO-->
+                <div class="modal-footer">
+                    <button class="btn btn-primary mx-3" type="submit" id="cadastrar" class="form-control"
+                        data-toggle="modal" data-target="exampleModalCenter">
+                        <i class="fa-solid fa-check"></i>
+                        Cadastrar
+                    </button>
+                </div>
+                </form>
+            </div>
 
-    function validatePassword() {
-        if (password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("As senhas não coincidem!");
-        } else {
-            confirm_password.setCustomValidity('');
+        </div>
+    </div>
+
+    <div class="text-nowrap">
+        <table class="table table-bordered table-striped table-fixed" cellpadding="0" id="tableGG">
+            <thead class="table-dark">
+                <tr style="text-align: center; font-size: 1.1vw">
+                    <th scope="col">NÚMERO DE MATRÍCULA</th>
+                    <th scope="col">NOME DO GERENTE</th>
+                    <th scope="col">EDITAR</th>
+                    <th scope="col">EXCLUIR</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in gerenteAgencia%}
+                <tr style="text-align: center;">
+                    <th scope="row">{{item[0]}}</th>
+                    <td>{{item[1]}}</td>
+                    <td><a href="/alterardadosgalink/{{item[0]}}"><i class="bi bi-pencil fa-lg"
+                                style="color: #000;"></i></a></td>
+                    <td>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#excluirGerente">
+                            <i class="bi bi-trash fa-lg" style="color: #000;"></i>
+                        </button>
+                        <div class="modal" tabindex="-1" role="dialog" id="excluirGerente">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style="color: #000;">Deseja mesmo exlcuir?</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-bs-dismiss="modal"
+                                            style="background-color: rgb(202, 2, 2); color:#fff">Não</button>
+                                        <a href="/demitir_GA/{{item[0]}}"><button type="button" class="btn"
+                                                style="background-color: #5779a5;color:#fff">Sim</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!--FUNÇÃO CONFIRMAR SENHA-->
+    <script>
+        var password = document.getElementById("senha")
+            , confirm_password = document.getElementById("confirmarSenha");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("As senhas não coincidem!");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
         }
-    }
 
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
-</script>
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
 
-<!--MASCARA PARA DEFINIR FORMATO-->
-<script>
-    $("#telefone").mask("(99) 99999-9999")
+    <!--MASCARA PARA DEFINIR FORMATO-->
+    <script>
+        $("#telefone").mask("(99) 99999-9999")
 
-    $("#CPF").mask("999.999.999-99")
+        $("#CPF").mask("999.999.999-99")
 
-    $("#cep").mask("99999-999")
-</script>
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>        
+        $("#cep").mask("99999-999")
+    </script>
 
 
-{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    {% endblock %}
