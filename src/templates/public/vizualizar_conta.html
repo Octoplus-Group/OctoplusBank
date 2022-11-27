@@ -1,69 +1,71 @@
-{% extends "base.html" %}
+{% extends "baseSidebarGerente.html" %}
 
 {% block title %}
 
-Octoplus Bank | Dados Cliente
+Octoplus Bank | Gerenciar Agências
 
 {% endblock %}
 
 {% block moreScripts %}
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
 <link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
-<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerente_geral.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-{% endblock %}
+{% endblock moreScripts %}
 
-{% block content %}
+{% block conteudoComSidebar %}
 
-<div class="mt-5 ">
-    <h2 class="text-center">Dados Cadastrais do Cliente</h2>
-
-    <table class="table table-bordered mt-3 mx-auto" style="width: 40vw;">
-        <tbody>
-            <tr>
-                <td>CPF: {{cliente.3}}</td>
-                <td>Nome Completo: {{cliente.2}}</td>
-            </tr>
-            <tr>
-                <td>Genero: {{cliente.5}}</td>
-                <td>Data de Nascimento: {{cliente.4}}</td>
-            </tr>
-            <tr>
-                <td>Telefone: {{cliente.6}}</td>
-                <td>CEP: {{cliente.7}}</td>
-            </tr>
-            <tr>
-                <td>Endereço: {{cliente.8}}</td>
-                <td>Nº: {{cliente.11}}</td>
-            </tr>
-            <tr>
-                <td>Bairro: {{cliente.10}} </td>
-                <td>Cidade: {{cliente.9}} </td>
-            </tr>
-            <tr>
-                <td>Tipo de Conta: {{conta.3}} </td>
-                <td>Agencia: {{cliente.15}}</td>
-            </tr>
-            <tr>
-                <td>Numero de Conta: {{cliente.0}}</td>
-                <td>Data de Abertura: {{conta.2}}</td>
-            </tr>
-            <tr>
-                <td>Saldo: {{conta.4}}</td>
-            </tr>
-
-        </tbody>
-    </table>
-</div>
-
-
-<div class="text-center">
+<div class="container">
+    <div class="mt-5 ">
+        <h2 class="text-center">Dados Cadastrais do Cliente</h2>
     
-
-    <button type="button" class="btn" style="background-color: #2030bb; color: #fff"><a
-        class="dropdown-item" href="/link_gerenciar_contas/{{ga.0}}">VOLTAR</a></button>
+        <table class="table table-bordered mt-3 mx-auto" style="width: 40vw;">
+            <tbody>
+                <tr>
+                    <td>CPF: {{cliente.3}}</td>
+                    <td>Nome Completo: {{cliente.2}}</td>
+                </tr>
+                <tr>
+                    <td>Genero: {{cliente.5}}</td>
+                    <td>Data de Nascimento: {{cliente.4}}</td>
+                </tr>
+                <tr>
+                    <td>Telefone: {{cliente.6}}</td>
+                    <td>CEP: {{cliente.7}}</td>
+                </tr>
+                <tr>
+                    <td>Endereço: {{cliente.8}}</td>
+                    <td>Nº: {{cliente.11}}</td>
+                </tr>
+                <tr>
+                    <td>Bairro: {{cliente.10}} </td>
+                    <td>Cidade: {{cliente.9}} </td>
+                </tr>
+                <tr>
+                    <td>Tipo de Conta: {{conta.3}} </td>
+                    <td>Agencia: {{cliente.15}}</td>
+                </tr>
+                <tr>
+                    <td>Numero de Conta: {{cliente.0}}</td>
+                    <td>Data de Abertura: {{conta.2}}</td>
+                </tr>
+                <tr>
+                    <td>Saldo: {{conta.4}}</td>
+                </tr>
+    
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <div class="text-center">
+        
+    
+        <button type="button" class="btn" style="background-color: #2030bb; color: #fff"><a
+            class="dropdown-item" href="/link_gerenciar_contas/{{ga.0}}">VOLTAR</a></button>
+    </div>
 </div>
+
 
 {% endblock %}
