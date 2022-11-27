@@ -356,7 +356,7 @@ class realizarSaqueController(MethodView):
                 return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
 
             if saque>capital:
-                mensagem = 'Saque não pode ser realizado, favor entrar em contato com o Gerente de Geral'
+                mensagem = 'Saque não pode ser realizado, favor entrar em contato com o Gerente Geral'
                 return render_template('public/saque.html', cliente=cliente, conta=conta,mensagem=mensagem)
             else:
                 with mysql.cursor() as cur:
