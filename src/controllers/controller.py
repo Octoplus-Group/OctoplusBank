@@ -1151,7 +1151,7 @@ class DeletarAgenciaController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("SELECT ID_CONTA FROM conta WHERE ID_AGENCIA=%s",(id))
             testeconta = cur.fetchone()
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
             cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
             gerenteAgencia = cur.fetchall()
@@ -1162,7 +1162,7 @@ class DeletarAgenciaController(MethodView):
             with mysql.cursor() as cur:
                 cur.execute("DELETE from agencia WHERE ID_AGENCIA =%s",(id))
                 cur.connection.commit()
-                cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+                cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
                 cliente = cur.fetchone()
                 cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
                 gerenteAgencia = cur.fetchall()
@@ -1173,7 +1173,7 @@ class DeletarAgenciaController(MethodView):
             
         else:
             with mysql.cursor() as cur:
-                cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+                cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
                 cliente = cur.fetchone()
                 cur.execute("SELECT * FROM cliente WHERE FUNCAO =%s",('GA'))
                 gerenteAgencia = cur.fetchall()
