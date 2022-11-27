@@ -1040,7 +1040,7 @@ class AlterarCapitalJurosController(MethodView):
             cur.execute("SELECT * FROM banco WHERE ID_BANCO=%s ",(1))
             banco = cur.fetchone()
             capital = round(banco[2],2)
-            cur.execute("SELECT * FROM cliente where ID_CLIENTE =%s",(30))
+            cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
             cliente = cur.fetchone()
 
         return render_template('public/gerenciar_banco.html',banco=banco,capital=capital, cliente=cliente)
