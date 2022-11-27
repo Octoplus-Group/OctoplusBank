@@ -10,32 +10,53 @@ Octoplus Bank | Gerenciar Banco
 
 {% block moreScripts %}
 <link rel="stylesheet" href="{{url_for ('static', filename='css/_gerenciar_banco.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_gerente_geral.css')}}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 {% endblock moreScripts %}
 
+<div class="container text-center position-relative top-50 start-50 translate-middle mt-1">
+    <form action="/banco_dados" method="POST">
+        <fieldset class="cadastro">
+            <div class="cadastro-fundo">
+                <br>
+                <div class="row">
+
+                    <h2 class="text-center">INFORMAÇÕES DO BANCO</h2>
+
+                    <table class="table table-bordered mt-3 mx-auto" style="width: 40vw;">
+                        <tbody>
+                            <tr>
+                                <td>CAPITAL DO BANCO:</td>
+                                <td>R$ {{"{:.2f}".format(capital)}} </td>
+                            </tr>
+                            <tr>
+                                <td>ADICIONAR CAPITAL:</td>
+                                <td>R$ <input type="text" inputmode="numeric" name="capital" id="capital" min="0"
+                                        placeholder="0,00" step=".01" required></td>
+                            </tr>
+                            <tr>
+                                <td>JUROS DE CHEQUE ESPECIAL</td>
+                                <td>{{banco.4}} %</td>
+                            </tr>
+                            <tr>
+                                <td>JUROS DE POUPANÇA</td>
+                                <td>{{banco.3}} %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
-    <div id="bancoGerencia">       
-        <div class="gerenciar-banco">
-            <form action="/banco_dados" method="POST">
-            <p id="capital-banco">CAPITAL ATUAL DO BANCO: <span class="info"> R$ {{"{:.2f}".format(capital)}}</span></p>
-            <label for="capital">ADICIONAR CAPITAL AO BANCO R$</label>
-            <input type="text" inputmode="numeric" name="capital" id="capital" min="0" placeholder="0,00" step=".01" required>
-            </form>
-        </div>
-        <div class="gerenciar-banco infoGG">
-            <p>JUROS DE CHEQUE ESPECIAL ATUAL (%): <span class="info"> {{banco.4}}</span></p>
-        </div>
-        <div class="gerenciar-banco infoGG">
-            <p>JUROS DE POUPANÇA ATUAL (%): <span class="info"> {{banco.3}}</span></p>
-        </div>
-    </div> 
-
-    <button type="submit" id="solicitarGG">Atualizar Dados</button> 
 
 
-   
+            <div>
+                <button type="submit" data-bs-toggle="modal" data-bs-target="#gerenciarAgencias" class="modalGerenciar position-absolute top-500 start-50 translate-middle mt-4"id="solicitar"  ><i class="bi bi-arrow-clockwise">Atualizar Dados</i></button>
+            </div>
+
 
 {% endblock %}
