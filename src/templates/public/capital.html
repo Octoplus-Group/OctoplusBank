@@ -7,8 +7,9 @@
 {% block content %}
 
 <h1 style="text-align: center; padding-top: 5%;">
-    <u>INICIO OCTOPLUS BANK</u>
+    <u>INFORMAÇÕES INICIAL</u>
 </h1>
+<img src="../../static/images/logo_octoplus_bank_transparente.png" class="logo" alt="logo octoplus bank">
 
 <main>
     <form action="/" method="POST">
@@ -16,24 +17,24 @@
             <div class="cadastro-fundo">
 
                 <div class="container" style="padding-left:24%;">
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-6">
-                            <label for="capital">ENTRE COM O CAPITAL DO BANCO</label>
+                            <label for="capital"><h5>CAPITAL INICIAL DO BANCO:</h5></label>
                             <input type="number" name="capitalInicial" id="capitalInicial" required min="0"
-                                placeholder="0,00" step=".01" class="form-control" required>
+                                placeholder="R$ 0,00" step=".01" class="form-control" required>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-6">
-                            <label for="jurosPoupanca">Entre com os Juros da Poupança (%)</label>
+                            <label for="jurosPoupanca"><h5>JUROS DA POUPANÇA (%)</h5></label>
                             <input type="number" name="jurosPoupanca" id="jurosPoupanca" required min="0"
-                                placeholder="0" step=".01" class="form-control" required>
+                                placeholder="0.00%" step=".01" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <label for="dataNascimento">Entre com os Juros do Cheque Especial (%)</label>
-                            <input type="number" name="jurosCheque" id="jurosCheque" required min="0" placeholder="0"
+                            <label for="dataNascimento"><h5>JUROS DO CHEQUE ESPECIAL (%)</h5></label>
+                            <input type="number" name="jurosCheque" id="jurosCheque" required min="0" placeholder="0.00%"
                                 step=".01" class="form-control" required>
                         </div>
                     </div>

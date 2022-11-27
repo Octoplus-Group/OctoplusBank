@@ -42,25 +42,25 @@ Octoplus Bank | Cadastro
 
 <form action="/cadastro_gg" method="POST" onsubmit="return checkForm(this);">
     <fieldset class="cadastro">
-        <div class="container" style="padding-left: 23%">
-            <div class="row p-1 m-5">
+        <div class="container" style="padding-left: 24%">
+            <div class="row p-1 m-4">
                 <!--NOME, DATA DE NASCIMENTO, TELEFONE E GÊNERO-->
                 <div class="col-5">
                     <div class="row justify-content-start">
-                        <label for="nome"><strong>NOME DO GERENTE GERAL:</strong>
+                        <label for="nome"><h5>NOME DO GERENTE GERAL:</h5>
                             <input type="text" name="nomeGG" id="nomeGG" required maxlength="255" required
                                 class="form-control" placeholder="Digite seu nome">
                         </label>
                     </div>
 
-                    <div class="row justify-content-start">
-                        <label for="senha"><strong>SENHA:</strong>
+                    <div class="row justify-content-start mt-2">
+                        <label for="senha"><h5>SENHA:</h5>
                             <input type="password" id="senhaGG" name="senhaGG" class="form-control" maxlength="6"
                                 placeholder="Digite sua senha">
                         </label>
                     </div>
-                    <div class="row justify-content-start">
-                        <label for="confirmarSenha"><strong>CONFIRMAR SENHA:</strong>
+                    <div class="row justify-content-start mt-2">
+                        <label for="confirmarSenha"><h5>CONFIRMAR SENHA:</h5>
                             <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control"
                                 maxlength="6" placeholder="Confirme sua senha">
                         </label>
@@ -71,23 +71,18 @@ Octoplus Bank | Cadastro
                         Ao acessar o sitema, digite seu número de matrícula e senha!
                         
                       </div>
-
-
-
-
-
                 </div>
             </div>
         </div>
     </fieldset>
 
     <!--BOTÃO CONFIRMAR CADASTRO-->
-    <div class="container" style="padding-left: 50%;">
-        <button class="btn btn-primary p-4" type="submit" id="cadastrar" class="form-control" data-toggle="modal"
-            data-target="exampleModalCenter">
-            <i class="fa-solid fa-check"></i>
-            Confirmar
-        </button>
+
+    <div class="row" style="padding-left: 32%">
+        <div class="col-4 d-flex justify-content-end">
+            <button class="btn btn-primary p-4" type="submit" id="inicioSistema" class="form-control"
+                data-toggle="modal" data-target="exampleModalCenter"><i class="fa-solid fa-check"></i>      Confirmar</button>
+        </div>
     </div>
 </form>
 
