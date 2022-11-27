@@ -8,27 +8,32 @@ Octoplus Bank | Transferência
 
 {% block conteudoComSidebar %}
 
-<form action="transferencia.html" method="get">
-    <label for="valor">Valor:</label>
-    <input class="form-control" type="text" value="{{transferencia}}" disabled readonly>
+{{mensagem}}
 
-    <label for="para">Para:</label>
-    <input class="form-control" type="text" value="{{transacoes.7}}" disabled readonly>
+<form action="/confirmar_transferencia/{{cliente.0}}" method="POST">
+        <div class="form-group pt-5">
+            <label for="trans">Quantidade:
+                <input type="text" class="form-control" value="{{transferencia}}" name="trans" id="trans" readonly>
+            </label>
+        </div>
 
-    <label for="agencia">Agencia:</label>
-    <input class="form-control" type="text" value="{{agencia}}" disabled readonly>
+<div class="form-group">
+    <div class="form-group col-12 pt-5">
+        <label for="agencia">Transferir para:</label>
+        <input type="text"  class="form-control" value="{{agencia}}" name="agencia" id="agenciaTransf"  readonly>
+    </div>
+    <div class="form-group col-12 pt-3">
+        <input type="text"  class="form-control" id="para" name="para" value="{{para}}"  readonly>
+    </div>
+</div>
 
-    <button class="btn btn-primary btn-lg p-4 my-5" type="reset" id="confirmarDep" class="form-control"
+    <button class="btn btn-primary btn-lg p-4 my-5 d-flex" style="margin-left: 15%;" type="submit" id="confirmarDep" class="form-control"
         data-toggle="modal" data-target="exampleModalCenter">
         <i class="fa-solid fa-check"></i>
-        <a href="transferencia.html">Cancelar</a>
+     Confirmar
     </button>
 
-    <button class="btn btn-primary btn-lg p-4 my-5" type="submit" id="confirmarDep" class="form-control"
-        data-toggle="modal" data-target="exampleModalCenter">
-        <i class="fa-solid fa-check"></i>
-        Confirmar
-    </button>
 </form>
-
+<a href="/pagina_transferencia/{{cliente.1}}">Cancelar</a>
 {% endblock %}
+
