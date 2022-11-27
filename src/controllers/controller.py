@@ -795,7 +795,9 @@ class realizarTransferenciaController(MethodView):
                     conta = cur.fetchone()
                     cur.execute("select * from transacoes")
                     transacoes = cur.fetchone()
-                    return render_template('public/transferencia_confirmacao.html',cliente=cliente, conta=conta, mensagem=mensagem, transferencia=transferencia, transacoes=transacoes, agencia=agencia)
+                    cur.execute("SELECT * from cliente WHERE ID_CONTA=%s AND ID_AGENCIA=%s",(para,agencia))
+                    nomepara = cur.fetchone()
+                    return render_template('public/transferencia_confirmacao.html',cliente=cliente, conta=conta, mensagem=mensagem, transferencia=transferencia, transacoes=transacoes, agencia=agencia,nomepara=nomepara,para=para)
 
 
 class PaginaConfirmarTransferenciaController(MethodView):
@@ -811,9 +813,10 @@ class PaginaConfirmarTransferenciaController(MethodView):
 
 class ConfirmarTransferenciaController(MethodView):
     def post(self, id):
-        transferencia = float(request.form['transferencia'])
+        
         agencia = request.form["agencia"]
         para = request.form["para"]
+        transferencia = float(request.form["trans"])
         with mysql.cursor() as cur:
             cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
             cliente = cur.fetchone()
