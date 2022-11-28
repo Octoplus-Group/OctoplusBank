@@ -16,66 +16,78 @@ Octoplus Bank | Aprovar Depósitos
 
 
 {% block conteudoComSidebar %}
+<div class="container pt-3">
     <h1>Alterar Dados de Gerente de Agencia</h1>
-        <form action="/alterardadosga/{{ga.0}}" method="POST" onsubmit="return checkForm(this);">
-        <div class="col-9">
-            <div class="row justify-content-start">
-                <label for="nome">Nome Completo:
-                    <input type="text" name="nome" id="nome" required maxlength="255" required value="{{ga.1}}"
-                        class="form-control">
-                </label>
+    <form action="/alterardadosga/{{ga.0}}" method="POST" onsubmit="return checkForm(this);">
+        <div class="row">
+            <div class="col-sm-3">
+                CPF:
+                <input type="text" class="form-control" name="CPF" id="CPF" required value="{{ga.7}}">
             </div>
-            <div class="row justify-content-start">
-                <div class="col-4">
+            <div class="col-sm-6">
+                Nome Completo:
+                <input type="text" class="form-control" name="nome" id="nome" required maxlength="255" required
+                    value="{{ga.1}}">
+            </div>
+        </div>
+
+        <div class="col-9">
+
+            <div class="row justify-content-start col-md">
+                <div class="col-sm-5">
                     <label for="dataNascimento">Data de Nascimento:
-                        <input type="date" name="dataNascimento" id="dataNascimento" required
-                            class="form-control" min='1899-01-01' max='2004-10-26' value="{{ga.4}}">
+                        <input type="date" name="dataNascimento" id="dataNascimento" required class="form-control" min='1899-01-01' max='2004-10-26' value="{{ga.4}}">
                     </label>
                 </div>
-                <div class="col-4">
+
+                <div class="col-sm">
+                    <label for="genero">Gênero:
+                        <select name="genero" id="genero" required value="{{ga.6}}" class="form-select">
+                            <option selected value="Escolha" class="form-control">
+                                {{ga.6}}
+                            </option>
+                            <option type="text" name="genero" id="genero" value="Masculino" >
+                                Masculino
+                            </option>
+                            <option type="text" name="'genero" id="genero" value="Feminino">
+                                Feminino
+                            </option>
+                            <option type="text" name="'genero" id="genero" value="Outro">
+                                Outro
+                            </option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="col-sm-3">
                     <label for="telefone">Telefone:
                         <input type="text" placeholder="(00) 0000-0000" name="telefone" id="telefone" required
                             maxlength="15" class="form-control" value="{{ga.5}}">
                     </label>
                 </div>
-                <div class="col-4">
-                    <label for="genero">Gênero:
-                        <select name="genero" id="genero" required class="form-control">
-                            <option selected disabled value="{{ga.6}}" class="form-control">Escolha</option>
-                            <option type="text" name="genero" id="genero" value="Masculino">Masculino</option>
-                            <option type="text" name="'genero" id="genero" value="Feminino">Feminino</option>
-                            <option type="text" name="'genero" id="genero" value="Outro">Outro</option>
-                        </select>
-                    </label>
-                </div>
+
             </div>
         </div>
-        <div class="col-4">
-            <div class="row justify-content-start">
-                <label for="CPF">CPF:
-                    <input type="text" name="CPF" id="CPF" required placeholder="000.000.000-00" required
-                        class="form-control" value="{{ga.7}}">
-                </label>
-            </div>
-        </div>
+
         <!--LINHA CEP E NÚMERO-->
         <div class="col-9">
             <div class="row justify-content-start">
                 <div class="col-4">
                     <label for="cep">CEP:
-                        <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control" value="{{ga.8}}">
+                        <input type="text" placeholder="00000-000" name="cep" id="cep" class="form-control"
+                            value="{{ga.8}}">
                     </label>
                 </div>
                 <div class="col-4">
                     <label for="numeroCasa">Nº:
-                        <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa"
-                            class="form-control" maxlength="10" value="{{ga.9}}">
+                        <input type="text" inputmode="numeric" name="numeroCasa" id="numeroCasa" class="form-control"
+                            maxlength="10" value="{{ga.9}}">
                     </label>
                 </div>
                 <div class="col-4">
                     <label for="endereco">Endereço:
-                        <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255"
-                            readonly value="{{ga.10}}">
+                        <input type="text" name="endereco" id="endereco" class="form-control" maxlength="255" readonly
+                            value="{{ga.10}}">
                     </label>
                 </div>
             </div>
@@ -83,15 +95,15 @@ Octoplus Bank | Aprovar Depósitos
             <div class="row justify-content-start">
                 <div class="col-4">
                     <label for="bairro">Bairro:
-                        <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255"
-                            readonly value="{{ga.11}}">
+                        <input type="text" name="bairro" id="bairro" class="form-control" maxlength="255" readonly
+                            value="{{ga.11}}">
                     </label>
                 </div>
 
                 <div class="col-4">
                     <label for="cidade">Cidade:
-                        <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255"
-                            readonly value="{{ga.12}}">
+                        <input type="text" name="cidade" id="cidade" class="form-control" maxlength="255" readonly
+                            value="{{ga.12}}">
                     </label>
                 </div>
             </div>
@@ -99,26 +111,30 @@ Octoplus Bank | Aprovar Depósitos
         <div class="col-3">
             <div class="row">
                 <label for="senha">Senha:
-                    <input type="password" id="senha" name="senha" class="form-control" maxlength="6" value="{{ga.13}}">
+                    <input type="password" id="senha" name="senha" class="form-control" maxlength="6" value="{{ga.3}}">
                 </label>
             </div>
         </div>
-    
-        </div>
-                    
-        <!--BOTÃO CONFIRMAR CADASTRO-->
-    <div class="modal-footer">
-        <button class="btn btn-primary mx-3" type="submit" id="cadastrar" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
-            <i class="fa-solid fa-check"></i>
-            Alterar Dados
-        </button>
-    </div>
-    </form>
-        </div>
-    
-</div>
-</div>
-<a href="gerenciar_gerentes">Voltar</a>
-{% endblock %}
 
- 
+        <div class="modal-footer">
+            <div class="text-center">
+    
+
+                <button type="button" class="btn" style="background-color: #69696d; color: #fff"><a
+                    class="dropdown-item" href="/gerenciar_gerentes">VOLTAR</a></button>
+            </div>
+            
+            
+            <button class="btn btn-primary mx-3" type="submit" id="cadastrar" class="form-control" data-toggle="modal"
+                data-target="exampleModalCenter">
+                <i class="fa-solid fa-check"></i>
+                Alterar Dados
+            </button>
+
+            
+        </div>
+
+</div>
+
+
+{% endblock %}

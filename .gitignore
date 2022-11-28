@@ -287,3 +287,4 @@ src/routes/__pycache__/routes.cpython-310.pyc
 src/db.py
 src/controllers/__pycache__/erros.cpython-310.pyc
 src/controllers/__pycache__/controller.cpython-310.pyc
+src/db.py
