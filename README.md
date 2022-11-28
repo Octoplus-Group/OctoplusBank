@@ -81,7 +81,7 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 
 <h3>Clonar o repositório</h3>
 
-> https://github.com/OctoplusHolding/OctoplusBank.git
+> git clone https://github.com/Octoplus-Group/OctoplusBank.git .
 
 <h3>Abrir o CMD na pasta OctoplusBank e digitar:</h3>
 
