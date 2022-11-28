@@ -174,6 +174,9 @@ https://youtu.be/tejSp35uI5A
 
 <h3> Sprint 4: [07/11/22-27/11/22]</h3> 
 
+![burndown4](https://user-images.githubusercontent.com/111464795/204181861-7feaedd1-9cf9-4e2c-9902-79a260b853f8.png)
+
+
 <br>
 <br>
 
