@@ -1366,13 +1366,13 @@ class visualizaragenciaController(MethodView):
 
         with mysql.cursor()as cur:
             cur.execute('SELECT count(*) from cliente WHERE ID_AGENCIA=%s',(id))
-            contagemclientes = cur.fetchone()
+            contagemclientes = sum(cur.fetchone())
             cur.execute('SELECT count(*) from conta WHERE ID_AGENCIA=%s',(id))
-            contagemcontas = cur.fetchone()
+            contagemcontas = sum(cur.fetchone())
             cur.execute('SELECT SUM(SALDO) from conta WHERE ID_AGENCIA=%s',(id))
-            saldocontas = cur.fetchone()
+            saldocontas = float(sum(cur.fetchone()))
             cur.execute('SELECT count(*) from conta WHERE ID_AGENCIA=%s and STATUS=%s',(id,'PENDENTE'))
-            contagempendente = cur.fetchone()
+            contagempendente = sum(cur.fetchone())
 
 
             cur.execute("SELECT * FROM funcionarios where ID_FUNC =%s",(1))
