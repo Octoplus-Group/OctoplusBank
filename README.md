@@ -73,6 +73,11 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 ## ❓Como Utilizar <a id="comousar"></a>
 <br>
 
+### Em caso de dúvidas, acesse nosso tutorial pelo YOUTUBE:
+
+https://youtu.be/tejSp35uI5A
+<br>
+<hr>
 <h3>Possuir os seguintes aplicativos em sua máquina:</h3>
 
 > Python 3.10 - https://www.python.org/ <br>
