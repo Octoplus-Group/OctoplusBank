@@ -6,34 +6,60 @@ Octoplus Bank | Transferência
 
 {% endblock %}
 
+{% block moreScripts %}
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_area_cliente.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='css/_home_user.css')}}">
+{% endblock moreScripts %}
+
 {% block conteudoComSidebar %}
 
 {{mensagem}}
+<div class="container-fluid">
+    <div class="container d-flex justify-content-center">
+        <form action="/confirmar_transferencia/{{cliente.0}}" method="POST">
 
-<form action="/confirmar_transferencia/{{cliente.0}}" method="POST">
-        <div class="form-group pt-5">
-            <label for="trans">Quantidade:
-                <input type="text" class="form-control" value="{{transferencia}}" name="trans" id="trans" readonly>
-            </label>
-        </div>
+            <div class="form-group col-sm-9">
 
-<div class="form-group">
-    <div class="form-group col-12 pt-5">
-        <label for="agencia">Transferir para:</label>
-        <input type="text"  class="form-control" value="{{agencia}}" name="agencia" id="agenciaTransf"  readonly>
-    </div>
-    <div class="form-group col-12 pt-3">
-        <input type="text"  class="form-control" id="para" name="para" value="{{para}}"  readonly>
+                <label for="trans">Quantidade:
+                    <input type="text" class="form-control" value="{{transferencia}}" name="trans" id="trans" readonly>
+                </label>
+            </div>
+
+            <div class="form-group col-sm-9">
+                <label for="agencia">Transferir para:
+                    <div><span>Agência:</span><input type="text" class="form-control" value="{{agencia}}" name="agencia"
+                            id="agenciaTransf" readonly>
+                    </div>
+                </label>
+            </div>
+            <div class="form-group col-sm-9">
+                <div><span>Conta:</span>
+                    <input type="text" class="form-control" id="para" name="para" value="{{para}}" readonly>
+                </div>
+            </div>
+
+            <div class="modal-footer mt-3">
+                <div class="text-center">
+                    <button type="button" class="btn" style="background-color: #69696d; color: #fff " ;
+                        id="confirmarDep" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
+                        <i class="fa-solid fa-check"></i>
+                        Confirmar
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary mx-3" style="background-color: #470213; color: #fff ;" type="submit"
+                        id="confirmarDep" class="form-control" data-toggle="modal" data-target="exampleModalCenter">
+                        <i class="fa-solid fa-check"><a style="background-color: #470213; color: #fff ;" href="/pagina_transferencia/{{cliente.1}}">Cancelar</a></i>
+
+                    </button>
+                </div>
+
+            </div>
     </div>
 </div>
+</div>
 
-    <button class="btn btn-primary btn-lg p-4 my-5 d-flex" style="margin-left: 15%;" type="submit" id="confirmarDep" class="form-control"
-        data-toggle="modal" data-target="exampleModalCenter">
-        <i class="fa-solid fa-check"></i>
-     Confirmar
-    </button>
-
-</form>
-<a href="/pagina_transferencia/{{cliente.1}}">Cancelar</a>
+<!-- </form>
+<a href="/pagina_transferencia/{{cliente.1}}">Cancelar</a> -->
 {% endblock %}
-
