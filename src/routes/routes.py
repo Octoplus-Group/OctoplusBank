@@ -80,6 +80,7 @@ routes ={
     "aprovacao_conta_gg_route":"/aprovacao_conta_gg/<int:id>","aprovacao_conta_gg_controller":AprovacaoContaGGController.as_view("aprovacaocontagg"),
     "gerar_extrato_gg_route":"/gerar_extrato_gg/<int:id>","gerar_extrato_gg_controller":GerarExtratoGGController.as_view("gerarextratogg"),
     "link_extrato_gerente_GG":"/link_extrato_gerente_GG/<int:id>","link_extrato_gerente_GG_controller":LinkExtratoGerenteGGController.as_view("linkextratogerentegg"),
+    "update_gerente_gg_route":"/update/gerentegg/<int:id>","update_gerente_gg_controller":UpdateGerenteGGController.as_view("updategerentegg"),
 }
 
 

@@ -146,3 +146,5 @@ app.add_url_rule(routes["gerar_extrato_gg_route"],view_func=routes["gerar_extrat
 app.add_url_rule(routes["gerar_extrato_ga_route"],view_func=routes["gerar_extrato_ga_controller"])
 
 app.add_url_rule(routes["link_extrato_gerente_GG"],view_func=routes["link_extrato_gerente_GG_controller"])
+
+app.add_url_rule(routes["update_gerente_gg_route"],view_func=routes["update_gerente_gg_controller"])

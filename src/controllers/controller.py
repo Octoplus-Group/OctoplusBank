@@ -1466,3 +1466,51 @@ class LinkExtratoGerenteGGController(MethodView):
             
 
             return render_template('public/extrato_gerente.html', cliente=cliente , conta=conta,extrato=extrato)
+
+class UpdateGerenteGGController(MethodView):
+    def get(self, id):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(1))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE ID_cliente =%s",(id))
+            clientereal = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(clientereal[0]))
+            conta = cur.fetchone()
+            
+
+            return render_template('public/alteracao_dados_gerente_gg.html', cliente=cliente, conta=conta,clientereal=clientereal)
+    
+    def post(self,id):
+
+        nome = request.form['nome']
+        CPF = request.form['CPF']
+        dataNascimento = request.form['dataNascimento']
+        genero = request.form['genero']
+        telefone = request.form['telefone']
+        cep = request.form['cep']
+        cidade = request.form['cidade']
+        endereco = request.form['endereco']
+        bairro = request.form['bairro']
+        numeroCasa = request.form['numeroCasa']
+
+        senha = request.form['senha']
+        
+        with mysql.cursor() as cur:
+            cur.execute("UPDATE cliente SET NOME =%s,CPF =%s,DATA_NASCIMENTO =%s,GENERO =%s,TELEFONE =%s,CEP =%s,CIDADE =%s,ENDERECO =%s,BAIRRO =%s,NUMERO =%s,SENHA =%s WHERE  ID_CONTA = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,id))
+            cur.connection.commit()
+
+            cur.execute("SELECT * FROM funcionarios WHERE ID_FUNC =%s",(1))
+            cliente = cur.fetchone()
+            cur.execute("SELECT * FROM cliente WHERE ID_CLIENTE =%s",(id))
+            clientereal = cur.fetchone()
+            cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(cliente[0]))
+            conta = cur.fetchone()
+            
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('APROVADO'))
+            dataAprovado = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE STATUS =%s",('ANALISE'))
+            dataAnalise = cur.fetchall()
+            cur.execute("SELECT * FROM cliente WHERE REQUISICAO=%s",('DELETAR'))
+            dataDeletar = cur.fetchall()
+
+            return render_template('public/gerenciar_contas_gerente_geral.html', cliente=cliente, conta=conta, dataAnalise=dataAnalise,dataAprovado=dataAprovado,dataDeletar=dataDeletar,clientereal=clientereal)
