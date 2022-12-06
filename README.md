@@ -73,6 +73,11 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 ## ❓Como Utilizar <a id="comousar"></a>
 <br>
 
+### Em caso de dúvidas, acesse nosso tutorial pelo YOUTUBE:
+
+https://youtu.be/tejSp35uI5A
+<br>
+<hr>
 <h3>Possuir os seguintes aplicativos em sua máquina:</h3>
 
 > Python 3.10 - https://www.python.org/ <br>
@@ -81,7 +86,7 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 
 <h3>Clonar o repositório</h3>
 
-> https://github.com/OctoplusHolding/OctoplusBank.git
+> git clone https://github.com/Octoplus-Group/OctoplusBank.git .
 
 <h3>Abrir o CMD na pasta OctoplusBank e digitar:</h3>
 
@@ -168,6 +173,9 @@ _Projeto de um banco fictício, representado pelo Profº Fabrício Galende Marqu
 <br>
 
 <h3> Sprint 4: [07/11/22-27/11/22]</h3> 
+
+![burndown4](https://user-images.githubusercontent.com/111464795/204181861-7feaedd1-9cf9-4e2c-9902-79a260b853f8.png)
+
 
 <br>
 <br>

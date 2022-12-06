@@ -780,7 +780,7 @@ class realizarTransferenciaController(MethodView):
                     return render_template('public/transferencia.html',cliente=cliente, conta=conta, mensagem=mensagem)
 
                 elif cliente[0] == id:
-                    mensagem = "Não é possivel realizar a transferência!"
+                    mensagem = "Não é possivel realizar a transferência para a própria conta!"
                     cur.execute("SELECT * FROM cliente WHERE ID_CONTA =%s",(id))
                     cliente = cur.fetchone()
                     cur.execute("SELECT * FROM conta WHERE ID_CONTA =%s",(id))

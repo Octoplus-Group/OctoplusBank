@@ -6,9 +6,12 @@ Octoplus Bank | Transferência
 
 {% endblock %}
 
+
 {% block conteudoComSidebar %}
 
-<div class="container-fluid m-5 p-5">
+
+<div class="container-fluid">
+    <div class="container d-flex justify-content-center"></div>
     <form action="/realiazar_transferencia/{{cliente.0}}" method="POST">
 
         <h6 style="color:green ;">{{mensagem}}</h6>
