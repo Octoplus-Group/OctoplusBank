@@ -93,8 +93,10 @@ Octoplus Bank | Meus Dados
                     min='1899-01-01' max='2004-10-26' value="{{cliente.4}}">
 
                 <label for="genero">Gênero:</label>
-                <select name="genero" id="genero" required class="form-control">
-                    <option selected enable value="{{cliente.5}}" class="form-control">{{cliente.5}}</option>
+                <select name="genero" id="genero" required value="{{cliente.5}}" class="form-select">
+                    <option type="text" value="{{cliente.5}}" class="form-control">
+                        {{cliente.5}}
+                    </option>
                     <option type="text" name="genero" id="genero" value="Masculino">Masculino
                     </option>
                     <option type="text" name="'genero" id="genero" value="Feminino">Feminino
