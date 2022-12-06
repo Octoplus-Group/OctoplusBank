@@ -1369,7 +1369,7 @@ class visualizaragenciaController(MethodView):
             contagemclientes = sum(cur.fetchone())
             cur.execute('SELECT count(*) from conta WHERE ID_AGENCIA=%s',(id))
             contagemcontas = sum(cur.fetchone())
-            cur.execute('SELECT SUM(SALDO) from conta WHERE ID_AGENCIA=%s',(id))
+            cur.execute("SELECT SUM(SALDO) from conta WHERE ID_AGENCIA=%s AND SALDO<>'%s'",(id,None))
             saldocontas = float(sum(cur.fetchone()))
             cur.execute('SELECT count(*) from conta WHERE ID_AGENCIA=%s and STATUS=%s',(id,'PENDENTE'))
             contagempendente = sum(cur.fetchone())
