@@ -169,14 +169,13 @@ class UpdateClienteController(MethodView):
         endereco = request.form['endereco']
         bairro = request.form['bairro']
         numeroCasa = request.form['numeroCasa']
-        tipoConta = request.form['tipoConta']
+        
         senha = request.form['senha']
         
         with mysql.cursor() as cur:
             cur.execute("UPDATE cliente SET NOME =%s,CPF =%s,DATA_NASCIMENTO =%s,GENERO =%s,TELEFONE =%s,CEP =%s,CIDADE =%s,ENDERECO =%s,BAIRRO =%s,NUMERO =%s,SENHA =%s WHERE  ID_CONTA = %s",(nome,CPF,dataNascimento,genero,telefone,cep,cidade,endereco,bairro,numeroCasa,senha,id))
             cur.connection.commit()
-            cur.execute("UPDATE conta SET TIPO_CONTA =%s WHERE ID_CONTA = %s",(tipoConta,id))
-            cur.connection.commit()
+            
 
             return redirect('/')
 
